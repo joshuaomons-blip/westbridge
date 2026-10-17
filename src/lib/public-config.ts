@@ -7,3 +7,6 @@
 export const PUBLIC_SUPABASE_URL = "https://kzvvkvkpdcglkupqfyma.supabase.co";
 export const PUBLIC_SUPABASE_ANON_KEY =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imt6dnZrdmtwZGNnbGt1cHFmeW1hIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTIxODkzMzMsImV4cCI6MjEwNzc2NTMzM30.8S3kmY0qNEWLUavMnudVOoT2UetByfDyYVH4y7pGgfQ";
+
+/** Public address of the live site. Override with NEXT_PUBLIC_SITE_URL when a custom domain is connected. */
+export const PUBLIC_SITE_URL = "https://norvane-express.vercel.app";
