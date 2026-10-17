@@ -250,7 +250,8 @@
     "hubTitle": "Centra sortowania",
     "hubText": "Paczki są skanowane i sortowane w każdym centrum na trasie.",
     "lastTitle": "Doręczenie",
-    "lastText": "Kurier dostarcza przesyłkę pod drzwi odbiorcy."
+    "lastText": "Kurier dostarcza przesyłkę pod drzwi odbiorcy.",
+    "customsHold": "Wstrzymana na odprawie celnej"
   },
   "status": {
     "shipment_created": "Przesyłka utworzona",

@@ -65,6 +65,7 @@ export async function TrackingResult({
   const category = categoryOf(data.status);
   // Customs, delays and delivery problems pause the shipment: everything ahead shows as pending.
   const hold = isOnHold(data.status);
+  const customsHold = data.status === "customs_processing";
   const banner = hold ? { bg: "bg-amber-700", dot: "bg-amber-600", icon: Hourglass } : BANNER[category];
   const BannerIcon = banner.icon;
   const step = progressIndex(data.status);
@@ -157,12 +158,17 @@ export async function TrackingResult({
                   </div>
                   {isStatusCode(data.status) && <p className="mt-4 max-w-xl text-lg text-white/85">{td(data.status)}</p>}
                   {hold && (
-                    <p className="mt-4 mr-2 inline-flex items-center gap-2 rounded-full bg-white px-3 py-1 text-sm font-bold text-amber-800">
+                    <p
+                      className={cn(
+                        "mt-4 mr-2 inline-flex items-center gap-2 rounded-full px-3 py-1 text-sm font-bold",
+                        customsHold ? "bg-red-600 text-white ring-1 ring-white/30" : "bg-white text-amber-800",
+                      )}
+                    >
                       <span className="relative flex h-2 w-2" aria-hidden>
-                        <span className="trk-ping absolute inset-0 rounded-full bg-amber-500" />
-                        <span className="relative h-2 w-2 rounded-full bg-amber-600" />
+                        <span className={cn("trk-ping absolute inset-0 rounded-full", customsHold ? "bg-white" : "bg-amber-500")} />
+                        <span className={cn("relative h-2 w-2 rounded-full", customsHold ? "bg-white" : "bg-amber-600")} />
                       </span>
-                      {t("onHold")}
+                      {customsHold ? t("customsHold") : t("onHold")}
                     </p>
                   )}
                   <p className="mt-4 inline-flex items-center gap-2 rounded-full bg-black/15 px-3 py-1 text-sm font-medium text-white/90">

@@ -250,7 +250,8 @@
     "hubTitle": "Sortierzentren",
     "hubText": "Pakete werden in jedem Zentrum auf der Route gescannt und sortiert.",
     "lastTitle": "Zustellung",
-    "lastText": "Ein Kurier bringt die Sendung bis an die Tür des Empfängers."
+    "lastText": "Ein Kurier bringt die Sendung bis an die Tür des Empfängers.",
+    "customsHold": "Vom Zoll zurückgehalten"
   },
   "status": {
     "shipment_created": "Sendung erstellt",

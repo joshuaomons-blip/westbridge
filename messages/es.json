@@ -250,7 +250,8 @@
     "hubTitle": "Centros de clasificación",
     "hubText": "Los paquetes se escanean y clasifican en cada centro de la ruta.",
     "lastTitle": "Entrega final",
-    "lastText": "Un mensajero lleva el envío hasta la puerta del destinatario."
+    "lastText": "Un mensajero lleva el envío hasta la puerta del destinatario.",
+    "customsHold": "Retenido en aduana"
   },
   "status": {
     "shipment_created": "Envío creado",

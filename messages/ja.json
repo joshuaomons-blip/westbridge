@@ -250,7 +250,8 @@
     "hubTitle": "仕分けハブ",
     "hubText": "ルート上の各ハブで荷物をスキャンし、仕分けします。",
     "lastTitle": "最終配達",
-    "lastText": "配達員がお届け先の玄関までお届けします。"
+    "lastText": "配達員がお届け先の玄関までお届けします。",
+    "customsHold": "税関保留中"
   },
   "status": {
     "shipment_created": "貨物登録",

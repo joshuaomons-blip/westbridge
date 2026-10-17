@@ -250,7 +250,8 @@
     "hubTitle": "Sorting hubs",
     "hubText": "Parcels are scanned and sorted at each hub on the route.",
     "lastTitle": "Final delivery",
-    "lastText": "A courier brings the shipment to the recipient's door."
+    "lastText": "A courier brings the shipment to the recipient's door.",
+    "customsHold": "Customs hold"
   },
   "status": {
     "shipment_created": "Shipment created",

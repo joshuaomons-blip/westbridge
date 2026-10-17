@@ -152,7 +152,12 @@ async function SummaryRow({ number, result, locale, messages }: { number: string
         <p className="mt-0.5 flex items-center gap-2 font-bold text-slate-900">
           <span className={cn("h-2 w-2 rounded-full md:hidden", bg)} aria-hidden />
           {isStatusCode(d.status) ? ts(d.status) : d.status}
-          {hold && <span className="rounded-full bg-amber-100 px-2 py-0.5 text-[11px] font-bold text-amber-800">{t("onHold")}</span>}
+          {hold &&
+            (d.status === "customs_processing" ? (
+              <span className="rounded-full bg-red-600 px-2 py-0.5 text-[11px] font-bold text-white">{t("customsHold")}</span>
+            ) : (
+              <span className="rounded-full bg-amber-100 px-2 py-0.5 text-[11px] font-bold text-amber-800">{t("onHold")}</span>
+            ))}
         </p>
         <p className="text-xs text-slate-500">{t("updated", { time: formatRelative(d.last_update, locale) })}</p>
       </div>

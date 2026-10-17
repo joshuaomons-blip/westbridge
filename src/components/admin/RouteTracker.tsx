@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useFormStatus } from "react-dom";
-import { CircleCheck, LoaderCircle, MapPin, Navigation, PackageCheck, Truck } from "lucide-react";
+import { CircleCheck, LoaderCircle, MapPin, Navigation, PackageCheck, ShieldCheck, ShieldAlert, Truck } from "lucide-react";
 import type { JourneyStop } from "@/lib/journey";
 import type { RouteStep } from "@/lib/route-progress";
 import { cn } from "@/lib/format";
@@ -62,7 +62,6 @@ export function RouteTracker({ journey, steps, previews, emailDefault }: {
             <input type="checkbox" name="send_email" defaultChecked={emailDefault} className="h-4 w-4 rounded border-slate-300" />
             Email the sender and recipient with each update
           </label>
-          <p className="text-xs text-slate-500">Updates are recorded at the current time. To fix a mistake, use “Correct or void this event” in the tracking history.</p>
         </>
       )}
     </div>
@@ -72,7 +71,13 @@ export function RouteTracker({ journey, steps, previews, emailDefault }: {
 function StepButton({ step, onHover }: { step: RouteStep; onHover: (k: string | null) => void }) {
   const { pending, data } = useFormStatus();
   const mine = pending && data?.get("step") === step.key;
-  const Icon = step.kind === "depart" ? Navigation : step.kind === "out" ? Truck : step.kind === "delivered" ? PackageCheck : MapPin;
+  const Icon =
+    step.kind === "depart" ? Navigation
+    : step.kind === "out" ? Truck
+    : step.kind === "delivered" ? PackageCheck
+    : step.kind === "hold" ? ShieldAlert
+    : step.kind === "cleared" ? ShieldCheck
+    : MapPin;
   return (
     <button
       type="submit"
@@ -84,9 +89,11 @@ function StepButton({ step, onHover }: { step: RouteStep; onHover: (k: string | 
       onMouseLeave={() => onHover(null)}
       className={cn(
         "flex items-center gap-2 rounded-lg border px-3 py-2.5 text-left text-sm font-semibold transition disabled:opacity-60",
-        step.next
-          ? "border-signal-600 bg-signal-600 text-white hover:bg-signal-700"
-          : "border-slate-300 bg-white text-navy-800 hover:border-navy-400 hover:bg-navy-50",
+        step.danger
+          ? "border-red-300 bg-red-50 text-red-800 hover:border-red-400 hover:bg-red-100"
+          : step.next
+            ? "border-signal-600 bg-signal-600 text-white hover:bg-signal-700"
+            : "border-slate-300 bg-white text-navy-800 hover:border-navy-400 hover:bg-navy-50",
       )}
     >
       {mine ? <LoaderCircle className="h-4 w-4 animate-spin" aria-hidden /> : <Icon className="h-4 w-4 shrink-0" aria-hidden />}

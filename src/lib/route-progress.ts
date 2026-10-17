@@ -5,19 +5,21 @@
  */
 import { buildJourney, samePlace, type JourneyStop } from "./journey";
 
-export type StepKind = "depart" | "arrive" | "arrive_final" | "arrive_dest" | "out" | "delivered";
+export type StepKind = "depart" | "arrive" | "arrive_final" | "arrive_dest" | "out" | "delivered" | "hold" | "cleared";
 
 export type RouteStep = {
   /** Stable key sent by the button; recomputed on the server, never trusted as text. */
   key: string;
   kind: StepKind;
-  status: "in_transit" | "arrived_at_facility" | "out_for_delivery" | "delivered";
+  status: "in_transit" | "arrived_at_facility" | "out_for_delivery" | "delivered" | "customs_processing" | "customs_cleared";
   /** Location saved on the tracking event. */
   location: string;
   /** Short button label for staff. */
   label: string;
-  /** The first step is the one that normally comes next. */
+  /** The step that normally comes next. */
   next: boolean;
+  /** Shown as a red "problem" button (customs hold). */
+  danger?: boolean;
   vars: { place: string; next: string; dest: string };
 };
 
@@ -39,6 +41,8 @@ const STATUS: Record<StepKind, RouteStep["status"]> = {
   arrive_dest: "arrived_at_facility",
   out: "out_for_delivery",
   delivered: "delivered",
+  hold: "customs_processing",
+  cleared: "customs_cleared",
 };
 
 /** Builds the route with each place's state, plus the one-click updates available now. */
@@ -91,7 +95,17 @@ export function routeProgress(s: RouteShipment, events: RouteEvent[]): { journey
   }
   steps.push({ key: "delivered", kind: "delivered", status: STATUS.delivered, location: dest, label: `Delivered in ${s.destination_city}`, vars: { place: dest, next: "", dest } });
 
-  return { journey, steps: steps.map((st, i) => ({ ...st, next: i === 0 })) };
+  // Customs: hold where the shipment is now; while held, releasing it comes first.
+  const here = current ? full(current) : `${s.origin_city}, ${s.origin_country}`;
+  const herePlace = current ? current.name : s.origin_city;
+  if (s.current_status === "customs_processing") {
+    steps.unshift({ key: "cleared", kind: "cleared", status: STATUS.cleared, location: here, label: `Released from customs in ${herePlace}`, vars: { place: here, next: "", dest } });
+  } else {
+    steps.push({ key: "hold", kind: "hold", status: STATUS.hold, location: here, label: `Customs hold in ${herePlace}`, vars: { place: here, next: "", dest }, danger: true });
+  }
+
+  const firstNormal = steps.findIndex((st) => !st.danger);
+  return { journey, steps: steps.map((st, i) => ({ ...st, next: i === firstNormal })) };
 }
 
 type Templates = Record<StepKind, string>;
@@ -104,6 +118,8 @@ const MESSAGES: Record<string, Templates> = {
     arrive_dest: "Your shipment has arrived at our local delivery centre in {dest} and will be out for delivery soon.",
     out: "Your shipment is with our courier in {dest} and out for delivery to the recipient's address today.",
     delivered: "Your shipment has been delivered in {dest}. Thank you for shipping with Norvane Express.",
+    hold: "Your shipment is being held at customs in {place} for routine clearance checks. It will continue its journey as soon as customs releases it.",
+    cleared: "Your shipment has been cleared by customs in {place} and is continuing its journey.",
   },
   pl: {
     depart: "Twoja przesyłka opuściła nasz oddział: {place}. Następny przystanek: {next}.",
@@ -112,6 +128,8 @@ const MESSAGES: Record<string, Templates> = {
     arrive_dest: "Twoja przesyłka dotarła do lokalnego centrum doręczeń: {dest}. Wkrótce zostanie przekazana kurierowi.",
     out: "Twoja przesyłka jest u kuriera ({dest}) i zostanie dziś doręczona na adres odbiorcy.",
     delivered: "Twoja przesyłka została doręczona ({dest}). Dziękujemy za wybór Norvane Express.",
+    hold: "Twoja przesyłka jest wstrzymana w odprawie celnej ({place}) w celu rutynowej kontroli. Podróż będzie kontynuowana po zwolnieniu przez urząd celny.",
+    cleared: "Twoja przesyłka została odprawiona przez urząd celny ({place}) i kontynuuje podróż.",
   },
   ja: {
     depart: "お荷物は{place}の施設を出発し、{next}へ向かっています。",
@@ -120,6 +138,8 @@ const MESSAGES: Record<string, Templates> = {
     arrive_dest: "お荷物は{dest}の配達センターに到着しました。まもなく配達に出発します。",
     out: "お荷物は{dest}の配達員のもとにあり、本日お届け先へ配達予定です。",
     delivered: "お荷物は{dest}にてお届けが完了しました。Norvane Expressをご利用いただきありがとうございます。",
+    hold: "お荷物は{place}の税関で通常の通関審査のため保留されています。税関から許可が下り次第、輸送を再開します。",
+    cleared: "お荷物は{place}の税関で通関が完了し、輸送を再開しました。",
   },
   es: {
     depart: "Su envío ha salido de nuestras instalaciones en {place} y se dirige a {next}.",
@@ -128,6 +148,8 @@ const MESSAGES: Record<string, Templates> = {
     arrive_dest: "Su envío ha llegado a nuestro centro de reparto local en {dest} y saldrá a reparto en breve.",
     out: "Su envío está con nuestro mensajero en {dest} y en reparto hoy a la dirección del destinatario.",
     delivered: "Su envío ha sido entregado en {dest}. Gracias por confiar en Norvane Express.",
+    hold: "Su envío está retenido en la aduana de {place} para los controles habituales de despacho. Continuará su trayecto en cuanto la aduana lo libere.",
+    cleared: "Su envío ha sido despachado por la aduana de {place} y continúa su trayecto.",
   },
   de: {
     depart: "Ihre Sendung hat unser Zentrum in {place} verlassen und ist auf dem Weg nach {next}.",
@@ -136,6 +158,8 @@ const MESSAGES: Record<string, Templates> = {
     arrive_dest: "Ihre Sendung ist in unserem Zustellzentrum in {dest} eingetroffen und geht in Kürze in die Zustellung.",
     out: "Ihre Sendung ist bei unserem Zusteller in {dest} und wird heute an die Empfängeradresse zugestellt.",
     delivered: "Ihre Sendung wurde in {dest} zugestellt. Vielen Dank, dass Sie Norvane Express gewählt haben.",
+    hold: "Ihre Sendung wird beim Zoll in {place} für die übliche Zollabfertigung zurückgehalten. Sie wird weiterbefördert, sobald der Zoll sie freigibt.",
+    cleared: "Ihre Sendung wurde in {place} vom Zoll freigegeben und wird weiterbefördert.",
   },
 };
 
