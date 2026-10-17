@@ -102,22 +102,6 @@ const ALIASES: Record<string, string> = {
 /** Countries the suggestion knows about (for the admin country list). */
 export const KNOWN_COUNTRIES = Object.keys(GATEWAYS).sort((a, b) => a.localeCompare(b));
 
-/** One transit hub commonly used between two regions (none when direct is typical). */
-const TRANSIT: Partial<Record<string, { city: string; country: string }>> = {
-  "africa|europe": { city: "Frankfurt", country: "Germany" },
-  "africa|asia": { city: "Dubai", country: "United Arab Emirates" },
-  "africa|oceania": { city: "Dubai", country: "United Arab Emirates" },
-  "africa|north_america": { city: "London", country: "United Kingdom" },
-  "africa|latin_america": { city: "Madrid", country: "Spain" },
-  "asia|europe": { city: "Dubai", country: "United Arab Emirates" },
-  "europe|oceania": { city: "Singapore", country: "Singapore" },
-  "europe|latin_america": { city: "Madrid", country: "Spain" },
-  "asia|oceania": { city: "Singapore", country: "Singapore" },
-  "latin_america|north_america": { city: "Miami", country: "United States" },
-  "middle_east|oceania": { city: "Singapore", country: "Singapore" },
-  "latin_america|middle_east": { city: "Madrid", country: "Spain" },
-};
-
 const norm = (v: string) =>
   v
     .normalize("NFKD")
@@ -137,6 +121,145 @@ export function resolveCountry(input: string | null | undefined): string | null 
 
 const sameCity = (a: string, b: string) => norm(a) === norm(b);
 
+// ---------------------------------------------------------------------------
+// Network of cargo hubs: road corridors (cheap) and main air links (costly),
+// so the cheapest path looks like a real courier routing plan.
+// ---------------------------------------------------------------------------
+
+type Node = { city: string; country: string };
+
+/** Extra hubs that are not a country's main gateway. */
+const EXTRA_NODES: Node[] = [
+  { city: "Berlin", country: "Germany" },
+  { city: "Los Angeles", country: "United States" },
+  { city: "Miami", country: "United States" },
+];
+
+const ROAD = 1;
+/** Longer road legs and ferries. */
+const LONG_ROAD = 2;
+/** Domestic trunk flights. */
+const DOMESTIC_AIR = 2;
+const AIR = 3;
+/** Short regional flights that couriers usually replace with road. */
+const SHORT_AIR = 4;
+
+/** [cityA, cityB, cost] — cities refer to gateway or extra-node cities. */
+const LINKS: [string, string, number][] = [
+  // West Africa coastal corridor and air links
+  ["Lagos", "Cotonou", ROAD], ["Cotonou", "Lomé", ROAD], ["Lomé", "Accra", ROAD], ["Accra", "Abidjan", ROAD],
+  ["Abidjan", "Dakar", AIR], ["Lagos", "Douala", AIR], ["Lagos", "Accra", SHORT_AIR],
+  // East and southern Africa
+  ["Nairobi", "Entebbe", ROAD], ["Entebbe", "Kigali", ROAD], ["Nairobi", "Dar es Salaam", ROAD],
+  ["Nairobi", "Addis Ababa", AIR], ["Addis Ababa", "Lagos", AIR], ["Nairobi", "Lagos", AIR],
+  ["Johannesburg", "Lagos", AIR], ["Johannesburg", "Nairobi", AIR], ["Johannesburg", "Dar es Salaam", AIR],
+  ["Addis Ababa", "Cairo", AIR], ["Cairo", "Casablanca", AIR], ["Casablanca", "Dakar", AIR],
+  // Europe road network
+  ["Lisbon", "Madrid", ROAD], ["Madrid", "Paris", ROAD], ["Paris", "Brussels", ROAD], ["Paris", "London", ROAD],
+  ["London", "Dublin", ROAD], ["Brussels", "Amsterdam", ROAD], ["Brussels", "Luxembourg", ROAD],
+  ["Brussels", "Frankfurt", ROAD], ["Amsterdam", "Frankfurt", ROAD], ["Luxembourg", "Frankfurt", ROAD],
+  ["Paris", "Frankfurt", ROAD], ["Frankfurt", "Zurich", ROAD], ["Zurich", "Milan", ROAD],
+  ["Frankfurt", "Berlin", ROAD], ["Frankfurt", "Prague", ROAD], ["Frankfurt", "Vienna", ROAD],
+  ["Frankfurt", "Copenhagen", LONG_ROAD], ["Copenhagen", "Stockholm", ROAD], ["Copenhagen", "Oslo", ROAD],
+  ["Stockholm", "Helsinki", LONG_ROAD], ["Helsinki", "Tallinn", ROAD], ["Tallinn", "Riga", ROAD], ["Riga", "Vilnius", ROAD],
+  ["Vilnius", "Warsaw", ROAD], ["Berlin", "Warsaw", ROAD], ["Berlin", "Prague", ROAD], ["Prague", "Bratislava", ROAD],
+  ["Vienna", "Bratislava", ROAD], ["Vienna", "Budapest", ROAD], ["Vienna", "Zagreb", ROAD], ["Budapest", "Zagreb", ROAD],
+  ["Budapest", "Bucharest", ROAD], ["Bucharest", "Sofia", ROAD], ["Sofia", "Istanbul", ROAD], ["Sofia", "Athens", ROAD],
+  ["Warsaw", "Kyiv", ROAD], ["Milan", "Vienna", ROAD],
+  // Europe – Africa air
+  ["Frankfurt", "Lagos", AIR], ["London", "Lagos", AIR], ["Paris", "Lagos", AIR], ["Istanbul", "Lagos", AIR],
+  ["London", "Accra", AIR], ["Istanbul", "Accra", AIR], ["Paris", "Abidjan", AIR], ["Paris", "Dakar", AIR],
+  ["Paris", "Douala", AIR], ["London", "Nairobi", AIR], ["Amsterdam", "Nairobi", AIR], ["Frankfurt", "Johannesburg", AIR],
+  ["London", "Johannesburg", AIR], ["Paris", "Casablanca", AIR], ["Madrid", "Casablanca", AIR], ["Frankfurt", "Cairo", AIR],
+  ["Frankfurt", "Addis Ababa", AIR],
+  // Middle East
+  ["Dubai", "Doha", AIR], ["Dubai", "Riyadh", AIR], ["Riyadh", "Doha", AIR], ["Dubai", "Tel Aviv", AIR],
+  ["Frankfurt", "Tel Aviv", AIR], ["Dubai", "Frankfurt", AIR], ["Dubai", "London", AIR], ["Dubai", "Paris", AIR],
+  ["Dubai", "Amsterdam", AIR], ["Dubai", "Istanbul", AIR], ["Dubai", "Cairo", AIR], ["Dubai", "Lagos", AIR],
+  ["Dubai", "Accra", AIR], ["Dubai", "Nairobi", AIR], ["Dubai", "Addis Ababa", AIR], ["Dubai", "Johannesburg", AIR],
+  ["Doha", "Lagos", AIR], ["Doha", "Nairobi", AIR],
+  // Middle East – Asia – Oceania
+  ["Dubai", "Karachi", AIR], ["Dubai", "New Delhi", AIR], ["Dubai", "Dhaka", AIR], ["Dubai", "Singapore", AIR],
+  ["Dubai", "Hong Kong", AIR], ["Dubai", "Shanghai", AIR], ["Dubai", "Bangkok", AIR], ["Dubai", "Kuala Lumpur", AIR],
+  ["Dubai", "Manila", AIR], ["Dubai", "Jakarta", AIR], ["Dubai", "Sydney", AIR], ["Addis Ababa", "Shanghai", AIR],
+  // Asia
+  ["Shanghai", "Hong Kong", AIR], ["Hong Kong", "Singapore", AIR], ["Singapore", "Kuala Lumpur", ROAD],
+  ["Singapore", "Jakarta", AIR], ["Singapore", "Bangkok", AIR], ["Bangkok", "Ho Chi Minh City", AIR],
+  ["Hong Kong", "Manila", AIR], ["Hong Kong", "Ho Chi Minh City", AIR], ["Shanghai", "Tokyo", AIR],
+  ["Shanghai", "Seoul", AIR], ["Seoul", "Tokyo", AIR], ["Dhaka", "Singapore", AIR], ["New Delhi", "Singapore", AIR],
+  ["Hong Kong", "Sydney", AIR], ["Singapore", "Sydney", AIR], ["Sydney", "Auckland", AIR],
+  // Europe – Asia
+  ["Frankfurt", "Shanghai", AIR], ["Frankfurt", "Tokyo", AIR], ["Frankfurt", "Seoul", AIR], ["Frankfurt", "Hong Kong", AIR],
+  ["Frankfurt", "New Delhi", AIR], ["Frankfurt", "Singapore", AIR], ["London", "Hong Kong", AIR], ["London", "Singapore", AIR],
+  ["London", "New Delhi", AIR], ["Amsterdam", "Shanghai", AIR], ["Istanbul", "Shanghai", AIR],
+  // Transatlantic and Americas
+  ["Frankfurt", "New York", AIR], ["London", "New York", AIR], ["Paris", "New York", AIR], ["Amsterdam", "New York", AIR],
+  ["Frankfurt", "Toronto", AIR], ["London", "Toronto", AIR], ["Dubai", "New York", AIR], ["London", "Lagos", AIR],
+  ["New York", "Toronto", ROAD], ["New York", "Miami", DOMESTIC_AIR], ["New York", "Los Angeles", DOMESTIC_AIR],
+  ["Los Angeles", "Tokyo", AIR], ["Los Angeles", "Shanghai", AIR], ["Los Angeles", "Hong Kong", AIR],
+  ["Los Angeles", "Seoul", AIR], ["Los Angeles", "Sydney", AIR], ["Los Angeles", "Auckland", AIR], ["Los Angeles", "Mexico City", AIR],
+  ["Miami", "Mexico City", AIR], ["Miami", "Bogotá", AIR], ["Miami", "Lima", AIR], ["Miami", "São Paulo", AIR],
+  ["Miami", "Santiago", AIR], ["Miami", "Buenos Aires", AIR], ["São Paulo", "Buenos Aires", AIR],
+  ["Buenos Aires", "Santiago", AIR], ["Lima", "Santiago", AIR], ["Bogotá", "Lima", AIR],
+  ["Madrid", "São Paulo", AIR], ["Madrid", "Buenos Aires", AIR], ["Madrid", "Bogotá", AIR], ["Madrid", "Lima", AIR],
+  ["Madrid", "Santiago", AIR], ["Madrid", "Mexico City", AIR], ["Lisbon", "São Paulo", AIR],
+];
+
+function buildGraph() {
+  const nodes = new Map<string, Node>();
+  for (const [country, g] of Object.entries(GATEWAYS)) nodes.set(g.city, { city: g.city, country });
+  for (const n of EXTRA_NODES) nodes.set(n.city, n);
+  const adj = new Map<string, { to: string; cost: number }[]>();
+  for (const [a, b, cost] of LINKS) {
+    if (!nodes.has(a) || !nodes.has(b)) continue;
+    adj.set(a, [...(adj.get(a) ?? []), { to: b, cost }]);
+    adj.set(b, [...(adj.get(b) ?? []), { to: a, cost }]);
+  }
+  return { nodes, adj };
+}
+const GRAPH = buildGraph();
+
+/** Cheapest path between two hub cities (Dijkstra; fewer hops break ties). */
+function cheapestPath(from: string, to: string): string[] | null {
+  if (from === to) return [from];
+  const dist = new Map<string, [number, number]>([[from, [0, 0]]]);
+  const prev = new Map<string, string>();
+  const open = new Set<string>([from]);
+  while (open.size) {
+    let cur = "";
+    let best: [number, number] = [Infinity, Infinity];
+    for (const n of open) {
+      const d = dist.get(n)!;
+      if (d[0] < best[0] || (d[0] === best[0] && d[1] < best[1])) {
+        best = d;
+        cur = n;
+      }
+    }
+    open.delete(cur);
+    if (cur === to) break;
+    for (const { to: nxt, cost } of GRAPH.adj.get(cur) ?? []) {
+      const nd: [number, number] = [best[0] + cost, best[1] + 1];
+      const old = dist.get(nxt);
+      if (!old || nd[0] < old[0] || (nd[0] === old[0] && nd[1] < old[1])) {
+        dist.set(nxt, nd);
+        prev.set(nxt, cur);
+        open.add(nxt);
+      }
+    }
+  }
+  if (!prev.has(to)) return null;
+  const path = [to];
+  while (path[0] !== from) path.unshift(prev.get(path[0])!);
+  return path;
+}
+
+/** The hub to start or end at: the city itself if it is a hub in that country, else the country gateway. */
+function hubFor(city: string, country: string): string {
+  const n = norm(city);
+  for (const node of GRAPH.nodes.values()) if (node.country === country && norm(node.city) === n) return node.city;
+  return GATEWAYS[country].city;
+}
+
 export type RouteSuggestion = { stops: string[]; unknown: string[] };
 
 export function suggestRoute(p: {
@@ -149,26 +272,17 @@ export function suggestRoute(p: {
   const dc = resolveCountry(p.destinationCountry);
   const unknown = [!oc && p.originCountry.trim(), !dc && p.destinationCountry.trim()].filter(Boolean) as string[];
   if (!oc || !dc) return { stops: [], unknown };
-
-  const og = GATEWAYS[oc];
-  const dg = GATEWAYS[dc];
-  const stops: string[] = [];
-  const add = (city: string, country: string) => {
-    const label = `${city}, ${country}`;
-    const isEndpoint =
-      (sameCity(city, p.originCity) && country === oc) || (sameCity(city, p.destinationCity) && country === dc);
-    if (!isEndpoint && !stops.some((s) => norm(s) === norm(label))) stops.push(label);
-  };
-
   // Domestic: usually direct; staff add depots themselves.
-  if (oc === dc) return { stops, unknown };
+  if (oc === dc) return { stops: [], unknown };
 
-  add(og.city, oc); // export hub
-  if (og.region !== dg.region) {
-    const key = [og.region, dg.region].sort().join("|");
-    const hub = TRANSIT[key];
-    if (hub && hub.country !== oc && hub.country !== dc) add(hub.city, hub.country);
+  const path = cheapestPath(hubFor(p.originCity, oc), hubFor(p.destinationCity, dc)) ?? [GATEWAYS[oc].city, GATEWAYS[dc].city];
+  const stops: string[] = [];
+  for (const city of path) {
+    const node = GRAPH.nodes.get(city)!;
+    const isEndpoint =
+      (sameCity(city, p.originCity) && node.country === oc) || (sameCity(city, p.destinationCity) && node.country === dc);
+    const label = `${node.city}, ${node.country}`;
+    if (!isEndpoint && !stops.includes(label)) stops.push(label);
   }
-  add(dg.city, dc); // import hub and customs
-  return { stops, unknown };
+  return { stops: stops.slice(0, 8), unknown };
 }
