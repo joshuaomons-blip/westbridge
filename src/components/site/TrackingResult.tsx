@@ -135,7 +135,7 @@ export async function TrackingResult({ data, locale, supportText }: { data: Publ
                     )}
                     <span
                       className={cn(
-                        "relative flex h-12 w-12 items-center justify-center rounded-full",
+                        "relative z-10 flex h-12 w-12 items-center justify-center rounded-full",
                         warn
                           ? "bg-amber-600 text-white ring-4 ring-amber-600/20"
                           : current
@@ -233,8 +233,8 @@ export async function TrackingResult({ data, locale, supportText }: { data: Publ
 
       {/* Help, with photo */}
       <section className="grid overflow-hidden rounded-xl bg-brand-900 text-white sm:grid-cols-[2fr_3fr] print:hidden" aria-labelledby="help-heading">
-        <div className="relative min-h-48">
-          <Image src={PHOTOS.support} alt="" fill sizes="(min-width: 640px) 40vw, 100vw" className="object-cover" />
+        <div className="relative h-44 sm:h-auto sm:min-h-64">
+          <Image src={PHOTOS.support} alt="" fill sizes="(min-width: 640px) 40vw, 100vw" className="object-cover object-[50%_35%]" />
         </div>
         <div className="flex flex-col justify-center p-7 sm:p-10">
           <h2 id="help-heading" className="font-display text-2xl font-black [font-stretch:108%]">{t("supportTitle")}</h2>
