@@ -4,6 +4,7 @@ import { PHOTOS } from "@/lib/photos";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { ArrowRight, ChevronRight, CircleAlert, Mail, ListChecks, ReceiptText, SearchX, ShieldAlert, WifiOff } from "lucide-react";
 import { TrackingForm } from "@/components/site/TrackingForm";
+import { FoundBanner } from "@/components/site/FoundBanner";
 import { BANNER, TrackingResult } from "@/components/site/TrackingResult";
 import { lookupTracking, type TrackingResult as Result } from "@/lib/tracking";
 import { checkRateLimit } from "@/lib/rate-limit";
@@ -85,8 +86,11 @@ export default async function TrackPage({ params, searchParams }: Props) {
         {single?.kind === "found" && <TrackingResult data={single.data} locale={locale} supportText={content.get("support.text")} supportEmail={supportEmail} />}
         {single && single.kind !== "found" && <ResultMessage kind={single.kind} text={messages} supportLink={supportLink} />}
 
+        {many && many.some((m) => m.result.kind === "found") && (
+          <FoundBanner title={t("found")} text={t("foundMany", { count: many.length })} />
+        )}
         {many && (
-          <section className="overflow-hidden rounded-2xl bg-white ring-1 ring-slate-200" aria-labelledby="multi-heading">
+          <section className="trk-pop overflow-hidden rounded-2xl bg-white ring-1 ring-slate-200" aria-labelledby="multi-heading">
             <div className="flex flex-wrap items-baseline justify-between gap-2 border-b border-slate-100 px-6 py-5 sm:px-8">
               <h2 id="multi-heading" className="font-display text-2xl font-black text-brand-900 [font-stretch:108%]">
                 {t("multiTitle", { count: many.length })}
@@ -245,8 +249,8 @@ function ResultMessage({
   }[kind];
   const Icon = map.icon;
   return (
-    <div role="alert" className="card flex flex-col items-start gap-4 p-6 sm:flex-row sm:p-8">
-      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-slate-100 text-slate-600">
+    <div role="alert" className="trk-shake flex flex-col items-start gap-4 rounded-2xl border border-amber-200 bg-white p-6 shadow-sm sm:flex-row sm:p-8">
+      <span className="trk-pop flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-amber-100 text-amber-700">
         <Icon className="h-5 w-5" aria-hidden />
       </span>
       <div>

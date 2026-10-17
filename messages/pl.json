@@ -228,7 +228,13 @@
     "emailSupport": "Napisz do obsługi",
     "emailSubject": "Przesyłka {number}",
     "contactForm": "Formularz kontaktowy",
-    "receivedBy": "Odebrał(a): {name}"
+    "receivedBy": "Odebrał(a): {name}",
+    "validFormat": "Prawidłowy numer przesyłki",
+    "locating": "Wyszukujemy Twoją przesyłkę…",
+    "locatingText": "Sprawdzamy najnowsze informacje w naszym systemie.",
+    "found": "Przesyłka znaleziona",
+    "foundText": "Numer przesyłki zweryfikowany. Pokazujemy najnowsze zapisane informacje.",
+    "foundMany": "Sprawdzone przesyłki: {count}"
   },
   "status": {
     "shipment_created": "Przesyłka utworzona",

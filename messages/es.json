@@ -228,7 +228,13 @@
     "emailSupport": "Escribir a soporte",
     "emailSubject": "Envío {number}",
     "contactForm": "Formulario de contacto",
-    "receivedBy": "Recibido por {name}"
+    "receivedBy": "Recibido por {name}",
+    "validFormat": "Número de seguimiento válido",
+    "locating": "Localizando tu envío…",
+    "locatingText": "Consultando nuestros registros más recientes.",
+    "found": "Envío encontrado",
+    "foundText": "Número de seguimiento verificado. Mostramos las últimas actualizaciones registradas.",
+    "foundMany": "{count} envíos consultados"
   },
   "status": {
     "shipment_created": "Envío creado",

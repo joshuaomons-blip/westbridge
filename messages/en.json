@@ -228,7 +228,13 @@
     "emailSupport": "Email support",
     "emailSubject": "Shipment {number}",
     "contactForm": "Contact form",
-    "receivedBy": "Received by {name}"
+    "receivedBy": "Received by {name}",
+    "validFormat": "Valid tracking number",
+    "locating": "Locating your shipment…",
+    "locatingText": "Checking our records for the latest updates.",
+    "found": "Shipment found",
+    "foundText": "Tracking number verified. Showing the latest recorded updates.",
+    "foundMany": "{count} shipments checked"
   },
   "status": {
     "shipment_created": "Shipment created",

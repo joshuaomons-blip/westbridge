@@ -28,6 +28,7 @@ import { localized } from "@/lib/public-data";
 import { CopyButton } from "./CopyButton";
 import { PrintButton } from "./PrintButton";
 import { ShareButton } from "./ShareButton";
+import { FoundBanner } from "./FoundBanner";
 
 /** Banner colour and icon for each kind of status. White text passes contrast on all of them. */
 export const BANNER: Record<StatusCategory, { bg: string; dot: string; icon: LucideIcon }> = {
@@ -115,6 +116,7 @@ export async function TrackingResult({
 
   return (
     <div className="space-y-6">
+      <FoundBanner title={t("found")} text={t("foundText")} />
       {data.is_demo && (
         <div className="flex items-start gap-3 rounded-lg border border-amber-300 bg-amber-50 p-4 text-sm text-amber-900">
           <FlaskConical className="mt-0.5 h-5 w-5 shrink-0" aria-hidden />
@@ -124,7 +126,7 @@ export async function TrackingResult({
 
       <div className="grid items-start gap-6 lg:grid-cols-[minmax(0,1fr)_360px]">
         {/* ------------------------------------------------------------ main */}
-        <div className="min-w-0 space-y-6">
+        <div className="trk-stage min-w-0 space-y-6">
           <section className="overflow-hidden rounded-2xl bg-white shadow-[0_24px_60px_-30px_rgba(7,21,47,0.5)] ring-1 ring-slate-200" aria-labelledby="status-heading">
             <div className={cn("relative overflow-hidden px-6 py-7 text-white sm:px-9 sm:py-9 print:bg-white print:text-black", banner.bg)}>
               <div className="pointer-events-none absolute -top-24 -right-24 h-72 w-72 rounded-full bg-white/[0.07]" aria-hidden />
@@ -180,7 +182,9 @@ export async function TrackingResult({
                     return (
                       <li key={label} className="relative flex flex-col items-center text-center" aria-current={current ? "step" : undefined}>
                         {i > 0 && (
-                          <span className={cn("absolute top-6 right-1/2 h-1.5 w-full -translate-y-1/2", done ? "bg-brand-800" : "bg-slate-200")} aria-hidden />
+                          <span className="absolute top-6 right-1/2 h-1.5 w-full -translate-y-1/2 bg-slate-200" aria-hidden>
+                            {done && <span className="trk-grow absolute inset-0 bg-brand-800" style={{ animationDelay: `${0.5 + i * 0.25}s` }} />}
+                          </span>
                         )}
                         <span
                           className={cn(
@@ -223,7 +227,12 @@ export async function TrackingResult({
                 const sub =
                   stop.kind === "origin" ? t("origin") : stop.kind === "destination" ? t("destination") : stop.state === "upcoming" ? t("upcoming") : null;
                 return (
-                  <li key={`${stop.name}-${i}`} aria-current={isCurrent ? "location" : undefined} className="relative flex gap-4 pb-6 last:pb-0">
+                  <li
+                    key={`${stop.name}-${i}`}
+                    aria-current={isCurrent ? "location" : undefined}
+                    className="relative flex gap-4 pb-6 last:pb-0"
+                    style={{ animation: "trk-rise 0.5s cubic-bezier(0.22,1,0.36,1) both", animationDelay: `${0.6 + i * 0.15}s` }}
+                  >
                     {!last && (
                       <span
                         className={cn("absolute top-10 bottom-1 left-[19px] w-0", nextReached ? "border-l-[3px] border-brand-800" : "border-l-2 border-dashed border-slate-300")}
@@ -241,8 +250,11 @@ export async function TrackingResult({
                       )}
                       aria-hidden
                     >
+                      {isCurrent && (
+                        <span className={cn("trk-ping absolute inset-0 rounded-full", isProblem ? "bg-amber-500/40" : "bg-signal-500/40")} />
+                      )}
                       {isCurrent ? (
-                        <BannerIcon className="h-5 w-5" />
+                        <BannerIcon className="relative h-5 w-5" />
                       ) : stop.kind === "destination" ? (
                         <Flag className="h-4 w-4" />
                       ) : reached ? (
@@ -327,7 +339,7 @@ export async function TrackingResult({
         </div>
 
         {/* ----------------------------------------------------------- aside */}
-        <aside className="space-y-6 lg:sticky lg:top-32">
+        <aside className="trk-stage space-y-6 lg:sticky lg:top-32">
           {/* Route card */}
           <section className="overflow-hidden rounded-2xl bg-brand-950 text-white ring-1 ring-brand-950" aria-labelledby="route-heading">
             <div className="px-6 pt-6 pb-7">
@@ -352,12 +364,12 @@ export async function TrackingResult({
                 <span className="absolute top-1/2 right-0 h-3 w-3 -translate-y-1/2 rounded-full border-2 border-white/40 bg-brand-950" />
                 <span className="absolute inset-x-3 top-1/2 h-0 -translate-y-1/2 border-t-2 border-dashed border-white/25" />
                 <span
-                  className={cn("absolute top-1/2 left-3 h-1 -translate-y-1/2 rounded-full", isProblem ? "bg-amber-500" : "bg-signal-500")}
+                  className={cn("trk-grow absolute top-1/2 left-3 h-1 -translate-y-1/2 rounded-full", isProblem ? "bg-amber-500" : "bg-signal-500")}
                   style={{ width: `calc((100% - 1.5rem) * ${pct / 100})` }}
                 />
                 <span
                   className={cn(
-                    "absolute top-1/2 flex h-10 w-10 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full text-white shadow-lg ring-4 ring-brand-950",
+                    "trk-marker absolute top-1/2 flex h-10 w-10 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full text-white shadow-lg ring-4 ring-brand-950",
                     isProblem ? "bg-amber-600" : category === "delivered" ? "bg-emerald-600" : "bg-signal-600",
                   )}
                   style={{ left: `calc(0.75rem + (100% - 1.5rem) * ${pct / 100})` }}

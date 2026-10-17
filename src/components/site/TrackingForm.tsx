@@ -2,7 +2,8 @@
 
 import { useEffect, useId, useState, useTransition } from "react";
 import { useTranslations } from "next-intl";
-import { LoaderCircle, Search } from "lucide-react";
+import { CircleCheck, LoaderCircle, Search } from "lucide-react";
+import { TrackingLoader } from "./TrackingLoader";
 import { useRouter } from "@/i18n/navigation";
 import { isValidTrackingFormat, MAX_TRACKING_NUMBERS, parseTrackingList } from "@/lib/tracking-format";
 import { cn } from "@/lib/format";
@@ -39,6 +40,9 @@ export function TrackingForm({
   }
 
   const hero = variant === "hero";
+  const parsed = parseTrackingList(value);
+  const valid =
+    parsed.length > 0 && parsed.length <= MAX_TRACKING_NUMBERS && parsed.every((n) => isValidTrackingFormat(n));
 
   return (
     <form onSubmit={onSubmit} noValidate role="search" aria-label={t("title")}>
@@ -66,10 +70,16 @@ export function TrackingForm({
             aria-invalid={!!error}
             aria-describedby={`${id}-help${error ? ` ${id}-err` : ""}`}
             className={cn(
-              "input h-13 pl-11 font-mono text-base tracking-wider uppercase placeholder:font-sans placeholder:tracking-normal placeholder:normal-case",
+              "input h-13 pr-11 pl-11 font-mono text-base tracking-wider uppercase transition-colors placeholder:font-sans placeholder:tracking-normal placeholder:normal-case",
               hero && "border-white/0 shadow-lg",
+              valid && !error && "border-emerald-500 focus:border-emerald-500 focus:ring-emerald-500/20",
             )}
           />
+          {valid && !error && (
+            <span role="img" aria-label={t("validFormat")} title={t("validFormat")} className="pointer-events-none absolute top-1/2 right-3.5 -translate-y-1/2">
+              <CircleCheck className="trk-pop h-5 w-5 text-emerald-600" aria-hidden />
+            </span>
+          )}
         </div>
         <button type="submit" disabled={pending} className="btn-accent h-13 px-7 text-base">
           {pending ? <LoaderCircle className="h-5 w-5 animate-spin" aria-hidden /> : <Search className="h-5 w-5" aria-hidden />}
@@ -86,6 +96,7 @@ export function TrackingForm({
       <p id={`${id}-help`} className={cn("mt-2 text-xs", hero ? "text-navy-200" : "text-slate-500")}>
         {t("help")} {!hero && t("multiHelp")}
       </p>
+      {pending && <TrackingLoader overlay title={t("locating")} text={t("locatingText")} />}
     </form>
   );
 }

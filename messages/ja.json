@@ -228,7 +228,13 @@
     "emailSupport": "メールで問い合わせる",
     "emailSubject": "貨物 {number}",
     "contactForm": "お問い合わせフォーム",
-    "receivedBy": "受取人：{name}"
+    "receivedBy": "受取人：{name}",
+    "validFormat": "有効な追跡番号です",
+    "locating": "お荷物を検索しています…",
+    "locatingText": "最新の記録を確認しています。",
+    "found": "お荷物が見つかりました",
+    "foundText": "追跡番号を確認しました。最新の記録を表示しています。",
+    "foundMany": "{count}件の貨物を確認しました"
   },
   "status": {
     "shipment_created": "貨物登録",

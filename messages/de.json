@@ -228,7 +228,13 @@
     "emailSupport": "Support per E-Mail",
     "emailSubject": "Sendung {number}",
     "contactForm": "Kontaktformular",
-    "receivedBy": "Empfangen von {name}"
+    "receivedBy": "Empfangen von {name}",
+    "validFormat": "Gültige Sendungsnummer",
+    "locating": "Ihre Sendung wird gesucht…",
+    "locatingText": "Wir prüfen die neuesten Einträge.",
+    "found": "Sendung gefunden",
+    "foundText": "Sendungsnummer bestätigt. Die neuesten erfassten Meldungen werden angezeigt.",
+    "foundMany": "{count} Sendungen geprüft"
   },
   "status": {
     "shipment_created": "Sendung erstellt",
