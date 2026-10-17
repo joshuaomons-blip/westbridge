@@ -4,13 +4,24 @@ import "server-only";
  * Sends email through Resend (https://resend.com) using its HTTP API.
  * Configure in Vercel → Settings → Environment Variables:
  *   RESEND_API_KEY  – secret API key from Resend
- *   EMAIL_FROM      – e.g. "Norvane Express <updates@norvaneexpress.com>" (a domain verified in Resend)
- * Without these, nothing is sent and callers get { skipped: true }.
+ *   EMAIL_FROM      – optional; defaults to "Norvane Express <updates@norvaneexpress.com>"
+ *                     (the domain must be verified in Resend)
+ * Without the API key, nothing is sent and callers get { skipped: true }.
  */
+const DEFAULT_FROM = "Norvane Express <updates@norvaneexpress.com>";
+
+function fromAddress(): string {
+  return process.env.EMAIL_FROM || DEFAULT_FROM;
+}
 export type SendResult = { ok: true; id?: string } | { ok: false; skipped?: boolean; error: string };
 
+/** The address customer emails are sent from. */
+export function emailFrom(): string {
+  return fromAddress();
+}
+
 export function isEmailConfigured(): boolean {
-  return Boolean(process.env.RESEND_API_KEY && process.env.EMAIL_FROM);
+  return Boolean(process.env.RESEND_API_KEY);
 }
 
 export async function sendEmail(msg: {
@@ -22,8 +33,8 @@ export async function sendEmail(msg: {
   idempotencyKey?: string;
 }): Promise<SendResult> {
   const key = process.env.RESEND_API_KEY;
-  const from = process.env.EMAIL_FROM;
-  if (!key || !from) return { ok: false, skipped: true, error: "not_configured" };
+  const from = fromAddress();
+  if (!key) return { ok: false, skipped: true, error: "not_configured" };
 
   try {
     const res = await fetch("https://api.resend.com/emails", {
