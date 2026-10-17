@@ -1,7 +1,7 @@
 -- =====================================================================
 -- Starter service listings. Created UNPUBLISHED on purpose: review each
 -- description in the dashboard (Services) and publish only the services
--- Westbridge Global Express actually offers.
+-- Norvane Express actually offers.
 -- =====================================================================
 insert into public.services (slug, icon, sort_order, is_published, title, description) values
 ('international-parcel', 'globe', 10, false,

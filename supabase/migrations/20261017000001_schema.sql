@@ -1,5 +1,5 @@
 -- =====================================================================
--- Westbridge Global Express — core schema
+-- Norvane Express — core schema
 -- =====================================================================
 create extension if not exists pgcrypto with schema extensions;
 
@@ -15,7 +15,7 @@ create table public.site_settings (
 
 insert into public.site_settings (key, value) values
   ('demo_mode', 'false'::jsonb),
-  ('tracking_prefix', '"WB"'::jsonb);
+  ('tracking_prefix', '"NV"'::jsonb);
 
 -- ---------------------------------------------------------------------
 -- Administrators and roles
@@ -139,9 +139,9 @@ declare
   v_candidate text;
   i int;
 begin
-  select coalesce(value #>> '{}', 'WB') into v_prefix from public.site_settings where key = 'tracking_prefix';
-  v_prefix := upper(regexp_replace(coalesce(v_prefix, 'WB'), '[^A-Za-z]', '', 'g'));
-  if v_prefix = '' then v_prefix := 'WB'; end if;
+  select coalesce(value #>> '{}', 'NV') into v_prefix from public.site_settings where key = 'tracking_prefix';
+  v_prefix := upper(regexp_replace(coalesce(v_prefix, 'NV'), '[^A-Za-z]', '', 'g'));
+  if v_prefix = '' then v_prefix := 'NV'; end if;
   v_prefix := left(v_prefix, 4);
 
   loop

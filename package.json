@@ -1,8 +1,8 @@
 {
-  "name": "westbridge-global-express",
+  "name": "norvane-express",
   "version": "1.0.0",
   "private": true,
-  "description": "Westbridge Global Express — shipping website, tracking and admin dashboard",
+  "description": "Norvane Express — shipping website, tracking and admin dashboard",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

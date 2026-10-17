@@ -104,7 +104,7 @@ export async function Footer({ content }: { content: SiteContent }) {
       <div className="border-t border-white/10">
         <div className="container-page flex flex-col gap-2 py-6 text-xs text-white/60 sm:flex-row sm:items-center sm:justify-between">
           <p>
-            © {year} Westbridge Global Express. {t("rights")}
+            © {year} Norvane Express. {t("rights")}
           </p>
           <div className="flex items-center gap-5">
             <p className="hidden md:block">{meta("tagline")}</p>

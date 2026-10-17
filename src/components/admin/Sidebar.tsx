@@ -105,7 +105,7 @@ export function Sidebar({
     <Link href="/admin/dashboard" className="flex items-center gap-2.5 px-5 py-5">
       <LogoMark className="h-8 w-8" />
       <span className="leading-tight">
-        <span className="block text-sm font-extrabold tracking-tight text-white">WESTBRIDGE</span>
+        <span className="block text-sm font-extrabold tracking-tight text-white">NORVANE</span>
         <span className="block text-[10px] font-semibold tracking-[0.2em] text-navy-300">ADMIN</span>
       </span>
     </Link>
@@ -124,7 +124,7 @@ export function Sidebar({
       <div className="sticky top-0 z-30 flex h-14 items-center justify-between border-b border-white/10 bg-navy-950 px-4 lg:hidden">
         <Link href="/admin/dashboard" className="flex items-center gap-2">
           <LogoMark className="h-7 w-7" />
-          <span className="text-sm font-extrabold text-white">WESTBRIDGE ADMIN</span>
+          <span className="text-sm font-extrabold text-white">NORVANE ADMIN</span>
         </Link>
         <button type="button" onClick={() => setOpen(true)} aria-label="Open navigation" aria-expanded={open} className="rounded-md p-2 text-white hover:bg-white/10">
           <Menu className="h-6 w-6" />

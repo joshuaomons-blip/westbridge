@@ -1,17 +1,17 @@
 {
   "meta": {
-    "siteName": "Westbridge Global Express",
+    "siteName": "Norvane Express",
     "tagline": "世界をつなぎ、確かな配送を。",
     "homeTitle": "国際配送と貨物追跡",
-    "homeDescription": "Westbridge Global Express の貨物を追跡し、配送・物流サービスについてご確認いただけます。",
+    "homeDescription": "Norvane Express の貨物を追跡し、配送・物流サービスについてご確認いただけます。",
     "trackTitle": "貨物追跡",
     "trackDescription": "追跡番号を入力すると、貨物の記録された進捗状況を確認できます。",
     "servicesTitle": "配送サービス",
-    "servicesDescription": "Westbridge Global Express が提供する配送・物流サービス。",
+    "servicesDescription": "Norvane Express が提供する配送・物流サービス。",
     "aboutTitle": "会社概要",
-    "aboutDescription": "Westbridge Global Express について。",
+    "aboutDescription": "Norvane Express について。",
     "contactTitle": "お問い合わせ",
-    "contactDescription": "Westbridge Global Express へのお問い合わせ。",
+    "contactDescription": "Norvane Express へのお問い合わせ。",
     "privacyTitle": "プライバシーポリシー",
     "termsTitle": "利用規約"
   },
@@ -49,7 +49,7 @@
     "menuContact": "お問い合わせ",
     "menuContactText": "当社チームにメッセージを送る。",
     "menuAbout": "会社概要",
-    "menuAboutText": "Westbridge Global Express について。"
+    "menuAboutText": "Norvane Express について。"
   },
   "home": {
     "eyebrow": "国際配送・物流",
@@ -72,7 +72,7 @@
     "supportTitle": "貨物についてご質問がありますか？",
     "supportText": "カスタマーサポートが追跡、配達、新規配送に関するご質問にお答えします。",
     "supportCta": "サポートに問い合わせる",
-    "imageAlt": "Westbridge Global Express の物流",
+    "imageAlt": "Norvane Express の物流",
     "tabTrack": "追跡",
     "tabShip": "発送",
     "tabHelp": "ヘルプ",
@@ -129,7 +129,7 @@
     "faqTitle": "よくあるご質問",
     "faqText": "追跡と発送に関する簡単な回答です。お探しの情報が見つからない場合は、サポートチームにお問い合わせください。",
     "faq1Q": "追跡番号はどこで確認できますか？",
-    "faq1A": "追跡番号は、当社チームからお受け取りになった発送控えまたは確認書に記載されています。英字と数字の組み合わせで、例：WB12345678901。",
+    "faq1A": "追跡番号は、当社チームからお受け取りになった発送控えまたは確認書に記載されています。英字と数字の組み合わせで、例：NV12345678901。",
     "faq2Q": "追跡情報はどのくらいの頻度で更新されますか？",
     "faq2A": "当社チームが各段階を記録すると、すぐに追跡ページに表示されます。時刻はすべてUTCで表示されます。",
     "faq3Q": "追跡番号が見つからないのはなぜですか？",
@@ -153,7 +153,7 @@
   },
   "tracking": {
     "label": "追跡番号",
-    "placeholder": "例：WB12345678901",
+    "placeholder": "例：NV12345678901",
     "submit": "貨物を追跡",
     "loading": "検索中…",
     "help": "追跡番号は発送控えまたは確認書に記載されています。",
@@ -272,9 +272,9 @@
     "ctaText": "お送りしたい品物についてお知らせください。担当者よりご連絡いたします。"
   },
   "about": {
-    "title": "Westbridge Global Express について",
+    "title": "Norvane Express について",
     "subtitle": "世界をつなぎ、確かな配送を。",
-    "placeholderBody": "Westbridge Global Expressは、個人および法人のお客様向けに、すべての貨物をオンラインで追跡できる小包・貨物輸送サービスを提供しています。\n\n当社が取り扱うすべての貨物には固有の追跡番号が付与されます。輸送の各段階をスタッフが記録するため、差出人と受取人は英語、ポーランド語、日本語、スペイン語、ドイツ語でオンラインから進捗を確認できます。\n\n発送や追跡に関するご質問は、サポートチームがお手伝いいたします。",
+    "placeholderBody": "Norvane Expressは、個人および法人のお客様向けに、すべての貨物をオンラインで追跡できる小包・貨物輸送サービスを提供しています。\n\n当社が取り扱うすべての貨物には固有の追跡番号が付与されます。輸送の各段階をスタッフが記録するため、差出人と受取人は英語、ポーランド語、日本語、スペイン語、ドイツ語でオンラインから進捗を確認できます。\n\n発送や追跡に関するご質問は、サポートチームがお手伝いいたします。",
     "valuesTitle": "私たちが大切にしていること",
     "value1Title": "信頼性",
     "value1Text": "すべての貨物を登録し、その進捗を記録します。",
@@ -327,8 +327,8 @@
   },
   "legal": {
     "reviewNotice": "下書き：このページには仮の文章が含まれています。サイト公開前に、適用される法域に照らして確認する必要があります。",
-    "privacyPlaceholder": "本プライバシーポリシーは、Westbridge Global Express が個人情報をどのように収集し利用するかを説明するものです。\n\n当社は、配送サービスの提供に必要な情報（差出人・受取人の氏名、住所、連絡先など）およびお問い合わせフォームから送信された情報を収集します。\n\nこれらの情報は、配送の処理、追跡情報の提供、お問い合わせへの回答に使用します。個人情報を販売することはありません。\n\n公開の追跡ページには、貨物のステータス、日付、場所のみが表示され、氏名・住所・連絡先は表示されません。\n\nお客様の権利やデータに関するお問い合わせ方法を含む完全なポリシーは、このページで公開します。",
-    "termsPlaceholder": "本規約は、Westbridge Global Express のウェブサイトおよびサービスの利用について定めるものです。\n\n本サイトの追跡情報は、当社チームが入力した記録に基づいています。お届け予定日は目安であり、保証するものではありません。\n\n利用規約の全文は、このページで公開します。"
+    "privacyPlaceholder": "本プライバシーポリシーは、Norvane Express が個人情報をどのように収集し利用するかを説明するものです。\n\n当社は、配送サービスの提供に必要な情報（差出人・受取人の氏名、住所、連絡先など）およびお問い合わせフォームから送信された情報を収集します。\n\nこれらの情報は、配送の処理、追跡情報の提供、お問い合わせへの回答に使用します。個人情報を販売することはありません。\n\n公開の追跡ページには、貨物のステータス、日付、場所のみが表示され、氏名・住所・連絡先は表示されません。\n\nお客様の権利やデータに関するお問い合わせ方法を含む完全なポリシーは、このページで公開します。",
+    "termsPlaceholder": "本規約は、Norvane Express のウェブサイトおよびサービスの利用について定めるものです。\n\n本サイトの追跡情報は、当社チームが入力した記録に基づいています。お届け予定日は目安であり、保証するものではありません。\n\n利用規約の全文は、このページで公開します。"
   },
   "footer": {
     "description": "国際配送と貨物追跡。世界をつなぎ、確かな配送を。",

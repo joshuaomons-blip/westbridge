@@ -111,7 +111,7 @@ export function Header({ email }: { email?: string }) {
       {/* Main bar */}
       <div ref={navRef} className="relative">
         <div className="container-page flex h-[76px] items-center justify-between gap-6">
-          <Link href="/" className="rounded-md" aria-label="Westbridge Global Express">
+          <Link href="/" className="rounded-md" aria-label="Norvane Express">
             <Logo />
           </Link>
 

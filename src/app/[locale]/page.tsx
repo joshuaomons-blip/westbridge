@@ -157,7 +157,7 @@ export default async function HomePage({ params }: Props) {
       {/* Photo feature rows: tracking, packing tips, business */}
       <FeatureRows />
 
-      {/* Why Westbridge */}
+      {/* Why Norvane */}
       <section className="bg-slate-50 py-20 lg:py-24" aria-labelledby="why-heading">
         <div className="container-page grid items-center gap-12 lg:grid-cols-2">
           <div className="reveal relative aspect-[4/3] overflow-hidden rounded-2xl">

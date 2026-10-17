@@ -2,7 +2,7 @@
  * Photography from Unsplash (free for commercial use under the Unsplash License,
  * https://unsplash.com/license), served through Next.js image optimisation.
  * Each photo was checked for visible logos or branding of other carriers.
- * These are illustrative stock photos, not pictures of Westbridge's own fleet:
+ * These are illustrative stock photos, not pictures of Norvane's own fleet:
  * to use your own, upload a hero image in Dashboard → Website Content or
  * replace the IDs below.
  */

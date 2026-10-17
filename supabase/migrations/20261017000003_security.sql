@@ -1,5 +1,5 @@
 -- =====================================================================
--- Westbridge Global Express — Row Level Security and grants
+-- Norvane Express — Row Level Security and grants
 -- Anonymous visitors get NO direct table access to private data; they use
 -- the narrow security-definer functions defined in the previous migration.
 -- =====================================================================

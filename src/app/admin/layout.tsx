@@ -6,7 +6,7 @@ const inter = Inter({ subsets: ["latin", "latin-ext"], variable: "--font-inter",
 const archivo = Archivo({ subsets: ["latin", "latin-ext"], axes: ["wdth"], variable: "--font-display-face", display: "swap" });
 
 export const metadata: Metadata = {
-  title: { default: "Admin — Westbridge Global Express", template: "%s — Westbridge Admin" },
+  title: { default: "Admin — Norvane Express", template: "%s — Norvane Admin" },
   robots: { index: false, follow: false, nocache: true, googleBot: { index: false, follow: false } },
   icons: { icon: "/icon.svg" },
 };

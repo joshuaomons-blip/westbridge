@@ -18,7 +18,7 @@ export default async function SettingsPage() {
   const { data } = await db.from("site_settings").select("key, value");
   const get = (k: string) => data?.find((r) => r.key === k)?.value;
   const demo = get("demo_mode") === true;
-  const prefix = typeof get("tracking_prefix") === "string" ? (get("tracking_prefix") as string) : "WB";
+  const prefix = typeof get("tracking_prefix") === "string" ? (get("tracking_prefix") as string) : "NV";
   const { count: demoCount } = await db.from("shipments").select("id", { count: "exact", head: true }).eq("is_demo", true);
   const canEdit = can(admin, "settings.write");
 
@@ -36,7 +36,7 @@ export default async function SettingsPage() {
         <Panel title="General" description={canEdit ? undefined : "Only owners can change settings."}>
           <ActionForm action={saveSettings} className="space-y-5">
             <fieldset disabled={!canEdit} className="space-y-5">
-              <TextField name="tracking_prefix" label="Tracking number prefix" defaultValue={prefix} maxLength={4} hint="2–4 letters. Applies to new shipments only, e.g. WB12345678901." />
+              <TextField name="tracking_prefix" label="Tracking number prefix" defaultValue={prefix} maxLength={4} hint="2–4 letters. Applies to new shipments only, e.g. NV12345678901." />
               <div className="rounded-lg border border-amber-200 bg-amber-50 p-4">
                 <CheckboxField
                   name="demo_mode"

@@ -1,17 +1,17 @@
 {
   "meta": {
-    "siteName": "Westbridge Global Express",
+    "siteName": "Norvane Express",
     "tagline": "Conectamos el mundo. Entregamos con confianza.",
     "homeTitle": "Envíos internacionales y seguimiento de envíos",
-    "homeDescription": "Siga su envío de Westbridge Global Express y conozca nuestros servicios de envío y logística.",
+    "homeDescription": "Siga su envío de Norvane Express y conozca nuestros servicios de envío y logística.",
     "trackTitle": "Seguimiento de envío",
     "trackDescription": "Introduzca su número de seguimiento para ver el progreso registrado de su envío.",
     "servicesTitle": "Servicios de envío",
-    "servicesDescription": "Servicios de envío y logística ofrecidos por Westbridge Global Express.",
+    "servicesDescription": "Servicios de envío y logística ofrecidos por Norvane Express.",
     "aboutTitle": "Quiénes somos",
-    "aboutDescription": "Conozca más sobre Westbridge Global Express.",
+    "aboutDescription": "Conozca más sobre Norvane Express.",
     "contactTitle": "Contacto",
-    "contactDescription": "Póngase en contacto con el equipo de Westbridge Global Express.",
+    "contactDescription": "Póngase en contacto con el equipo de Norvane Express.",
     "privacyTitle": "Política de privacidad",
     "termsTitle": "Términos del servicio"
   },
@@ -49,7 +49,7 @@
     "menuContact": "Contacto",
     "menuContactText": "Envíe un mensaje a nuestro equipo.",
     "menuAbout": "Quiénes somos",
-    "menuAboutText": "Conozca Westbridge Global Express."
+    "menuAboutText": "Conozca Norvane Express."
   },
   "home": {
     "eyebrow": "Envíos internacionales y logística",
@@ -72,7 +72,7 @@
     "supportTitle": "¿Tiene preguntas sobre un envío?",
     "supportText": "Nuestro equipo de atención al cliente le ayuda con el seguimiento, las entregas y los nuevos envíos.",
     "supportCta": "Contactar con atención al cliente",
-    "imageAlt": "Logística de Westbridge Global Express",
+    "imageAlt": "Logística de Norvane Express",
     "tabTrack": "Seguir",
     "tabShip": "Enviar",
     "tabHelp": "Ayuda",
@@ -129,7 +129,7 @@
     "faqTitle": "Preguntas frecuentes",
     "faqText": "Respuestas rápidas sobre el seguimiento y el envío. ¿No encuentra lo que busca? Contacte con nuestro equipo de atención al cliente.",
     "faq1Q": "¿Dónde encuentro mi número de seguimiento?",
-    "faq1A": "Su número de seguimiento figura en el recibo o la confirmación de envío que le entregó nuestro equipo. Combina letras y números, por ejemplo WB12345678901.",
+    "faq1A": "Su número de seguimiento figura en el recibo o la confirmación de envío que le entregó nuestro equipo. Combina letras y números, por ejemplo NV12345678901.",
     "faq2Q": "¿Con qué frecuencia se actualiza el seguimiento?",
     "faq2A": "La página de seguimiento muestra cada etapa en cuanto nuestro equipo la registra. Todas las horas se muestran en UTC.",
     "faq3Q": "¿Por qué no se encuentra mi número de seguimiento?",
@@ -153,7 +153,7 @@
   },
   "tracking": {
     "label": "Número de seguimiento",
-    "placeholder": "p. ej. WB12345678901",
+    "placeholder": "p. ej. NV12345678901",
     "submit": "Seguir envío",
     "loading": "Buscando…",
     "help": "Su número de seguimiento figura en el recibo o la confirmación de envío.",
@@ -272,9 +272,9 @@
     "ctaText": "Díganos qué necesita enviar y nuestro equipo le responderá."
   },
   "about": {
-    "title": "Acerca de Westbridge Global Express",
+    "title": "Acerca de Norvane Express",
     "subtitle": "Conectamos el mundo. Entregamos con confianza.",
-    "placeholderBody": "Westbridge Global Express ofrece servicios de paquetería y envíos para particulares y empresas, con seguimiento en línea de cada envío.\n\nCada envío que gestionamos se registra con su propio número de seguimiento. Nuestro equipo registra cada etapa de su recorrido para que remitentes y destinatarios puedan seguirlo en línea en inglés, polaco, japonés, español y alemán.\n\nSi tienes alguna pregunta sobre cómo enviar o seguir un envío, nuestro equipo de atención está listo para ayudarte.",
+    "placeholderBody": "Norvane Express ofrece servicios de paquetería y envíos para particulares y empresas, con seguimiento en línea de cada envío.\n\nCada envío que gestionamos se registra con su propio número de seguimiento. Nuestro equipo registra cada etapa de su recorrido para que remitentes y destinatarios puedan seguirlo en línea en inglés, polaco, japonés, español y alemán.\n\nSi tienes alguna pregunta sobre cómo enviar o seguir un envío, nuestro equipo de atención está listo para ayudarte.",
     "valuesTitle": "En qué nos centramos",
     "value1Title": "Fiabilidad",
     "value1Text": "Cada envío se registra y se deja constancia de su progreso.",
@@ -327,8 +327,8 @@
   },
   "legal": {
     "reviewNotice": "Aviso de borrador: esta página contiene texto provisional y debe revisarse conforme a la legislación aplicable antes de publicar el sitio web.",
-    "privacyPlaceholder": "Esta política de privacidad explica cómo Westbridge Global Express recopila y utiliza los datos personales.\n\nRecopilamos la información necesaria para prestar nuestros servicios de envío, como los nombres de remitentes y destinatarios, direcciones y datos de contacto, así como la información que nos envía a través del formulario de contacto.\n\nUtilizamos esta información para gestionar los envíos, ofrecer el seguimiento y responder a consultas. No vendemos datos personales.\n\nLa página pública de seguimiento solo muestra el estado, las fechas y las ubicaciones del envío, nunca nombres, direcciones ni datos de contacto.\n\nLa política completa, incluidos sus derechos y cómo contactarnos sobre sus datos, se publicará aquí.",
-    "termsPlaceholder": "Estos términos regulan el uso del sitio web y los servicios de Westbridge Global Express.\n\nLa información de seguimiento de este sitio refleja los registros introducidos por nuestro equipo. Las fechas de entrega estimadas son aproximadas y no constituyen una garantía.\n\nLos términos completos del servicio se publicarán aquí."
+    "privacyPlaceholder": "Esta política de privacidad explica cómo Norvane Express recopila y utiliza los datos personales.\n\nRecopilamos la información necesaria para prestar nuestros servicios de envío, como los nombres de remitentes y destinatarios, direcciones y datos de contacto, así como la información que nos envía a través del formulario de contacto.\n\nUtilizamos esta información para gestionar los envíos, ofrecer el seguimiento y responder a consultas. No vendemos datos personales.\n\nLa página pública de seguimiento solo muestra el estado, las fechas y las ubicaciones del envío, nunca nombres, direcciones ni datos de contacto.\n\nLa política completa, incluidos sus derechos y cómo contactarnos sobre sus datos, se publicará aquí.",
+    "termsPlaceholder": "Estos términos regulan el uso del sitio web y los servicios de Norvane Express.\n\nLa información de seguimiento de este sitio refleja los registros introducidos por nuestro equipo. Las fechas de entrega estimadas son aproximadas y no constituyen una garantía.\n\nLos términos completos del servicio se publicarán aquí."
   },
   "footer": {
     "description": "Envíos internacionales y seguimiento de envíos. Conectamos el mundo. Entregamos con confianza.",

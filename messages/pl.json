@@ -1,17 +1,17 @@
 {
   "meta": {
-    "siteName": "Westbridge Global Express",
+    "siteName": "Norvane Express",
     "tagline": "Łączymy świat. Dostarczamy z pewnością.",
     "homeTitle": "Międzynarodowa wysyłka i śledzenie przesyłek",
-    "homeDescription": "Śledź przesyłkę Westbridge Global Express i poznaj nasze usługi wysyłkowe oraz logistyczne.",
+    "homeDescription": "Śledź przesyłkę Norvane Express i poznaj nasze usługi wysyłkowe oraz logistyczne.",
     "trackTitle": "Śledzenie przesyłki",
     "trackDescription": "Wpisz numer przesyłki, aby zobaczyć zarejestrowany postęp przesyłki.",
     "servicesTitle": "Usługi wysyłkowe",
-    "servicesDescription": "Usługi wysyłkowe i logistyczne oferowane przez Westbridge Global Express.",
+    "servicesDescription": "Usługi wysyłkowe i logistyczne oferowane przez Norvane Express.",
     "aboutTitle": "O nas",
-    "aboutDescription": "Dowiedz się więcej o Westbridge Global Express.",
+    "aboutDescription": "Dowiedz się więcej o Norvane Express.",
     "contactTitle": "Kontakt",
-    "contactDescription": "Skontaktuj się z zespołem Westbridge Global Express.",
+    "contactDescription": "Skontaktuj się z zespołem Norvane Express.",
     "privacyTitle": "Polityka prywatności",
     "termsTitle": "Regulamin"
   },
@@ -49,7 +49,7 @@
     "menuContact": "Kontakt",
     "menuContactText": "Wyślij wiadomość do naszego zespołu.",
     "menuAbout": "O nas",
-    "menuAboutText": "Dowiedz się więcej o Westbridge Global Express."
+    "menuAboutText": "Dowiedz się więcej o Norvane Express."
   },
   "home": {
     "eyebrow": "Międzynarodowa wysyłka i logistyka",
@@ -72,7 +72,7 @@
     "supportTitle": "Masz pytania dotyczące przesyłki?",
     "supportText": "Nasz dział obsługi klienta pomoże w sprawie śledzenia, doręczenia i nowych przesyłek.",
     "supportCta": "Skontaktuj się z nami",
-    "imageAlt": "Logistyka Westbridge Global Express",
+    "imageAlt": "Logistyka Norvane Express",
     "tabTrack": "Śledź",
     "tabShip": "Wyślij",
     "tabHelp": "Pomoc",
@@ -129,7 +129,7 @@
     "faqTitle": "Częste pytania",
     "faqText": "Szybkie odpowiedzi na temat śledzenia i wysyłania przesyłek. Nie znalazłeś odpowiedzi? Skontaktuj się z naszym działem obsługi.",
     "faq1Q": "Gdzie znajdę numer przesyłki?",
-    "faq1A": "Numer przesyłki znajduje się na potwierdzeniu nadania otrzymanym od naszego zespołu. Składa się z liter i cyfr, np. WB12345678901.",
+    "faq1A": "Numer przesyłki znajduje się na potwierdzeniu nadania otrzymanym od naszego zespołu. Składa się z liter i cyfr, np. NV12345678901.",
     "faq2Q": "Jak często aktualizowane jest śledzenie?",
     "faq2A": "Strona śledzenia pokazuje każdy etap, gdy tylko nasz zespół go zarejestruje. Wszystkie godziny podano w czasie UTC.",
     "faq3Q": "Dlaczego nie można znaleźć mojego numeru przesyłki?",
@@ -153,7 +153,7 @@
   },
   "tracking": {
     "label": "Numer przesyłki",
-    "placeholder": "np. WB12345678901",
+    "placeholder": "np. NV12345678901",
     "submit": "Śledź przesyłkę",
     "loading": "Wyszukiwanie…",
     "help": "Numer przesyłki znajdziesz na potwierdzeniu nadania.",
@@ -272,9 +272,9 @@
     "ctaText": "Napisz, co chcesz wysłać, a nasz zespół odpowie."
   },
   "about": {
-    "title": "O Westbridge Global Express",
+    "title": "O Norvane Express",
     "subtitle": "Łączymy świat. Dostarczamy z pewnością.",
-    "placeholderBody": "Westbridge Global Express świadczy usługi przesyłek i paczek dla klientów indywidualnych i firm, z możliwością śledzenia online każdej przesyłki.\n\nKażda obsługiwana przez nas przesyłka otrzymuje własny numer. Nasz zespół zapisuje każdy etap jej drogi, dzięki czemu nadawcy i odbiorcy mogą śledzić ją online po angielsku, polsku, japońsku, hiszpańsku i niemiecku.\n\nJeśli masz pytanie dotyczące nadania lub śledzenia przesyłki, nasz zespół obsługi chętnie pomoże.",
+    "placeholderBody": "Norvane Express świadczy usługi przesyłek i paczek dla klientów indywidualnych i firm, z możliwością śledzenia online każdej przesyłki.\n\nKażda obsługiwana przez nas przesyłka otrzymuje własny numer. Nasz zespół zapisuje każdy etap jej drogi, dzięki czemu nadawcy i odbiorcy mogą śledzić ją online po angielsku, polsku, japońsku, hiszpańsku i niemiecku.\n\nJeśli masz pytanie dotyczące nadania lub śledzenia przesyłki, nasz zespół obsługi chętnie pomoże.",
     "valuesTitle": "Na czym się skupiamy",
     "value1Title": "Niezawodność",
     "value1Text": "Każda przesyłka jest rejestrowana, a jej postęp zapisywany.",
@@ -327,8 +327,8 @@
   },
   "legal": {
     "reviewNotice": "Wersja robocza: ta strona zawiera tekst przykładowy i przed uruchomieniem serwisu musi zostać sprawdzona pod kątem obowiązujących przepisów.",
-    "privacyPlaceholder": "Niniejsza polityka prywatności wyjaśnia, w jaki sposób Westbridge Global Express zbiera i wykorzystuje dane osobowe.\n\nZbieramy informacje niezbędne do świadczenia usług wysyłkowych, takie jak imiona i nazwiska nadawców i odbiorców, adresy i dane kontaktowe, a także informacje przesłane przez formularz kontaktowy.\n\nWykorzystujemy je do realizacji przesyłek, udostępniania śledzenia i odpowiadania na zapytania. Nie sprzedajemy danych osobowych.\n\nPubliczna strona śledzenia pokazuje wyłącznie status, daty i lokalizacje przesyłki — bez nazwisk, adresów i danych kontaktowych.\n\nPełna polityka, w tym Twoje prawa i sposób kontaktu w sprawie danych, zostanie opublikowana na tej stronie.",
-    "termsPlaceholder": "Niniejszy regulamin określa zasady korzystania ze strony i usług Westbridge Global Express.\n\nInformacje o śledzeniu na tej stronie odzwierciedlają zapisy wprowadzone przez nasz zespół. Przewidywane terminy doręczenia są szacunkowe i nie stanowią gwarancji.\n\nPełny regulamin zostanie opublikowany na tej stronie."
+    "privacyPlaceholder": "Niniejsza polityka prywatności wyjaśnia, w jaki sposób Norvane Express zbiera i wykorzystuje dane osobowe.\n\nZbieramy informacje niezbędne do świadczenia usług wysyłkowych, takie jak imiona i nazwiska nadawców i odbiorców, adresy i dane kontaktowe, a także informacje przesłane przez formularz kontaktowy.\n\nWykorzystujemy je do realizacji przesyłek, udostępniania śledzenia i odpowiadania na zapytania. Nie sprzedajemy danych osobowych.\n\nPubliczna strona śledzenia pokazuje wyłącznie status, daty i lokalizacje przesyłki — bez nazwisk, adresów i danych kontaktowych.\n\nPełna polityka, w tym Twoje prawa i sposób kontaktu w sprawie danych, zostanie opublikowana na tej stronie.",
+    "termsPlaceholder": "Niniejszy regulamin określa zasady korzystania ze strony i usług Norvane Express.\n\nInformacje o śledzeniu na tej stronie odzwierciedlają zapisy wprowadzone przez nasz zespół. Przewidywane terminy doręczenia są szacunkowe i nie stanowią gwarancji.\n\nPełny regulamin zostanie opublikowany na tej stronie."
   },
   "footer": {
     "description": "Międzynarodowa wysyłka i śledzenie przesyłek. Łączymy świat. Dostarczamy z pewnością.",

@@ -1,4 +1,4 @@
-# Westbridge Global Express
+# Norvane Express
 
 Shipping website with shipment tracking, in five languages (English, Polish, Japanese, Spanish, German), plus a private administrator dashboard.
 
@@ -45,7 +45,7 @@ Check Node is installed: open a terminal and run `node -v`. It should print `v20
 ## 2. Create the Supabase project
 
 1. Sign in at https://supabase.com and click **New project**.
-2. Choose a name (e.g. `westbridge`), a strong **database password** (save it in a password manager), and the region closest to your customers.
+2. Choose a name (e.g. `norvane`), a strong **database password** (save it in a password manager), and the region closest to your customers.
 3. Wait for the project to finish setting up.
 4. Open **Project Settings → API**. You will need three values from this page:
    - **Project URL** → `NEXT_PUBLIC_SUPABASE_URL`
@@ -181,7 +181,7 @@ Recommended host: **Vercel** (made by the creators of Next.js).
 
 1. Put the project on GitHub (`git init`, commit, push to a new **private** repository). `.env.local` is ignored by git on purpose — never commit it.
 2. In Vercel: **Add New → Project**, import the repository. Framework preset: **Next.js**.
-3. Under **Environment Variables**, add the same five variables as in `.env.local` — but set `NEXT_PUBLIC_SITE_URL` to your real address (e.g. `https://www.westbridge-express.com`).
+3. Under **Environment Variables**, add the same five variables as in `.env.local` — but set `NEXT_PUBLIC_SITE_URL` to your real address (e.g. `https://www.norvane-express.com`).
 4. Click **Deploy**. When it finishes, open the URL Vercel gives you.
 5. In Supabase **Authentication → URL Configuration**, set the **Site URL** to the live address and add it to **Redirect URLs**.
 
@@ -246,7 +246,7 @@ The shipment's status updates automatically from the latest event.
 ```bash
 # Connection string: Supabase → Project Settings → Database → Connection string (URI)
 pg_dump "postgresql://postgres:PASSWORD@db.xxxx.supabase.co:5432/postgres" \
-  --schema=public --format=custom --file=westbridge-$(date +%F).dump
+  --schema=public --format=custom --file=norvane-$(date +%F).dump
 ```
 
 Store backups somewhere other than Supabase (encrypted cloud storage).
@@ -256,7 +256,7 @@ Store backups somewhere other than Supabase (encrypted cloud storage).
 1. Run the five migration files (section 3) on the new project **only if** you're restoring data-only; otherwise restore the full dump:
    ```bash
    pg_restore --clean --if-exists --no-owner \
-     -d "postgresql://postgres:PASSWORD@db.NEWPROJECT.supabase.co:5432/postgres" westbridge-2026-10-17.dump
+     -d "postgresql://postgres:PASSWORD@db.NEWPROJECT.supabase.co:5432/postgres" norvane-2026-10-17.dump
    ```
 2. Update the environment variables in Vercel to the new project's URL and keys, and redeploy.
 

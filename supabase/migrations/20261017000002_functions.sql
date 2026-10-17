@@ -1,5 +1,5 @@
 -- =====================================================================
--- Westbridge Global Express — permission helpers, triggers, functions
+-- Norvane Express — permission helpers, triggers, functions
 -- =====================================================================
 
 -- ---------------------------------------------------------------------

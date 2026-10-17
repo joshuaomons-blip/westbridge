@@ -1,9 +1,9 @@
--- Westbridge Global Express — complete database setup (all migrations in order).
+-- Norvane Express — complete database setup (all migrations in order).
 -- Paste this whole file into Supabase → SQL Editor → New query → Run. Run it ONCE on a new project.
 
 -- ===== 20261017000001_schema.sql =====
 -- =====================================================================
--- Westbridge Global Express — core schema
+-- Norvane Express — core schema
 -- =====================================================================
 create extension if not exists pgcrypto with schema extensions;
 
@@ -19,7 +19,7 @@ create table public.site_settings (
 
 insert into public.site_settings (key, value) values
   ('demo_mode', 'false'::jsonb),
-  ('tracking_prefix', '"WB"'::jsonb);
+  ('tracking_prefix', '"NV"'::jsonb);
 
 -- ---------------------------------------------------------------------
 -- Administrators and roles
@@ -143,9 +143,9 @@ declare
   v_candidate text;
   i int;
 begin
-  select coalesce(value #>> '{}', 'WB') into v_prefix from public.site_settings where key = 'tracking_prefix';
-  v_prefix := upper(regexp_replace(coalesce(v_prefix, 'WB'), '[^A-Za-z]', '', 'g'));
-  if v_prefix = '' then v_prefix := 'WB'; end if;
+  select coalesce(value #>> '{}', 'NV') into v_prefix from public.site_settings where key = 'tracking_prefix';
+  v_prefix := upper(regexp_replace(coalesce(v_prefix, 'NV'), '[^A-Za-z]', '', 'g'));
+  if v_prefix = '' then v_prefix := 'NV'; end if;
   v_prefix := left(v_prefix, 4);
 
   loop
@@ -325,7 +325,7 @@ create table public.rate_limits (
 
 -- ===== 20261017000002_functions.sql =====
 -- =====================================================================
--- Westbridge Global Express — permission helpers, triggers, functions
+-- Norvane Express — permission helpers, triggers, functions
 -- =====================================================================
 
 -- ---------------------------------------------------------------------
@@ -985,7 +985,7 @@ $$;
 
 -- ===== 20261017000003_security.sql =====
 -- =====================================================================
--- Westbridge Global Express — Row Level Security and grants
+-- Norvane Express — Row Level Security and grants
 -- Anonymous visitors get NO direct table access to private data; they use
 -- the narrow security-definer functions defined in the previous migration.
 -- =====================================================================
@@ -1196,7 +1196,7 @@ create policy "editors delete site media" on storage.objects
 -- =====================================================================
 -- Starter service listings. Created UNPUBLISHED on purpose: review each
 -- description in the dashboard (Services) and publish only the services
--- Westbridge Global Express actually offers.
+-- Norvane Express actually offers.
 -- =====================================================================
 insert into public.services (slug, icon, sort_order, is_published, title, description) values
 ('international-parcel', 'globe', 10, false,

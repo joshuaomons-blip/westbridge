@@ -1,17 +1,17 @@
 {
   "meta": {
-    "siteName": "Westbridge Global Express",
+    "siteName": "Norvane Express",
     "tagline": "Connecting the World. Delivering with Confidence.",
     "homeTitle": "International Shipping & Shipment Tracking",
-    "homeDescription": "Track your Westbridge Global Express shipment and learn about our shipping and logistics services.",
+    "homeDescription": "Track your Norvane Express shipment and learn about our shipping and logistics services.",
     "trackTitle": "Track a Shipment",
     "trackDescription": "Enter your tracking number to see the recorded progress of your shipment.",
     "servicesTitle": "Shipping Services",
-    "servicesDescription": "Shipping and logistics services offered by Westbridge Global Express.",
+    "servicesDescription": "Shipping and logistics services offered by Norvane Express.",
     "aboutTitle": "About Us",
-    "aboutDescription": "Learn more about Westbridge Global Express.",
+    "aboutDescription": "Learn more about Norvane Express.",
     "contactTitle": "Contact Us",
-    "contactDescription": "Get in touch with the Westbridge Global Express team.",
+    "contactDescription": "Get in touch with the Norvane Express team.",
     "privacyTitle": "Privacy Policy",
     "termsTitle": "Terms of Service"
   },
@@ -49,7 +49,7 @@
     "menuContact": "Contact us",
     "menuContactText": "Send our team a message.",
     "menuAbout": "About us",
-    "menuAboutText": "Learn more about Westbridge Global Express."
+    "menuAboutText": "Learn more about Norvane Express."
   },
   "home": {
     "eyebrow": "International shipping & logistics",
@@ -72,7 +72,7 @@
     "supportTitle": "Questions about a shipment?",
     "supportText": "Our customer support team can help with tracking, delivery questions and new shipments.",
     "supportCta": "Contact support",
-    "imageAlt": "Westbridge Global Express logistics",
+    "imageAlt": "Norvane Express logistics",
     "tabTrack": "Track",
     "tabShip": "Ship",
     "tabHelp": "Get help",
@@ -129,7 +129,7 @@
     "faqTitle": "Common questions",
     "faqText": "Quick answers about tracking and sending shipments. Can't find what you need? Contact our support team.",
     "faq1Q": "Where do I find my tracking number?",
-    "faq1A": "Your tracking number is on the shipping receipt or confirmation you received from our team. It is a mix of letters and numbers, for example WB12345678901.",
+    "faq1A": "Your tracking number is on the shipping receipt or confirmation you received from our team. It is a mix of letters and numbers, for example NV12345678901.",
     "faq2Q": "How often is tracking updated?",
     "faq2A": "The tracking page shows each milestone as soon as our team records it. All times are shown in UTC.",
     "faq3Q": "Why can't my tracking number be found?",
@@ -153,7 +153,7 @@
   },
   "tracking": {
     "label": "Tracking number",
-    "placeholder": "e.g. WB12345678901",
+    "placeholder": "e.g. NV12345678901",
     "submit": "Track Shipment",
     "loading": "Searching…",
     "help": "Your tracking number appears on your shipping receipt or confirmation.",
@@ -272,9 +272,9 @@
     "ctaText": "Tell us what you need to send and our team will get back to you."
   },
   "about": {
-    "title": "About Westbridge Global Express",
+    "title": "About Norvane Express",
     "subtitle": "Connecting the World. Delivering with Confidence.",
-    "placeholderBody": "Westbridge Global Express provides parcel and shipment services for individuals and businesses, with online tracking for every shipment.\n\nEvery shipment we handle is registered with its own tracking number. Our team records each step of its journey, so senders and recipients can follow its progress online in English, Polish, Japanese, Spanish and German.\n\nIf you have a question about sending or tracking a shipment, our support team is ready to help.",
+    "placeholderBody": "Norvane Express provides parcel and shipment services for individuals and businesses, with online tracking for every shipment.\n\nEvery shipment we handle is registered with its own tracking number. Our team records each step of its journey, so senders and recipients can follow its progress online in English, Polish, Japanese, Spanish and German.\n\nIf you have a question about sending or tracking a shipment, our support team is ready to help.",
     "valuesTitle": "What we focus on",
     "value1Title": "Reliability",
     "value1Text": "Every shipment is registered and its progress is recorded.",
@@ -327,8 +327,8 @@
   },
   "legal": {
     "reviewNotice": "Draft notice: this page contains placeholder text and must be reviewed for the applicable jurisdictions before the website goes live.",
-    "privacyPlaceholder": "This privacy policy explains how Westbridge Global Express collects and uses personal information.\n\nWe collect the information needed to provide our shipping services, such as sender and recipient names, addresses and contact details, and the information you submit through our contact form.\n\nWe use this information to process shipments, provide tracking, and respond to inquiries. We do not sell personal information.\n\nThe public tracking page shows only shipment status, dates and locations — not names, addresses or contact details.\n\nThe full policy, including your rights and how to contact us about your data, will be published here.",
-    "termsPlaceholder": "These terms govern the use of the Westbridge Global Express website and services.\n\nTracking information on this website reflects the records entered by our team. Estimated delivery dates are estimates and not guarantees.\n\nThe complete terms of service will be published here."
+    "privacyPlaceholder": "This privacy policy explains how Norvane Express collects and uses personal information.\n\nWe collect the information needed to provide our shipping services, such as sender and recipient names, addresses and contact details, and the information you submit through our contact form.\n\nWe use this information to process shipments, provide tracking, and respond to inquiries. We do not sell personal information.\n\nThe public tracking page shows only shipment status, dates and locations — not names, addresses or contact details.\n\nThe full policy, including your rights and how to contact us about your data, will be published here.",
+    "termsPlaceholder": "These terms govern the use of the Norvane Express website and services.\n\nTracking information on this website reflects the records entered by our team. Estimated delivery dates are estimates and not guarantees.\n\nThe complete terms of service will be published here."
   },
   "footer": {
     "description": "International shipping and shipment tracking. Connecting the World. Delivering with Confidence.",
