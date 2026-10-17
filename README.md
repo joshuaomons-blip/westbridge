@@ -181,7 +181,7 @@ Recommended host: **Vercel** (made by the creators of Next.js).
 
 1. Put the project on GitHub (`git init`, commit, push to a new **private** repository). `.env.local` is ignored by git on purpose — never commit it.
 2. In Vercel: **Add New → Project**, import the repository. Framework preset: **Next.js**.
-3. Under **Environment Variables**, add the same five variables as in `.env.local` — but set `NEXT_PUBLIC_SITE_URL` to your real address (e.g. `https://www.norvane-express.com`).
+3. Under **Environment Variables**, add the same five variables as in `.env.local` — but set `NEXT_PUBLIC_SITE_URL` to your real address (e.g. `https://www.norvaneexpress.com`).
 4. Click **Deploy**. When it finishes, open the URL Vercel gives you.
 5. In Supabase **Authentication → URL Configuration**, set the **Site URL** to the live address and add it to **Redirect URLs**.
 
