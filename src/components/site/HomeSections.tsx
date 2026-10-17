@@ -3,6 +3,9 @@ import { getTranslations } from "next-intl/server";
 import {
   ArrowRight,
   Check,
+  Headset,
+  ShieldAlert,
+  Package,
   ClipboardCheck,
   Clock,
   FileText,
@@ -23,6 +26,7 @@ import { cn } from "@/lib/format";
 /* -------------------------------------------------------------------------- */
 
 type Row = {
+  id: string;
   photo: string;
   title: string;
   text: string;
@@ -35,6 +39,7 @@ export async function FeatureRows() {
   const t = await getTranslations("home");
   const rows: Row[] = [
     {
+      id: "tracking-online",
       photo: PHOTOS.air,
       title: t("featTrackTitle"),
       text: t("featTrackText"),
@@ -42,6 +47,7 @@ export async function FeatureRows() {
       cta: { href: "/track", label: t("featTrackCta") },
     },
     {
+      id: "packing",
       photo: PHOTOS.parcels,
       title: t("featPackTitle"),
       text: t("featPackText"),
@@ -50,6 +56,7 @@ export async function FeatureRows() {
       ordered: true,
     },
     {
+      id: "business",
       photo: PHOTOS.forklift,
       title: t("featBizTitle"),
       text: t("featBizText"),
@@ -64,7 +71,7 @@ export async function FeatureRows() {
         {rows.map((row, i) => {
           const List = row.ordered ? "ol" : "ul";
           return (
-            <div key={row.title} className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+            <div key={row.title} id={row.id} className="grid scroll-mt-32 items-center gap-10 lg:grid-cols-2 lg:gap-16">
               <div className={cn("relative aspect-[4/3] overflow-hidden rounded-xl bg-slate-200", i % 2 === 1 && "lg:order-2")}>
                 <Image src={row.photo} alt="" fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
                 <div className="absolute inset-x-0 bottom-0 h-1.5 bg-signal-600" aria-hidden />
@@ -121,7 +128,7 @@ export async function StatusGuide() {
   const ts = await getTranslations("status");
   const td = await getTranslations("statusDescription");
   return (
-    <section className="bg-slate-50 py-20 lg:py-24" aria-labelledby="statusguide-heading">
+    <section id="status-guide" className="scroll-mt-28 bg-slate-50 py-20 lg:py-24" aria-labelledby="statusguide-heading">
       <div className="container-page">
         <div className="max-w-2xl">
           <h2 id="statusguide-heading" className="font-display text-3xl font-black tracking-[-0.01em] text-brand-900 [font-stretch:108%] sm:text-4xl">
@@ -153,7 +160,7 @@ export async function Faq() {
   const t = await getTranslations("home");
   const items = [1, 2, 3, 4, 5, 6].map((n) => ({ q: t(`faq${n}Q`), a: t(`faq${n}A`) }));
   return (
-    <section className="py-20 lg:py-28" aria-labelledby="faq-heading">
+    <section id="faq" className="scroll-mt-28 py-20 lg:py-28" aria-labelledby="faq-heading">
       <div className="container-page grid gap-12 lg:grid-cols-12">
         <div className="lg:col-span-4">
           <h2 id="faq-heading" className="font-display text-3xl font-black tracking-[-0.01em] text-brand-900 [font-stretch:108%] sm:text-4xl">
@@ -176,6 +183,76 @@ export async function Faq() {
               <p className="max-w-2xl pr-14 pb-6 leading-relaxed text-slate-600">{item.a}</p>
             </details>
           ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* -------------------------------------------------------------------------- */
+/* Full-width promo band                                                      */
+/* -------------------------------------------------------------------------- */
+
+export async function PromoBand() {
+  const t = await getTranslations("home");
+  const icons = [Package, ClipboardCheck, Headset];
+  return (
+    <section className="bg-brand-800 text-white" aria-labelledby="promo-heading">
+      <div className="container-page flex flex-col items-center py-16 text-center lg:py-20">
+        <div className="flex gap-3" aria-hidden>
+          {icons.map((Icon, i) => (
+            <span key={i} className="flex h-12 w-12 items-center justify-center rounded-full bg-white/10">
+              <Icon className="h-6 w-6" />
+            </span>
+          ))}
+        </div>
+        <h2 id="promo-heading" className="font-display mt-6 max-w-3xl text-3xl font-black tracking-[-0.01em] text-balance [font-stretch:108%] sm:text-4xl">
+          {t("promoTitle")}
+        </h2>
+        <p className="mt-4 max-w-2xl text-lg text-white/80">{t("promoText")}</p>
+        <Link href="/contact" className="btn-accent mt-8 h-13 px-8 text-base">
+          {t("promoCta")}
+        </Link>
+      </div>
+    </section>
+  );
+}
+
+/* -------------------------------------------------------------------------- */
+/* Delivery scam awareness                                                    */
+/* -------------------------------------------------------------------------- */
+
+export async function SafetySection() {
+  const t = await getTranslations("home");
+  const tips = [t("safetyTip1"), t("safetyTip2"), t("safetyTip3"), t("safetyTip4")];
+  return (
+    <section id="safety" className="scroll-mt-28 bg-slate-50 py-20 lg:py-24" aria-labelledby="safety-heading">
+      <div className="container-page grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+        <div className="relative aspect-[4/3] overflow-hidden rounded-xl bg-slate-200 lg:order-2">
+          <Image src={PHOTOS.support} alt="" fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
+        </div>
+        <div>
+          <span className="flex h-12 w-12 items-center justify-center rounded-lg bg-amber-100 text-amber-700">
+            <ShieldAlert className="h-6 w-6" aria-hidden />
+          </span>
+          <h2 id="safety-heading" className="font-display mt-5 text-3xl font-black tracking-[-0.01em] text-brand-900 [font-stretch:108%] sm:text-4xl">
+            {t("safetyTitle")}
+          </h2>
+          <p className="mt-4 text-lg leading-relaxed text-slate-600">{t("safetyText")}</p>
+          <ul className="mt-7 space-y-3.5">
+            {tips.map((tip) => (
+              <li key={tip} className="flex gap-3.5">
+                <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-amber-100 text-amber-700" aria-hidden>
+                  <Check className="h-4 w-4" />
+                </span>
+                <span className="text-slate-700">{tip}</span>
+              </li>
+            ))}
+          </ul>
+          <Link href="/contact" className="mt-8 inline-flex items-center gap-2 font-bold text-signal-600 hover:text-signal-700">
+            {t("safetyCta")}
+            <ArrowRight className="h-4 w-4" aria-hidden />
+          </Link>
         </div>
       </div>
     </section>

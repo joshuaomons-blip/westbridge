@@ -28,7 +28,28 @@
     "skip": "Zum Hauptinhalt springen",
     "main": "Hauptnavigation",
     "customerService": "Kundenservice",
-    "ship": "Versenden"
+    "ship": "Versenden",
+    "shipping": "Versand",
+    "tracking": "Sendungsverfolgung",
+    "support": "Hilfe",
+    "menuSend": "Sendung aufgeben",
+    "menuSendText": "Teilen Sie uns mit, was Sie wohin versenden.",
+    "menuPacking": "Verpackungstipps",
+    "menuPackingText": "Fünf Schritte zum sicheren Verpacken.",
+    "menuBusiness": "Versand für Unternehmen",
+    "menuBusinessText": "Regelmäßiger Versand für Firmen und Shops.",
+    "menuAllServices": "Alle Leistungen",
+    "menuAllServicesText": "Unsere Leistungen ansehen.",
+    "menuStatusGuide": "Was die Status bedeuten",
+    "menuTrackPage": "Sendungsverfolgung öffnen",
+    "menuFaq": "Häufige Fragen",
+    "menuFaqText": "Kurze Antworten zu Verfolgung und Versand.",
+    "menuSafety": "Vorsicht vor Betrug",
+    "menuSafetyText": "So erkennen Sie gefälschte Zustellnachrichten.",
+    "menuContact": "Kontakt",
+    "menuContactText": "Schreiben Sie unserem Team.",
+    "menuAbout": "Über uns",
+    "menuAboutText": "Mehr über Westbridge Global Express."
   },
   "home": {
     "eyebrow": "Internationaler Versand & Logistik",
@@ -118,7 +139,17 @@
     "faq5Q": "Wer kann die Details meiner Sendung sehen?",
     "faq5A": "Die öffentliche Seite zeigt nur Status, Daten sowie Städte und Länder von Abgangs- und Zielort. Namen, Adressen, Telefonnummern und E-Mail-Adressen werden nie angezeigt.",
     "faq6Q": "Wie versende ich eine Sendung?",
-    "faq6A": "Schreiben Sie uns über die Kontaktseite, was Sie versenden, wohin und wann. Unser Team antwortet Ihnen mit den nächsten Schritten."
+    "faq6A": "Schreiben Sie uns über die Kontaktseite, was Sie versenden, wohin und wann. Unser Team antwortet Ihnen mit den nächsten Schritten.",
+    "promoTitle": "Sie versenden regelmäßig? Lassen Sie es uns gemeinsam einrichten.",
+    "promoText": "Ob ein paar Pakete im Monat oder täglich – unser Team hilft Ihnen, den einfachsten Weg für Ihren Versand zu finden.",
+    "promoCta": "Mit unserem Team sprechen",
+    "safetyTitle": "Schützen Sie sich vor Zustellbetrug",
+    "safetyText": "Kriminelle verschicken manchmal gefälschte Nachrichten, die wie von einem Zustelldienst aussehen. So bleiben Sie sicher.",
+    "safetyTip1": "Prüfen Sie Ihre Sendungsnummer nur auf unserer offiziellen Website und geben Sie die Adresse selbst ein.",
+    "safetyTip2": "Seien Sie vorsichtig bei unerwarteten SMS oder E-Mails, die eine Gebühr für die Freigabe eines Pakets verlangen.",
+    "safetyTip3": "Geben Sie niemals Kartendaten, Passwörter oder Codes über einen Link in einer Nachricht ein.",
+    "safetyTip4": "Im Zweifel kontaktieren Sie uns direkt über die Angaben auf unserer Kontaktseite.",
+    "safetyCta": "Verdächtige Nachricht melden"
   },
   "tracking": {
     "label": "Sendungsnummer",
@@ -268,7 +299,9 @@
     "legal": "Rechtliches",
     "rights": "Alle Rechte vorbehalten.",
     "privacy": "Datenschutzerklärung",
-    "terms": "Nutzungsbedingungen"
+    "terms": "Nutzungsbedingungen",
+    "shipping": "Versand",
+    "trackingSupport": "Verfolgung & Hilfe"
   },
   "cookie": {
     "text": "Diese Website verwendet nur notwendige Cookies, zum Beispiel um Ihre Sprache zu speichern. Wir verwenden keine Werbe- oder Tracking-Cookies.",

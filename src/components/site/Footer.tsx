@@ -1,7 +1,9 @@
-import { getTranslations } from "next-intl/server";
+import { Suspense } from "react";
+import { getLocale, getTranslations } from "next-intl/server";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { Logo } from "./Logo";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 import type { SiteContent } from "@/lib/content";
 
 export async function Footer({ content }: { content: SiteContent }) {
@@ -12,6 +14,8 @@ export async function Footer({ content }: { content: SiteContent }) {
   const email = content.get("contact.email");
   const address = content.get("contact.address");
   const year = new Date().getUTCFullYear();
+  const locale = await getLocale();
+  const home = (hash: string) => `/${locale}#${hash}`;
 
   return (
     <footer className="mt-auto bg-brand-950 text-white/80">
@@ -50,26 +54,41 @@ export async function Footer({ content }: { content: SiteContent }) {
           )}
         </div>
 
-        <FooterCol title={t("company")} className="lg:col-span-2">
-          <FooterLink href="/about">{nav("about")}</FooterLink>
-          <FooterLink href="/services">{nav("services")}</FooterLink>
-          <FooterLink href="/contact">{nav("contact")}</FooterLink>
-        </FooterCol>
-        <FooterCol title={t("help")} className="lg:col-span-2">
-          <FooterLink href="/track">{nav("trackShipment")}</FooterLink>
-          <FooterLink href="/contact">{nav("contact")}</FooterLink>
-        </FooterCol>
-        <FooterCol title={t("legal")} className="lg:col-span-3">
-          <FooterLink href="/privacy">{t("privacy")}</FooterLink>
-          <FooterLink href="/terms">{t("terms")}</FooterLink>
-        </FooterCol>
+        <div className="grid grid-cols-2 gap-8 sm:grid-cols-4 lg:col-span-7">
+          <FooterCol title={t("shipping")}>
+            <FooterLink href="/contact">{nav("menuSend")}</FooterLink>
+            <FooterA href={home("packing")}>{nav("menuPacking")}</FooterA>
+            <FooterA href={home("business")}>{nav("menuBusiness")}</FooterA>
+            <FooterLink href="/services">{nav("menuAllServices")}</FooterLink>
+          </FooterCol>
+          <FooterCol title={t("trackingSupport")}>
+            <FooterLink href="/track">{nav("trackShipment")}</FooterLink>
+            <FooterA href={home("status-guide")}>{nav("menuStatusGuide")}</FooterA>
+            <FooterA href={home("faq")}>{nav("menuFaq")}</FooterA>
+            <FooterA href={home("safety")}>{nav("menuSafety")}</FooterA>
+          </FooterCol>
+          <FooterCol title={t("company")}>
+            <FooterLink href="/about">{nav("menuAbout")}</FooterLink>
+            <FooterLink href="/services">{nav("services")}</FooterLink>
+            <FooterLink href="/contact">{nav("menuContact")}</FooterLink>
+          </FooterCol>
+          <FooterCol title={t("legal")}>
+            <FooterLink href="/privacy">{t("privacy")}</FooterLink>
+            <FooterLink href="/terms">{t("terms")}</FooterLink>
+          </FooterCol>
+        </div>
       </div>
       <div className="border-t border-white/10">
         <div className="container-page flex flex-col gap-2 py-6 text-xs text-white/60 sm:flex-row sm:items-center sm:justify-between">
           <p>
             © {year} Westbridge Global Express. {t("rights")}
           </p>
-          <p>{meta("tagline")}</p>
+          <div className="flex items-center gap-5">
+            <p className="hidden md:block">{meta("tagline")}</p>
+            <Suspense fallback={null}>
+              <LanguageSwitcher variant="bar" />
+            </Suspense>
+          </div>
         </div>
       </div>
     </footer>
@@ -91,6 +110,16 @@ function FooterLink({ href, children }: { href: string; children: React.ReactNod
       <Link href={href} className="text-white/70 transition hover:text-white">
         {children}
       </Link>
+    </li>
+  );
+}
+
+function FooterA({ href, children }: { href: string; children: React.ReactNode }) {
+  return (
+    <li>
+      <a href={href} className="text-white/70 transition hover:text-white">
+        {children}
+      </a>
     </li>
   );
 }

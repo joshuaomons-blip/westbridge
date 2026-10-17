@@ -1,5 +1,5 @@
 import { getTranslations } from "next-intl/server";
-import { Eye, FlaskConical } from "lucide-react";
+import { Eye, FlaskConical, Info } from "lucide-react";
 import { stopPreview } from "@/actions/admin/site";
 
 export async function DemoBanner() {
@@ -29,6 +29,18 @@ export async function PreviewBanner() {
           </button>
         </form>
       </div>
+    </div>
+  );
+}
+
+/** Site-wide notice written by an administrator (Website Content → Notice bar). */
+export function NoticeBar({ text }: { text: string }) {
+  return (
+    <div className="bg-signal-600 text-white" role="note">
+      <p className="container-page flex items-center gap-2 py-2 text-sm font-medium">
+        <Info className="h-4 w-4 shrink-0" aria-hidden />
+        {text}
+      </p>
     </div>
   );
 }

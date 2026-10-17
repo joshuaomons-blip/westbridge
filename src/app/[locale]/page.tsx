@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { HeroPanel } from "@/components/site/HeroPanel";
-import { Faq, FeatureRows, StatusGuide } from "@/components/site/HomeSections";
+import { Faq, FeatureRows, PromoBand, SafetySection, StatusGuide } from "@/components/site/HomeSections";
 import { getPageContent, getPublishedServices, localized } from "@/lib/public-data";
 import { PHOTOS, servicePhoto } from "@/lib/photos";
 import { pageAlternates } from "@/lib/seo";
@@ -57,30 +57,25 @@ export default async function HomePage({ params }: Props) {
 
   return (
     <>
-      {/* Hero: full-bleed photo, headline, tracking panel */}
+      {/* Hero: full-bleed photo, centred welcome and a wide Track / Ship / Help panel */}
       <section className="relative isolate bg-brand-950">
-        <Image src={heroImage} alt={t("imageAlt")} fill priority sizes="100vw" className="object-cover object-[60%_50%]" />
-        <div
-          className="absolute inset-0 bg-gradient-to-b from-brand-950/40 via-brand-950/75 to-brand-950/95 lg:bg-gradient-to-r lg:from-brand-950/90 lg:via-brand-950/55 lg:to-brand-950/0"
-          aria-hidden
-        />
-        <div className="container-page relative grid gap-10 pt-16 pb-24 sm:pt-20 lg:grid-cols-12 lg:items-center lg:pt-24 lg:pb-32">
-          <div className="lg:col-span-6">
-            <h1 className="font-display text-[40px] leading-[1.02] font-black tracking-[-0.02em] text-balance text-white [font-stretch:110%] sm:text-6xl lg:text-[68px]">
-              {content.get("home.hero_title") ?? t("heroTitle")}
-            </h1>
-            <p className="mt-6 max-w-lg text-lg leading-relaxed text-white/85 whitespace-pre-line">
-              {content.get("home.hero_subtitle") ?? t("heroSubtitle")}
-            </p>
-          </div>
-          <div className="lg:col-span-6 lg:col-start-7 xl:col-span-5 xl:col-start-8">
+        <Image src={heroImage} alt={t("imageAlt")} fill priority sizes="100vw" className="object-cover object-[50%_55%]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-brand-950/80 via-brand-950/55 to-brand-950/85" aria-hidden />
+        <div className="container-page relative flex flex-col items-center pt-16 pb-28 text-center sm:pt-20 lg:pt-24 lg:pb-36">
+          <h1 className="font-display max-w-4xl text-[40px] leading-[1.02] font-black tracking-[-0.02em] text-balance text-white [font-stretch:110%] sm:text-6xl lg:text-7xl">
+            {content.get("home.hero_title") ?? t("heroTitle")}
+          </h1>
+          <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/85 whitespace-pre-line">
+            {content.get("home.hero_subtitle") ?? t("heroSubtitle")}
+          </p>
+          <div className="mt-10 w-full max-w-3xl text-left">
             <HeroPanel />
           </div>
         </div>
       </section>
 
       {/* Quick actions */}
-      <section aria-labelledby="quick-heading" className="relative z-10 -mt-10 sm:-mt-12">
+      <section aria-labelledby="quick-heading" className="relative z-10 -mt-14 pb-16 sm:-mt-16">
         <div className="container-page">
           <h2 id="quick-heading" className="sr-only">
             {t("quickTitle")}
@@ -103,6 +98,9 @@ export default async function HomePage({ params }: Props) {
           </ul>
         </div>
       </section>
+
+      {/* Full-width promo band */}
+      <PromoBand />
 
       {/* Services with photography */}
       {content.isVisible("section.services.visible") && (
@@ -231,6 +229,7 @@ export default async function HomePage({ params }: Props) {
 
       {/* What each status means, then common questions */}
       <StatusGuide />
+      <SafetySection />
       <Faq />
 
       {/* Customer support band with photo */}

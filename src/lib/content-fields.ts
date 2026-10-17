@@ -7,7 +7,7 @@ export type ContentFieldType = "text" | "textarea" | "image" | "toggle" | "email
 export type ContentField = {
   key: string;
   label: string;
-  group: "Homepage" | "Company" | "Contact details" | "Footer & support" | "Legal pages" | "Page sections";
+  group: "Notice bar" | "Homepage" | "Company" | "Contact details" | "Footer & support" | "Legal pages" | "Page sections";
   type: ContentFieldType;
   /** true = one value per language; false = one shared value for all languages */
   localized: boolean;
@@ -15,6 +15,8 @@ export type ContentField = {
 };
 
 export const CONTENT_FIELDS: ContentField[] = [
+  { key: "site.notice", label: "Notice shown at the top of every page", group: "Notice bar", type: "text", localized: true,
+    help: "Optional. For example holiday closures or delays. Leave empty to hide the bar." },
   { key: "home.hero_title", label: "Homepage headline", group: "Homepage", type: "text", localized: true },
   { key: "home.hero_subtitle", label: "Homepage supporting text", group: "Homepage", type: "textarea", localized: true },
   { key: "home.hero_image", label: "Homepage hero image", group: "Homepage", type: "image", localized: false,

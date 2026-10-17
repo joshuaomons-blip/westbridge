@@ -28,7 +28,28 @@
     "skip": "Przejdź do treści",
     "main": "Nawigacja główna",
     "customerService": "Obsługa klienta",
-    "ship": "Wyślij"
+    "ship": "Wyślij",
+    "shipping": "Wysyłka",
+    "tracking": "Śledzenie",
+    "support": "Pomoc",
+    "menuSend": "Nadaj przesyłkę",
+    "menuSendText": "Napisz, co i dokąd wysyłasz.",
+    "menuPacking": "Porady dotyczące pakowania",
+    "menuPackingText": "Pięć kroków do bezpiecznego zapakowania paczki.",
+    "menuBusiness": "Wysyłka dla firm",
+    "menuBusinessText": "Regularne wysyłki dla firm i sklepów.",
+    "menuAllServices": "Wszystkie usługi",
+    "menuAllServicesText": "Zobacz nasze usługi.",
+    "menuStatusGuide": "Co oznaczają statusy przesyłki",
+    "menuTrackPage": "Otwórz stronę śledzenia",
+    "menuFaq": "Częste pytania",
+    "menuFaqText": "Szybkie odpowiedzi o śledzeniu i wysyłce.",
+    "menuSafety": "Uważaj na oszustwa",
+    "menuSafetyText": "Jak rozpoznać fałszywe wiadomości o dostawie.",
+    "menuContact": "Kontakt",
+    "menuContactText": "Wyślij wiadomość do naszego zespołu.",
+    "menuAbout": "O nas",
+    "menuAboutText": "Dowiedz się więcej o Westbridge Global Express."
   },
   "home": {
     "eyebrow": "Międzynarodowa wysyłka i logistyka",
@@ -118,7 +139,17 @@
     "faq5Q": "Kto widzi szczegóły mojej przesyłki?",
     "faq5A": "Publiczna strona śledzenia pokazuje tylko status, daty oraz miasta i kraje nadania i doręczenia. Imiona i nazwiska, adresy, numery telefonów i adresy e-mail nigdy nie są wyświetlane.",
     "faq6Q": "Jak nadać przesyłkę?",
-    "faq6A": "Wyślij nam wiadomość przez stronę kontaktową: co wysyłasz, dokąd i kiedy. Nasz zespół odpowie z dalszymi krokami."
+    "faq6A": "Wyślij nam wiadomość przez stronę kontaktową: co wysyłasz, dokąd i kiedy. Nasz zespół odpowie z dalszymi krokami.",
+    "promoTitle": "Wysyłasz regularnie? Ustalmy to razem.",
+    "promoText": "Niezależnie od tego, czy wysyłasz kilka paczek w miesiącu, czy codziennie, nasz zespół pomoże znaleźć najprostszy sposób wysyłki.",
+    "promoCta": "Porozmawiaj z nami",
+    "safetyTitle": "Chroń się przed oszustwami „na kuriera”",
+    "safetyText": "Przestępcy wysyłają czasem fałszywe wiadomości podszywające się pod firmy kurierskie. Oto jak zachować bezpieczeństwo.",
+    "safetyTip1": "Sprawdzaj numer przesyłki tylko na naszej oficjalnej stronie, wpisując adres samodzielnie.",
+    "safetyTip2": "Uważaj na nieoczekiwane SMS-y lub e-maile z prośbą o dopłatę za wydanie paczki.",
+    "safetyTip3": "Nigdy nie podawaj danych karty, haseł ani kodów przez link w wiadomości.",
+    "safetyTip4": "W razie wątpliwości skontaktuj się z nami bezpośrednio, korzystając z danych na stronie kontaktowej.",
+    "safetyCta": "Zgłoś podejrzaną wiadomość"
   },
   "tracking": {
     "label": "Numer przesyłki",
@@ -268,7 +299,9 @@
     "legal": "Informacje prawne",
     "rights": "Wszelkie prawa zastrzeżone.",
     "privacy": "Polityka prywatności",
-    "terms": "Regulamin"
+    "terms": "Regulamin",
+    "shipping": "Wysyłka",
+    "trackingSupport": "Śledzenie i pomoc"
   },
   "cookie": {
     "text": "Ta strona używa wyłącznie niezbędnych plików cookie, np. do zapamiętania wybranego języka. Nie używamy plików cookie reklamowych ani śledzących.",

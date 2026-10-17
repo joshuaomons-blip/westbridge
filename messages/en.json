@@ -28,7 +28,28 @@
     "skip": "Skip to main content",
     "main": "Main navigation",
     "customerService": "Customer service",
-    "ship": "Ship"
+    "ship": "Ship",
+    "shipping": "Shipping",
+    "tracking": "Tracking",
+    "support": "Support",
+    "menuSend": "Send a shipment",
+    "menuSendText": "Tell us what you're sending and where.",
+    "menuPacking": "Packing tips",
+    "menuPackingText": "Five steps to pack a parcel safely.",
+    "menuBusiness": "Business shipping",
+    "menuBusinessText": "Regular shipping for companies and shops.",
+    "menuAllServices": "All services",
+    "menuAllServicesText": "See the services we offer.",
+    "menuStatusGuide": "What tracking statuses mean",
+    "menuTrackPage": "Open the tracking page",
+    "menuFaq": "Common questions",
+    "menuFaqText": "Quick answers about tracking and shipping.",
+    "menuSafety": "Avoid delivery scams",
+    "menuSafetyText": "How to spot fake delivery messages.",
+    "menuContact": "Contact us",
+    "menuContactText": "Send our team a message.",
+    "menuAbout": "About us",
+    "menuAboutText": "Learn more about Westbridge Global Express."
   },
   "home": {
     "eyebrow": "International shipping & logistics",
@@ -118,7 +139,17 @@
     "faq5Q": "Who can see my shipment details?",
     "faq5A": "The public tracking page shows only the status, dates, and the cities and countries of origin and destination. Names, street addresses, phone numbers and email addresses are never shown.",
     "faq6Q": "How do I send a shipment?",
-    "faq6A": "Send us a message through the contact page with what you are sending, where it is going and when. Our team will reply with the next steps."
+    "faq6A": "Send us a message through the contact page with what you are sending, where it is going and when. Our team will reply with the next steps.",
+    "promoTitle": "Shipping regularly? Let's set it up together.",
+    "promoText": "Whether you send a few parcels a month or every day, our team will help you find the simplest way to ship with us.",
+    "promoCta": "Talk to our team",
+    "safetyTitle": "Protect yourself from delivery scams",
+    "safetyText": "Criminals sometimes send fake messages that look like they come from a delivery company. Here's how to stay safe.",
+    "safetyTip1": "Check your tracking number only on our official website, by typing the address yourself.",
+    "safetyTip2": "Be careful with unexpected texts or emails asking you to pay a fee to release a parcel.",
+    "safetyTip3": "Never share card details, passwords or codes through a link in a message.",
+    "safetyTip4": "If you are unsure, contact us directly using the details on our contact page.",
+    "safetyCta": "Report a suspicious message"
   },
   "tracking": {
     "label": "Tracking number",
@@ -268,7 +299,9 @@
     "legal": "Legal",
     "rights": "All rights reserved.",
     "privacy": "Privacy policy",
-    "terms": "Terms of service"
+    "terms": "Terms of service",
+    "shipping": "Shipping",
+    "trackingSupport": "Tracking & support"
   },
   "cookie": {
     "text": "This website uses only essential cookies, for example to remember your language. We do not use advertising or tracking cookies.",

@@ -8,7 +8,7 @@ import { env } from "@/lib/env";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { CookieNotice } from "@/components/site/CookieNotice";
-import { DemoBanner, PreviewBanner } from "@/components/site/Banners";
+import { DemoBanner, NoticeBar, PreviewBanner } from "@/components/site/Banners";
 import { getPageContent, getPublicSettings } from "@/lib/public-data";
 import "../globals.css";
 
@@ -63,6 +63,7 @@ export default async function LocaleLayout({
         <NextIntlClientProvider>
           {content.preview && <PreviewBanner />}
           {settings.demo_mode && <DemoBanner />}
+          {content.get("site.notice") && <NoticeBar text={content.get("site.notice")!} />}
           <Header />
           <main id="main" className="flex-1">
             {children}

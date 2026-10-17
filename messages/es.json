@@ -28,7 +28,28 @@
     "skip": "Saltar al contenido principal",
     "main": "Navegación principal",
     "customerService": "Atención al cliente",
-    "ship": "Enviar"
+    "ship": "Enviar",
+    "shipping": "Envíos",
+    "tracking": "Seguimiento",
+    "support": "Ayuda",
+    "menuSend": "Enviar un paquete",
+    "menuSendText": "Díganos qué envía y a dónde.",
+    "menuPacking": "Consejos de embalaje",
+    "menuPackingText": "Cinco pasos para embalar un paquete con seguridad.",
+    "menuBusiness": "Envíos para empresas",
+    "menuBusinessText": "Envíos regulares para empresas y tiendas.",
+    "menuAllServices": "Todos los servicios",
+    "menuAllServicesText": "Vea los servicios que ofrecemos.",
+    "menuStatusGuide": "Qué significan los estados",
+    "menuTrackPage": "Abrir la página de seguimiento",
+    "menuFaq": "Preguntas frecuentes",
+    "menuFaqText": "Respuestas rápidas sobre seguimiento y envíos.",
+    "menuSafety": "Evite estafas de entrega",
+    "menuSafetyText": "Cómo reconocer mensajes de entrega falsos.",
+    "menuContact": "Contacto",
+    "menuContactText": "Envíe un mensaje a nuestro equipo.",
+    "menuAbout": "Quiénes somos",
+    "menuAboutText": "Conozca Westbridge Global Express."
   },
   "home": {
     "eyebrow": "Envíos internacionales y logística",
@@ -118,7 +139,17 @@
     "faq5Q": "¿Quién puede ver los datos de mi envío?",
     "faq5A": "La página pública de seguimiento muestra solo el estado, las fechas y las ciudades y países de origen y destino. Nunca se muestran nombres, direcciones, teléfonos ni correos electrónicos.",
     "faq6Q": "¿Cómo envío un paquete?",
-    "faq6A": "Envíenos un mensaje desde la página de contacto indicando qué envía, a dónde y cuándo. Nuestro equipo le responderá con los siguientes pasos."
+    "faq6A": "Envíenos un mensaje desde la página de contacto indicando qué envía, a dónde y cuándo. Nuestro equipo le responderá con los siguientes pasos.",
+    "promoTitle": "¿Envía con regularidad? Organicémoslo juntos.",
+    "promoText": "Tanto si envía unos pocos paquetes al mes como si envía a diario, nuestro equipo le ayudará a encontrar la forma más sencilla de enviar con nosotros.",
+    "promoCta": "Hable con nuestro equipo",
+    "safetyTitle": "Protéjase de las estafas de entrega",
+    "safetyText": "A veces los delincuentes envían mensajes falsos que parecen venir de una empresa de transporte. Así puede protegerse.",
+    "safetyTip1": "Consulte su número de seguimiento solo en nuestro sitio web oficial, escribiendo usted mismo la dirección.",
+    "safetyTip2": "Desconfíe de SMS o correos inesperados que piden pagar una tasa para liberar un paquete.",
+    "safetyTip3": "Nunca comparta datos de tarjeta, contraseñas o códigos a través de un enlace en un mensaje.",
+    "safetyTip4": "Si tiene dudas, contáctenos directamente con los datos de nuestra página de contacto.",
+    "safetyCta": "Informar de un mensaje sospechoso"
   },
   "tracking": {
     "label": "Número de seguimiento",
@@ -268,7 +299,9 @@
     "legal": "Legal",
     "rights": "Todos los derechos reservados.",
     "privacy": "Política de privacidad",
-    "terms": "Términos del servicio"
+    "terms": "Términos del servicio",
+    "shipping": "Envíos",
+    "trackingSupport": "Seguimiento y ayuda"
   },
   "cookie": {
     "text": "Este sitio web solo utiliza cookies esenciales, por ejemplo para recordar su idioma. No utilizamos cookies publicitarias ni de rastreo.",
