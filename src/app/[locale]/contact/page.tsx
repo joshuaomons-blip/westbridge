@@ -34,11 +34,11 @@ export default async function ContactPage({ params }: Props) {
       <section className="py-16 lg:py-20">
         <div className="container-page grid gap-10 lg:grid-cols-12">
           <div className="card p-6 sm:p-10 lg:col-span-8">
-            <h2 className="mb-6 text-xl font-semibold text-navy-900">{t("formTitle")}</h2>
+            <h2 className="mb-6 text-xl font-semibold text-brand-900">{t("formTitle")}</h2>
             <ContactForm />
           </div>
           <aside className="lg:col-span-4">
-            <div className="rounded-xl bg-navy-900 p-7 text-white">
+            <div className="rounded-xl bg-brand-900 p-7 text-white">
               <h2 className="text-lg font-semibold">{t("detailsTitle")}</h2>
               {details.length === 0 ? (
                 <p className="mt-4 text-sm leading-relaxed text-navy-200">{t("detailsPending")}</p>
@@ -50,7 +50,7 @@ export default async function ContactPage({ params }: Props) {
                         <d.icon className="h-4 w-4" aria-hidden />
                       </span>
                       <div className="min-w-0">
-                        <p className="text-xs font-medium tracking-wide text-navy-300 uppercase">{d.label}</p>
+                        <p className="text-xs font-medium text-white/60">{d.label}</p>
                         {d.href ? (
                           <a href={d.href(d.value!)} className="mt-0.5 block break-words text-white hover:underline">
                             {d.value}

@@ -40,15 +40,15 @@ export default async function AboutPage({ params }: Props) {
             ))}
           </div>
           <aside className="lg:col-span-5">
-            <h2 className="text-sm font-semibold tracking-[0.14em] text-slate-500 uppercase">{t("valuesTitle")}</h2>
+            <h2 className="font-display text-2xl font-black text-brand-900 [font-stretch:108%]">{t("valuesTitle")}</h2>
             <ul className="mt-5 space-y-4">
               {values.map((v) => (
                 <li key={v.title} className="card flex gap-4 p-5">
-                  <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-navy-50 text-navy-700">
+                  <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-navy-50 text-brand-700">
                     <v.icon className="h-5 w-5" aria-hidden />
                   </span>
                   <div>
-                    <h3 className="font-semibold text-navy-900">{v.title}</h3>
+                    <h3 className="font-semibold text-brand-900">{v.title}</h3>
                     <p className="mt-1 text-sm text-slate-600">{v.text}</p>
                   </div>
                 </li>

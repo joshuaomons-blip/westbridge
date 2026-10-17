@@ -11,7 +11,7 @@ export default function Error({ error, reset }: { error: Error & { digest?: stri
   }, [error]);
   return (
     <section className="container-page flex min-h-[55vh] flex-col items-center justify-center py-20 text-center" role="alert">
-      <h1 className="text-2xl font-bold text-navy-900">{t("error")}</h1>
+      <h1 className="text-2xl font-bold text-brand-900">{t("error")}</h1>
       <p className="mt-3 max-w-md text-slate-600">{t("errorText")}</p>
       <div className="mt-8 flex gap-3">
         <button type="button" onClick={reset} className="btn-primary">

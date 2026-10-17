@@ -34,7 +34,7 @@ export function CopyButton({
       aria-label={copied ? copiedLabel : label}
       title={label}
       className={cn(
-        "inline-flex items-center gap-1.5 rounded-md p-1.5 text-sm text-slate-500 transition hover:bg-slate-100 hover:text-navy-800",
+        "inline-flex items-center gap-1.5 rounded-md p-1.5 text-sm text-slate-500 transition hover:bg-slate-100 hover:text-brand-800",
         className,
       )}
     >

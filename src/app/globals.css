@@ -13,9 +13,14 @@
   --color-navy-900: #0f1c3b;
   --color-navy-950: #0a1329;
 
-  --color-signal-500: #d4302f;
-  --color-signal-600: #b8211f;
-  --color-signal-700: #961a19;
+  --color-signal-500: #e2382b;
+  --color-signal-600: #d62d20;
+  --color-signal-700: #b0231a;
+
+  --color-brand-700: #163a7a;
+  --color-brand-800: #0f2c5e;
+  --color-brand-900: #0b1f44;
+  --color-brand-950: #07152f;
 
   --font-sans: var(--font-inter), var(--font-noto-jp), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-display: var(--font-display-face), var(--font-inter), var(--font-noto-jp), ui-sans-serif, system-ui, sans-serif;

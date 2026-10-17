@@ -28,7 +28,7 @@ export function CookieNotice() {
     >
       <p className="text-sm text-slate-600">
         {t("text")}{" "}
-        <Link href="/privacy" className="font-medium text-navy-700 underline underline-offset-2">
+        <Link href="/privacy" className="font-medium text-brand-700 underline underline-offset-2">
           {t("learnMore")}
         </Link>
       </p>

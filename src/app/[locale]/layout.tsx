@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
-import { Inter, Manrope, Noto_Sans_JP } from "next/font/google";
+import { Archivo, Inter, Noto_Sans_JP } from "next/font/google";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { routing, locales } from "@/i18n/routing";
@@ -13,7 +13,7 @@ import { getPageContent, getPublicSettings } from "@/lib/public-data";
 import "../globals.css";
 
 const inter = Inter({ subsets: ["latin", "latin-ext"], variable: "--font-inter", display: "swap" });
-const manrope = Manrope({ subsets: ["latin", "latin-ext"], variable: "--font-display-face", display: "swap" });
+const archivo = Archivo({ subsets: ["latin", "latin-ext"], axes: ["wdth"], variable: "--font-display-face", display: "swap" });
 const notoJp = Noto_Sans_JP({
   weight: ["400", "500", "700"],
   variable: "--font-noto-jp",
@@ -58,7 +58,7 @@ export default async function LocaleLayout({
   const [content, settings] = await Promise.all([getPageContent(locale), getPublicSettings()]);
 
   return (
-    <html lang={locale} className={`${inter.variable} ${manrope.variable} ${notoJp.variable}`}>
+    <html lang={locale} className={`${inter.variable} ${archivo.variable} ${notoJp.variable}`}>
       <body className="flex min-h-screen flex-col">
         <NextIntlClientProvider>
           {content.preview && <PreviewBanner />}

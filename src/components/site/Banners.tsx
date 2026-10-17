@@ -17,7 +17,7 @@ export async function DemoBanner() {
 export async function PreviewBanner() {
   const t = await getTranslations("preview");
   return (
-    <div className="bg-navy-900 text-white">
+    <div className="bg-brand-900 text-white">
       <div className="container-page flex flex-wrap items-center gap-x-4 gap-y-1 py-2 text-xs font-medium sm:text-sm">
         <p className="flex items-center gap-2">
           <Eye className="h-4 w-4 shrink-0" aria-hidden />

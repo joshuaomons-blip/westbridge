@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import Image from "next/image";
+import { PHOTOS } from "@/lib/photos";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { CircleAlert, SearchX, WifiOff } from "lucide-react";
 import { TrackingForm } from "@/components/site/TrackingForm";
@@ -44,10 +46,12 @@ export default async function TrackPage({ params, searchParams }: Props) {
 
   return (
     <div className="bg-slate-50 pb-20">
-      <section className="bg-navy-950 pt-14 pb-24 text-white">
-        <div className="container-page max-w-4xl">
-          <h1 className="font-display text-3xl font-bold tracking-tight sm:text-4xl">{t("title")}</h1>
-          <p className="mt-3 text-navy-200">{t("subtitle")}</p>
+      <section className="relative isolate overflow-hidden bg-brand-950 pt-14 pb-24 text-white">
+        <Image src={PHOTOS.hero} alt="" fill priority sizes="100vw" className="object-cover object-[60%_50%] opacity-35" />
+        <div className="absolute inset-0 bg-gradient-to-r from-brand-950 via-brand-950/85 to-brand-950/40" aria-hidden />
+        <div className="container-page relative max-w-4xl">
+          <h1 className="font-display text-4xl font-black tracking-[-0.02em] [font-stretch:110%] sm:text-5xl">{t("title")}</h1>
+          <p className="mt-3 text-white/80">{t("subtitle")}</p>
         </div>
       </section>
       <div className="container-page -mt-14 max-w-4xl space-y-6">
@@ -110,9 +114,9 @@ function ResultMessage({
         <Icon className="h-5 w-5" aria-hidden />
       </span>
       <div>
-        <h2 className="text-lg font-semibold text-navy-900">{map.title}</h2>
+        <h2 className="text-lg font-semibold text-brand-900">{map.title}</h2>
         <p className="mt-1 text-slate-600">{map.text}</p>
-        <Link href="/contact" className="mt-4 inline-block text-sm font-semibold text-navy-700 underline underline-offset-2 hover:text-navy-900">
+        <Link href="/contact" className="mt-4 inline-block text-sm font-semibold text-brand-700 underline underline-offset-2 hover:text-brand-900">
           {t.contactSupport}
         </Link>
       </div>

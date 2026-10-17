@@ -1,9 +1,9 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Manrope } from "next/font/google";
+import { Archivo, Inter } from "next/font/google";
 import "../globals.css";
 
 const inter = Inter({ subsets: ["latin", "latin-ext"], variable: "--font-inter", display: "swap" });
-const manrope = Manrope({ subsets: ["latin", "latin-ext"], variable: "--font-display-face", display: "swap" });
+const archivo = Archivo({ subsets: ["latin", "latin-ext"], axes: ["wdth"], variable: "--font-display-face", display: "swap" });
 
 export const metadata: Metadata = {
   title: { default: "Admin — Westbridge Global Express", template: "%s — Westbridge Admin" },
@@ -18,7 +18,7 @@ export const dynamic = "force-dynamic";
 
 export default function AdminRootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${inter.variable} ${manrope.variable}`}>
+    <html lang="en" className={`${inter.variable} ${archivo.variable}`}>
       <body className="min-h-screen bg-slate-100">{children}</body>
     </html>
   );

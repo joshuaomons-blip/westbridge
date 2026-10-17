@@ -8,7 +8,7 @@ import { usePathname, useRouter } from "@/i18n/navigation";
 import { locales, localeNames, type Locale } from "@/i18n/routing";
 import { cn } from "@/lib/format";
 
-export function LanguageSwitcher({ compact = false }: { compact?: boolean }) {
+export function LanguageSwitcher({ compact = false, variant = "default" }: { compact?: boolean; variant?: "default" | "bar" }) {
   const t = useTranslations("nav");
   const locale = useLocale() as Locale;
   const pathname = usePathname();
@@ -52,13 +52,15 @@ export function LanguageSwitcher({ compact = false }: { compact?: boolean }) {
         aria-expanded={open}
         aria-label={`${t("language")}: ${localeNames[locale].label}`}
         className={cn(
-          "inline-flex items-center gap-1.5 rounded-md border border-slate-200 bg-white px-2.5 py-2 text-sm font-medium text-navy-800 transition hover:border-navy-300 hover:bg-navy-50",
+          variant === "bar"
+            ? "inline-flex items-center gap-1.5 py-1 text-[13px] text-white/80 hover:text-white"
+            : "inline-flex items-center gap-1.5 rounded-md border border-slate-200 bg-white px-2.5 py-2 text-sm font-medium text-brand-900 transition hover:border-slate-300 hover:bg-slate-50",
           pending && "opacity-60",
         )}
       >
-        <Globe className="h-4 w-4 text-slate-500" aria-hidden />
+        <Globe className={cn("h-4 w-4", variant === "bar" ? "h-3.5 w-3.5" : "text-slate-500")} aria-hidden />
         <span>{compact ? localeNames[locale].short : localeNames[locale].label}</span>
-        <ChevronDown className={cn("h-3.5 w-3.5 text-slate-400 transition", open && "rotate-180")} aria-hidden />
+        <ChevronDown className={cn("h-3.5 w-3.5 transition", variant === "bar" ? "text-white/60" : "text-slate-400", open && "rotate-180")} aria-hidden />
       </button>
       {open && (
         <ul
@@ -74,7 +76,7 @@ export function LanguageSwitcher({ compact = false }: { compact?: boolean }) {
                 onClick={() => choose(l)}
                 className={cn(
                   "flex w-full items-center justify-between px-3 py-2 text-left text-sm hover:bg-navy-50",
-                  l === locale ? "font-semibold text-navy-900" : "text-slate-700",
+                  l === locale ? "font-semibold text-brand-900" : "text-slate-700",
                 )}
               >
                 <span>
