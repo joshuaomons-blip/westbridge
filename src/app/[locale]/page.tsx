@@ -62,8 +62,10 @@ export default async function HomePage({ params }: Props) {
       {/* Hero: full-bleed photo, headline, tracking panel */}
       <section className="relative isolate bg-brand-950">
         <Image src={heroImage} alt={t("imageAlt")} fill priority sizes="100vw" className="object-cover object-[60%_50%]" />
-        <div className="absolute inset-0 bg-gradient-to-r from-brand-950/95 via-brand-950/70 to-brand-950/10" aria-hidden />
-        <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-brand-950/60 to-transparent lg:hidden" aria-hidden />
+        <div
+          className="absolute inset-0 bg-gradient-to-b from-brand-950/40 via-brand-950/75 to-brand-950/95 lg:bg-gradient-to-r lg:from-brand-950/90 lg:via-brand-950/55 lg:to-brand-950/0"
+          aria-hidden
+        />
         <div className="container-page relative grid gap-10 pt-16 pb-24 sm:pt-20 lg:grid-cols-12 lg:items-center lg:pt-24 lg:pb-32">
           <div className="lg:col-span-6">
             <h1 className="font-display text-[40px] leading-[1.02] font-black tracking-[-0.02em] text-balance text-white [font-stretch:110%] sm:text-6xl lg:text-[68px]">
