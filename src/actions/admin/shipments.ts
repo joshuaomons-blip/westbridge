@@ -6,6 +6,7 @@ import { z } from "zod";
 import { adminAction, dbErrorMessage, str, utcFromLocalInput, type ActionResult } from "./_util";
 import { createShipmentSchema, shipmentSchema, eventSchema, correctEventSchema, fieldErrors } from "@/lib/validation";
 import { describeOutcome, notifyShipmentParties, outcomeCode } from "@/lib/email/notify";
+import { routeProgress, stepMessage } from "@/lib/route-progress";
 
 function formObject(fd: FormData) {
   const o: Record<string, string> = {};
@@ -175,5 +176,54 @@ export async function setShipmentPublished(_prev: ActionResult, fd: FormData): P
     if (error) return { error: dbErrorMessage(error) };
     revalidatePath(`/admin/shipments/${id.data}`);
     return { ok: true, message: publish ? "Tracking page is now public." : "Tracking page hidden from the public." };
+  });
+}
+
+/** One-click route update: records the chosen next step and emails sender and recipient. */
+export async function advanceRoute(_prev: ActionResult, fd: FormData): Promise<ActionResult> {
+  return adminAction("events.write", async ({ db }) => {
+    const id = z.string().uuid().safeParse(str(fd, "shipment_id"));
+    const key = str(fd, "step");
+    if (!id.success || !key) return { error: "Choose a step on the route." };
+    const { data: s } = await db
+      .from("shipments")
+      .select("origin_city, origin_country, destination_city, destination_country, route_stops, current_status, notify_locale, archived_at")
+      .eq("id", id.data)
+      .maybeSingle();
+    if (!s || s.archived_at) return { error: "Shipment not found." };
+    const { data: ev } = await db
+      .from("shipment_events")
+      .select("status_code, occurred_at, location")
+      .eq("shipment_id", id.data)
+      .eq("visibility", "public")
+      .eq("is_voided", false)
+      .order("occurred_at", { ascending: false });
+    const events = (ev ?? []).map((e: { status_code: string; occurred_at: string; location: string | null }) => ({ status: e.status_code, occurred_at: e.occurred_at, location: e.location }));
+    // Recompute the steps on the server so only real, current options can be recorded.
+    const step = routeProgress(s, events).steps.find((x) => x.key === key);
+    if (!step) return { error: "That update is no longer available. The page may be out of date; reload and try again." };
+
+    const occurredAt = new Date().toISOString();
+    const description = stepMessage(step, s.notify_locale);
+    const { error } = await db.from("shipment_events").insert({
+      shipment_id: id.data,
+      status_code: step.status,
+      occurred_at: occurredAt,
+      location: step.location,
+      description,
+      visibility: "public",
+    });
+    if (error) return { error: dbErrorMessage(error) };
+    revalidatePath(`/admin/shipments/${id.data}`);
+    revalidatePath("/admin/events");
+
+    let emailNote = "";
+    if (str(fd, "send_email") === "on") {
+      const outcome = await notifyShipmentParties(db, id.data, { status: step.status, occurred_at: occurredAt, location: step.location, description }).catch(
+        () => ({ sent: 0, failed: 1 }),
+      );
+      emailNote = ` ${describeOutcome(outcome)}`;
+    }
+    return { ok: true, message: `Recorded: ${step.label}.${emailNote}` };
   });
 }
