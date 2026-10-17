@@ -7,7 +7,7 @@ export type ContentFieldType = "text" | "textarea" | "image" | "toggle" | "email
 export type ContentField = {
   key: string;
   label: string;
-  group: "Notice bar" | "Homepage" | "Company" | "Contact details" | "Footer & support" | "Legal pages" | "Page sections";
+  group: "Notice bar" | "Homepage" | "Company" | "Contact details" | "Social media" | "Footer & support" | "Legal pages" | "Page sections";
   type: ContentFieldType;
   /** true = one value per language; false = one shared value for all languages */
   localized: boolean;
@@ -30,6 +30,16 @@ export const CONTENT_FIELDS: ContentField[] = [
   { key: "contact.email", label: "Email address", group: "Contact details", type: "email", localized: false },
   { key: "contact.address", label: "Postal address", group: "Contact details", type: "textarea", localized: false },
   { key: "contact.hours", label: "Opening hours", group: "Contact details", type: "text", localized: true },
+  { key: "contact.whatsapp", label: "WhatsApp number", group: "Contact details", type: "phone", localized: false,
+    help: "With country code, e.g. +234 801 234 5678. Shows a WhatsApp chat button on every page." },
+  { key: "company.reg_number", label: "Company registration number (CAC)", group: "Company", type: "text", localized: false,
+    help: "Shown in the footer, e.g. RC 1234567. Only enter your real, registered number." },
+
+  { key: "social.instagram", label: "Instagram page link", group: "Social media", type: "text", localized: false, help: "Full link, e.g. https://www.instagram.com/norvaneexpress" },
+  { key: "social.facebook", label: "Facebook page link", group: "Social media", type: "text", localized: false, help: "Full link, e.g. https://www.facebook.com/norvaneexpress" },
+  { key: "social.linkedin", label: "LinkedIn page link", group: "Social media", type: "text", localized: false, help: "Full link, e.g. https://www.linkedin.com/company/norvaneexpress" },
+  { key: "social.tiktok", label: "TikTok profile link", group: "Social media", type: "text", localized: false, help: "Full link, e.g. https://www.tiktok.com/@norvaneexpress" },
+  { key: "social.x", label: "X (Twitter) profile link", group: "Social media", type: "text", localized: false, help: "Full link, e.g. https://x.com/norvaneexpress" },
 
   { key: "footer.text", label: "Footer description", group: "Footer & support", type: "textarea", localized: true },
   { key: "support.text", label: "Customer support information", group: "Footer & support", type: "textarea", localized: true },

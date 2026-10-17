@@ -2,7 +2,7 @@
   "name": "norvane-express",
   "version": "1.0.0",
   "private": true,
-  "description": "Norvane Express — shipping website, tracking and admin dashboard",
+  "description": "Norvane Express \u2014 shipping website, tracking and admin dashboard",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -15,6 +15,7 @@
   "dependencies": {
     "@supabase/ssr": "^0.7.0",
     "@supabase/supabase-js": "^2.57.0",
+    "@vercel/analytics": "1.5.0",
     "clsx": "^2.1.1",
     "lucide-react": "^0.544.0",
     "next": "15.5.28",

@@ -13,7 +13,9 @@
     "contactTitle": "お問い合わせ",
     "contactDescription": "Norvane Express へのお問い合わせ。",
     "privacyTitle": "プライバシーポリシー",
-    "termsTitle": "利用規約"
+    "termsTitle": "利用規約",
+    "pickupTitle": "集荷を依頼する",
+    "pickupDescription": "Norvane Expressに小包・貨物の集荷を依頼し、お見積もりを受け取れます。"
   },
   "nav": {
     "home": "ホーム",
@@ -225,7 +227,8 @@
     "upcoming": "今後の経由地",
     "emailSupport": "メールで問い合わせる",
     "emailSubject": "貨物 {number}",
-    "contactForm": "お問い合わせフォーム"
+    "contactForm": "お問い合わせフォーム",
+    "receivedBy": "受取人：{name}"
   },
   "status": {
     "shipment_created": "貨物登録",
@@ -342,7 +345,9 @@
     "trackingSupport": "追跡とサポート",
     "ctaTitle": "貨物の追跡・お問い合わせ",
     "ctaText": "追跡番号を入力するか、発送や受け取りに関するご質問をメールでお送りください。",
-    "emailUs": "メールで問い合わせる"
+    "emailUs": "メールで問い合わせる",
+    "followUs": "フォローする",
+    "companyReg": "法人登録番号：{number}"
   },
   "cookie": {
     "text": "本サイトでは、言語設定の保存など、必要最小限のクッキーのみを使用しています。広告や追跡目的のクッキーは使用していません。",
@@ -392,5 +397,48 @@
     "safety": "安全のため：当社がメールやSMSで、お荷物のお渡しのために料金の支払いやカード情報の入力をお願いすることは一切ありません。",
     "footer": "このメールは、Norvane Expressが取り扱うお荷物の差出人または受取人の方にお送りしている、配送に関するご案内です。",
     "timesUtc": "時刻はUTCで表示しています。"
+  },
+  "pickup": {
+    "title": "集荷を依頼する",
+    "subtitle": "発送する内容と送り先をお知らせください。担当者がお見積もりと集荷日時をご連絡します。",
+    "formTitle": "発送内容",
+    "sectionYou": "お客様情報",
+    "sectionRoute": "集荷先とお届け先",
+    "sectionShipment": "発送する荷物",
+    "name": "お名前",
+    "email": "メールアドレス",
+    "phone": "電話番号 / WhatsApp",
+    "pickupCity": "集荷先の都市",
+    "pickupAddress": "集荷先の住所",
+    "pickupDate": "集荷希望日",
+    "destCountry": "お届け先の国",
+    "destCity": "お届け先の都市",
+    "type": "荷物の種類",
+    "packages": "個数",
+    "weight": "おおよその総重量（kg）",
+    "service": "サービス",
+    "serviceAny": "わからない（相談したい）",
+    "notes": "備考",
+    "notesHint": "内容物、サイズ、価格、取り扱いの注意など。",
+    "optional": "任意",
+    "submit": "集荷を依頼する",
+    "sending": "送信中…",
+    "successTitle": "ご依頼を受け付けました",
+    "success": "ありがとうございます。担当者より料金と集荷日時のご確認のため、まもなくご連絡いたします。",
+    "successRef": "受付番号：{reference}",
+    "another": "別の依頼を送る",
+    "errorGeneric": "ご依頼を送信できませんでした。しばらくしてから再度お試しください。",
+    "errorRateLimited": "短時間に複数のご依頼がありました。しばらくしてから再度お試しください。",
+    "required": "この項目を入力してください。",
+    "emailInvalid": "有効なメールアドレスを入力してください。",
+    "phoneInvalid": "有効な電話番号を入力してください。",
+    "dateInvalid": "本日以降の日付を選択してください。",
+    "numberInvalid": "有効な数値を入力してください。",
+    "privacy": "ご入力いただいた情報は、発送の手配にのみ使用します。",
+    "sideTitle": "ご利用の流れ",
+    "side1": "1分で依頼を送信。",
+    "side2": "料金と集荷日時をご連絡します。",
+    "side3": "集荷・発送し、追跡番号をお知らせします。",
+    "whatsapp": "WhatsAppで問い合わせる"
   }
 }

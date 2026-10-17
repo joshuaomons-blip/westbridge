@@ -6,7 +6,10 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { routing, locales } from "@/i18n/routing";
 import { env } from "@/lib/env";
 import { Header } from "@/components/site/Header";
+import { Analytics } from "@vercel/analytics/next";
 import { Footer } from "@/components/site/Footer";
+import { WhatsAppButton } from "@/components/site/WhatsAppButton";
+import { whatsappHref } from "@/lib/support";
 import { CookieNotice } from "@/components/site/CookieNotice";
 import { DemoBanner, NoticeBar, PreviewBanner } from "@/components/site/Banners";
 import { getPageContent, getPublicSettings } from "@/lib/public-data";
@@ -55,7 +58,8 @@ export default async function LocaleLayout({
   if (!hasLocale(routing.locales, locale)) notFound();
   setRequestLocale(locale);
 
-  const [content, settings] = await Promise.all([getPageContent(locale), getPublicSettings()]);
+  const [content, settings, tp] = await Promise.all([getPageContent(locale), getPublicSettings(), getTranslations("pickup")]);
+  const wa = whatsappHref(content.get("contact.whatsapp"));
 
   return (
     <html lang={locale} className={`${inter.variable} ${archivo.variable} ${notoJp.variable}`}>
@@ -69,7 +73,9 @@ export default async function LocaleLayout({
             {children}
           </main>
           <Footer content={content} />
+          {wa && <WhatsAppButton href={wa} label={tp("whatsapp")} />}
           <CookieNotice />
+          <Analytics />
         </NextIntlClientProvider>
       </body>
     </html>

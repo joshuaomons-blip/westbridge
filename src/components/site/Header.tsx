@@ -28,7 +28,7 @@ export function Header({ email }: { email?: string }) {
       id: "shipping",
       label: t("shipping"),
       links: [
-        { label: t("menuSend"), href: `/${locale}/contact`, text: t("menuSendText") },
+        { label: t("menuSend"), href: `/${locale}/ship`, text: t("menuSendText") },
         { label: t("menuPacking"), href: home("packing"), text: t("menuPackingText") },
         { label: t("menuBusiness"), href: home("business"), text: t("menuBusinessText") },
         { label: t("menuAllServices"), href: `/${locale}/services`, text: t("menuAllServicesText") },

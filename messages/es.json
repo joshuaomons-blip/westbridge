@@ -13,7 +13,9 @@
     "contactTitle": "Contacto",
     "contactDescription": "Póngase en contacto con el equipo de Norvane Express.",
     "privacyTitle": "Política de privacidad",
-    "termsTitle": "Términos del servicio"
+    "termsTitle": "Términos del servicio",
+    "pickupTitle": "Solicitar una recogida",
+    "pickupDescription": "Solicita la recogida de un paquete o carga y recibe un presupuesto de Norvane Express."
   },
   "nav": {
     "home": "Inicio",
@@ -225,7 +227,8 @@
     "upcoming": "Próxima parada",
     "emailSupport": "Escribir a soporte",
     "emailSubject": "Envío {number}",
-    "contactForm": "Formulario de contacto"
+    "contactForm": "Formulario de contacto",
+    "receivedBy": "Recibido por {name}"
   },
   "status": {
     "shipment_created": "Envío creado",
@@ -342,7 +345,9 @@
     "trackingSupport": "Seguimiento y ayuda",
     "ctaTitle": "Sigue un envío o habla con nuestro equipo",
     "ctaText": "Introduce un número de seguimiento o escríbenos con cualquier pregunta sobre envíos o recepciones.",
-    "emailUs": "Escríbenos"
+    "emailUs": "Escríbenos",
+    "followUs": "Síguenos",
+    "companyReg": "N.º de registro de la empresa: {number}"
   },
   "cookie": {
     "text": "Este sitio web solo utiliza cookies esenciales, por ejemplo para recordar su idioma. No utilizamos cookies publicitarias ni de rastreo.",
@@ -392,5 +397,48 @@
     "safety": "Por tu seguridad: nunca te pediremos por correo electrónico ni SMS que pagues una tasa o compartas los datos de tu tarjeta para liberar un paquete.",
     "footer": "Recibes este correo porque eres el remitente o el destinatario de un envío gestionado por Norvane Express. Es un mensaje de servicio sobre tu envío.",
     "timesUtc": "Las horas se muestran en UTC."
+  },
+  "pickup": {
+    "title": "Solicitar una recogida",
+    "subtitle": "Cuéntanos qué envías y a dónde. Nuestro equipo te responderá con un presupuesto y confirmará la hora de recogida.",
+    "formTitle": "Detalles del envío",
+    "sectionYou": "Tus datos",
+    "sectionRoute": "Recogida y destino",
+    "sectionShipment": "Qué envías",
+    "name": "Nombre completo",
+    "email": "Correo electrónico",
+    "phone": "Teléfono / WhatsApp",
+    "pickupCity": "Ciudad de recogida",
+    "pickupAddress": "Dirección de recogida",
+    "pickupDate": "Fecha de recogida preferida",
+    "destCountry": "País de destino",
+    "destCity": "Ciudad de destino",
+    "type": "Tipo de envío",
+    "packages": "Número de bultos",
+    "weight": "Peso total aprox. (kg)",
+    "service": "Servicio",
+    "serviceAny": "No lo sé — necesito asesoramiento",
+    "notes": "Notas",
+    "notesHint": "Contenido, tamaño, valor o manipulación especial.",
+    "optional": "opcional",
+    "submit": "Solicitar recogida",
+    "sending": "Enviando…",
+    "successTitle": "Solicitud recibida",
+    "success": "Gracias. Nuestro equipo se pondrá en contacto contigo en breve para confirmar el precio y la hora de recogida.",
+    "successRef": "Tu referencia: {reference}",
+    "another": "Enviar otra solicitud",
+    "errorGeneric": "No se pudo enviar tu solicitud. Inténtalo de nuevo más tarde.",
+    "errorRateLimited": "Has enviado varias solicitudes recientemente. Inténtalo de nuevo más tarde.",
+    "required": "Completa este campo.",
+    "emailInvalid": "Introduce un correo electrónico válido.",
+    "phoneInvalid": "Introduce un número de teléfono válido.",
+    "dateInvalid": "Elige hoy o una fecha posterior.",
+    "numberInvalid": "Introduce un número válido.",
+    "privacy": "Usamos estos datos solo para organizar tu envío.",
+    "sideTitle": "Cómo funciona",
+    "side1": "Envía tu solicitud en un minuto.",
+    "side2": "Te respondemos con un precio claro y la hora de recogida.",
+    "side3": "Recogemos, enviamos y te damos un número de seguimiento.",
+    "whatsapp": "Escríbenos por WhatsApp"
   }
 }

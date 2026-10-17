@@ -92,6 +92,8 @@ export async function saveContentDrafts(_prev: ActionResult, fd: FormData): Prom
       else value = str(fd, field.key).trim() || null;
       if (value && value.length > 20000) return { fields: { [field.key]: "Too long" } };
       if (field.type === "email" && value && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(value)) return { fields: { [field.key]: "Enter a valid email address" } };
+      if (field.type === "phone" && value && !/^\+?[0-9()\s.-]{5,40}$/.test(value)) return { fields: { [field.key]: "Enter a valid phone number" } };
+      if (field.key.startsWith("social.") && value && !/^https:\/\/[^\s<>"]+$/.test(value)) return { fields: { [field.key]: "Enter a full link starting with https://" } };
       const row: (typeof rows)[number] = { key: field.key, locale: loc, draft_value: value };
       if (publishNow) {
         row.published_value = value;

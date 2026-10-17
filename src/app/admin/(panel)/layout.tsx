@@ -27,7 +27,7 @@ export default async function PanelLayout({ children }: { children: React.ReactN
     { href: "/admin/events", label: "Tracking Events", icon: "events" },
     ...(can(admin, "customers.read") ? [{ href: "/admin/customers", label: "Customers", icon: "customers" } as NavItem] : []),
     ...(can(admin, "inquiries.read")
-      ? [{ href: "/admin/inquiries", label: "Contact Inquiries", icon: "inquiries", badge: newInquiries ?? 0 } as NavItem]
+      ? [{ href: "/admin/inquiries", label: "Inquiries & Pickups", icon: "inquiries", badge: newInquiries ?? 0 } as NavItem]
       : []),
     ...(can(admin, "services.write") ? [{ href: "/admin/services", label: "Services", icon: "services" } as NavItem] : []),
     ...(can(admin, "content.write") ? [{ href: "/admin/content", label: "Website Content", icon: "content" } as NavItem] : []),

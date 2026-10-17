@@ -14,6 +14,7 @@ import {
   PackageCheck,
   Truck,
   TriangleAlert,
+  UserCheck,
   type LucideIcon,
 } from "lucide-react";
 import { Link } from "@/i18n/navigation";
@@ -160,6 +161,7 @@ export async function TrackingResult({
                     <>
                       <p className="mt-1 text-lg font-semibold capitalize">{dateParts.weekday}</p>
                       <p className="font-display text-3xl leading-tight font-black [font-stretch:108%]">{dateParts.date}</p>
+                      {deliveredEvent?.received_by && <p className="mt-1 text-sm text-white/85">{t("receivedBy", { name: deliveredEvent.received_by })}</p>}
                     </>
                   ) : (
                     <p className="mt-1 text-xl font-semibold">{t("notProvided")}</p>
@@ -306,6 +308,12 @@ export async function TrackingResult({
                                 </p>
                               )}
                               {e.description && <p className="mt-1 text-sm text-slate-600">{e.description}</p>}
+                              {e.received_by && (
+                                <p className="mt-1.5 inline-flex items-center gap-1.5 rounded-md bg-emerald-50 px-2.5 py-1 text-sm font-semibold text-emerald-800">
+                                  <UserCheck className="h-4 w-4" aria-hidden />
+                                  {t("receivedBy", { name: e.received_by })}
+                                </p>
+                              )}
                             </div>
                           </li>
                         );

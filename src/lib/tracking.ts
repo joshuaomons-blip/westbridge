@@ -8,6 +8,7 @@ export type PublicTrackingEvent = {
   occurred_at: string;
   location: string | null;
   description: string | null;
+  received_by?: string | null;
 };
 
 export type PublicTracking = {

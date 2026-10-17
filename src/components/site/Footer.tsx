@@ -1,7 +1,8 @@
 import { Suspense } from "react";
 import { getLocale, getTranslations } from "next-intl/server";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { TrackingForm } from "./TrackingForm";
+import { safeSocialUrl, whatsappHref } from "@/lib/support";
 import { Link } from "@/i18n/navigation";
 import { Logo } from "./Logo";
 import { LanguageSwitcher } from "./LanguageSwitcher";
@@ -15,6 +16,20 @@ export async function Footer({ content }: { content: SiteContent }) {
   const email = content.get("contact.email");
   const address = content.get("contact.address");
   const year = new Date().getUTCFullYear();
+  const wa = whatsappHref(content.get("contact.whatsapp"));
+  const waNumber = content.get("contact.whatsapp");
+  const reg = content.get("company.reg_number");
+  const socials = (
+    [
+      ["instagram", "Instagram"],
+      ["facebook", "Facebook"],
+      ["linkedin", "LinkedIn"],
+      ["tiktok", "TikTok"],
+      ["x", "X"],
+    ] as const
+  )
+    .map(([key, label]) => ({ label, href: safeSocialUrl(key, content.get(`social.${key}`)) }))
+    .filter((s): s is { label: (typeof s)["label"]; href: string } => !!s.href);
   const locale = await getLocale();
   const home = (hash: string) => `/${locale}#${hash}`;
 
@@ -49,13 +64,21 @@ export async function Footer({ content }: { content: SiteContent }) {
           <p className="mt-5 max-w-sm text-sm leading-relaxed text-white/70 whitespace-pre-line">
             {content.get("footer.text") ?? t("description")}
           </p>
-          {(phone || email || address) && (
+          {(phone || email || address || wa) && (
             <ul className="mt-6 space-y-2.5 text-sm text-white/70">
               {phone && (
                 <li className="flex items-center gap-2.5">
                   <Phone className="h-4 w-4 text-white/50" aria-hidden />
                   <a href={`tel:${phone.replace(/[^\d+]/g, "")}`} className="hover:text-white">
                     {phone}
+                  </a>
+                </li>
+              )}
+              {wa && waNumber && (
+                <li className="flex items-center gap-2.5">
+                  <MessageCircle className="h-4 w-4 text-white/50" aria-hidden />
+                  <a href={wa} target="_blank" rel="noopener noreferrer" className="hover:text-white">
+                    WhatsApp {waNumber}
                   </a>
                 </li>
               )}
@@ -75,11 +98,30 @@ export async function Footer({ content }: { content: SiteContent }) {
               )}
             </ul>
           )}
+          {socials.length > 0 && (
+            <div className="mt-6">
+              <p className="text-xs font-bold tracking-[0.14em] text-white/50 uppercase">{t("followUs")}</p>
+              <ul className="mt-3 flex flex-wrap gap-2">
+                {socials.map((s) => (
+                  <li key={s.label}>
+                    <a
+                      href={s.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex h-9 items-center rounded-full border border-white/15 px-4 text-sm text-white/80 transition hover:border-white/40 hover:text-white"
+                    >
+                      {s.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
 
         <div className="grid grid-cols-2 gap-8 sm:grid-cols-4 lg:col-span-7">
           <FooterCol title={t("shipping")}>
-            <FooterLink href="/contact">{nav("menuSend")}</FooterLink>
+            <FooterLink href="/ship">{nav("menuSend")}</FooterLink>
             <FooterA href={home("packing")}>{nav("menuPacking")}</FooterA>
             <FooterA href={home("business")}>{nav("menuBusiness")}</FooterA>
             <FooterLink href="/services">{nav("menuAllServices")}</FooterLink>
@@ -105,6 +147,7 @@ export async function Footer({ content }: { content: SiteContent }) {
         <div className="container-page flex flex-col gap-2 py-6 text-xs text-white/60 sm:flex-row sm:items-center sm:justify-between">
           <p>
             © {year} Norvane Express. {t("rights")}
+            {reg && <span className="ml-2 text-white/50">· {t("companyReg", { number: reg })}</span>}
           </p>
           <div className="flex items-center gap-5">
             <p className="hidden md:block">{meta("tagline")}</p>

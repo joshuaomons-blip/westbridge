@@ -57,7 +57,7 @@ export function HeroPanel({ supportLink }: { supportLink?: string | null }) {
           <div role="tabpanel" id="panel-ship" aria-labelledby="tab-ship">
             <h2 className="font-display text-xl font-extrabold text-brand-900 [font-stretch:108%]">{t("shipTitle")}</h2>
             <p className="mt-3 max-w-prose text-slate-600">{t("shipText")}</p>
-            <Link href="/contact" className="btn-accent mt-6 h-12 px-6 text-base">
+            <Link href="/ship" className="btn-accent mt-6 h-12 px-6 text-base">
               {t("shipCta")}
             </Link>
           </div>

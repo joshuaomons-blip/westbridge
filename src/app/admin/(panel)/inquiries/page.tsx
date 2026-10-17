@@ -16,14 +16,16 @@ export default async function InquiriesPage({ searchParams }: { searchParams: Pr
   const page = parsePage(sp.page);
   const q = one(sp.q);
   const status = one(sp.status);
+  const kind = one(sp.kind);
   const from = isDate(one(sp.from));
   const to = isDate(one(sp.to));
   const view = one(sp.view) === "archived" ? "archived" : "active";
   const db = await createSessionClient();
 
-  let query = db.from("contact_inquiries").select("id, reference, name, email, subject, status, created_at, is_demo", { count: "exact" });
+  let query = db.from("contact_inquiries").select("id, reference, kind, name, email, phone, subject, status, created_at, is_demo", { count: "exact" });
   query = view === "archived" ? query.not("archived_at", "is", null) : query.is("archived_at", null);
   if (status === "new" || status === "in_progress" || status === "resolved") query = query.eq("status", status);
+  if (kind === "pickup" || kind === "message") query = query.eq("kind", kind);
   if (from) query = query.gte("created_at", from);
   if (to) query = query.lte("created_at", `${to}T23:59:59Z`);
   if (q) {
@@ -31,19 +33,24 @@ export default async function InquiriesPage({ searchParams }: { searchParams: Pr
     query = query.or(`name.ilike.%${t}%,email.ilike.%${t}%,subject.ilike.%${t}%,reference.ilike.%${t}%,message.ilike.%${t}%`);
   }
   const { data, count, error } = await query.order("created_at", { ascending: false }).range((page - 1) * PAGE_SIZE, page * PAGE_SIZE - 1);
-  const params = { q, status, from, to, view: view === "archived" ? "archived" : undefined };
+  const params = { q, status, kind, from, to, view: view === "archived" ? "archived" : undefined };
 
   return (
     <>
-      <PageHeader title="Contact inquiries" description="Messages submitted through the website contact form." />
+      <PageHeader title="Inquiries & pickup requests" description="Messages from the contact form and pickup / quote requests from the Request a pickup page." />
       <Panel bodyClassName="p-0">
-        <form method="get" className="grid gap-3 border-b border-slate-100 p-4 sm:grid-cols-2 lg:grid-cols-6">
+        <form method="get" className="grid gap-3 border-b border-slate-100 p-4 sm:grid-cols-2 lg:grid-cols-7">
           <input name="q" type="search" defaultValue={q} placeholder="Search name, email, subject, message" className="input lg:col-span-2" aria-label="Search" />
           <select name="status" defaultValue={status ?? ""} className="input" aria-label="Status">
             <option value="">All statuses</option>
             <option value="new">New</option>
             <option value="in_progress">In progress</option>
             <option value="resolved">Resolved</option>
+          </select>
+          <select name="kind" defaultValue={kind ?? ""} className="input" aria-label="Type">
+            <option value="">All types</option>
+            <option value="pickup">Pickup requests</option>
+            <option value="message">Messages</option>
           </select>
           <input name="from" type="date" defaultValue={from} className="input" aria-label="From date" />
           <input name="to" type="date" defaultValue={to} className="input" aria-label="To date" />
@@ -78,11 +85,15 @@ export default async function InquiriesPage({ searchParams }: { searchParams: Pr
                         <Link href={`/admin/inquiries/${i.id}`} className={`hover:underline ${i.status === "new" ? "font-semibold text-navy-900" : "text-navy-800"}`}>
                           {i.subject}
                         </Link>
-                        <div className="text-xs text-slate-400">{i.reference} {i.is_demo && <Badge tone="amber">DEMO</Badge>}</div>
+                        <div className="flex flex-wrap items-center gap-1.5 text-xs text-slate-400">
+                          {i.kind === "pickup" && <Badge tone="navy">PICKUP</Badge>}
+                          {i.reference} {i.is_demo && <Badge tone="amber">DEMO</Badge>}
+                        </div>
                       </td>
                       <td className={`${td} text-slate-600`}>
                         <div>{i.name}</div>
                         <div className="text-xs">{i.email}</div>
+                        {i.phone && <div className="text-xs">{i.phone}</div>}
                       </td>
                       <td className={td}>
                         <Badge tone={STATUS_TONE[i.status as keyof typeof STATUS_TONE] ?? "slate"}>{i.status.replace("_", " ").toUpperCase()}</Badge>

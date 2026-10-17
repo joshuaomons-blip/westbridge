@@ -42,7 +42,7 @@ export default async function HomePage({ params }: Props) {
 
   const quick = [
     { href: "/track", icon: PackageSearch, title: t("quickTrack"), text: t("quickTrackText") },
-    { href: "/contact", icon: PackagePlus, title: t("quickShip"), text: t("quickShipText") },
+    { href: "/ship", icon: PackagePlus, title: t("quickShip"), text: t("quickShipText") },
     { href: "/services", icon: Briefcase, title: t("quickBusiness"), text: t("quickBusinessText") },
     { href: "/contact", icon: Headset, title: t("quickSupport"), text: t("quickSupportText") },
   ];

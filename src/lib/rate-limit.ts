@@ -7,6 +7,7 @@ import { isSupabaseConfigured } from "@/lib/env";
 export const LIMITS = {
   tracking: { max: 30, windowSeconds: 60 },
   contact: { max: 5, windowSeconds: 3600 },
+  pickup: { max: 5, windowSeconds: 3600 },
   login: { max: 8, windowSeconds: 900 },
   passwordReset: { max: 3, windowSeconds: 3600 },
 } as const;

@@ -56,7 +56,7 @@ export default async function ServicesPage({ params }: Props) {
               <h2 className="text-xl font-bold">{t("cta")}</h2>
               <p className="mt-1 text-white/75">{t("ctaText")}</p>
             </div>
-            <Link href="/contact" className="btn-accent px-6 py-3">
+            <Link href="/ship" className="btn-accent px-6 py-3">
               {t("cta")}
               <ArrowRight className="h-4 w-4" aria-hidden />
             </Link>

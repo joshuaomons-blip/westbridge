@@ -13,7 +13,9 @@
     "contactTitle": "Contact Us",
     "contactDescription": "Get in touch with the Norvane Express team.",
     "privacyTitle": "Privacy Policy",
-    "termsTitle": "Terms of Service"
+    "termsTitle": "Terms of Service",
+    "pickupTitle": "Request a Pickup",
+    "pickupDescription": "Request a parcel or freight pickup and get a quote from Norvane Express."
   },
   "nav": {
     "home": "Home",
@@ -225,7 +227,8 @@
     "upcoming": "Upcoming stop",
     "emailSupport": "Email support",
     "emailSubject": "Shipment {number}",
-    "contactForm": "Contact form"
+    "contactForm": "Contact form",
+    "receivedBy": "Received by {name}"
   },
   "status": {
     "shipment_created": "Shipment created",
@@ -342,7 +345,9 @@
     "trackingSupport": "Tracking & support",
     "ctaTitle": "Track a shipment or talk to our team",
     "ctaText": "Enter a tracking number, or email us with any question about sending or receiving.",
-    "emailUs": "Email us"
+    "emailUs": "Email us",
+    "followUs": "Follow us",
+    "companyReg": "Company registration no. {number}"
   },
   "cookie": {
     "text": "This website uses only essential cookies, for example to remember your language. We do not use advertising or tracking cookies.",
@@ -392,5 +397,48 @@
     "safety": "For your security: we will never ask you to pay a fee or share card details by email or text message to release a parcel.",
     "footer": "You are receiving this email because you are the sender or recipient of a shipment handled by Norvane Express. This is a service message about your shipment.",
     "timesUtc": "Times are shown in UTC."
+  },
+  "pickup": {
+    "title": "Request a pickup",
+    "subtitle": "Tell us what you are sending and where. Our team will reply with a quote and confirm a pickup time.",
+    "formTitle": "Shipment details",
+    "sectionYou": "Your details",
+    "sectionRoute": "Pickup and destination",
+    "sectionShipment": "What you are sending",
+    "name": "Full name",
+    "email": "Email address",
+    "phone": "Phone / WhatsApp",
+    "pickupCity": "Pickup city",
+    "pickupAddress": "Pickup address",
+    "pickupDate": "Preferred pickup date",
+    "destCountry": "Destination country",
+    "destCity": "Destination city",
+    "type": "Shipment type",
+    "packages": "Number of packages",
+    "weight": "Approx. total weight (kg)",
+    "service": "Service",
+    "serviceAny": "Not sure — please advise",
+    "notes": "Notes",
+    "notesHint": "Contents, size, value or special handling.",
+    "optional": "optional",
+    "submit": "Request pickup",
+    "sending": "Sending…",
+    "successTitle": "Request received",
+    "success": "Thank you. Our team will contact you shortly to confirm the price and pickup time.",
+    "successRef": "Your reference: {reference}",
+    "another": "Send another request",
+    "errorGeneric": "Your request could not be sent. Please try again later.",
+    "errorRateLimited": "You have sent several requests recently. Please try again later.",
+    "required": "Please fill in this field.",
+    "emailInvalid": "Please enter a valid email address.",
+    "phoneInvalid": "Please enter a valid phone number.",
+    "dateInvalid": "Please choose today or a later date.",
+    "numberInvalid": "Please enter a valid number.",
+    "privacy": "We use these details only to arrange your shipment.",
+    "sideTitle": "How it works",
+    "side1": "Send your request in a minute.",
+    "side2": "We reply with a clear price and pickup time.",
+    "side3": "We collect, ship and give you a tracking number.",
+    "whatsapp": "Chat with us on WhatsApp"
   }
 }

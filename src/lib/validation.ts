@@ -40,6 +40,40 @@ export const contactSchema = z.object({
   message: z.string().trim().min(10, "messageShort").max(5000, "messageLong"),
 });
 
+const req = (max: number) => z.string().trim().min(1, "required").max(max, "required");
+const opt = (max: number) =>
+  z
+    .string()
+    .trim()
+    .max(max, "required")
+    .optional()
+    .transform((v) => (v ? v : undefined));
+
+export const pickupSchema = z.object({
+  name: req(120),
+  email: z.string().trim().max(254, "emailInvalid").regex(/^[^@\s]+@[^@\s]+\.[^@\s]+$/, "emailInvalid"),
+  phone: z.string().trim().regex(/^\+?[0-9()\s.-]{5,40}$/, "phoneInvalid"),
+  pickup_city: req(100),
+  pickup_address: opt(300),
+  pickup_date: z
+    .string()
+    .optional()
+    .transform((v) => (v ? v : undefined))
+    .refine((v) => !v || (/^\d{4}-\d{2}-\d{2}$/.test(v) && v >= new Date(Date.now() - 86_400_000).toISOString().slice(0, 10)), "dateInvalid"),
+  dest_country: req(100),
+  dest_city: req(100),
+  shipment_type: z.enum(["parcel", "document", "freight", "pallet", "other"]).catch("parcel"),
+  packages: z.coerce.number({ message: "numberInvalid" }).int("numberInvalid").min(1, "numberInvalid").max(10000, "numberInvalid"),
+  weight: z
+    .string()
+    .optional()
+    .transform((v) => (v ? Number(v.replace(",", ".")) : undefined))
+    .refine((v) => v === undefined || (Number.isFinite(v) && v > 0 && v < 1_000_000), "numberInvalid"),
+  service: opt(120),
+  notes: opt(2000),
+});
+export type PickupInput = z.infer<typeof pickupSchema>;
+
 // ---------------- Admin forms ----------------
 export const shipmentSchema = z.object({
   shipment_type: z.enum(["parcel", "document", "freight", "pallet", "other"]),
@@ -111,6 +145,7 @@ export const eventSchema = z.object({
   description: optionalText(1000),
   visibility: z.enum(["public", "internal"]),
   send_email: checkbox,
+  received_by: optionalText(80),
 });
 
 export const correctEventSchema = z.object({

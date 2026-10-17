@@ -13,7 +13,9 @@
     "contactTitle": "Kontakt",
     "contactDescription": "Nehmen Sie Kontakt mit dem Team von Norvane Express auf.",
     "privacyTitle": "Datenschutzerklärung",
-    "termsTitle": "Nutzungsbedingungen"
+    "termsTitle": "Nutzungsbedingungen",
+    "pickupTitle": "Abholung anfragen",
+    "pickupDescription": "Fordern Sie eine Paket- oder Frachtabholung an und erhalten Sie ein Angebot von Norvane Express."
   },
   "nav": {
     "home": "Startseite",
@@ -225,7 +227,8 @@
     "upcoming": "Nächste Station",
     "emailSupport": "Support per E-Mail",
     "emailSubject": "Sendung {number}",
-    "contactForm": "Kontaktformular"
+    "contactForm": "Kontaktformular",
+    "receivedBy": "Empfangen von {name}"
   },
   "status": {
     "shipment_created": "Sendung erstellt",
@@ -342,7 +345,9 @@
     "trackingSupport": "Verfolgung & Hilfe",
     "ctaTitle": "Sendung verfolgen oder mit uns sprechen",
     "ctaText": "Geben Sie eine Sendungsnummer ein oder schreiben Sie uns bei Fragen zum Versand oder Empfang.",
-    "emailUs": "Schreiben Sie uns"
+    "emailUs": "Schreiben Sie uns",
+    "followUs": "Folgen Sie uns",
+    "companyReg": "Handelsregisternummer: {number}"
   },
   "cookie": {
     "text": "Diese Website verwendet nur notwendige Cookies, zum Beispiel um Ihre Sprache zu speichern. Wir verwenden keine Werbe- oder Tracking-Cookies.",
@@ -392,5 +397,48 @@
     "safety": "Zu Ihrer Sicherheit: Wir fordern Sie niemals per E-Mail oder SMS auf, für die Freigabe eines Pakets eine Gebühr zu zahlen oder Kartendaten anzugeben.",
     "footer": "Sie erhalten diese E-Mail, weil Sie Absender oder Empfänger einer von Norvane Express beförderten Sendung sind. Dies ist eine Servicenachricht zu Ihrer Sendung.",
     "timesUtc": "Zeiten in UTC."
+  },
+  "pickup": {
+    "title": "Abholung anfragen",
+    "subtitle": "Teilen Sie uns mit, was Sie wohin versenden. Unser Team antwortet mit einem Angebot und bestätigt den Abholtermin.",
+    "formTitle": "Sendungsdetails",
+    "sectionYou": "Ihre Angaben",
+    "sectionRoute": "Abholung und Ziel",
+    "sectionShipment": "Was Sie versenden",
+    "name": "Vollständiger Name",
+    "email": "E-Mail-Adresse",
+    "phone": "Telefon / WhatsApp",
+    "pickupCity": "Abholort",
+    "pickupAddress": "Abholadresse",
+    "pickupDate": "Gewünschtes Abholdatum",
+    "destCountry": "Zielland",
+    "destCity": "Zielort",
+    "type": "Sendungsart",
+    "packages": "Anzahl der Pakete",
+    "weight": "Ungefähres Gesamtgewicht (kg)",
+    "service": "Service",
+    "serviceAny": "Unsicher — bitte beraten",
+    "notes": "Hinweise",
+    "notesHint": "Inhalt, Größe, Wert oder besondere Behandlung.",
+    "optional": "optional",
+    "submit": "Abholung anfragen",
+    "sending": "Wird gesendet…",
+    "successTitle": "Anfrage erhalten",
+    "success": "Vielen Dank. Unser Team meldet sich in Kürze, um Preis und Abholtermin zu bestätigen.",
+    "successRef": "Ihre Referenz: {reference}",
+    "another": "Weitere Anfrage senden",
+    "errorGeneric": "Ihre Anfrage konnte nicht gesendet werden. Bitte versuchen Sie es später erneut.",
+    "errorRateLimited": "Sie haben kürzlich mehrere Anfragen gesendet. Bitte versuchen Sie es später erneut.",
+    "required": "Bitte füllen Sie dieses Feld aus.",
+    "emailInvalid": "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
+    "phoneInvalid": "Bitte geben Sie eine gültige Telefonnummer ein.",
+    "dateInvalid": "Bitte wählen Sie heute oder ein späteres Datum.",
+    "numberInvalid": "Bitte geben Sie eine gültige Zahl ein.",
+    "privacy": "Wir verwenden diese Angaben nur zur Abwicklung Ihrer Sendung.",
+    "sideTitle": "So funktioniert es",
+    "side1": "Anfrage in einer Minute senden.",
+    "side2": "Wir antworten mit klarem Preis und Abholtermin.",
+    "side3": "Wir holen ab, versenden und geben Ihnen eine Sendungsnummer.",
+    "whatsapp": "Schreiben Sie uns auf WhatsApp"
   }
 }

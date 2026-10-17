@@ -138,6 +138,7 @@ export default async function ShipmentDetailPage({ params }: { params: Promise<{
                   ]}
                 />
                 <TextField name="description" label="Description" placeholder="Short note (customer-facing if public)" maxLength={1000} className="sm:col-span-2" />
+                <TextField name="received_by" label="Received by (proof of delivery)" placeholder="e.g. A. Kowalska" maxLength={80} hint="Only used when the status is Delivered. Shown to customers on the tracking page — a first initial and surname is enough." className="sm:col-span-2" />
                 <CheckboxField
                   name="send_email"
                   label="Email this update to the sender and recipient"

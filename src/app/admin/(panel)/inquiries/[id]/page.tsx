@@ -32,6 +32,7 @@ export default async function InquiryPage({ params }: { params: Promise<{ id: st
         description={
           <span className="flex flex-wrap items-center gap-2">
             {i.reference} · received {formatDateTime(i.created_at)}
+            {i.kind === "pickup" && <Badge tone="navy">PICKUP REQUEST</Badge>}
             {i.locale && <Badge>{i.locale.toUpperCase()}</Badge>}
             {i.is_demo && <Badge tone="amber">DEMO</Badge>}
             {archived && <Badge tone="red">Archived</Badge>}
@@ -63,6 +64,16 @@ export default async function InquiryPage({ params }: { params: Promise<{ id: st
           <div className="mb-4 text-sm">
             <p className="font-semibold text-slate-900">{i.name}</p>
             <p className="text-slate-500">{i.email}</p>
+            {i.phone && (
+              <p className="mt-1 flex flex-wrap gap-3 text-slate-500">
+                <a href={`tel:${String(i.phone).replace(/[^\d+]/g, "")}`} className="font-semibold text-navy-700 hover:underline">
+                  Call {i.phone}
+                </a>
+                <a href={`https://wa.me/${String(i.phone).replace(/[^\d]/g, "")}`} target="_blank" rel="noopener noreferrer" className="font-semibold text-emerald-700 hover:underline">
+                  WhatsApp
+                </a>
+              </p>
+            )}
             {i.customer_id && (
               <Link href={`/admin/customers/${i.customer_id}`} className="text-xs font-semibold text-navy-700 hover:underline">
                 View customer record

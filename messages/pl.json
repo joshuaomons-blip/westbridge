@@ -13,7 +13,9 @@
     "contactTitle": "Kontakt",
     "contactDescription": "Skontaktuj się z zespołem Norvane Express.",
     "privacyTitle": "Polityka prywatności",
-    "termsTitle": "Regulamin"
+    "termsTitle": "Regulamin",
+    "pickupTitle": "Zamów odbiór",
+    "pickupDescription": "Zamów odbiór paczki lub ładunku i otrzymaj wycenę od Norvane Express."
   },
   "nav": {
     "home": "Strona główna",
@@ -225,7 +227,8 @@
     "upcoming": "Kolejny przystanek",
     "emailSupport": "Napisz do obsługi",
     "emailSubject": "Przesyłka {number}",
-    "contactForm": "Formularz kontaktowy"
+    "contactForm": "Formularz kontaktowy",
+    "receivedBy": "Odebrał(a): {name}"
   },
   "status": {
     "shipment_created": "Przesyłka utworzona",
@@ -342,7 +345,9 @@
     "trackingSupport": "Śledzenie i pomoc",
     "ctaTitle": "Śledź przesyłkę lub porozmawiaj z nami",
     "ctaText": "Wpisz numer przesyłki albo napisz do nas z pytaniem o nadanie lub odbiór.",
-    "emailUs": "Napisz do nas"
+    "emailUs": "Napisz do nas",
+    "followUs": "Obserwuj nas",
+    "companyReg": "Nr rejestracyjny firmy: {number}"
   },
   "cookie": {
     "text": "Ta strona używa wyłącznie niezbędnych plików cookie, np. do zapamiętania wybranego języka. Nie używamy plików cookie reklamowych ani śledzących.",
@@ -392,5 +397,48 @@
     "safety": "Dla Twojego bezpieczeństwa: nigdy nie prosimy e-mailem ani SMS-em o dopłatę lub dane karty w celu wydania paczki.",
     "footer": "Otrzymujesz tę wiadomość, ponieważ jesteś nadawcą lub odbiorcą przesyłki obsługiwanej przez Norvane Express. To wiadomość serwisowa dotycząca Twojej przesyłki.",
     "timesUtc": "Godziny podano w strefie UTC."
+  },
+  "pickup": {
+    "title": "Zamów odbiór",
+    "subtitle": "Napisz, co i dokąd wysyłasz. Nasz zespół odpowie z wyceną i potwierdzi termin odbioru.",
+    "formTitle": "Szczegóły przesyłki",
+    "sectionYou": "Twoje dane",
+    "sectionRoute": "Odbiór i miejsce docelowe",
+    "sectionShipment": "Co wysyłasz",
+    "name": "Imię i nazwisko",
+    "email": "Adres e-mail",
+    "phone": "Telefon / WhatsApp",
+    "pickupCity": "Miasto odbioru",
+    "pickupAddress": "Adres odbioru",
+    "pickupDate": "Preferowana data odbioru",
+    "destCountry": "Kraj docelowy",
+    "destCity": "Miasto docelowe",
+    "type": "Rodzaj przesyłki",
+    "packages": "Liczba paczek",
+    "weight": "Przybliżona waga (kg)",
+    "service": "Usługa",
+    "serviceAny": "Nie wiem — proszę o doradztwo",
+    "notes": "Uwagi",
+    "notesHint": "Zawartość, wymiary, wartość lub szczególne wymagania.",
+    "optional": "opcjonalnie",
+    "submit": "Zamów odbiór",
+    "sending": "Wysyłanie…",
+    "successTitle": "Zgłoszenie przyjęte",
+    "success": "Dziękujemy. Nasz zespół wkrótce się z Tobą skontaktuje, aby potwierdzić cenę i termin odbioru.",
+    "successRef": "Twój numer zgłoszenia: {reference}",
+    "another": "Wyślij kolejne zgłoszenie",
+    "errorGeneric": "Nie udało się wysłać zgłoszenia. Spróbuj ponownie później.",
+    "errorRateLimited": "Wysłano ostatnio kilka zgłoszeń. Spróbuj ponownie później.",
+    "required": "Uzupełnij to pole.",
+    "emailInvalid": "Podaj prawidłowy adres e-mail.",
+    "phoneInvalid": "Podaj prawidłowy numer telefonu.",
+    "dateInvalid": "Wybierz dzisiejszą lub późniejszą datę.",
+    "numberInvalid": "Podaj prawidłową liczbę.",
+    "privacy": "Używamy tych danych wyłącznie do realizacji przesyłki.",
+    "sideTitle": "Jak to działa",
+    "side1": "Wyślij zgłoszenie w minutę.",
+    "side2": "Odpowiemy z jasną ceną i terminem odbioru.",
+    "side3": "Odbierzemy, wyślemy i podamy numer przesyłki.",
+    "whatsapp": "Napisz do nas na WhatsAppie"
   }
 }

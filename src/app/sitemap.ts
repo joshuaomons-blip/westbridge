@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { locales } from "@/i18n/routing";
 import { env } from "@/lib/env";
 
-const PAGES = ["", "/track", "/services", "/about", "/contact", "/privacy", "/terms"];
+const PAGES = ["", "/track", "/ship", "/services", "/about", "/contact", "/privacy", "/terms"];
 
 /** Public pages only — never admin pages or individual tracking lookups. */
 export default function sitemap(): MetadataRoute.Sitemap {

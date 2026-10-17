@@ -104,6 +104,7 @@ export async function addShipmentEvent(_prev: ActionResult, fd: FormData): Promi
       location: e.location ?? null,
       description: e.description ?? null,
       visibility: e.visibility,
+      received_by: e.status_code === "delivered" ? (e.received_by ?? null) : null,
     });
     if (error) return { error: dbErrorMessage(error) };
     revalidatePath(`/admin/shipments/${e.shipment_id}`);
