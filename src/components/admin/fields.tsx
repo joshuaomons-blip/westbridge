@@ -1,3 +1,4 @@
+import { KNOWN_COUNTRIES } from "@/lib/route-suggest";
 import { FieldError } from "./ActionForm";
 import { cn } from "@/lib/format";
 
@@ -183,14 +184,7 @@ export function Fieldset({ legend, description, children }: { legend: string; de
   );
 }
 
-export const COUNTRIES = [
-  "Argentina", "Australia", "Austria", "Belgium", "Brazil", "Canada", "China", "Czech Republic", "Denmark",
-  "Egypt", "Finland", "France", "Germany", "Ghana", "Greece", "Hungary", "India", "Indonesia", "Ireland",
-  "Israel", "Italy", "Japan", "Kenya", "Lithuania", "Mexico", "Netherlands", "New Zealand", "Nigeria",
-  "Norway", "Poland", "Portugal", "Romania", "Saudi Arabia", "Singapore", "Slovakia", "South Africa",
-  "South Korea", "Spain", "Sweden", "Switzerland", "Turkey", "Ukraine", "United Arab Emirates",
-  "United Kingdom", "United States",
-];
+export const COUNTRIES = KNOWN_COUNTRIES;
 
 export function CountryList() {
   return (

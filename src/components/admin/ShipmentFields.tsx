@@ -1,4 +1,5 @@
 import { TextField, TextAreaField, SelectField, CheckboxField, Fieldset, CountryList } from "./fields";
+import { SuggestRouteButton } from "./SuggestRouteButton";
 
 export type ShipmentDefaults = Partial<{
   shipment_type: string;
@@ -112,6 +113,7 @@ export function ShipmentFields({
           hint="One place per line, in order (up to 15). Customers see them as upcoming stops. When you add a tracking update whose location matches a stop, it is marked as passed."
           className="sm:col-span-2"
         />
+        <SuggestRouteButton targetId="f-route_stops" />
       </Fieldset>
 
       <Fieldset legend="Package" description="Contents and handling.">

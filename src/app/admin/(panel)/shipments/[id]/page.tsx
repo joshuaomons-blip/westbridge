@@ -14,6 +14,8 @@ import { CopyText } from "@/components/admin/CopyText";
 import { ShipmentFields } from "@/components/admin/ShipmentFields";
 import { TextField, SelectField, CheckboxField, TextAreaField } from "@/components/admin/fields";
 import { AuditList } from "@/components/admin/AuditList";
+import { QuickUpdate, type QuickChip } from "@/components/admin/QuickUpdate";
+import { buildJourney } from "@/lib/journey";
 import {
   addShipmentEvent,
   correctShipmentEvent,
@@ -60,6 +62,37 @@ export default async function ShipmentDetailPage({ params }: { params: Promise<{
   const canWrite = can(admin, "shipments.write") && !archived;
   const canEvents = can(admin, "events.write") && !archived;
   const publicUrl = `/en/track?n=${encodeURIComponent(s.tracking_number)}`;
+
+  // Shortcuts for the next places on the route (from planned stops and past updates).
+  const publicEvents = (events ?? [])
+    .filter((e) => e.visibility === "public" && !e.is_voided)
+    .map((e) => ({ status: e.status_code as string, occurred_at: e.occurred_at as string, location: e.location as string | null }));
+  const journey = buildJourney({
+    origin: { city: s.origin_city, country: s.origin_country },
+    destination: { city: s.destination_city, country: s.destination_country },
+    routeStops: s.route_stops,
+    events: publicEvents,
+    delivered: s.current_status === "delivered",
+  });
+  const chips: QuickChip[] = [];
+  if (s.current_status !== "delivered") {
+    const current = journey.find((j) => j.state === "current");
+    const next = journey.find((j) => j.state === "upcoming");
+    if (current && current.kind !== "destination" && next) {
+      chips.push({
+        label: `Departed ${current.name}`,
+        status: "in_transit",
+        location: current.name,
+        description: `Departed ${current.name}, on the way to ${next.name}.`,
+      });
+    }
+    for (const j of journey.filter((j) => j.state === "upcoming" && j.kind === "stop")) {
+      chips.push({ label: `Arrived at ${j.name}`, status: "arrived_at_facility", location: j.name, description: `Arrived at ${j.name}.` });
+    }
+    const dest = `${s.destination_city}, ${s.destination_country}`;
+    chips.push({ label: `Out for delivery in ${s.destination_city}`, status: "out_for_delivery", location: dest, description: "The shipment is out for delivery." });
+    chips.push({ label: `Delivered in ${s.destination_city}`, status: "delivered", location: dest, description: "The shipment has been delivered." });
+  }
 
   return (
     <>
@@ -122,9 +155,10 @@ export default async function ShipmentDetailPage({ params }: { params: Promise<{
       <div className="grid gap-6 xl:grid-cols-3">
         <div className="space-y-6 xl:col-span-2">
           {canEvents && (
-            <Panel title="Add tracking event" description="Public events appear on the customer tracking page. Internal events are staff-only.">
+            <Panel title="Update location & status" description="Record where the shipment is now. Public updates appear on the customer tracking page and journey; internal ones are staff-only.">
               <ActionForm action={addShipmentEvent} resetOnSuccess className="grid gap-4 sm:grid-cols-2">
                 <input type="hidden" name="shipment_id" value={s.id} />
+                <QuickUpdate chips={chips} />
                 <SelectField name="status_code" label="Status" required defaultValue={s.current_status} options={statusOptions} />
                 <TextField name="occurred_at" label="Date & time (UTC)" type="datetime-local" required defaultValue={toDateTimeLocal()} hint="When it happened. Cannot be in the future." />
                 <TextField name="location" label="Location" placeholder="e.g. Berlin, DE" maxLength={200} />
