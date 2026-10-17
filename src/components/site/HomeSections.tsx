@@ -129,9 +129,9 @@ export async function StatusGuide() {
           </h2>
           <p className="mt-3 text-lg text-slate-600">{t("statusGuideText")}</p>
         </div>
-        <ul className="mt-12 grid gap-px overflow-hidden rounded-xl bg-slate-200 ring-1 ring-slate-200 sm:grid-cols-2 lg:grid-cols-4">
+        <ul className="mt-12 grid grid-cols-2 gap-px overflow-hidden rounded-xl bg-slate-200 ring-1 ring-slate-200 lg:grid-cols-4">
           {GUIDE.map(({ code, icon: Icon, tone }) => (
-            <li key={code} className="bg-white p-6">
+            <li key={code} className="bg-white p-4 sm:p-6">
               <span className={cn("flex h-11 w-11 items-center justify-center rounded-lg", tone)}>
                 <Icon className="h-5 w-5" aria-hidden />
               </span>
