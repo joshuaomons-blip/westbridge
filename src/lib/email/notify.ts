@@ -5,6 +5,7 @@ import { getSiteContent } from "@/lib/content";
 import { categoryOf, isStatusCode } from "@/lib/statuses";
 import { formatDate, formatDateTime } from "@/lib/format";
 import { locales } from "@/i18n/routing";
+import { stagePhoto } from "@/lib/photos";
 import { isEmailConfigured, sendEmail } from "./send";
 import { renderShipmentEmail, type EmailKind, type EmailRole } from "./shipment-template";
 
@@ -65,6 +66,9 @@ export async function notifyShipmentParties(db: Db, shipmentId: string, event: N
   const kind: EmailKind = created ? "created" : event.status === "delivered" ? "delivered" : "update";
   const supportEmail = content.get("contact.email") ?? null;
   const trackUrl = `${env.siteUrl}/${locale}/track?n=${encodeURIComponent(s.tracking_number)}`;
+  // Stage photo, cropped wide and served through our own domain's image optimiser.
+  const photoSrc = `${stagePhoto(created ? "shipment_registered" : event.status)}?w=1200&h=440&fit=crop&q=70`;
+  const photoUrl = `${env.siteUrl}/_next/image?url=${encodeURIComponent(photoSrc)}&w=1200&q=75`;
 
   let sent = 0;
   let failed = 0;
@@ -87,6 +91,7 @@ export async function notifyShipmentParties(db: Db, shipmentId: string, event: N
       supportEmail,
       lang: locale,
       logoUrl: `${env.siteUrl}/email-logo.png`,
+      photoUrl,
     });
     const r = await sendEmail({
       to: p.email,

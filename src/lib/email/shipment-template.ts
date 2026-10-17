@@ -3,7 +3,7 @@
  * comes from the `t` translator so every language uses the same layout.
  *
  * Deliverability choices: table layout with inline styles (what email clients
- * render reliably), one small logo hosted on our own domain and no tracking pixels, a plain-text alternative,
+ * render reliably), a small logo and one photo, both served from our own domain, no tracking pixels, a plain-text alternative,
  * one clear link to our own site, and only public shipment details.
  */
 
@@ -30,6 +30,8 @@ export type ShipmentEmailInput = {
   lang: string;
   /** Absolute URL of the white logo image for the dark header (text is used if missing). */
   logoUrl?: string | null;
+  /** Absolute URL of a wide photo for the shipment's current stage (600×220 display). */
+  photoUrl?: string | null;
 };
 
 const COLORS: Record<ShipmentEmailInput["category"], string> = {
@@ -105,6 +107,7 @@ ${
 }
 </td></tr>
 <tr><td style="height:4px;background:#D62D20;line-height:4px;font-size:0;">&nbsp;</td></tr>
+${i.photoUrl ? `<tr><td style="padding:0;line-height:0;font-size:0;"><img src="${e(i.photoUrl)}" width="600" height="220" alt="" style="display:block;border:0;outline:none;width:100%;max-width:600px;height:auto;"></td></tr>` : ""}
 
 <tr><td style="padding:32px 32px 8px;${font}color:#0F172A;">
 <p style="margin:0 0 12px;font-size:16px;">${e(greeting)}</p>
