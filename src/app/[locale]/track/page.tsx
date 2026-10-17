@@ -168,6 +168,7 @@ async function SummaryRow({ number, result, locale, messages }: { number: string
 
 async function Landing({ locale }: { locale: string }) {
   const t = await getTranslations("tracking");
+  const th = await getTranslations("home");
   const cards = [
     { icon: ReceiptText, title: t("findTitle"), text: t("findText"), href: null, cta: null },
     { icon: ListChecks, title: t("statusTitle"), text: t("statusText"), href: `/${locale}#status-guide`, cta: t("statusCta") },
@@ -200,7 +201,7 @@ async function Landing({ locale }: { locale: string }) {
           <Image src={PHOTOS.support} alt="" fill sizes="(min-width: 640px) 40vw, 100vw" className="object-cover object-[50%_35%]" />
         </div>
         <div className="flex flex-col justify-center p-7 sm:p-10">
-          <h3 className="font-display text-2xl font-black [font-stretch:108%]">{t("supportTitle")}</h3>
+          <h3 className="font-display text-2xl font-black [font-stretch:108%]">{th("supportTitle")}</h3>
           <p className="mt-2 text-white/80">{t("supportText")}</p>
           <Link href="/contact" className="btn-accent mt-6 h-12 self-start px-6">
             {t("contactSupport")}
