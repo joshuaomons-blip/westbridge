@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { HeroPanel } from "@/components/site/HeroPanel";
+import { Faq, FeatureRows, StatusGuide } from "@/components/site/HomeSections";
 import { getPageContent, getPublishedServices, localized } from "@/lib/public-data";
 import { PHOTOS, servicePhoto } from "@/lib/photos";
 import { pageAlternates } from "@/lib/seo";
@@ -152,6 +153,9 @@ export default async function HomePage({ params }: Props) {
         </section>
       )}
 
+      {/* Photo feature rows: tracking, packing tips, business */}
+      <FeatureRows />
+
       {/* Why Westbridge */}
       <section className="bg-slate-50 py-20 lg:py-24" aria-labelledby="why-heading">
         <div className="container-page grid items-center gap-12 lg:grid-cols-2">
@@ -224,6 +228,10 @@ export default async function HomePage({ params }: Props) {
           </div>
         </div>
       </section>
+
+      {/* What each status means, then common questions */}
+      <StatusGuide />
+      <Faq />
 
       {/* Customer support band with photo */}
       {content.isVisible("section.support.visible") && (
