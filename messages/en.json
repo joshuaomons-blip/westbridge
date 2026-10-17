@@ -234,7 +234,12 @@
     "locatingText": "Checking our records for the latest updates.",
     "found": "Shipment found",
     "foundText": "Tracking number verified. Showing the latest recorded updates.",
-    "foundMany": "{count} shipments checked"
+    "foundMany": "{count} shipments checked",
+    "onHold": "On hold",
+    "pending": "Pending",
+    "holdCustoms": "The delivery date will be confirmed once customs clearance is complete.",
+    "holdOther": "The delivery date will be confirmed once the issue is resolved.",
+    "holdAt": "On hold at"
   },
   "status": {
     "shipment_created": "Shipment created",

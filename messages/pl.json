@@ -234,7 +234,12 @@
     "locatingText": "Sprawdzamy najnowsze informacje w naszym systemie.",
     "found": "Przesyłka znaleziona",
     "foundText": "Numer przesyłki zweryfikowany. Pokazujemy najnowsze zapisane informacje.",
-    "foundMany": "Sprawdzone przesyłki: {count}"
+    "foundMany": "Sprawdzone przesyłki: {count}",
+    "onHold": "Wstrzymana",
+    "pending": "Oczekuje",
+    "holdCustoms": "Termin doręczenia zostanie potwierdzony po zakończeniu odprawy celnej.",
+    "holdOther": "Termin doręczenia zostanie potwierdzony po rozwiązaniu problemu.",
+    "holdAt": "Wstrzymana w"
   },
   "status": {
     "shipment_created": "Przesyłka utworzona",

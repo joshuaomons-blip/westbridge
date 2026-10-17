@@ -234,7 +234,12 @@
     "locatingText": "最新の記録を確認しています。",
     "found": "お荷物が見つかりました",
     "foundText": "追跡番号を確認しました。最新の記録を表示しています。",
-    "foundMany": "{count}件の貨物を確認しました"
+    "foundMany": "{count}件の貨物を確認しました",
+    "onHold": "保留中",
+    "pending": "保留中",
+    "holdCustoms": "通関手続きの完了後に、お届け日をお知らせします。",
+    "holdOther": "問題の解決後に、お届け日をお知らせします。",
+    "holdAt": "保留中の場所："
   },
   "status": {
     "shipment_created": "貨物登録",

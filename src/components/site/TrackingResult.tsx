@@ -15,11 +15,12 @@ import {
   Truck,
   TriangleAlert,
   UserCheck,
+  Hourglass,
   type LucideIcon,
 } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import type { PublicTracking } from "@/lib/tracking";
-import { categoryOf, isStatusCode, progressIndex, type StatusCategory } from "@/lib/statuses";
+import { categoryOf, isOnHold, isStatusCode, progressIndex, type StatusCategory } from "@/lib/statuses";
 import { cn, dayKey, formatDate, formatDateParts, formatDateTime, formatDayHeading, formatRelative, formatTime } from "@/lib/format";
 import { PHOTOS } from "@/lib/photos";
 import { buildJourney } from "@/lib/journey";
@@ -61,7 +62,9 @@ export async function TrackingResult({
   const mailto = supportHref(supportEmail, t("emailSubject", { number: data.tracking_number }));
   const statusLabel = (code: string) => (isStatusCode(code) ? ts(code) : code);
   const category = categoryOf(data.status);
-  const banner = BANNER[category];
+  // Customs, delays and delivery problems pause the shipment: everything ahead shows as pending.
+  const hold = isOnHold(data.status);
+  const banner = hold ? { bg: "bg-amber-700", dot: "bg-amber-600", icon: Hourglass } : BANNER[category];
   const BannerIcon = banner.icon;
   const step = progressIndex(data.status);
   const steps = [
@@ -70,7 +73,7 @@ export async function TrackingResult({
     { label: t("stepOut"), icon: Truck },
     { label: t("stepDelivered"), icon: PackageCheck },
   ];
-  const isProblem = category === "exception";
+  const isProblem = category === "exception" || hold;
   const typeKey = (["parcel", "document", "freight", "pallet", "other"] as const).find((k) => k === data.shipment_type);
   const showProgress = step >= 0 && category !== "closed";
   const journey = buildJourney({
@@ -149,6 +152,15 @@ export async function TrackingResult({
                     </h2>
                   </div>
                   {isStatusCode(data.status) && <p className="mt-4 max-w-xl text-lg text-white/85">{td(data.status)}</p>}
+                  {hold && (
+                    <p className="mt-4 mr-2 inline-flex items-center gap-2 rounded-full bg-white px-3 py-1 text-sm font-bold text-amber-800">
+                      <span className="relative flex h-2 w-2" aria-hidden>
+                        <span className="trk-ping absolute inset-0 rounded-full bg-amber-500" />
+                        <span className="relative h-2 w-2 rounded-full bg-amber-600" />
+                      </span>
+                      {t("onHold")}
+                    </p>
+                  )}
                   <p className="mt-4 inline-flex items-center gap-2 rounded-full bg-black/15 px-3 py-1 text-sm font-medium text-white/90">
                     <Clock className="h-4 w-4" aria-hidden />
                     <time dateTime={data.last_update} title={formatDateTime(data.last_update, locale)}>
@@ -159,7 +171,14 @@ export async function TrackingResult({
 
                 <div className="md:min-w-[220px] md:border-l md:border-white/20 md:pl-8">
                   <p className="text-sm font-semibold text-white/75">{deliveredEvent ? t("deliveredOn") : t("estimatedDelivery")}</p>
-                  {dateParts ? (
+                  {hold && !deliveredEvent ? (
+                    <>
+                      <p className="font-display mt-1 text-3xl leading-tight font-black [font-stretch:108%]">{t("pending")}</p>
+                      <p className="mt-1 max-w-[16rem] text-sm text-white/85">
+                        {data.status === "customs_processing" ? t("holdCustoms") : t("holdOther")}
+                      </p>
+                    </>
+                  ) : dateParts ? (
                     <>
                       <p className="mt-1 text-lg font-semibold capitalize">{dateParts.weekday}</p>
                       <p className="font-display text-3xl leading-tight font-black [font-stretch:108%]">{dateParts.date}</p>
@@ -203,6 +222,7 @@ export async function TrackingResult({
                           <Icon className="h-6 w-6" aria-hidden />
                         </span>
                         <span className={cn("mt-3 px-1 text-xs font-bold sm:text-sm", done ? "text-brand-900" : "text-slate-400")}>{label}</span>
+                        {hold && i > step && <span className="mt-0.5 text-[11px] font-semibold text-amber-700">{t("pending")}</span>}
                       </li>
                     );
                   })}
@@ -227,7 +247,7 @@ export async function TrackingResult({
                 const nextReached = !last && journey[i + 1].state !== "upcoming";
                 const isCurrent = stop.state === "current";
                 const sub =
-                  stop.kind === "origin" ? t("origin") : stop.kind === "destination" ? t("destination") : stop.state === "upcoming" ? t("upcoming") : null;
+                  stop.kind === "origin" ? t("origin") : stop.kind === "destination" ? t("destination") : stop.state === "upcoming" ? (hold ? t("pending") : t("upcoming")) : null;
                 return (
                   <li
                     key={`${stop.name}-${i}`}
@@ -272,7 +292,7 @@ export async function TrackingResult({
                       )}
                     >
                       <div className="min-w-0">
-                        {isCurrent && <p className={cn("text-xs font-bold", isProblem ? "text-amber-700" : "text-signal-600")}>{t("currentLocation")}</p>}
+                        {isCurrent && <p className={cn("text-xs font-bold", isProblem ? "text-amber-700" : "text-signal-600")}>{hold ? t("holdAt") : t("currentLocation")}</p>}
                         <p className={cn("text-[17px] font-bold break-words", reached ? "text-brand-900" : "text-slate-500")}>{stop.name}</p>
                         {(stop.country || sub) && <p className="text-sm text-slate-500">{[stop.country, sub].filter(Boolean).join(" · ")}</p>}
                       </div>
@@ -384,7 +404,7 @@ export async function TrackingResult({
               <div className="flex items-center gap-3 border-t border-white/10 bg-white/[0.04] px-6 py-4">
                 <MapPin className="h-5 w-5 shrink-0 text-signal-500" aria-hidden />
                 <div className="min-w-0">
-                  <p className="text-xs font-semibold text-white/60">{t("currentLocation")}</p>
+                  <p className="text-xs font-semibold text-white/60">{hold ? t("holdAt") : t("currentLocation")}</p>
                   <p className="truncate font-semibold">{currentStop.name}</p>
                 </div>
               </div>

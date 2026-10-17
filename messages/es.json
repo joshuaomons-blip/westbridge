@@ -234,7 +234,12 @@
     "locatingText": "Consultando nuestros registros más recientes.",
     "found": "Envío encontrado",
     "foundText": "Número de seguimiento verificado. Mostramos las últimas actualizaciones registradas.",
-    "foundMany": "{count} envíos consultados"
+    "foundMany": "{count} envíos consultados",
+    "onHold": "En espera",
+    "pending": "Pendiente",
+    "holdCustoms": "La fecha de entrega se confirmará cuando finalice el despacho de aduanas.",
+    "holdOther": "La fecha de entrega se confirmará cuando se resuelva la incidencia.",
+    "holdAt": "En espera en"
   },
   "status": {
     "shipment_created": "Envío creado",

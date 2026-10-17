@@ -91,3 +91,10 @@ export function progressIndex(code: string): number {
       return -1;
   }
 }
+
+/** Statuses that pause a shipment: the public page shows it as on hold, with later steps pending. */
+export const HOLD_STATUSES: StatusCode[] = ["customs_processing", "delayed", "delivery_exception"];
+
+export function isOnHold(code: string): boolean {
+  return (HOLD_STATUSES as string[]).includes(code);
+}

@@ -234,7 +234,12 @@
     "locatingText": "Wir prüfen die neuesten Einträge.",
     "found": "Sendung gefunden",
     "foundText": "Sendungsnummer bestätigt. Die neuesten erfassten Meldungen werden angezeigt.",
-    "foundMany": "{count} Sendungen geprüft"
+    "foundMany": "{count} Sendungen geprüft",
+    "onHold": "Angehalten",
+    "pending": "Ausstehend",
+    "holdCustoms": "Das Zustelldatum wird nach Abschluss der Zollabfertigung bestätigt.",
+    "holdOther": "Das Zustelldatum wird bestätigt, sobald das Problem behoben ist.",
+    "holdAt": "Angehalten in"
   },
   "status": {
     "shipment_created": "Sendung erstellt",

@@ -9,7 +9,7 @@ import { BANNER, TrackingResult } from "@/components/site/TrackingResult";
 import { lookupTracking, type TrackingResult as Result } from "@/lib/tracking";
 import { checkRateLimit } from "@/lib/rate-limit";
 import { MAX_TRACKING_NUMBERS, parseTrackingList } from "@/lib/tracking-format";
-import { categoryOf, isStatusCode } from "@/lib/statuses";
+import { categoryOf, isOnHold, isStatusCode } from "@/lib/statuses";
 import { cn, formatDate, formatRelative } from "@/lib/format";
 import { supportHref } from "@/lib/support";
 import { getPageContent } from "@/lib/public-data";
@@ -135,7 +135,9 @@ async function SummaryRow({ number, result, locale, messages }: { number: string
 
   const d = result.data;
   const category = categoryOf(d.status);
-  const { icon: Icon, bg } = BANNER[category];
+  const hold = isOnHold(d.status);
+  const { icon: Icon, bg: baseBg } = BANNER[category];
+  const bg = hold ? "bg-amber-600" : baseBg;
   const date = d.estimated_delivery ? formatDate(d.estimated_delivery, locale) : null;
   return (
     <Link
@@ -150,6 +152,7 @@ async function SummaryRow({ number, result, locale, messages }: { number: string
         <p className="mt-0.5 flex items-center gap-2 font-bold text-slate-900">
           <span className={cn("h-2 w-2 rounded-full md:hidden", bg)} aria-hidden />
           {isStatusCode(d.status) ? ts(d.status) : d.status}
+          {hold && <span className="rounded-full bg-amber-100 px-2 py-0.5 text-[11px] font-bold text-amber-800">{t("onHold")}</span>}
         </p>
         <p className="text-xs text-slate-500">{t("updated", { time: formatRelative(d.last_update, locale) })}</p>
       </div>
@@ -159,7 +162,7 @@ async function SummaryRow({ number, result, locale, messages }: { number: string
           <ArrowRight className="h-4 w-4 shrink-0 text-slate-400" aria-hidden />
           <span className="truncate">{d.destination.city}</span>
         </p>
-        {date && (
+        {date && !hold && (
           <p className="text-slate-500">
             {t("estimatedDelivery")}: <span className="font-semibold text-slate-700">{date}</span>
           </p>
