@@ -5,6 +5,7 @@ import { redirect } from "next/navigation";
 import { z } from "zod";
 import { adminAction, dbErrorMessage, str, utcFromLocalInput, type ActionResult } from "./_util";
 import { createShipmentSchema, shipmentSchema, eventSchema, correctEventSchema, fieldErrors } from "@/lib/validation";
+import { describeOutcome, notifyShipmentParties, outcomeCode } from "@/lib/email/notify";
 
 function formObject(fd: FormData) {
   const o: Record<string, string> = {};
@@ -17,7 +18,7 @@ export async function createShipment(_prev: ActionResult, fd: FormData): Promise
     const parsed = createShipmentSchema.safeParse(formObject(fd));
     if (!parsed.success) return { fields: fieldErrors(parsed.error) };
     const p = parsed.data;
-    const { route_stops: _routeStops, ...rest } = p;
+    const { route_stops: _routeStops, notify_emails: _notify, notify_locale: _locale, ...rest } = p;
     const payload = {
       ...rest,
       package_quantity: String(p.package_quantity),
@@ -28,15 +29,23 @@ export async function createShipment(_prev: ActionResult, fd: FormData): Promise
     const { data, error } = await db.rpc("create_shipment", { p: payload });
     if (error) return { error: dbErrorMessage(error) };
     const id = (data as { id: string }).id;
-    if (p.route_stops.length) {
-      const { error: routeError } = await db.from("shipments").update({ route_stops: p.route_stops }).eq("id", id);
-      if (routeError) console.error("route stops not saved", routeError.code);
-    }
-    return { ok: true, data: { id } };
+    const { error: extraError } = await db
+      .from("shipments")
+      .update({ route_stops: p.route_stops, notify_emails: p.notify_emails, notify_locale: p.notify_locale })
+      .eq("id", id);
+    if (extraError) console.error("shipment extras not saved", extraError.code);
+    // Welcome email to sender and recipient (only public details are included).
+    const outcome = await notifyShipmentParties(
+      db,
+      id,
+      { status: p.current_status, occurred_at: new Date().toISOString(), location: p.initial_location, description: p.initial_description },
+      true,
+    ).catch(() => ({ sent: 0, failed: 1 }));
+    return { ok: true, data: { id, email: outcomeCode(outcome) } };
   });
   if (result.ok && result.data?.id) {
     revalidatePath("/admin/shipments");
-    redirect(`/admin/shipments/${result.data.id}?notice=created`);
+    redirect(`/admin/shipments/${result.data.id}?notice=created&email=${encodeURIComponent(result.data.email ?? "")}`);
   }
   return result;
 }
@@ -72,6 +81,8 @@ export async function updateShipment(_prev: ActionResult, fd: FormData): Promise
         estimated_delivery: p.estimated_delivery ?? null,
         internal_notes: p.internal_notes ?? null,
         route_stops: p.route_stops,
+        notify_emails: p.notify_emails,
+        notify_locale: p.notify_locale,
         is_published: p.is_published,
       })
       .eq("id", id.data);
@@ -97,10 +108,18 @@ export async function addShipmentEvent(_prev: ActionResult, fd: FormData): Promi
     if (error) return { error: dbErrorMessage(error) };
     revalidatePath(`/admin/shipments/${e.shipment_id}`);
     revalidatePath("/admin/events");
-    return {
-      ok: true,
-      message: e.visibility === "public" ? "Tracking event published." : "Internal event recorded (not visible to customers).",
-    };
+    if (e.visibility !== "public") return { ok: true, message: "Internal event recorded (not visible to customers)." };
+    let emailNote = "";
+    if (e.send_email) {
+      const outcome = await notifyShipmentParties(db, e.shipment_id, {
+        status: e.status_code,
+        occurred_at: utcFromLocalInput(e.occurred_at),
+        location: e.location,
+        description: e.description,
+      }).catch(() => ({ sent: 0, failed: 1 }));
+      emailNote = ` ${describeOutcome(outcome)}`;
+    }
+    return { ok: true, message: `Tracking event published.${emailNote}` };
   });
 }
 

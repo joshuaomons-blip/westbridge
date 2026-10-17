@@ -367,5 +367,30 @@
     "backHome": "Wróć na stronę główną",
     "error": "Coś poszło nie tak.",
     "errorText": "Spróbuj ponownie. Jeśli problem się powtarza, skontaktuj się z nami."
+  },
+  "email": {
+    "subjectCreated": "Twoja przesyłka {number} została zarejestrowana",
+    "subjectUpdate": "Przesyłka {number}: {status}",
+    "subjectDelivered": "Twoja przesyłka {number} została doręczona",
+    "preheader": "Aktualny status: {status}. Śledź przesyłkę online.",
+    "greeting": "Dzień dobry, {name},",
+    "greetingGeneric": "Dzień dobry,",
+    "introCreatedSender": "Dziękujemy za skorzystanie z Norvane Express. Twoja przesyłka została zarejestrowana i w każdej chwili możesz śledzić ją online.",
+    "introCreatedRecipient": "Za pośrednictwem Norvane Express jest do Ciebie wysyłana przesyłka. Możesz śledzić ją online, korzystając z poniższego numeru.",
+    "introUpdate": "Pojawiła się nowa informacja o Twojej przesyłce.",
+    "introDelivered": "Dobra wiadomość: Twoja przesyłka została doręczona.",
+    "trackingNumber": "Numer przesyłki",
+    "status": "Aktualny status",
+    "location": "Lokalizacja",
+    "updatedAt": "Aktualizacja",
+    "note": "Uwagi",
+    "route": "Trasa",
+    "estimated": "Szacowana dostawa",
+    "cta": "Śledź przesyłkę",
+    "help": "Masz pytania dotyczące przesyłki? Odpowiedz na tę wiadomość lub napisz na adres {email}. Podaj numer przesyłki.",
+    "helpNoEmail": "Masz pytania dotyczące przesyłki? Odpowiedz na tę wiadomość i podaj numer przesyłki.",
+    "safety": "Dla Twojego bezpieczeństwa: nigdy nie prosimy e-mailem ani SMS-em o dopłatę lub dane karty w celu wydania paczki.",
+    "footer": "Otrzymujesz tę wiadomość, ponieważ jesteś nadawcą lub odbiorcą przesyłki obsługiwanej przez Norvane Express. To wiadomość serwisowa dotycząca Twojej przesyłki.",
+    "timesUtc": "Godziny podano w strefie UTC."
   }
 }

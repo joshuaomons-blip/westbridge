@@ -138,6 +138,13 @@ export default async function ShipmentDetailPage({ params }: { params: Promise<{
                   ]}
                 />
                 <TextField name="description" label="Description" placeholder="Short note (customer-facing if public)" maxLength={1000} className="sm:col-span-2" />
+                <CheckboxField
+                  name="send_email"
+                  label="Email this update to the sender and recipient"
+                  defaultChecked={s.notify_emails !== false}
+                  hint={s.notify_emails === false ? "Customer emails are switched off for this shipment (see Customer emails below)." : "Only for public events. Sent in the shipment's email language."}
+                  className="sm:col-span-2"
+                />
                 <div className="sm:col-span-2 flex justify-end">
                   <SubmitButton pendingText="Saving…">Record event</SubmitButton>
                 </div>

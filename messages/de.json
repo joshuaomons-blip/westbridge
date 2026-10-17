@@ -367,5 +367,30 @@
     "backHome": "Zur Startseite",
     "error": "Etwas ist schiefgelaufen.",
     "errorText": "Bitte versuchen Sie es erneut. Wenn das Problem weiterhin besteht, kontaktieren Sie uns."
+  },
+  "email": {
+    "subjectCreated": "Ihre Sendung {number} wurde registriert",
+    "subjectUpdate": "Sendung {number}: {status}",
+    "subjectDelivered": "Ihre Sendung {number} wurde zugestellt",
+    "preheader": "Aktueller Status: {status}. Verfolgen Sie Ihre Sendung online.",
+    "greeting": "Hallo {name},",
+    "greetingGeneric": "Guten Tag,",
+    "introCreatedSender": "Vielen Dank, dass Sie mit Norvane Express versenden. Ihre Sendung wurde registriert und Sie können den Fortschritt jederzeit online verfolgen.",
+    "introCreatedRecipient": "Mit Norvane Express ist eine Sendung an Sie unterwegs. Mit der unten stehenden Sendungsnummer können Sie den Fortschritt online verfolgen.",
+    "introUpdate": "Es gibt eine neue Statusmeldung zu Ihrer Sendung.",
+    "introDelivered": "Gute Nachricht: Ihre Sendung wurde zugestellt.",
+    "trackingNumber": "Sendungsnummer",
+    "status": "Aktueller Status",
+    "location": "Ort",
+    "updatedAt": "Aktualisiert",
+    "note": "Hinweis",
+    "route": "Route",
+    "estimated": "Voraussichtliche Zustellung",
+    "cta": "Sendung verfolgen",
+    "help": "Fragen zu dieser Sendung? Antworten Sie auf diese E-Mail oder schreiben Sie an {email}. Bitte geben Sie Ihre Sendungsnummer an.",
+    "helpNoEmail": "Fragen zu dieser Sendung? Antworten Sie auf diese E-Mail und geben Sie Ihre Sendungsnummer an.",
+    "safety": "Zu Ihrer Sicherheit: Wir fordern Sie niemals per E-Mail oder SMS auf, für die Freigabe eines Pakets eine Gebühr zu zahlen oder Kartendaten anzugeben.",
+    "footer": "Sie erhalten diese E-Mail, weil Sie Absender oder Empfänger einer von Norvane Express beförderten Sendung sind. Dies ist eine Servicenachricht zu Ihrer Sendung.",
+    "timesUtc": "Zeiten in UTC."
   }
 }

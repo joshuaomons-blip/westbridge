@@ -367,5 +367,30 @@
     "backHome": "Back to homepage",
     "error": "Something went wrong.",
     "errorText": "Please try again. If the problem continues, contact us."
+  },
+  "email": {
+    "subjectCreated": "Your shipment {number} has been registered",
+    "subjectUpdate": "Shipment {number}: {status}",
+    "subjectDelivered": "Your shipment {number} has been delivered",
+    "preheader": "Latest status: {status}. Track your shipment online.",
+    "greeting": "Hello {name},",
+    "greetingGeneric": "Hello,",
+    "introCreatedSender": "Thank you for shipping with Norvane Express. Your shipment has been registered and you can follow its progress online at any time.",
+    "introCreatedRecipient": "A shipment is on its way to you with Norvane Express. You can follow its progress online using the tracking number below.",
+    "introUpdate": "There is a new update on your shipment.",
+    "introDelivered": "Good news: your shipment has been delivered.",
+    "trackingNumber": "Tracking number",
+    "status": "Current status",
+    "location": "Location",
+    "updatedAt": "Updated",
+    "note": "Note",
+    "route": "Route",
+    "estimated": "Estimated delivery",
+    "cta": "Track your shipment",
+    "help": "Questions about this shipment? Reply to this email or write to {email}. Please include your tracking number.",
+    "helpNoEmail": "Questions about this shipment? Reply to this email and include your tracking number.",
+    "safety": "For your security: we will never ask you to pay a fee or share card details by email or text message to release a parcel.",
+    "footer": "You are receiving this email because you are the sender or recipient of a shipment handled by Norvane Express. This is a service message about your shipment.",
+    "timesUtc": "Times are shown in UTC."
   }
 }

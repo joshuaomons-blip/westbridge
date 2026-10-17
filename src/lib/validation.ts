@@ -84,6 +84,8 @@ export const shipmentSchema = z.object({
     .optional()
     .transform((v) => parseRouteStops(v)),
   is_published: checkbox,
+  notify_emails: checkbox,
+  notify_locale: z.enum(["en", "pl", "ja", "es", "de"]).catch("en"),
 });
 
 export const createShipmentSchema = shipmentSchema.extend({
@@ -108,6 +110,7 @@ export const eventSchema = z.object({
   location: optionalText(200),
   description: optionalText(1000),
   visibility: z.enum(["public", "internal"]),
+  send_email: checkbox,
 });
 
 export const correctEventSchema = z.object({

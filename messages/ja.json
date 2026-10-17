@@ -367,5 +367,30 @@
     "backHome": "ホームに戻る",
     "error": "問題が発生しました。",
     "errorText": "もう一度お試しください。問題が解決しない場合はお問い合わせください。"
+  },
+  "email": {
+    "subjectCreated": "お荷物（{number}）の受付が完了しました",
+    "subjectUpdate": "お荷物 {number}：{status}",
+    "subjectDelivered": "お荷物（{number}）の配達が完了しました",
+    "preheader": "現在のステータス：{status}。オンラインで追跡できます。",
+    "greeting": "{name} 様",
+    "greetingGeneric": "お客様",
+    "introCreatedSender": "Norvane Expressをご利用いただきありがとうございます。お荷物の受付が完了しました。配送状況はいつでもオンラインでご確認いただけます。",
+    "introCreatedRecipient": "Norvane Expressにて、お客様宛てのお荷物を発送しております。下記の追跡番号で配送状況をオンラインでご確認いただけます。",
+    "introUpdate": "お荷物の配送状況が更新されました。",
+    "introDelivered": "お荷物の配達が完了しました。",
+    "trackingNumber": "追跡番号",
+    "status": "現在のステータス",
+    "location": "場所",
+    "updatedAt": "更新日時",
+    "note": "備考",
+    "route": "輸送ルート",
+    "estimated": "お届け予定日",
+    "cta": "配送状況を確認する",
+    "help": "お荷物に関するご質問は、このメールにご返信いただくか、{email} までご連絡ください。その際は追跡番号をご記載ください。",
+    "helpNoEmail": "お荷物に関するご質問は、追跡番号を記載のうえ、このメールにご返信ください。",
+    "safety": "安全のため：当社がメールやSMSで、お荷物のお渡しのために料金の支払いやカード情報の入力をお願いすることは一切ありません。",
+    "footer": "このメールは、Norvane Expressが取り扱うお荷物の差出人または受取人の方にお送りしている、配送に関するご案内です。",
+    "timesUtc": "時刻はUTCで表示しています。"
   }
 }

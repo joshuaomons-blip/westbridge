@@ -367,5 +367,30 @@
     "backHome": "Volver al inicio",
     "error": "Se ha producido un error.",
     "errorText": "Inténtelo de nuevo. Si el problema continúa, contáctenos."
+  },
+  "email": {
+    "subjectCreated": "Tu envío {number} ha sido registrado",
+    "subjectUpdate": "Envío {number}: {status}",
+    "subjectDelivered": "Tu envío {number} ha sido entregado",
+    "preheader": "Estado actual: {status}. Sigue tu envío en línea.",
+    "greeting": "Hola, {name}:",
+    "greetingGeneric": "Hola:",
+    "introCreatedSender": "Gracias por enviar con Norvane Express. Tu envío ha sido registrado y puedes seguir su progreso en línea en cualquier momento.",
+    "introCreatedRecipient": "Hay un envío en camino hacia ti con Norvane Express. Puedes seguir su progreso en línea con el número de seguimiento que aparece abajo.",
+    "introUpdate": "Hay una nueva actualización de tu envío.",
+    "introDelivered": "Buenas noticias: tu envío ha sido entregado.",
+    "trackingNumber": "Número de seguimiento",
+    "status": "Estado actual",
+    "location": "Ubicación",
+    "updatedAt": "Actualizado",
+    "note": "Nota",
+    "route": "Ruta",
+    "estimated": "Entrega estimada",
+    "cta": "Seguir mi envío",
+    "help": "¿Tienes preguntas sobre este envío? Responde a este correo o escríbenos a {email}. Incluye tu número de seguimiento.",
+    "helpNoEmail": "¿Tienes preguntas sobre este envío? Responde a este correo e incluye tu número de seguimiento.",
+    "safety": "Por tu seguridad: nunca te pediremos por correo electrónico ni SMS que pagues una tasa o compartas los datos de tu tarjeta para liberar un paquete.",
+    "footer": "Recibes este correo porque eres el remitente o el destinatario de un envío gestionado por Norvane Express. Es un mensaje de servicio sobre tu envío.",
+    "timesUtc": "Las horas se muestran en UTC."
   }
 }

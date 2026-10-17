@@ -4,6 +4,7 @@ import { CircleCheck, CircleX } from "lucide-react";
 import { requireAdmin, can } from "@/lib/auth";
 import { createSessionClient } from "@/lib/supabase/server";
 import { isServiceRoleConfigured } from "@/lib/supabase/service";
+import { isEmailConfigured } from "@/lib/email/send";
 import { env } from "@/lib/env";
 import { PageHeader, Panel } from "@/components/admin/ui";
 import { ActionForm, SubmitButton } from "@/components/admin/ActionForm";
@@ -27,6 +28,12 @@ export default async function SettingsPage() {
     { label: "Service-role key set (needed for inviting admins)", ok: isServiceRoleConfigured() },
     { label: "Rate-limit salt set", ok: !!process.env.RATE_LIMIT_SALT },
     { label: `Public site URL: ${env.siteUrl}`, ok: env.siteUrl.startsWith("https://") },
+    {
+      label: isEmailConfigured()
+        ? `Customer emails: sending as ${process.env.EMAIL_FROM}`
+        : "Customer emails: not set up (add RESEND_API_KEY and EMAIL_FROM in Vercel)",
+      ok: isEmailConfigured(),
+    },
   ];
 
   return (

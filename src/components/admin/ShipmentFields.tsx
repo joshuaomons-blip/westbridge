@@ -22,6 +22,8 @@ export type ShipmentDefaults = Partial<{
   estimated_delivery: string | null;
   internal_notes: string | null;
   route_stops: string[] | null;
+  notify_emails: boolean;
+  notify_locale: string;
   is_published: boolean;
 }>;
 
@@ -75,6 +77,28 @@ export function ShipmentFields({
         <TextField name="destination_country" label="Destination country" required list="countries" maxLength={100} defaultValue={d.destination_country} />
         <TextField name="destination_city" label="Destination city" required maxLength={100} defaultValue={d.destination_city} />
         <TextAreaField name="destination_address" label="Destination address" rows={2} maxLength={500} defaultValue={d.destination_address} className="sm:col-span-2" />
+      </Fieldset>
+
+      <Fieldset legend="Customer emails" description="Automatic emails to the sender and recipient when the shipment is created and on each public tracking update.">
+        <CheckboxField
+          name="notify_emails"
+          label="Email the sender and recipient about this shipment"
+          defaultChecked={d.notify_emails ?? true}
+          hint="Uses the sender and recipient email addresses above. Only the status, place, route and tracking link are included."
+          className="sm:col-span-2"
+        />
+        <SelectField
+          name="notify_locale"
+          label="Email language"
+          defaultValue={d.notify_locale ?? "en"}
+          options={[
+            { value: "en", label: "English" },
+            { value: "pl", label: "Polski" },
+            { value: "ja", label: "日本語" },
+            { value: "es", label: "Español" },
+            { value: "de", label: "Deutsch" },
+          ]}
+        />
       </Fieldset>
 
       <Fieldset legend="Route" description="Optional. Places the shipment is planned to pass through, shown to customers.">
