@@ -72,12 +72,12 @@ export async function FeatureRows() {
           const List = row.ordered ? "ol" : "ul";
           return (
             <div key={row.title} id={row.id} className="grid scroll-mt-32 items-center gap-10 lg:grid-cols-2 lg:gap-16">
-              <div className={cn("relative aspect-[4/3] overflow-hidden rounded-xl bg-slate-200", i % 2 === 1 && "lg:order-2")}>
+              <div className={cn("reveal relative aspect-[4/3] overflow-hidden rounded-2xl bg-slate-200", i % 2 === 1 && "lg:order-2")}>
                 <Image src={row.photo} alt="" fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
                 <div className="absolute inset-x-0 bottom-0 h-1.5 bg-signal-600" aria-hidden />
               </div>
               <div>
-                <h2 className="font-display text-3xl font-black tracking-[-0.01em] text-brand-900 [font-stretch:108%] sm:text-4xl">{row.title}</h2>
+                <h2 className="h-section text-brand-900">{row.title}</h2>
                 <p className="mt-4 text-lg leading-relaxed text-slate-600">{row.text}</p>
                 <List className="mt-7 space-y-3.5">
                   {row.points.map((p, n) => (
@@ -131,15 +131,15 @@ export async function StatusGuide() {
     <section id="status-guide" className="scroll-mt-28 bg-slate-50 py-20 lg:py-24" aria-labelledby="statusguide-heading">
       <div className="container-page">
         <div className="max-w-2xl">
-          <h2 id="statusguide-heading" className="font-display text-3xl font-black tracking-[-0.01em] text-brand-900 [font-stretch:108%] sm:text-4xl">
+          <h2 id="statusguide-heading" className="h-section text-brand-900">
             {t("statusGuideTitle")}
           </h2>
           <p className="mt-3 text-lg text-slate-600">{t("statusGuideText")}</p>
         </div>
-        <ul className="mt-12 grid grid-cols-2 gap-px overflow-hidden rounded-xl bg-slate-200 ring-1 ring-slate-200 lg:grid-cols-4">
+        <ul className="reveal mt-12 grid grid-cols-2 gap-px overflow-hidden rounded-2xl bg-slate-200 ring-1 ring-slate-200 lg:grid-cols-4">
           {GUIDE.map(({ code, icon: Icon, tone }) => (
             <li key={code} className="bg-white p-4 sm:p-6">
-              <span className={cn("flex h-11 w-11 items-center justify-center rounded-lg", tone)}>
+              <span className={cn("flex h-11 w-11 items-center justify-center rounded-xl", tone)}>
                 <Icon className="h-5 w-5" aria-hidden />
               </span>
               <h3 className="mt-4 font-bold text-brand-900">{ts(code)}</h3>
@@ -163,11 +163,11 @@ export async function Faq() {
     <section id="faq" className="scroll-mt-28 py-20 lg:py-28" aria-labelledby="faq-heading">
       <div className="container-page grid gap-12 lg:grid-cols-12">
         <div className="lg:col-span-4">
-          <h2 id="faq-heading" className="font-display text-3xl font-black tracking-[-0.01em] text-brand-900 [font-stretch:108%] sm:text-4xl">
+          <h2 id="faq-heading" className="h-section text-brand-900">
             {t("faqTitle")}
           </h2>
           <p className="mt-3 text-lg text-slate-600">{t("faqText")}</p>
-          <div className="relative mt-8 hidden aspect-[4/5] overflow-hidden rounded-xl lg:block">
+          <div className="relative mt-8 hidden aspect-[4/5] overflow-hidden rounded-2xl lg:block">
             <Image src={PHOTOS.handover} alt="" fill sizes="33vw" className="object-cover" />
           </div>
         </div>
@@ -206,7 +206,7 @@ export async function PromoBand() {
             </span>
           ))}
         </div>
-        <h2 id="promo-heading" className="font-display mt-6 max-w-3xl text-3xl font-black tracking-[-0.01em] text-balance [font-stretch:108%] sm:text-4xl">
+        <h2 id="promo-heading" className="h-section mt-6 max-w-3xl text-balance">
           {t("promoTitle")}
         </h2>
         <p className="mt-4 max-w-2xl text-lg text-white/80">{t("promoText")}</p>
@@ -228,14 +228,14 @@ export async function SafetySection() {
   return (
     <section id="safety" className="scroll-mt-28 bg-slate-50 py-20 lg:py-24" aria-labelledby="safety-heading">
       <div className="container-page grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
-        <div className="relative aspect-[4/3] overflow-hidden rounded-xl bg-slate-200 lg:order-2">
+        <div className="reveal relative aspect-[4/3] overflow-hidden rounded-2xl bg-slate-200 lg:order-2">
           <Image src={PHOTOS.support} alt="" fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
         </div>
         <div>
           <span className="flex h-12 w-12 items-center justify-center rounded-lg bg-amber-100 text-amber-700">
             <ShieldAlert className="h-6 w-6" aria-hidden />
           </span>
-          <h2 id="safety-heading" className="font-display mt-5 text-3xl font-black tracking-[-0.01em] text-brand-900 [font-stretch:108%] sm:text-4xl">
+          <h2 id="safety-heading" className="h-section mt-5 text-brand-900">
             {t("safetyTitle")}
           </h2>
           <p className="mt-4 text-lg leading-relaxed text-slate-600">{t("safetyText")}</p>

@@ -35,12 +35,12 @@ export default async function ServicesPage({ params }: Props) {
           ) : (
             <ul className="grid gap-6 md:grid-cols-2">
               {services.map((s, i) => (
-                <li key={s.id} id={s.slug} className="scroll-mt-28 overflow-hidden rounded-lg bg-white ring-1 ring-slate-200 sm:grid sm:grid-cols-5">
+                <li key={s.id} id={s.slug} className="reveal scroll-mt-28 overflow-hidden rounded-2xl bg-white ring-1 ring-slate-200 sm:grid sm:grid-cols-5">
                   <div className="relative aspect-[16/9] bg-slate-200 sm:col-span-2 sm:aspect-auto">
                     <Image src={servicePhoto(s.slug, i)} alt="" fill sizes="(min-width: 768px) 20vw, 100vw" className="object-cover" />
                   </div>
                   <div className="p-6 sm:col-span-3 sm:p-7">
-                    <span className="inline-flex h-10 w-10 items-center justify-center rounded-md bg-brand-900 text-white">
+                    <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-brand-900 text-white">
                       <ServiceIcon name={s.icon} className="h-5 w-5" />
                     </span>
                     <h2 className="mt-4 text-xl font-bold text-brand-900">{localized(s.title, locale)}</h2>
@@ -51,7 +51,7 @@ export default async function ServicesPage({ params }: Props) {
             </ul>
           )}
 
-          <div className="mt-14 flex flex-col items-start justify-between gap-6 rounded-lg bg-brand-900 p-8 text-white sm:flex-row sm:items-center">
+          <div className="mt-14 flex flex-col items-start justify-between gap-6 rounded-2xl bg-brand-900 p-8 text-white sm:flex-row sm:items-center">
             <div>
               <h2 className="text-xl font-bold">{t("cta")}</h2>
               <p className="mt-1 text-white/75">{t("ctaText")}</p>

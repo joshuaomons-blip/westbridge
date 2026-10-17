@@ -58,17 +58,17 @@ export default async function HomePage({ params }: Props) {
   return (
     <>
       {/* Hero: full-bleed photo, centred welcome and a wide Track / Ship / Help panel */}
-      <section className="relative isolate bg-brand-950">
-        <Image src={heroImage} alt={t("imageAlt")} fill priority sizes="100vw" className="object-cover object-[50%_55%]" />
+      <section className="relative isolate overflow-hidden bg-brand-950">
+        <Image src={heroImage} alt={t("imageAlt")} fill priority sizes="100vw" className="hero-zoom object-cover object-[50%_55%]" />
         <div className="absolute inset-0 bg-gradient-to-b from-brand-950/80 via-brand-950/55 to-brand-950/85" aria-hidden />
         <div className="container-page relative flex flex-col items-center pt-16 pb-28 text-center sm:pt-20 lg:pt-24 lg:pb-36">
-          <h1 className="font-display max-w-4xl text-[40px] leading-[1.02] font-black tracking-[-0.02em] text-balance text-white [font-stretch:110%] sm:text-6xl lg:text-7xl">
+          <h1 className="hero-in font-display max-w-4xl text-[40px] leading-[1.02] font-black tracking-[-0.02em] text-balance text-white [font-stretch:110%] sm:text-6xl lg:text-7xl">
             {content.get("home.hero_title") ?? t("heroTitle")}
           </h1>
-          <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/85 whitespace-pre-line">
+          <p className="hero-in mt-5 max-w-2xl text-lg leading-relaxed text-white/85 whitespace-pre-line [animation-delay:120ms]">
             {content.get("home.hero_subtitle") ?? t("heroSubtitle")}
           </p>
-          <div className="mt-10 w-full max-w-3xl text-left">
+          <div className="hero-in mt-10 w-full max-w-3xl text-left [animation-delay:240ms]">
             <HeroPanel />
           </div>
         </div>
@@ -80,7 +80,7 @@ export default async function HomePage({ params }: Props) {
           <h2 id="quick-heading" className="sr-only">
             {t("quickTitle")}
           </h2>
-          <ul className="grid overflow-hidden rounded-lg bg-white shadow-[0_12px_40px_-16px_rgba(11,31,68,0.35)] sm:grid-cols-2 lg:grid-cols-4">
+          <ul className="hero-in grid overflow-hidden rounded-2xl bg-white [animation-delay:360ms] shadow-[0_12px_40px_-16px_rgba(11,31,68,0.35)] sm:grid-cols-2 lg:grid-cols-4">
             {quick.map((q, i) => (
               <li key={q.title} className={i > 0 ? "border-t border-slate-100 sm:border-t-0 sm:border-l" : ""}>
                 <Link href={q.href} className="group flex h-full gap-4 p-6 transition-colors hover:bg-slate-50">
@@ -108,7 +108,7 @@ export default async function HomePage({ params }: Props) {
           <div className="container-page">
             <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
               <div className="max-w-2xl">
-                <h2 id="services-heading" className="font-display text-3xl font-black tracking-[-0.01em] text-brand-900 [font-stretch:108%] sm:text-4xl">
+                <h2 id="services-heading" className="h-section text-brand-900">
                   {t("servicesTitle")}
                 </h2>
                 <p className="mt-3 text-lg text-slate-600">{t("servicesSubtitle")}</p>
@@ -123,8 +123,8 @@ export default async function HomePage({ params }: Props) {
             {services.length > 0 ? (
               <ul className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {services.slice(0, 6).map((s, i) => (
-                  <li key={s.id}>
-                    <Link href={`/services#${s.slug}`} className="group block h-full overflow-hidden rounded-lg bg-white ring-1 ring-slate-200 transition hover:ring-brand-900/30">
+                  <li key={s.id} className="reveal">
+                    <Link href={`/services#${s.slug}`} className="group block h-full overflow-hidden rounded-2xl bg-white ring-1 ring-slate-200 transition hover:ring-brand-900/30">
                       <div className="relative aspect-[16/10] overflow-hidden bg-slate-200">
                         <Image
                           src={servicePhoto(s.slug, i)}
@@ -157,18 +157,18 @@ export default async function HomePage({ params }: Props) {
       {/* Why Westbridge */}
       <section className="bg-slate-50 py-20 lg:py-24" aria-labelledby="why-heading">
         <div className="container-page grid items-center gap-12 lg:grid-cols-2">
-          <div className="relative aspect-[4/3] overflow-hidden rounded-lg">
+          <div className="reveal relative aspect-[4/3] overflow-hidden rounded-2xl">
             <Image src={PHOTOS.team} alt="" fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
           </div>
           <div>
-            <h2 id="why-heading" className="font-display text-3xl font-black tracking-[-0.01em] text-brand-900 [font-stretch:108%] sm:text-4xl">
+            <h2 id="why-heading" className="h-section text-brand-900">
               {t("whyTitle")}
             </h2>
             <p className="mt-4 max-w-xl text-lg text-slate-600">{t("whyText")}</p>
             <ul className="mt-8 space-y-6">
               {why.map((w) => (
                 <li key={w.title} className="flex gap-4">
-                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md bg-brand-900 text-white">
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-900 text-white">
                     <w.icon className="h-5 w-5" aria-hidden />
                   </span>
                   <span>
@@ -186,13 +186,13 @@ export default async function HomePage({ params }: Props) {
       {content.isVisible("section.how_it_works.visible") && (
         <section className="py-20 lg:py-24" aria-labelledby="how-heading">
           <div className="container-page">
-            <h2 id="how-heading" className="font-display text-3xl font-black tracking-[-0.01em] text-brand-900 [font-stretch:108%] sm:text-4xl">
+            <h2 id="how-heading" className="h-section text-brand-900">
               {t("howTitle")}
             </h2>
             <p className="mt-3 text-lg text-slate-600">{t("howSubtitle")}</p>
             <ol className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {steps.map((step, i) => (
-                <li key={step.title} className="group relative overflow-hidden rounded-lg bg-brand-950">
+                <li key={step.title} className="reveal group relative overflow-hidden rounded-2xl bg-brand-950">
                   <div className="relative aspect-[4/3] sm:aspect-[3/4]">
                     <Image src={step.photo} alt="" fill sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw" className="object-cover" />
                     <div className="absolute inset-0 bg-gradient-to-t from-brand-950 via-brand-950/60 to-brand-950/0" aria-hidden />
@@ -239,7 +239,7 @@ export default async function HomePage({ params }: Props) {
           <div className="absolute inset-0 bg-gradient-to-r from-brand-900 via-brand-900/90 to-brand-900/30" aria-hidden />
           <div className="container-page relative flex flex-col items-start gap-8 py-20 lg:flex-row lg:items-center lg:justify-between">
             <div className="max-w-xl">
-              <h2 id="support-heading" className="font-display text-3xl font-black text-white [font-stretch:108%] sm:text-4xl">
+              <h2 id="support-heading" className="h-section text-white">
                 {t("supportTitle")}
               </h2>
               <p className="mt-4 text-lg text-white/85 whitespace-pre-line">{content.get("support.text") ?? t("supportText")}</p>
