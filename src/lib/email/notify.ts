@@ -86,6 +86,7 @@ export async function notifyShipmentParties(db: Db, shipmentId: string, event: N
       trackUrl,
       supportEmail,
       lang: locale,
+      logoUrl: `${env.siteUrl}/email-logo.png`,
     });
     const r = await sendEmail({
       to: p.email,

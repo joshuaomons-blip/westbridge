@@ -3,7 +3,7 @@
  * comes from the `t` translator so every language uses the same layout.
  *
  * Deliverability choices: table layout with inline styles (what email clients
- * render reliably), no images or tracking pixels, a plain-text alternative,
+ * render reliably), one small logo hosted on our own domain and no tracking pixels, a plain-text alternative,
  * one clear link to our own site, and only public shipment details.
  */
 
@@ -28,6 +28,8 @@ export type ShipmentEmailInput = {
   trackUrl: string;
   supportEmail?: string | null;
   lang: string;
+  /** Absolute URL of the white logo image for the dark header (text is used if missing). */
+  logoUrl?: string | null;
 };
 
 const COLORS: Record<ShipmentEmailInput["category"], string> = {
@@ -94,9 +96,13 @@ export function renderShipmentEmail(t: Translate, i: ShipmentEmailInput): { subj
 <tr><td align="center" style="padding:28px 12px;">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:600px;background:#FFFFFF;border-radius:12px;overflow:hidden;">
 
-<tr><td style="background:#0B1F44;padding:22px 32px;${font}">
-<span style="font-size:22px;font-weight:800;color:#FFFFFF;letter-spacing:-0.2px;">Norvane</span>
-<span style="font-size:11px;font-weight:700;color:#F87171;letter-spacing:4px;padding-left:8px;">EXPRESS</span>
+<tr><td style="background:#0B1F44;padding:20px 32px;${font}">
+${
+  i.logoUrl
+    ? `<img src="${e(i.logoUrl)}" width="172" height="56" alt="Norvane Express" style="display:block;border:0;outline:none;height:56px;width:172px;color:#FFFFFF;font-size:20px;font-weight:800;">`
+    : `<span style="font-size:22px;font-weight:800;color:#FFFFFF;letter-spacing:-0.2px;">Norvane</span>
+<span style="font-size:11px;font-weight:700;color:#F87171;letter-spacing:4px;padding-left:8px;">EXPRESS</span>`
+}
 </td></tr>
 <tr><td style="height:4px;background:#D62D20;line-height:4px;font-size:0;">&nbsp;</td></tr>
 

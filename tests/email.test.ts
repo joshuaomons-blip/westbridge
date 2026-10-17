@@ -27,7 +27,8 @@ const base: ShipmentEmailInput = {
   origin: "Warsaw, Poland",
   destination: "Brussels, Belgium",
   estimatedDelivery: "20 Oct 2026",
-  trackUrl: "https://norvane-express.vercel.app/en/track?n=NV09790764000",
+  trackUrl: "https://www.norvaneexpress.com/en/track?n=NV09790764000",
+  logoUrl: process.env.LOGO_URL ?? null,
   supportEmail: "joshuaomons@gmail.com",
   lang: "en",
 };
