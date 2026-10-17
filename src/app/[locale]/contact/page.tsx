@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Clock, Mail, MapPin, Phone } from "lucide-react";
+import { PHOTOS } from "@/lib/photos";
 import { PageHero } from "@/components/site/PageHero";
 import { ContactForm } from "@/components/site/ContactForm";
 import { getPageContent } from "@/lib/public-data";
@@ -30,7 +31,7 @@ export default async function ContactPage({ params }: Props) {
 
   return (
     <>
-      <PageHero title={t("title")} subtitle={t("subtitle")} />
+      <PageHero title={t("title")} subtitle={t("subtitle")} image={PHOTOS.support} />
       <section className="py-16 lg:py-20">
         <div className="container-page grid gap-10 lg:grid-cols-12">
           <div className="card p-6 sm:p-10 lg:col-span-8">

@@ -25,7 +25,7 @@ export default async function ServicesPage({ params }: Props) {
 
   return (
     <>
-      <PageHero title={t("title")} subtitle={t("subtitle")} />
+      <PageHero title={t("title")} subtitle={t("subtitle")} image={PHOTOS.sea} />
       <section className="py-16 lg:py-20">
         <div className="container-page">
           {services.length === 0 ? (

@@ -79,7 +79,10 @@
     "why2Title": "Fünf Sprachen",
     "why2Text": "Sendungsverfolgung auf Englisch, Polnisch, Japanisch, Spanisch und Deutsch.",
     "why3Title": "Echte Menschen im Kundenservice",
-    "why3Text": "Schreiben Sie uns – ein Mitglied unseres Teams antwortet."
+    "why3Text": "Schreiben Sie uns – ein Mitglied unseres Teams antwortet.",
+    "trackBandTitle": "Wissen, wo Ihre Sendung ist",
+    "trackBandText": "Geben Sie Ihre Sendungsnummer ein und sehen Sie jeden erfassten Schritt – von der Abholung bis zur Zustellung.",
+    "trackBandCta": "Sendung verfolgen"
   },
   "tracking": {
     "label": "Sendungsnummer",
@@ -123,7 +126,11 @@
     "stepRegistered": "Erfasst",
     "stepTransit": "Unterwegs",
     "stepOut": "In Zustellung",
-    "stepDelivered": "Zugestellt"
+    "stepDelivered": "Zugestellt",
+    "print": "Drucken",
+    "deliveredOn": "Zugestellt am",
+    "from": "Von",
+    "to": "Nach"
   },
   "status": {
     "shipment_created": "Sendung erstellt",

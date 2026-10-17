@@ -79,7 +79,10 @@
     "why2Title": "Pięć języków",
     "why2Text": "Śledzenie po angielsku, polsku, japońsku, hiszpańsku i niemiecku.",
     "why3Title": "Prawdziwi ludzie w obsłudze",
-    "why3Text": "Napisz do nas, a odpowie członek naszego zespołu."
+    "why3Text": "Napisz do nas, a odpowie członek naszego zespołu.",
+    "trackBandTitle": "Sprawdź, gdzie jest Twoja przesyłka",
+    "trackBandText": "Wpisz numer przesyłki, aby zobaczyć każdy zarejestrowany etap — od odbioru do doręczenia.",
+    "trackBandCta": "Śledź przesyłkę"
   },
   "tracking": {
     "label": "Numer przesyłki",
@@ -123,7 +126,11 @@
     "stepRegistered": "Zarejestrowana",
     "stepTransit": "W drodze",
     "stepOut": "W doręczeniu",
-    "stepDelivered": "Doręczona"
+    "stepDelivered": "Doręczona",
+    "print": "Drukuj",
+    "deliveredOn": "Doręczono",
+    "from": "Skąd",
+    "to": "Dokąd"
   },
   "status": {
     "shipment_created": "Przesyłka utworzona",

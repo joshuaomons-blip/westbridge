@@ -79,7 +79,10 @@
     "why2Title": "Cinco idiomas",
     "why2Text": "Seguimiento en inglés, polaco, japonés, español y alemán.",
     "why3Title": "Personas reales en atención",
-    "why3Text": "Escríbanos y le responderá un miembro de nuestro equipo."
+    "why3Text": "Escríbanos y le responderá un miembro de nuestro equipo.",
+    "trackBandTitle": "Sepa dónde está su envío",
+    "trackBandText": "Introduzca su número de seguimiento para ver cada etapa registrada, desde la recogida hasta la entrega.",
+    "trackBandCta": "Seguir un envío"
   },
   "tracking": {
     "label": "Número de seguimiento",
@@ -123,7 +126,11 @@
     "stepRegistered": "Registrado",
     "stepTransit": "En tránsito",
     "stepOut": "En reparto",
-    "stepDelivered": "Entregado"
+    "stepDelivered": "Entregado",
+    "print": "Imprimir",
+    "deliveredOn": "Entregado el",
+    "from": "Origen",
+    "to": "Destino"
   },
   "status": {
     "shipment_created": "Envío creado",

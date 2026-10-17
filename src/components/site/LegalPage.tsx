@@ -1,5 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { TriangleAlert } from "lucide-react";
+import { PHOTOS } from "@/lib/photos";
 import { PageHero } from "./PageHero";
 import { paragraphs } from "@/lib/content";
 
@@ -7,7 +8,7 @@ export async function LegalPage({ title, body, isPlaceholder }: { title: string;
   const t = await getTranslations("legal");
   return (
     <>
-      <PageHero title={title} />
+      <PageHero title={title} image={PHOTOS.forklift} />
       <section className="py-14 lg:py-16">
         <div className="container-page max-w-3xl">
           {isPlaceholder && (

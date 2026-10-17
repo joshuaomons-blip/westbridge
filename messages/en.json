@@ -79,7 +79,10 @@
     "why2Title": "Five languages",
     "why2Text": "Tracking in English, Polish, Japanese, Spanish and German.",
     "why3Title": "Real people in support",
-    "why3Text": "Write to us and a member of our team replies."
+    "why3Text": "Write to us and a member of our team replies.",
+    "trackBandTitle": "Know where your shipment is",
+    "trackBandText": "Enter your tracking number to see every recorded step, from pickup to delivery.",
+    "trackBandCta": "Track a shipment"
   },
   "tracking": {
     "label": "Tracking number",
@@ -123,7 +126,11 @@
     "stepRegistered": "Registered",
     "stepTransit": "In transit",
     "stepOut": "Out for delivery",
-    "stepDelivered": "Delivered"
+    "stepDelivered": "Delivered",
+    "print": "Print",
+    "deliveredOn": "Delivered on",
+    "from": "From",
+    "to": "To"
   },
   "status": {
     "shipment_created": "Shipment created",

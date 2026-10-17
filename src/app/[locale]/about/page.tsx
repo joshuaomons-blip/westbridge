@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Eye, Headset, ShieldCheck } from "lucide-react";
+import { PHOTOS } from "@/lib/photos";
 import { PageHero } from "@/components/site/PageHero";
 import { getPageContent } from "@/lib/public-data";
 import { paragraphs } from "@/lib/content";
@@ -29,7 +30,7 @@ export default async function AboutPage({ params }: Props) {
 
   return (
     <>
-      <PageHero title={content.get("about.title") ?? t("title")} subtitle={t("subtitle")} />
+      <PageHero title={content.get("about.title") ?? t("title")} subtitle={t("subtitle")} image={PHOTOS.team} />
       <section className="py-16 lg:py-20">
         <div className="container-page grid gap-14 lg:grid-cols-12">
           <div className="space-y-5 text-lg leading-relaxed text-slate-700 lg:col-span-7">

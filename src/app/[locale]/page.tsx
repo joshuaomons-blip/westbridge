@@ -4,12 +4,9 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import {
   ArrowRight,
   Briefcase,
-  ClipboardCheck,
   Earth,
   Hash,
   Headset,
-  MapPinned,
-  PackageCheck,
   PackagePlus,
   PackageSearch,
   UserCheck,
@@ -46,10 +43,10 @@ export default async function HomePage({ params }: Props) {
     { href: "/contact", icon: Headset, title: t("quickSupport"), text: t("quickSupportText") },
   ];
   const steps = [
-    { icon: ClipboardCheck, title: t("step1Title"), text: t("step1Text") },
-    { icon: Hash, title: t("step2Title"), text: t("step2Text") },
-    { icon: MapPinned, title: t("step3Title"), text: t("step3Text") },
-    { icon: PackageCheck, title: t("step4Title"), text: t("step4Text") },
+    { photo: PHOTOS.parcels, title: t("step1Title"), text: t("step1Text") },
+    { photo: PHOTOS.warehouse, title: t("step2Title"), text: t("step2Text") },
+    { photo: PHOTOS.road, title: t("step3Title"), text: t("step3Text") },
+    { photo: PHOTOS.handover, title: t("step4Title"), text: t("step4Text") },
   ];
   const why = [
     { icon: Hash, title: t("why1Title"), text: t("why1Text") },
@@ -159,7 +156,7 @@ export default async function HomePage({ params }: Props) {
       <section className="bg-slate-50 py-20 lg:py-24" aria-labelledby="why-heading">
         <div className="container-page grid items-center gap-12 lg:grid-cols-2">
           <div className="relative aspect-[4/3] overflow-hidden rounded-lg">
-            <Image src={PHOTOS.warehouse} alt="" fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
+            <Image src={PHOTOS.team} alt="" fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
           </div>
           <div>
             <h2 id="why-heading" className="font-display text-3xl font-black tracking-[-0.01em] text-brand-900 [font-stretch:108%] sm:text-4xl">
@@ -183,7 +180,7 @@ export default async function HomePage({ params }: Props) {
         </div>
       </section>
 
-      {/* How it works (a real sequence, so the steps are numbered) */}
+      {/* How it works: a real sequence, told in photographs */}
       {content.isVisible("section.how_it_works.visible") && (
         <section className="py-20 lg:py-24" aria-labelledby="how-heading">
           <div className="container-page">
@@ -191,13 +188,18 @@ export default async function HomePage({ params }: Props) {
               {t("howTitle")}
             </h2>
             <p className="mt-3 text-lg text-slate-600">{t("howSubtitle")}</p>
-            <ol className="mt-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
+            <ol className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {steps.map((step, i) => (
-                <li key={step.title} className="relative border-t-[3px] border-brand-900 pt-6">
-                  <span className="font-display text-sm font-black text-signal-600">{i + 1}</span>
-                  <step.icon className="mt-3 h-8 w-8 text-brand-900" aria-hidden />
-                  <h3 className="mt-4 text-lg font-bold text-brand-900">{step.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-slate-600">{step.text}</p>
+                <li key={step.title} className="group relative overflow-hidden rounded-lg bg-brand-950">
+                  <div className="relative aspect-[3/4]">
+                    <Image src={step.photo} alt="" fill sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw" className="object-cover" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-brand-950 via-brand-950/60 to-brand-950/0" aria-hidden />
+                  </div>
+                  <div className="absolute inset-x-0 bottom-0 p-6 text-white">
+                    <span className="flex h-9 w-9 items-center justify-center rounded-full bg-signal-600 font-display text-sm font-black">{i + 1}</span>
+                    <h3 className="mt-4 text-xl font-bold">{step.title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-white/80">{step.text}</p>
+                  </div>
                 </li>
               ))}
             </ol>
@@ -205,10 +207,28 @@ export default async function HomePage({ params }: Props) {
         </section>
       )}
 
+      {/* Full-width photo band leading back to tracking */}
+      <section className="relative isolate overflow-hidden bg-brand-950" aria-labelledby="trackband-heading">
+        <Image src={PHOTOS.port} alt="" fill sizes="100vw" className="object-cover object-[50%_45%]" />
+        <div className="absolute inset-0 bg-gradient-to-r from-brand-950/95 via-brand-950/70 to-brand-950/10" aria-hidden />
+        <div className="container-page relative py-24 lg:py-32">
+          <div className="max-w-xl">
+            <h2 id="trackband-heading" className="font-display text-3xl font-black text-white [font-stretch:108%] sm:text-5xl">
+              {t("trackBandTitle")}
+            </h2>
+            <p className="mt-4 text-lg text-white/85">{t("trackBandText")}</p>
+            <Link href="/track" className="btn-accent mt-8 h-13 px-8 text-base">
+              <PackageSearch className="h-5 w-5" aria-hidden />
+              {t("trackBandCta")}
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Customer support band with photo */}
       {content.isVisible("section.support.visible") && (
         <section className="relative isolate overflow-hidden bg-brand-900" aria-labelledby="support-heading">
-          <Image src={PHOTOS.courier} alt="" fill sizes="100vw" className="object-cover object-center opacity-40" />
+          <Image src={PHOTOS.support} alt="" fill sizes="100vw" className="object-cover object-[70%_40%] opacity-50" />
           <div className="absolute inset-0 bg-gradient-to-r from-brand-900 via-brand-900/90 to-brand-900/30" aria-hidden />
           <div className="container-page relative flex flex-col items-start gap-8 py-20 lg:flex-row lg:items-center lg:justify-between">
             <div className="max-w-xl">

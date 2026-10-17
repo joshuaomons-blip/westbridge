@@ -1,27 +1,37 @@
 /**
  * Photography from Unsplash (free for commercial use under the Unsplash License,
- * https://unsplash.com/license). Served from Unsplash's CDN.
- * To use your own photos instead, upload them in Dashboard → Website Content
- * (hero image) or replace the IDs below.
+ * https://unsplash.com/license), served through Next.js image optimisation.
+ * Each photo was checked for visible logos or branding of other carriers.
+ * These are illustrative stock photos, not pictures of Westbridge's own fleet:
+ * to use your own, upload a hero image in Dashboard → Website Content or
+ * replace the IDs below.
  */
 const u = (id: string) => `https://images.unsplash.com/photo-${id}`;
 
 export const PHOTOS = {
-  hero: u("1631744591853-998c4308bbb0"), // truck on a mountain highway — Bailey Alexander
-  warehouse: u("1627309366653-2dedc084cdf1"), // warehouse shelving — Jacques Dillies
-  courier: u("1543499459-d1460946bdc6"), // carrying parcels — Handy Wicaksono
+  hero: u("1590497008432-598f04441de8"), // container terminal at dusk — Timelab
+  port: u("1769837496184-32831581c55a"), // container ship and cranes, aerial — Albert Stoynov
+  sea: u("1606185540834-d6e7483ee1a4"), // container ship with tugs, aerial — william william
+  air: u("1570710891163-6d3b5c47248b"), // aircraft overhead — Kevin Woblick
+  road: u("1766785368863-f2188a8c8b32"), // trucks on a highway — Bhargav Panchal
+  handover: u("1566576721346-d4a3b4eaeb55"), // parcel handover — RoseBox
+  warehouse: u("1586528116022-aeda1613c63d"), // warehouse aisle with staff — Adrian Sulyok
+  team: u("1664382953403-fc1ac77073a0"), // warehouse team — Centre for Ageing Better
+  forklift: u("1620388640785-892616248ec8"), // forklift and pallets — Pickawood
+  support: u("1626863905121-3b0c0ed7b94c"), // support agents with headsets — Charanjeet Dhiman
+  parcels: u("1580674285054-bed31e145f59"), // parcels loaded in a van — Claudio Schwarz
 };
 
 /** Photo for each service listing; unknown services rotate through the pool. */
 const SERVICE_PHOTOS: Record<string, string> = {
-  "international-parcel": u("1741698148065-fed31f2e31f8"), // port with cranes — Wolfgang Weiser
-  "domestic-delivery": u("1566576721346-d4a3b4eaeb55"), // parcel handover — RoseBox
-  freight: u("1504846257989-a76209d9d2ac"), // freight truck at dawn — Taylor
-  "business-shipping": u("1553413077-190dd305871c"), // large warehouse — Ruchindra Gunasekara
-  "shipment-tracking": u("1587293852726-70cdb56c2866"), // boxes on racks — CHUTTERSNAP
-  "logistics-support": u("1436491865332-7a61a109cc05"), // aircraft from above — Ross Parmly
+  "international-parcel": PHOTOS.air,
+  "domestic-delivery": PHOTOS.handover,
+  freight: PHOTOS.road,
+  "business-shipping": PHOTOS.warehouse,
+  "shipment-tracking": PHOTOS.parcels,
+  "logistics-support": PHOTOS.support,
 };
-const POOL = Object.values(SERVICE_PHOTOS);
+const POOL = [PHOTOS.sea, PHOTOS.forklift, PHOTOS.team, PHOTOS.port, ...Object.values(SERVICE_PHOTOS)];
 
 export function servicePhoto(slug: string, index: number): string {
   return SERVICE_PHOTOS[slug] ?? POOL[index % POOL.length];

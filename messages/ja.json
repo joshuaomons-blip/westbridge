@@ -79,7 +79,10 @@
     "why2Title": "5つの言語",
     "why2Text": "英語、ポーランド語、日本語、スペイン語、ドイツ語で追跡できます。",
     "why3Title": "人が対応するサポート",
-    "why3Text": "お問い合わせには当社スタッフがお答えします。"
+    "why3Text": "お問い合わせには当社スタッフがお答えします。",
+    "trackBandTitle": "貨物の現在地を確認",
+    "trackBandText": "追跡番号を入力すると、集荷から配達までの記録をすべて確認できます。",
+    "trackBandCta": "貨物を追跡"
   },
   "tracking": {
     "label": "追跡番号",
@@ -123,7 +126,11 @@
     "stepRegistered": "登録済み",
     "stepTransit": "輸送中",
     "stepOut": "配達中",
-    "stepDelivered": "配達完了"
+    "stepDelivered": "配達完了",
+    "print": "印刷",
+    "deliveredOn": "配達日",
+    "from": "発送地",
+    "to": "配達先"
   },
   "status": {
     "shipment_created": "貨物登録",

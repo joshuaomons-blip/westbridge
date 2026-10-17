@@ -45,17 +45,17 @@ export default async function TrackPage({ params, searchParams }: Props) {
   const content = result?.kind === "found" ? await getPageContent(locale) : null;
 
   return (
-    <div className="bg-slate-50 pb-20">
-      <section className="relative isolate overflow-hidden bg-brand-950 pt-14 pb-24 text-white">
-        <Image src={PHOTOS.hero} alt="" fill priority sizes="100vw" className="object-cover object-[60%_50%] opacity-35" />
-        <div className="absolute inset-0 bg-gradient-to-r from-brand-950 via-brand-950/85 to-brand-950/40" aria-hidden />
-        <div className="container-page relative max-w-4xl">
-          <h1 className="font-display text-4xl font-black tracking-[-0.02em] [font-stretch:110%] sm:text-5xl">{t("title")}</h1>
-          <p className="mt-3 text-white/80">{t("subtitle")}</p>
+    <div className="bg-slate-100 pb-20">
+      <section className="relative isolate overflow-hidden bg-brand-950 pt-16 pb-28 text-white print:hidden">
+        <Image src={PHOTOS.hero} alt="" fill priority sizes="100vw" className="object-cover object-[50%_60%]" />
+        <div className="absolute inset-0 bg-gradient-to-r from-brand-950/95 via-brand-950/70 to-brand-950/20" aria-hidden />
+        <div className="container-page relative max-w-5xl">
+          <h1 className="font-display text-4xl font-black tracking-[-0.02em] [font-stretch:110%] sm:text-6xl">{t("title")}</h1>
+          <p className="mt-4 max-w-xl text-lg text-white/85">{t("subtitle")}</p>
         </div>
       </section>
-      <div className="container-page -mt-14 max-w-4xl space-y-6">
-        <div className="card p-6 sm:p-8">
+      <div className="container-page -mt-16 max-w-5xl space-y-6">
+        <div className="rounded-xl bg-white p-6 shadow-[0_18px_50px_-24px_rgba(7,21,47,0.5)] ring-1 ring-slate-200 sm:p-8 print:hidden">
           <TrackingForm defaultValue={number} autoFocus={!number} />
         </div>
 
