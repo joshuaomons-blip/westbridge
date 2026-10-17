@@ -192,7 +192,9 @@ export async function TrackingResult({
                             warn
                               ? "bg-amber-600 text-white ring-4 ring-amber-600/20"
                               : current
-                                ? "bg-signal-600 text-white ring-4 ring-signal-600/20"
+                                ? category === "delivered"
+                                  ? "bg-emerald-600 text-white ring-4 ring-emerald-600/20"
+                                  : "bg-signal-600 text-white ring-4 ring-signal-600/20"
                                 : done
                                   ? "bg-brand-800 text-white"
                                   : "bg-white text-slate-400 ring-2 ring-slate-200",
@@ -364,7 +366,7 @@ export async function TrackingResult({
                 <span className="absolute top-1/2 right-0 h-3 w-3 -translate-y-1/2 rounded-full border-2 border-white/40 bg-brand-950" />
                 <span className="absolute inset-x-3 top-1/2 h-0 -translate-y-1/2 border-t-2 border-dashed border-white/25" />
                 <span
-                  className={cn("trk-grow absolute top-1/2 left-3 h-1 -translate-y-1/2 rounded-full", isProblem ? "bg-amber-500" : "bg-signal-500")}
+                  className={cn("trk-grow absolute top-1/2 left-3 h-1 -translate-y-1/2 rounded-full", isProblem ? "bg-amber-500" : category === "delivered" ? "bg-emerald-500" : "bg-signal-500")}
                   style={{ width: `calc((100% - 1.5rem) * ${pct / 100})` }}
                 />
                 <span
