@@ -19,7 +19,7 @@ export async function clientIp(): Promise<string> {
 
 /** Salted hash so raw IP addresses are never stored. */
 function bucketKey(action: string, identifier: string): string {
-  const salt = process.env.RATE_LIMIT_SALT ?? "westbridge-default-salt-change-me";
+  const salt = process.env.RATE_LIMIT_SALT || "wb-7f3c1e9a52d84b06a1c3e5f7092b4d6e";
   return `${action}:${createHash("sha256").update(`${salt}:${identifier}`).digest("hex").slice(0, 40)}`;
 }
 

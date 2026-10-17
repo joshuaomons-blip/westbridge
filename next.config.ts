@@ -1,9 +1,10 @@
 import type { NextConfig } from "next";
 import createNextIntlPlugin from "next-intl/plugin";
+import { PUBLIC_SUPABASE_URL } from "./src/lib/public-config";
 
 const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL ?? "";
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || PUBLIC_SUPABASE_URL;
 const supabaseHost = supabaseUrl ? new URL(supabaseUrl).host : "";
 
 // Content Security Policy. 'unsafe-inline' for scripts is needed by the
@@ -32,6 +33,8 @@ const securityHeaders = [
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  // Code style checks run separately (npm run lint) and must not block a deploy.
+  eslint: { ignoreDuringBuilds: true },
   images: {
     remotePatterns: supabaseHost
       ? [{ protocol: "https", hostname: supabaseHost, pathname: "/storage/v1/object/public/**" }]
