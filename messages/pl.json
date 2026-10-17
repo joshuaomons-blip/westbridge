@@ -239,7 +239,8 @@
     "pending": "Oczekuje",
     "holdCustoms": "Termin doręczenia zostanie potwierdzony po zakończeniu odprawy celnej.",
     "holdOther": "Termin doręczenia zostanie potwierdzony po rozwiązaniu problemu.",
-    "holdAt": "Wstrzymana w"
+    "holdAt": "Wstrzymana w",
+    "scrollHint": "Przewiń, aby zobaczyć szczegóły"
   },
   "status": {
     "shipment_created": "Przesyłka utworzona",

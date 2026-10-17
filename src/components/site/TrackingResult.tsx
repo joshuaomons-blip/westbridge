@@ -30,6 +30,7 @@ import { CopyButton } from "./CopyButton";
 import { PrintButton } from "./PrintButton";
 import { ShareButton } from "./ShareButton";
 import { FoundBanner } from "./FoundBanner";
+import { ScrollHint } from "./ScrollHint";
 
 /** Banner colour and icon for each kind of status. White text passes contrast on all of them. */
 export const BANNER: Record<StatusCategory, { bg: string; dot: string; icon: LucideIcon }> = {
@@ -120,6 +121,7 @@ export async function TrackingResult({
   return (
     <div className="space-y-6">
       <FoundBanner title={t("found")} text={t("foundText")} />
+      <ScrollHint label={t("scrollHint")} targetId="journey-section" />
       {data.is_demo && (
         <div className="flex items-start gap-3 rounded-lg border border-amber-300 bg-amber-50 p-4 text-sm text-amber-900">
           <FlaskConical className="mt-0.5 h-5 w-5 shrink-0" aria-hidden />
@@ -233,7 +235,7 @@ export async function TrackingResult({
 
 
           {/* Journey: every place the shipment has passed through, and the stops ahead */}
-          <section className="rounded-2xl bg-white px-6 py-7 ring-1 ring-slate-200 sm:px-9" aria-labelledby="journey-heading">
+          <section id="journey-section" className="scroll-mt-28 rounded-2xl bg-white px-6 py-7 ring-1 ring-slate-200 sm:px-9" aria-labelledby="journey-heading">
             <div className="flex flex-wrap items-baseline justify-between gap-2 border-b border-slate-100 pb-5">
               <h2 id="journey-heading" className="font-display text-2xl font-black text-brand-900 [font-stretch:108%]">
                 {t("journey")}

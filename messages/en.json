@@ -239,7 +239,8 @@
     "pending": "Pending",
     "holdCustoms": "The delivery date will be confirmed once customs clearance is complete.",
     "holdOther": "The delivery date will be confirmed once the issue is resolved.",
-    "holdAt": "On hold at"
+    "holdAt": "On hold at",
+    "scrollHint": "Scroll for full details"
   },
   "status": {
     "shipment_created": "Shipment created",

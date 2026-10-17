@@ -230,6 +230,13 @@
 .trk-ping {
   animation: trk-ping 1.8s cubic-bezier(0, 0, 0.2, 1) infinite;
 }
+@keyframes trk-bob {
+  0%, 100% { transform: translateY(-1px); }
+  50% { transform: translateY(3px); }
+}
+.trk-bob {
+  animation: trk-bob 1.8s ease-in-out infinite;
+}
 @media print {
   .trk-stage > *, .trk-grow, .trk-marker, .trk-pop { animation: none !important; }
 }

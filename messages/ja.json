@@ -239,7 +239,8 @@
     "pending": "保留中",
     "holdCustoms": "通関手続きの完了後に、お届け日をお知らせします。",
     "holdOther": "問題の解決後に、お届け日をお知らせします。",
-    "holdAt": "保留中の場所："
+    "holdAt": "保留中の場所：",
+    "scrollHint": "スクロールして詳細を表示"
   },
   "status": {
     "shipment_created": "貨物登録",

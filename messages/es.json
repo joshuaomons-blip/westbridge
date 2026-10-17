@@ -239,7 +239,8 @@
     "pending": "Pendiente",
     "holdCustoms": "La fecha de entrega se confirmará cuando finalice el despacho de aduanas.",
     "holdOther": "La fecha de entrega se confirmará cuando se resuelva la incidencia.",
-    "holdAt": "En espera en"
+    "holdAt": "En espera en",
+    "scrollHint": "Desliza para ver todos los detalles"
   },
   "status": {
     "shipment_created": "Envío creado",

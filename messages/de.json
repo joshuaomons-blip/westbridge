@@ -239,7 +239,8 @@
     "pending": "Ausstehend",
     "holdCustoms": "Das Zustelldatum wird nach Abschluss der Zollabfertigung bestätigt.",
     "holdOther": "Das Zustelldatum wird bestätigt, sobald das Problem behoben ist.",
-    "holdAt": "Angehalten in"
+    "holdAt": "Angehalten in",
+    "scrollHint": "Für alle Details scrollen"
   },
   "status": {
     "shipment_created": "Sendung erstellt",
