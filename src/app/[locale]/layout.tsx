@@ -64,7 +64,7 @@ export default async function LocaleLayout({
           {content.preview && <PreviewBanner />}
           {settings.demo_mode && <DemoBanner />}
           {content.get("site.notice") && <NoticeBar text={content.get("site.notice")!} />}
-          <Header />
+          <Header email={content.get("contact.email")} />
           <main id="main" className="flex-1">
             {children}
           </main>

@@ -10,7 +10,7 @@ import { cn } from "@/lib/format";
 type Tab = "track" | "ship" | "help";
 
 /** White panel with Track / Ship / Get help tabs, overlapping the hero photo. */
-export function HeroPanel() {
+export function HeroPanel({ supportLink }: { supportLink?: string | null }) {
   const t = useTranslations("home");
   const [tab, setTab] = useState<Tab>("track");
   const tabs: { id: Tab; label: string; icon: LucideIcon }[] = [
@@ -20,7 +20,7 @@ export function HeroPanel() {
   ];
 
   return (
-    <div className="overflow-hidden rounded-lg bg-white shadow-[0_24px_60px_-20px_rgba(7,21,47,0.55)]">
+    <div className="overflow-hidden rounded-2xl bg-white shadow-[0_24px_60px_-20px_rgba(7,21,47,0.55)]">
       <div role="tablist" aria-label={t("tabTrack")} className="grid grid-cols-3 border-b border-slate-200">
         {tabs.map(({ id, label, icon: Icon }) => {
           const active = tab === id;
@@ -70,9 +70,15 @@ export function HeroPanel() {
               <Link href="/track" className="btn-primary h-12 px-6">
                 {t("helpTrack")}
               </Link>
-              <Link href="/contact" className="btn-outline h-12 px-6">
-                {t("helpContact")}
-              </Link>
+              {supportLink ? (
+                <a href={supportLink} className="btn-outline h-12 px-6">
+                  {t("helpContact")}
+                </a>
+              ) : (
+                <Link href="/contact" className="btn-outline h-12 px-6">
+                  {t("helpContact")}
+                </Link>
+              )}
             </div>
           </div>
         )}

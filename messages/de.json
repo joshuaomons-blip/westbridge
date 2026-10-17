@@ -222,7 +222,10 @@
     "journey": "Sendungsweg",
     "journeyText": "In Statusmeldungen erfasste Orte und geplante nächste Stationen.",
     "currentLocation": "Aktueller Standort",
-    "upcoming": "Nächste Station"
+    "upcoming": "Nächste Station",
+    "emailSupport": "Support per E-Mail",
+    "emailSubject": "Sendung {number}",
+    "contactForm": "Kontaktformular"
   },
   "status": {
     "shipment_created": "Sendung erstellt",
@@ -271,14 +274,18 @@
   "about": {
     "title": "Über Westbridge Global Express",
     "subtitle": "Wir verbinden die Welt. Zuverlässig zugestellt.",
-    "placeholderBody": "Westbridge Global Express bietet Paket- und Versanddienstleistungen mit Online-Sendungsverfolgung für jede Sendung.\n\nWeitere Informationen über unser Unternehmen werden hier in Kürze veröffentlicht.",
+    "placeholderBody": "Westbridge Global Express bietet Paket- und Versanddienste für Privat- und Geschäftskunden – mit Online-Sendungsverfolgung für jede Sendung.\n\nJede Sendung, die wir übernehmen, erhält eine eigene Sendungsnummer. Unser Team erfasst jeden Schritt ihres Weges, sodass Absender und Empfänger den Fortschritt online auf Englisch, Polnisch, Japanisch, Spanisch und Deutsch verfolgen können.\n\nBei Fragen zum Versand oder zur Sendungsverfolgung hilft Ihnen unser Support-Team gerne weiter.",
     "valuesTitle": "Worauf wir Wert legen",
     "value1Title": "Zuverlässigkeit",
     "value1Text": "Jede Sendung wird erfasst und ihr Fortschritt dokumentiert.",
     "value2Title": "Transparenz",
     "value2Text": "Kunden können die erfassten Schritte jederzeit online einsehen.",
     "value3Title": "Unterstützung",
-    "value3Text": "Unser Team hilft gern bei Fragen zu Sendungen."
+    "value3Text": "Unser Team hilft gern bei Fragen zu Sendungen.",
+    "storyTitle": "Wer wir sind",
+    "ctaTitle": "Haben Sie etwas zu versenden?",
+    "ctaText": "Sagen Sie uns, was Sie versenden möchten, und unser Team antwortet Ihnen per E-Mail.",
+    "ctaButton": "Kontakt aufnehmen"
   },
   "contact": {
     "title": "Kontakt",
@@ -310,7 +317,13 @@
       "subjectRequired": "Bitte geben Sie einen Betreff ein.",
       "messageShort": "Bitte schreiben Sie mindestens 10 Zeichen.",
       "messageLong": "Ihre Nachricht ist zu lang (maximal 5000 Zeichen)."
-    }
+    },
+    "emailTitle": "Lieber per E-Mail?",
+    "emailText": "Schreiben Sie uns direkt. Wenn es um eine Sendung geht, geben Sie bitte Ihre Sendungsnummer an.",
+    "emailCta": "E-Mail schreiben",
+    "trackTitle": "Suchen Sie eine Sendung?",
+    "trackText": "Sehen Sie den zuletzt erfassten Status online mit Ihrer Sendungsnummer.",
+    "trackCta": "Sendung verfolgen"
   },
   "legal": {
     "reviewNotice": "Entwurfshinweis: Diese Seite enthält Platzhaltertext und muss vor dem Livegang der Website für die geltenden Rechtsordnungen geprüft werden.",
@@ -326,7 +339,10 @@
     "privacy": "Datenschutzerklärung",
     "terms": "Nutzungsbedingungen",
     "shipping": "Versand",
-    "trackingSupport": "Verfolgung & Hilfe"
+    "trackingSupport": "Verfolgung & Hilfe",
+    "ctaTitle": "Sendung verfolgen oder mit uns sprechen",
+    "ctaText": "Geben Sie eine Sendungsnummer ein oder schreiben Sie uns bei Fragen zum Versand oder Empfang.",
+    "emailUs": "Schreiben Sie uns"
   },
   "cookie": {
     "text": "Diese Website verwendet nur notwendige Cookies, zum Beispiel um Ihre Sprache zu speichern. Wir verwenden keine Werbe- oder Tracking-Cookies.",

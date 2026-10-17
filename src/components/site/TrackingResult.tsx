@@ -9,6 +9,7 @@ import {
   Clock,
   Earth,
   FlaskConical,
+  Mail,
   MapPin,
   PackageCheck,
   Truck,
@@ -21,6 +22,7 @@ import { categoryOf, isStatusCode, progressIndex, type StatusCategory } from "@/
 import { cn, dayKey, formatDate, formatDateParts, formatDateTime, formatDayHeading, formatRelative, formatTime } from "@/lib/format";
 import { PHOTOS } from "@/lib/photos";
 import { buildJourney } from "@/lib/journey";
+import { supportHref } from "@/lib/support";
 import { localized } from "@/lib/public-data";
 import { CopyButton } from "./CopyButton";
 import { PrintButton } from "./PrintButton";
@@ -38,12 +40,23 @@ export const BANNER: Record<StatusCategory, { bg: string; dot: string; icon: Luc
 const actionBtn =
   "h-11 rounded-md border border-slate-200 bg-white px-3 text-sm font-semibold text-brand-900 transition hover:border-brand-700/40 hover:bg-slate-50";
 
-export async function TrackingResult({ data, locale, supportText }: { data: PublicTracking; locale: string; supportText?: string }) {
+export async function TrackingResult({
+  data,
+  locale,
+  supportText,
+  supportEmail,
+}: {
+  data: PublicTracking;
+  locale: string;
+  supportText?: string;
+  supportEmail?: string;
+}) {
   const t = await getTranslations("tracking");
   const ts = await getTranslations("status");
   const td = await getTranslations("statusDescription");
   const tt = await getTranslations("shipmentType");
 
+  const mailto = supportHref(supportEmail, t("emailSubject", { number: data.tracking_number }));
   const statusLabel = (code: string) => (isStatusCode(code) ? ts(code) : code);
   const category = categoryOf(data.status);
   const banner = BANNER[category];
@@ -386,9 +399,17 @@ export async function TrackingResult({ data, locale, supportText }: { data: Publ
               </h2>
               <p className="mt-2 text-sm whitespace-pre-line text-slate-600">{supportText ?? t("supportText")}</p>
               <div className="mt-5 flex flex-col gap-2">
-                <Link href="/contact" className="btn-accent h-11">
-                  {t("contactSupport")}
-                </Link>
+                {mailto ? (
+                  <a href={mailto} className="btn-accent h-11">
+                    <Mail className="h-4 w-4" aria-hidden />
+                    {t("emailSupport")}
+                  </a>
+                ) : (
+                  <Link href="/contact" className="btn-accent h-11">
+                    {t("contactSupport")}
+                  </Link>
+                )}
+                {supportEmail && <p className="text-center text-xs break-all text-slate-500">{supportEmail}</p>}
                 <Link href="/track" className="btn-ghost h-11">
                   {t("trackAnother")}
                 </Link>

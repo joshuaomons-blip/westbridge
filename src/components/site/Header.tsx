@@ -2,7 +2,7 @@
 
 import { Suspense, useEffect, useId, useRef, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
-import { ChevronDown, Headset, Menu, PackageSearch, Search, X } from "lucide-react";
+import { ChevronDown, Headset, Mail, Menu, PackageSearch, Search, X } from "lucide-react";
 import { Link, usePathname } from "@/i18n/navigation";
 import { Logo } from "./Logo";
 import { LanguageSwitcher } from "./LanguageSwitcher";
@@ -11,7 +11,7 @@ import { cn } from "@/lib/format";
 type MenuLink = { label: string; href: string; text?: string };
 type MenuGroup = { id: string; label: string; links: MenuLink[]; withTracking?: boolean };
 
-export function Header() {
+export function Header({ email }: { email?: string }) {
   const t = useTranslations("nav");
   const tt = useTranslations("tracking");
   const locale = useLocale();
@@ -92,6 +92,12 @@ export function Header() {
       {/* Service bar */}
       <div className="hidden bg-brand-900 text-white lg:block">
         <div className="container-page flex h-9 items-center justify-end gap-6 text-[13px]">
+          {email && (
+            <a href={`mailto:${email}`} className="inline-flex items-center gap-1.5 text-white/80 hover:text-white">
+              <Mail className="h-3.5 w-3.5" aria-hidden />
+              {email}
+            </a>
+          )}
           <Link href="/contact" className="inline-flex items-center gap-1.5 text-white/80 hover:text-white">
             <Headset className="h-3.5 w-3.5" aria-hidden />
             {t("customerService")}

@@ -222,7 +222,10 @@
     "journey": "Journey",
     "journeyText": "Places recorded in tracking updates, and planned stops ahead.",
     "currentLocation": "Current location",
-    "upcoming": "Upcoming stop"
+    "upcoming": "Upcoming stop",
+    "emailSupport": "Email support",
+    "emailSubject": "Shipment {number}",
+    "contactForm": "Contact form"
   },
   "status": {
     "shipment_created": "Shipment created",
@@ -271,14 +274,18 @@
   "about": {
     "title": "About Westbridge Global Express",
     "subtitle": "Connecting the World. Delivering with Confidence.",
-    "placeholderBody": "Westbridge Global Express provides parcel and shipment services with online tracking for every shipment.\n\nMore information about our company will be published here soon.",
+    "placeholderBody": "Westbridge Global Express provides parcel and shipment services for individuals and businesses, with online tracking for every shipment.\n\nEvery shipment we handle is registered with its own tracking number. Our team records each step of its journey, so senders and recipients can follow its progress online in English, Polish, Japanese, Spanish and German.\n\nIf you have a question about sending or tracking a shipment, our support team is ready to help.",
     "valuesTitle": "What we focus on",
     "value1Title": "Reliability",
     "value1Text": "Every shipment is registered and its progress is recorded.",
     "value2Title": "Transparency",
     "value2Text": "Customers can follow recorded milestones online at any time.",
     "value3Title": "Support",
-    "value3Text": "Our team is available to help with questions about shipments."
+    "value3Text": "Our team is available to help with questions about shipments.",
+    "storyTitle": "Who we are",
+    "ctaTitle": "Have something to send?",
+    "ctaText": "Tell us what you need to ship and our team will reply by email.",
+    "ctaButton": "Contact us"
   },
   "contact": {
     "title": "Contact us",
@@ -310,7 +317,13 @@
       "subjectRequired": "Please enter a subject.",
       "messageShort": "Please write at least 10 characters.",
       "messageLong": "Your message is too long (maximum 5000 characters)."
-    }
+    },
+    "emailTitle": "Prefer email?",
+    "emailText": "Write to us directly. If your message is about a shipment, please include your tracking number.",
+    "emailCta": "Email us",
+    "trackTitle": "Looking for a shipment?",
+    "trackText": "See its latest recorded status online with your tracking number.",
+    "trackCta": "Track a shipment"
   },
   "legal": {
     "reviewNotice": "Draft notice: this page contains placeholder text and must be reviewed for the applicable jurisdictions before the website goes live.",
@@ -326,7 +339,10 @@
     "privacy": "Privacy policy",
     "terms": "Terms of service",
     "shipping": "Shipping",
-    "trackingSupport": "Tracking & support"
+    "trackingSupport": "Tracking & support",
+    "ctaTitle": "Track a shipment or talk to our team",
+    "ctaText": "Enter a tracking number, or email us with any question about sending or receiving.",
+    "emailUs": "Email us"
   },
   "cookie": {
     "text": "This website uses only essential cookies, for example to remember your language. We do not use advertising or tracking cookies.",

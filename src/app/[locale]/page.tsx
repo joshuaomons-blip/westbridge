@@ -7,6 +7,7 @@ import {
   Earth,
   Hash,
   Headset,
+  Mail,
   PackagePlus,
   PackageSearch,
   UserCheck,
@@ -17,6 +18,7 @@ import { Faq, FeatureRows, PromoBand, SafetySection, StatusGuide } from "@/compo
 import { getPageContent, getPublishedServices, localized } from "@/lib/public-data";
 import { PHOTOS, servicePhoto } from "@/lib/photos";
 import { pageAlternates } from "@/lib/seo";
+import { supportHref } from "@/lib/support";
 
 type Props = { params: Promise<{ locale: string }> };
 
@@ -35,6 +37,7 @@ export default async function HomePage({ params }: Props) {
   setRequestLocale(locale);
   const t = await getTranslations("home");
   const [content, services] = await Promise.all([getPageContent(locale), getPublishedServices()]);
+  const supportLink = supportHref(content.get("contact.email"));
   const heroImage = content.get("home.hero_image") ?? PHOTOS.hero;
 
   const quick = [
@@ -69,7 +72,7 @@ export default async function HomePage({ params }: Props) {
             {content.get("home.hero_subtitle") ?? t("heroSubtitle")}
           </p>
           <div className="hero-in mt-10 w-full max-w-3xl text-left [animation-delay:240ms]">
-            <HeroPanel />
+            <HeroPanel supportLink={supportLink} />
           </div>
         </div>
       </section>
@@ -244,9 +247,10 @@ export default async function HomePage({ params }: Props) {
               </h2>
               <p className="mt-4 text-lg text-white/85 whitespace-pre-line">{content.get("support.text") ?? t("supportText")}</p>
             </div>
-            <Link href="/contact" className="btn-accent h-13 shrink-0 px-8 text-base">
+            <a href={supportLink ?? `/${locale}/contact`} className="btn-accent h-13 shrink-0 px-8 text-base">
+              <Mail className="h-5 w-5" aria-hidden />
               {t("supportCta")}
-            </Link>
+            </a>
           </div>
         </section>
       )}

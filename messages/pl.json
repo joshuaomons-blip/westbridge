@@ -222,7 +222,10 @@
     "journey": "Trasa przesyłki",
     "journeyText": "Miejsca zapisane w aktualizacjach oraz planowane kolejne przystanki.",
     "currentLocation": "Obecna lokalizacja",
-    "upcoming": "Kolejny przystanek"
+    "upcoming": "Kolejny przystanek",
+    "emailSupport": "Napisz do obsługi",
+    "emailSubject": "Przesyłka {number}",
+    "contactForm": "Formularz kontaktowy"
   },
   "status": {
     "shipment_created": "Przesyłka utworzona",
@@ -271,14 +274,18 @@
   "about": {
     "title": "O Westbridge Global Express",
     "subtitle": "Łączymy świat. Dostarczamy z pewnością.",
-    "placeholderBody": "Westbridge Global Express świadczy usługi przesyłkowe ze śledzeniem online każdej przesyłki.\n\nWięcej informacji o naszej firmie wkrótce pojawi się na tej stronie.",
+    "placeholderBody": "Westbridge Global Express świadczy usługi przesyłek i paczek dla klientów indywidualnych i firm, z możliwością śledzenia online każdej przesyłki.\n\nKażda obsługiwana przez nas przesyłka otrzymuje własny numer. Nasz zespół zapisuje każdy etap jej drogi, dzięki czemu nadawcy i odbiorcy mogą śledzić ją online po angielsku, polsku, japońsku, hiszpańsku i niemiecku.\n\nJeśli masz pytanie dotyczące nadania lub śledzenia przesyłki, nasz zespół obsługi chętnie pomoże.",
     "valuesTitle": "Na czym się skupiamy",
     "value1Title": "Niezawodność",
     "value1Text": "Każda przesyłka jest rejestrowana, a jej postęp zapisywany.",
     "value2Title": "Przejrzystość",
     "value2Text": "Klienci mogą w każdej chwili sprawdzić zarejestrowane etapy online.",
     "value3Title": "Wsparcie",
-    "value3Text": "Nasz zespół chętnie odpowie na pytania dotyczące przesyłek."
+    "value3Text": "Nasz zespół chętnie odpowie na pytania dotyczące przesyłek.",
+    "storyTitle": "Kim jesteśmy",
+    "ctaTitle": "Masz coś do wysłania?",
+    "ctaText": "Napisz, co chcesz wysłać, a nasz zespół odpowie e-mailem.",
+    "ctaButton": "Skontaktuj się z nami"
   },
   "contact": {
     "title": "Kontakt",
@@ -310,7 +317,13 @@
       "subjectRequired": "Wpisz temat.",
       "messageShort": "Wiadomość musi mieć co najmniej 10 znaków.",
       "messageLong": "Wiadomość jest za długa (maksymalnie 5000 znaków)."
-    }
+    },
+    "emailTitle": "Wolisz e-mail?",
+    "emailText": "Napisz do nas bezpośrednio. Jeśli wiadomość dotyczy przesyłki, podaj numer przesyłki.",
+    "emailCta": "Napisz e-mail",
+    "trackTitle": "Szukasz przesyłki?",
+    "trackText": "Sprawdź jej ostatni zapisany status online, podając numer przesyłki.",
+    "trackCta": "Śledź przesyłkę"
   },
   "legal": {
     "reviewNotice": "Wersja robocza: ta strona zawiera tekst przykładowy i przed uruchomieniem serwisu musi zostać sprawdzona pod kątem obowiązujących przepisów.",
@@ -326,7 +339,10 @@
     "privacy": "Polityka prywatności",
     "terms": "Regulamin",
     "shipping": "Wysyłka",
-    "trackingSupport": "Śledzenie i pomoc"
+    "trackingSupport": "Śledzenie i pomoc",
+    "ctaTitle": "Śledź przesyłkę lub porozmawiaj z nami",
+    "ctaText": "Wpisz numer przesyłki albo napisz do nas z pytaniem o nadanie lub odbiór.",
+    "emailUs": "Napisz do nas"
   },
   "cookie": {
     "text": "Ta strona używa wyłącznie niezbędnych plików cookie, np. do zapamiętania wybranego języka. Nie używamy plików cookie reklamowych ani śledzących.",

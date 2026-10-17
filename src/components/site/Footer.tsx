@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import { getLocale, getTranslations } from "next-intl/server";
 import { Mail, MapPin, Phone } from "lucide-react";
+import { TrackingForm } from "./TrackingForm";
 import { Link } from "@/i18n/navigation";
 import { Logo } from "./Logo";
 import { LanguageSwitcher } from "./LanguageSwitcher";
@@ -20,6 +21,28 @@ export async function Footer({ content }: { content: SiteContent }) {
   return (
     <footer className="mt-auto bg-brand-950 text-white/80">
       <div className="h-1 bg-signal-600" aria-hidden />
+      <div className="border-b border-white/10 bg-brand-900 print:hidden">
+        <div className="container-page grid items-center gap-8 py-12 lg:grid-cols-12 lg:py-14">
+          <div className="lg:col-span-4">
+            <h2 className="font-display text-2xl font-black text-white [font-stretch:108%] sm:text-3xl">{t("ctaTitle")}</h2>
+            <p className="mt-2 text-white/70">{t("ctaText")}</p>
+          </div>
+          <div className="lg:col-span-6">
+            <TrackingForm variant="hero" />
+          </div>
+          {email && (
+            <div className="lg:col-span-2 lg:pt-1">
+              <a
+                href={`mailto:${email}`}
+                className="inline-flex h-13 w-full items-center justify-center gap-2 rounded-md border border-white/25 px-5 text-sm font-semibold text-white transition hover:bg-white/10"
+              >
+                <Mail className="h-4 w-4" aria-hidden />
+                {t("emailUs")}
+              </a>
+            </div>
+          )}
+        </div>
+      </div>
       <div className="container-page grid gap-10 py-14 md:grid-cols-2 lg:grid-cols-12">
         <div className="lg:col-span-5">
           <Logo inverted />

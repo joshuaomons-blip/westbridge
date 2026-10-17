@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { PHOTOS } from "@/lib/photos";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { ArrowRight, ChevronRight, CircleAlert, ListChecks, ReceiptText, SearchX, ShieldAlert, WifiOff } from "lucide-react";
+import { ArrowRight, ChevronRight, CircleAlert, Mail, ListChecks, ReceiptText, SearchX, ShieldAlert, WifiOff } from "lucide-react";
 import { TrackingForm } from "@/components/site/TrackingForm";
 import { BANNER, TrackingResult } from "@/components/site/TrackingResult";
 import { lookupTracking, type TrackingResult as Result } from "@/lib/tracking";
@@ -10,6 +10,7 @@ import { checkRateLimit } from "@/lib/rate-limit";
 import { MAX_TRACKING_NUMBERS, parseTrackingList } from "@/lib/tracking-format";
 import { categoryOf, isStatusCode } from "@/lib/statuses";
 import { cn, formatDate, formatRelative } from "@/lib/format";
+import { supportHref } from "@/lib/support";
 import { getPageContent } from "@/lib/public-data";
 import { pageAlternates } from "@/lib/seo";
 import { Link } from "@/i18n/navigation";
@@ -49,7 +50,9 @@ export default async function TrackPage({ params, searchParams }: Props) {
   // One number: full detail view. Several: a summary list linking to each.
   const single = numbers.length === 1 ? await track(numbers[0]) : null;
   const many = numbers.length > 1 ? await Promise.all(numbers.map(async (n) => ({ number: n, result: await track(n) }))) : null;
-  const content = single?.kind === "found" ? await getPageContent(locale) : null;
+  const content = await getPageContent(locale);
+  const supportEmail = content.get("contact.email");
+  const supportLink = supportHref(supportEmail, numbers.length === 1 ? t("emailSubject", { number: numbers[0] }) : undefined);
 
   const messages: MessageText = {
     invalidTitle: t("invalidTitle"),
@@ -77,10 +80,10 @@ export default async function TrackPage({ params, searchParams }: Props) {
           <TrackingForm defaultValue={numbers.join(", ")} autoFocus={numbers.length === 0} />
         </div>
 
-        {numbers.length === 0 && <Landing locale={locale} />}
+        {numbers.length === 0 && <Landing locale={locale} supportLink={supportLink} />}
 
-        {single?.kind === "found" && <TrackingResult data={single.data} locale={locale} supportText={content?.get("support.text")} />}
-        {single && single.kind !== "found" && <ResultMessage kind={single.kind} text={messages} />}
+        {single?.kind === "found" && <TrackingResult data={single.data} locale={locale} supportText={content.get("support.text")} supportEmail={supportEmail} />}
+        {single && single.kind !== "found" && <ResultMessage kind={single.kind} text={messages} supportLink={supportLink} />}
 
         {many && (
           <section className="overflow-hidden rounded-2xl bg-white ring-1 ring-slate-200" aria-labelledby="multi-heading">
@@ -166,7 +169,7 @@ async function SummaryRow({ number, result, locale, messages }: { number: string
   );
 }
 
-async function Landing({ locale }: { locale: string }) {
+async function Landing({ locale, supportLink }: { locale: string; supportLink: string | null }) {
   const t = await getTranslations("tracking");
   const th = await getTranslations("home");
   const cards = [
@@ -203,9 +206,10 @@ async function Landing({ locale }: { locale: string }) {
         <div className="flex flex-col justify-center p-7 sm:p-10">
           <h3 className="font-display text-2xl font-black [font-stretch:108%]">{th("supportTitle")}</h3>
           <p className="mt-2 text-white/80">{t("supportText")}</p>
-          <Link href="/contact" className="btn-accent mt-6 h-12 self-start px-6">
-            {t("contactSupport")}
-          </Link>
+          <a href={supportLink ?? `/${locale}/contact`} className="btn-accent mt-6 h-12 self-start px-6">
+            <Mail className="h-5 w-5" aria-hidden />
+            {supportLink ? t("emailSupport") : t("contactSupport")}
+          </a>
         </div>
       </div>
     </section>
@@ -227,9 +231,11 @@ type MessageText = Record<
 function ResultMessage({
   kind,
   text: t,
+  supportLink,
 }: {
   kind: "invalid" | "not_found" | "unavailable" | "rate_limited";
   text: MessageText;
+  supportLink: string | null;
 }) {
   const map = {
     invalid: { icon: CircleAlert, title: t.invalidTitle, text: t.errorFormat },
@@ -246,9 +252,9 @@ function ResultMessage({
       <div>
         <h2 className="text-lg font-semibold text-brand-900">{map.title}</h2>
         <p className="mt-1 text-slate-600">{map.text}</p>
-        <Link href="/contact" className="mt-4 inline-block text-sm font-semibold text-brand-700 underline underline-offset-2 hover:text-brand-900">
+        <a href={supportLink ?? "/contact"} className="mt-4 inline-block text-sm font-semibold text-brand-700 underline underline-offset-2 hover:text-brand-900">
           {t.contactSupport}
-        </Link>
+        </a>
       </div>
     </div>
   );

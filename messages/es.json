@@ -222,7 +222,10 @@
     "journey": "Recorrido",
     "journeyText": "Lugares registrados en las actualizaciones y próximas paradas previstas.",
     "currentLocation": "Ubicación actual",
-    "upcoming": "Próxima parada"
+    "upcoming": "Próxima parada",
+    "emailSupport": "Escribir a soporte",
+    "emailSubject": "Envío {number}",
+    "contactForm": "Formulario de contacto"
   },
   "status": {
     "shipment_created": "Envío creado",
@@ -271,14 +274,18 @@
   "about": {
     "title": "Acerca de Westbridge Global Express",
     "subtitle": "Conectamos el mundo. Entregamos con confianza.",
-    "placeholderBody": "Westbridge Global Express ofrece servicios de paquetería con seguimiento en línea para cada envío.\n\nPronto publicaremos aquí más información sobre nuestra empresa.",
+    "placeholderBody": "Westbridge Global Express ofrece servicios de paquetería y envíos para particulares y empresas, con seguimiento en línea de cada envío.\n\nCada envío que gestionamos se registra con su propio número de seguimiento. Nuestro equipo registra cada etapa de su recorrido para que remitentes y destinatarios puedan seguirlo en línea en inglés, polaco, japonés, español y alemán.\n\nSi tienes alguna pregunta sobre cómo enviar o seguir un envío, nuestro equipo de atención está listo para ayudarte.",
     "valuesTitle": "En qué nos centramos",
     "value1Title": "Fiabilidad",
     "value1Text": "Cada envío se registra y se deja constancia de su progreso.",
     "value2Title": "Transparencia",
     "value2Text": "Los clientes pueden consultar en línea las etapas registradas en cualquier momento.",
     "value3Title": "Atención",
-    "value3Text": "Nuestro equipo está disponible para resolver dudas sobre los envíos."
+    "value3Text": "Nuestro equipo está disponible para resolver dudas sobre los envíos.",
+    "storyTitle": "Quiénes somos",
+    "ctaTitle": "¿Tienes algo que enviar?",
+    "ctaText": "Cuéntanos qué necesitas enviar y nuestro equipo te responderá por correo electrónico.",
+    "ctaButton": "Contáctanos"
   },
   "contact": {
     "title": "Contacto",
@@ -310,7 +317,13 @@
       "subjectRequired": "Introduzca un asunto.",
       "messageShort": "Escriba al menos 10 caracteres.",
       "messageLong": "El mensaje es demasiado largo (máximo 5000 caracteres)."
-    }
+    },
+    "emailTitle": "¿Prefieres el correo electrónico?",
+    "emailText": "Escríbenos directamente. Si tu mensaje trata sobre un envío, incluye el número de seguimiento.",
+    "emailCta": "Enviar un correo",
+    "trackTitle": "¿Buscas un envío?",
+    "trackText": "Consulta en línea su último estado registrado con tu número de seguimiento.",
+    "trackCta": "Seguir un envío"
   },
   "legal": {
     "reviewNotice": "Aviso de borrador: esta página contiene texto provisional y debe revisarse conforme a la legislación aplicable antes de publicar el sitio web.",
@@ -326,7 +339,10 @@
     "privacy": "Política de privacidad",
     "terms": "Términos del servicio",
     "shipping": "Envíos",
-    "trackingSupport": "Seguimiento y ayuda"
+    "trackingSupport": "Seguimiento y ayuda",
+    "ctaTitle": "Sigue un envío o habla con nuestro equipo",
+    "ctaText": "Introduce un número de seguimiento o escríbenos con cualquier pregunta sobre envíos o recepciones.",
+    "emailUs": "Escríbenos"
   },
   "cookie": {
     "text": "Este sitio web solo utiliza cookies esenciales, por ejemplo para recordar su idioma. No utilizamos cookies publicitarias ni de rastreo.",
