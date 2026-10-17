@@ -22,7 +22,7 @@ import { Link } from "@/i18n/navigation";
 import type { PublicTracking } from "@/lib/tracking";
 import { categoryOf, isOnHold, isStatusCode, progressIndex, type StatusCategory } from "@/lib/statuses";
 import { cn, dayKey, formatDate, formatDateParts, formatDateTime, formatDayHeading, formatRelative, formatTime } from "@/lib/format";
-import { PHOTOS } from "@/lib/photos";
+import { PHOTOS, stagePhoto } from "@/lib/photos";
 import { buildJourney } from "@/lib/journey";
 import { supportHref } from "@/lib/support";
 import { localized } from "@/lib/public-data";
@@ -133,9 +133,11 @@ export async function TrackingResult({
         {/* ------------------------------------------------------------ main */}
         <div className="trk-stage min-w-0 space-y-6">
           <section className="overflow-hidden rounded-2xl bg-white shadow-[0_24px_60px_-30px_rgba(7,21,47,0.5)] ring-1 ring-slate-200" aria-labelledby="status-heading">
-            <div className={cn("relative overflow-hidden px-6 py-7 text-white sm:px-9 sm:py-9 print:bg-white print:text-black", banner.bg)}>
-              <div className="pointer-events-none absolute -top-24 -right-24 h-72 w-72 rounded-full bg-white/[0.07]" aria-hidden />
-              <div className="pointer-events-none absolute -right-8 -bottom-32 h-64 w-64 rounded-full bg-white/[0.05]" aria-hidden />
+            <div className={cn("relative isolate overflow-hidden px-6 py-7 text-white sm:px-9 sm:py-9 print:bg-white print:text-black", banner.bg)}>
+              {/* Photo of the current stage (plane, hub, port, van…) under the status colour. */}
+              <Image src={stagePhoto(data.status)} alt="" fill sizes="(min-width: 1024px) 800px, 100vw" className="-z-20 object-cover print:hidden" />
+              <div className={cn("absolute inset-0 -z-10 opacity-[0.86] print:hidden", banner.bg)} aria-hidden />
+              <div className="absolute inset-0 -z-10 bg-gradient-to-r from-black/35 via-black/10 to-transparent print:hidden" aria-hidden />
 
               <div className="relative flex flex-wrap items-center gap-x-3 gap-y-1 [&_button]:text-white/85 [&_button:hover]:bg-white/10 [&_button:hover]:text-white">
                 <span className="text-xs font-bold tracking-[0.16em] text-white/70 uppercase">{t("trackingNumber")}</span>

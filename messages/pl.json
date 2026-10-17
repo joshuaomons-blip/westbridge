@@ -240,7 +240,17 @@
     "holdCustoms": "Termin doręczenia zostanie potwierdzony po zakończeniu odprawy celnej.",
     "holdOther": "Termin doręczenia zostanie potwierdzony po rozwiązaniu problemu.",
     "holdAt": "Wstrzymana w",
-    "scrollHint": "Przewiń, aby zobaczyć szczegóły"
+    "scrollHint": "Przewiń, aby zobaczyć szczegóły",
+    "networkTitle": "Jedna sieć – od nadawcy do drzwi odbiorcy",
+    "networkText": "Przesyłki podróżują drogą lotniczą, morską i lądową między centrami sortowania, a każdy zarejestrowany etap pojawia się na tej stronie.",
+    "airTitle": "Transport lotniczy",
+    "airText": "Najszybsza opcja dla międzynarodowych paczek i dokumentów.",
+    "seaTitle": "Transport morski",
+    "seaText": "Ekonomiczne rozwiązanie dla ciężkich i dużych ładunków.",
+    "hubTitle": "Centra sortowania",
+    "hubText": "Paczki są skanowane i sortowane w każdym centrum na trasie.",
+    "lastTitle": "Doręczenie",
+    "lastText": "Kurier dostarcza przesyłkę pod drzwi odbiorcy."
   },
   "status": {
     "shipment_created": "Przesyłka utworzona",

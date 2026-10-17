@@ -240,7 +240,17 @@
     "holdCustoms": "Das Zustelldatum wird nach Abschluss der Zollabfertigung bestätigt.",
     "holdOther": "Das Zustelldatum wird bestätigt, sobald das Problem behoben ist.",
     "holdAt": "Angehalten in",
-    "scrollHint": "Für alle Details scrollen"
+    "scrollHint": "Für alle Details scrollen",
+    "networkTitle": "Ein Netzwerk – von Tür zu Tür",
+    "networkText": "Sendungen reisen per Luft-, See- und Straßentransport zwischen Sortierzentren, und jeder erfasste Schritt erscheint auf dieser Seite.",
+    "airTitle": "Luftfracht",
+    "airText": "Die schnellste Option für internationale Pakete und Dokumente.",
+    "seaTitle": "Seefracht",
+    "seaText": "Kostengünstig für schwere und sperrige Fracht.",
+    "hubTitle": "Sortierzentren",
+    "hubText": "Pakete werden in jedem Zentrum auf der Route gescannt und sortiert.",
+    "lastTitle": "Zustellung",
+    "lastText": "Ein Kurier bringt die Sendung bis an die Tür des Empfängers."
   },
   "status": {
     "shipment_created": "Sendung erstellt",

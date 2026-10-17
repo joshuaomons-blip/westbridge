@@ -240,7 +240,17 @@
     "holdCustoms": "La fecha de entrega se confirmará cuando finalice el despacho de aduanas.",
     "holdOther": "La fecha de entrega se confirmará cuando se resuelva la incidencia.",
     "holdAt": "En espera en",
-    "scrollHint": "Desliza para ver todos los detalles"
+    "scrollHint": "Desliza para ver todos los detalles",
+    "networkTitle": "Una red, de puerta a puerta",
+    "networkText": "Los envíos viajan por aire, mar y carretera entre centros de clasificación, y cada etapa registrada aparece en esta página.",
+    "airTitle": "Transporte aéreo",
+    "airText": "La opción más rápida para paquetes y documentos internacionales.",
+    "seaTitle": "Transporte marítimo",
+    "seaText": "Una opción económica para carga pesada y voluminosa.",
+    "hubTitle": "Centros de clasificación",
+    "hubText": "Los paquetes se escanean y clasifican en cada centro de la ruta.",
+    "lastTitle": "Entrega final",
+    "lastText": "Un mensajero lleva el envío hasta la puerta del destinatario."
   },
   "status": {
     "shipment_created": "Envío creado",

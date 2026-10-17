@@ -36,3 +36,24 @@ const POOL = [PHOTOS.sea, PHOTOS.forklift, PHOTOS.team, PHOTOS.port, ...Object.v
 export function servicePhoto(slug: string, index: number): string {
   return SERVICE_PHOTOS[slug] ?? POOL[index % POOL.length];
 }
+
+/** Photo that matches where a shipment is in its journey (tracking result header). */
+export function stagePhoto(status: string): string {
+  switch (status) {
+    case "in_transit":
+      return PHOTOS.air;
+    case "arrived_at_facility":
+      return PHOTOS.warehouse;
+    case "customs_processing":
+    case "customs_cleared":
+    case "delayed":
+    case "delivery_exception":
+      return PHOTOS.port;
+    case "out_for_delivery":
+      return PHOTOS.road;
+    case "delivered":
+      return PHOTOS.handover;
+    default:
+      return PHOTOS.parcels;
+  }
+}

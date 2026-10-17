@@ -184,6 +184,12 @@ async function Landing({ locale, supportLink }: { locale: string; supportLink: s
     { icon: ListChecks, title: t("statusTitle"), text: t("statusText"), href: `/${locale}#status-guide`, cta: t("statusCta") },
     { icon: ShieldAlert, title: t("safetyTitle"), text: t("safetyText"), href: `/${locale}#safety`, cta: t("safetyCta") },
   ];
+  const network = [
+    { photo: PHOTOS.air, title: t("airTitle"), text: t("airText") },
+    { photo: PHOTOS.sea, title: t("seaTitle"), text: t("seaText") },
+    { photo: PHOTOS.warehouse, title: t("hubTitle"), text: t("hubText") },
+    { photo: PHOTOS.handover, title: t("lastTitle"), text: t("lastText") },
+  ];
   return (
     <section aria-labelledby="landing-heading" className="pt-6">
       <h2 id="landing-heading" className="font-display text-2xl font-black text-brand-900 [font-stretch:108%]">
@@ -206,7 +212,28 @@ async function Landing({ locale, supportLink }: { locale: string; supportLink: s
           </li>
         ))}
       </ul>
-      <div className="relative mt-6 grid overflow-hidden rounded-2xl bg-brand-900 text-white sm:grid-cols-[2fr_3fr]">
+      <div className="mt-12">
+        <div className="flex flex-wrap items-end justify-between gap-x-8 gap-y-2">
+          <h2 className="font-display text-2xl font-black text-brand-900 [font-stretch:108%] sm:text-3xl">{t("networkTitle")}</h2>
+          <p className="max-w-xl text-slate-600">{t("networkText")}</p>
+        </div>
+        <ul className="mt-6 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
+          {network.map((n, i) => (
+            <li key={n.title} className="group relative isolate aspect-[3/4] overflow-hidden rounded-2xl bg-brand-950 shadow-[0_18px_40px_-24px_rgba(7,21,47,0.6)] sm:aspect-[4/5]">
+              <Image src={n.photo} alt="" fill sizes="(min-width: 1024px) 25vw, 50vw" className="-z-20 object-cover transition duration-700 ease-out group-hover:scale-[1.05]" />
+              <div className="absolute inset-0 -z-10 bg-gradient-to-t from-brand-950 via-brand-950/45 to-transparent" aria-hidden />
+              <div className="flex h-full flex-col justify-end p-4 text-white sm:p-6">
+                <span className="text-[11px] font-bold tracking-[0.2em] text-white/60">0{i + 1}</span>
+                <span className="mt-2 h-0.5 w-8 bg-signal-500" aria-hidden />
+                <h3 className="mt-3 text-base font-bold sm:text-lg">{n.title}</h3>
+                <p className="mt-1 hidden text-sm leading-snug text-white/80 sm:block">{n.text}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div className="relative mt-12 grid overflow-hidden rounded-2xl bg-brand-900 text-white sm:grid-cols-[2fr_3fr]">
         <div className="relative h-44 sm:h-auto sm:min-h-56">
           <Image src={PHOTOS.support} alt="" fill sizes="(min-width: 640px) 40vw, 100vw" className="object-cover object-[50%_35%]" />
         </div>
