@@ -7,7 +7,7 @@ import { PageHero } from "@/components/site/PageHero";
 import { ServiceIcon } from "@/components/site/ServiceIcon";
 import { getPublishedServices, localized } from "@/lib/public-data";
 import { pageAlternates } from "@/lib/seo";
-import { servicePhoto } from "@/lib/photos";
+import { PHOTOS, servicePhoto } from "@/lib/photos";
 
 type Props = { params: Promise<{ locale: string }> };
 
