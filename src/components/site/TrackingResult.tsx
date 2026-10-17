@@ -199,9 +199,8 @@ export async function TrackingResult({ data, locale, supportText }: { data: Publ
               </h2>
               <p className="text-xs text-slate-500">{t("journeyText")}</p>
             </div>
-            <ol className="mt-6 flex flex-col overflow-x-auto pb-1 md:flex-row">
+            <ol className="mt-6">
               {journey.map((stop, i) => {
-                const first = i === 0;
                 const last = i === journey.length - 1;
                 const reached = stop.state !== "upcoming";
                 const nextReached = !last && journey[i + 1].state !== "upcoming";
@@ -209,30 +208,16 @@ export async function TrackingResult({ data, locale, supportText }: { data: Publ
                 const sub =
                   stop.kind === "origin" ? t("origin") : stop.kind === "destination" ? t("destination") : stop.state === "upcoming" ? t("upcoming") : null;
                 return (
-                  <li
-                    key={`${stop.name}-${i}`}
-                    aria-current={isCurrent ? "location" : undefined}
-                    className="relative flex gap-4 pb-7 last:pb-0 md:min-w-[132px] md:flex-1 md:flex-col md:items-center md:gap-0 md:pb-0 md:text-center"
-                  >
-                    {/* connectors: vertical on phones, horizontal on larger screens */}
+                  <li key={`${stop.name}-${i}`} aria-current={isCurrent ? "location" : undefined} className="relative flex gap-4 pb-6 last:pb-0">
                     {!last && (
                       <span
-                        className={cn(
-                          "absolute top-9 bottom-0 left-[17px] w-0.5 md:hidden",
-                          nextReached ? "bg-brand-800" : "border-l-2 border-dashed border-slate-300 bg-transparent",
-                        )}
-                        aria-hidden
-                      />
-                    )}
-                    {!first && (
-                      <span
-                        className={cn("absolute top-[17px] right-1/2 hidden h-0.5 w-full md:block", reached ? "bg-brand-800" : "border-t-2 border-dashed border-slate-300")}
+                        className={cn("absolute top-10 bottom-1 left-[19px] w-0", nextReached ? "border-l-[3px] border-brand-800" : "border-l-2 border-dashed border-slate-300")}
                         aria-hidden
                       />
                     )}
                     <span
                       className={cn(
-                        "relative z-10 flex h-9 w-9 shrink-0 items-center justify-center rounded-full",
+                        "relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full",
                         isCurrent
                           ? cn("text-white ring-4", isProblem ? "bg-amber-600 ring-amber-600/20" : "bg-signal-600 ring-signal-600/20")
                           : reached
@@ -242,7 +227,7 @@ export async function TrackingResult({ data, locale, supportText }: { data: Publ
                       aria-hidden
                     >
                       {isCurrent ? (
-                        <BannerIcon className="h-4.5 w-4.5" />
+                        <BannerIcon className="h-5 w-5" />
                       ) : stop.kind === "destination" ? (
                         <Flag className="h-4 w-4" />
                       ) : reached ? (
@@ -251,13 +236,18 @@ export async function TrackingResult({ data, locale, supportText }: { data: Publ
                         <span className="h-2 w-2 rounded-full bg-slate-300" />
                       )}
                     </span>
-                    <div className="min-w-0 pt-1 md:mt-3 md:px-2 md:pt-0">
-                      {isCurrent && <p className={cn("text-xs font-bold", isProblem ? "text-amber-700" : "text-signal-600")}>{t("currentLocation")}</p>}
-                      <p className={cn("font-bold break-words", reached ? "text-brand-900" : "text-slate-500")}>{stop.name}</p>
-                      {(stop.country || sub) && (
-                        <p className="text-xs text-slate-500">{[stop.country, sub].filter(Boolean).join(" · ")}</p>
+                    <div
+                      className={cn(
+                        "flex min-w-0 flex-1 flex-col gap-x-6 gap-y-0.5 pt-1.5 sm:flex-row sm:items-baseline sm:justify-between",
+                        isCurrent && "-mt-1 rounded-lg bg-slate-50 px-4 pt-2.5 pb-3 ring-1 ring-slate-100",
                       )}
-                      {stop.at && reached && <p className="mt-0.5 text-xs text-slate-400 tabular-nums">{formatDateTime(stop.at, locale)}</p>}
+                    >
+                      <div className="min-w-0">
+                        {isCurrent && <p className={cn("text-xs font-bold", isProblem ? "text-amber-700" : "text-signal-600")}>{t("currentLocation")}</p>}
+                        <p className={cn("text-[17px] font-bold break-words", reached ? "text-brand-900" : "text-slate-500")}>{stop.name}</p>
+                        {(stop.country || sub) && <p className="text-sm text-slate-500">{[stop.country, sub].filter(Boolean).join(" · ")}</p>}
+                      </div>
+                      {stop.at && reached && <p className="shrink-0 text-sm text-slate-500 tabular-nums">{formatDateTime(stop.at, locale)}</p>}
                     </div>
                   </li>
                 );
