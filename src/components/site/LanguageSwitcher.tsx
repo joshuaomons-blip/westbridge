@@ -36,6 +36,10 @@ export function LanguageSwitcher({ compact = false, variant = "default" }: { com
   function choose(next: Locale) {
     setOpen(false);
     if (next === locale) return;
+    // Remember the visitor's own choice so automatic detection never overrides it.
+    try {
+      document.cookie = `nv_lang=${next}; path=/; max-age=31536000; samesite=lax`;
+    } catch {}
     // Keep the current page and query string (e.g. an entered tracking number).
     const query = Object.fromEntries(searchParams.entries());
     startTransition(() => {
