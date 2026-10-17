@@ -19,7 +19,7 @@ export const PHOTOS = {
   team: u("1664382953403-fc1ac77073a0"), // warehouse team — Centre for Ageing Better
   forklift: u("1620388640785-892616248ec8"), // forklift and pallets — Pickawood
   support: u("1626863905121-3b0c0ed7b94c"), // support agents with headsets — Charanjeet Dhiman
-  parcels: u("1580674285054-bed31e145f59"), // parcels loaded in a van — Claudio Schwarz
+  parcels: u("1766040923580-16ad32fae8b4"), // pile of taped parcels — Rohit Choudhari
 };
 
 /** Photo for each service listing; unknown services rotate through the pool. */

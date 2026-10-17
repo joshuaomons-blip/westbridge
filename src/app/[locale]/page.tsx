@@ -191,7 +191,7 @@ export default async function HomePage({ params }: Props) {
             <ol className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {steps.map((step, i) => (
                 <li key={step.title} className="group relative overflow-hidden rounded-lg bg-brand-950">
-                  <div className="relative aspect-[3/4]">
+                  <div className="relative aspect-[4/3] sm:aspect-[3/4]">
                     <Image src={step.photo} alt="" fill sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw" className="object-cover" />
                     <div className="absolute inset-0 bg-gradient-to-t from-brand-950 via-brand-950/60 to-brand-950/0" aria-hidden />
                   </div>
