@@ -218,7 +218,11 @@
     "statusCta": "Otwórz przewodnik po statusach",
     "safetyTitle": "Uważaj na oszustwa „na kuriera”",
     "safetyText": "Sprawdzaj status wyłącznie na naszej oficjalnej stronie. Uważaj na wiadomości z prośbą o dopłatę za wydanie paczki.",
-    "safetyCta": "Przeczytaj wskazówki bezpieczeństwa"
+    "safetyCta": "Przeczytaj wskazówki bezpieczeństwa",
+    "journey": "Trasa przesyłki",
+    "journeyText": "Miejsca zapisane w aktualizacjach oraz planowane kolejne przystanki.",
+    "currentLocation": "Obecna lokalizacja",
+    "upcoming": "Kolejny przystanek"
   },
   "status": {
     "shipment_created": "Przesyłka utworzona",

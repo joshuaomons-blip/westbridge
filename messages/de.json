@@ -218,7 +218,11 @@
     "statusCta": "Status-Übersicht öffnen",
     "safetyTitle": "Schützen Sie sich vor Paketbetrug",
     "safetyText": "Prüfen Sie den Status nur auf unserer offiziellen Website. Seien Sie vorsichtig bei Nachrichten, die eine Gebühr für die Freigabe eines Pakets verlangen.",
-    "safetyCta": "Sicherheitstipps lesen"
+    "safetyCta": "Sicherheitstipps lesen",
+    "journey": "Sendungsweg",
+    "journeyText": "In Statusmeldungen erfasste Orte und geplante nächste Stationen.",
+    "currentLocation": "Aktueller Standort",
+    "upcoming": "Nächste Station"
   },
   "status": {
     "shipment_created": "Sendung erstellt",

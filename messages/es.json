@@ -218,7 +218,11 @@
     "statusCta": "Abrir la guía de estados",
     "safetyTitle": "Protégete de las estafas de entrega",
     "safetyText": "Consulta el seguimiento solo en nuestra web oficial. Desconfía de los mensajes que piden pagar una tasa para liberar un paquete.",
-    "safetyCta": "Leer los consejos de seguridad"
+    "safetyCta": "Leer los consejos de seguridad",
+    "journey": "Recorrido",
+    "journeyText": "Lugares registrados en las actualizaciones y próximas paradas previstas.",
+    "currentLocation": "Ubicación actual",
+    "upcoming": "Próxima parada"
   },
   "status": {
     "shipment_created": "Envío creado",

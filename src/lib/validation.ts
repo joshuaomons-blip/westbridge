@@ -1,3 +1,4 @@
+import { parseRouteStops } from "./journey";
 import { z } from "zod";
 import { STATUS_CODES } from "@/lib/statuses";
 
@@ -77,6 +78,11 @@ export const shipmentSchema = z.object({
     .transform((v) => (v ? v : undefined))
     .refine((v) => !v || /^\d{4}-\d{2}-\d{2}$/.test(v), "Invalid date"),
   internal_notes: optionalText(10000),
+  route_stops: z
+    .string()
+    .max(2000, "Too long")
+    .optional()
+    .transform((v) => parseRouteStops(v)),
   is_published: checkbox,
 });
 

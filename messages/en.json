@@ -218,7 +218,11 @@
     "statusCta": "Open the status guide",
     "safetyTitle": "Stay safe from delivery scams",
     "safetyText": "Only check tracking on our official website. Be careful with messages asking you to pay a fee to release a parcel.",
-    "safetyCta": "Read our safety tips"
+    "safetyCta": "Read our safety tips",
+    "journey": "Journey",
+    "journeyText": "Places recorded in tracking updates, and planned stops ahead.",
+    "currentLocation": "Current location",
+    "upcoming": "Upcoming stop"
   },
   "status": {
     "shipment_created": "Shipment created",

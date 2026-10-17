@@ -74,6 +74,7 @@ export function TextAreaField({
   maxLength,
   className,
   required,
+  placeholder,
   idPrefix = "",
 }: {
   name: string;
@@ -84,6 +85,7 @@ export function TextAreaField({
   maxLength?: number;
   className?: string;
   required?: boolean;
+  placeholder?: string;
   idPrefix?: string;
 }) {
   const id = `f-${idPrefix}${name}`;
@@ -93,7 +95,7 @@ export function TextAreaField({
         {label}
         {required && <span className="text-red-600"> *</span>}
       </label>
-      <textarea id={id} name={name} rows={rows} defaultValue={defaultValue ?? ""} maxLength={maxLength} required={required} className="input resize-y" />
+      <textarea id={id} name={name} rows={rows} defaultValue={defaultValue ?? ""} maxLength={maxLength} required={required} placeholder={placeholder} className="input resize-y" />
       {hint && <p className="mt-1 text-xs text-slate-500">{hint}</p>}
       <FieldError name={name} />
     </div>

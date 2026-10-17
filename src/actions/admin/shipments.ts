@@ -17,8 +17,9 @@ export async function createShipment(_prev: ActionResult, fd: FormData): Promise
     const parsed = createShipmentSchema.safeParse(formObject(fd));
     if (!parsed.success) return { fields: fieldErrors(parsed.error) };
     const p = parsed.data;
+    const { route_stops: _routeStops, ...rest } = p;
     const payload = {
-      ...p,
+      ...rest,
       package_quantity: String(p.package_quantity),
       weight_kg: p.weight_kg === undefined ? "" : String(p.weight_kg),
       is_published: String(p.is_published),
@@ -27,6 +28,10 @@ export async function createShipment(_prev: ActionResult, fd: FormData): Promise
     const { data, error } = await db.rpc("create_shipment", { p: payload });
     if (error) return { error: dbErrorMessage(error) };
     const id = (data as { id: string }).id;
+    if (p.route_stops.length) {
+      const { error: routeError } = await db.from("shipments").update({ route_stops: p.route_stops }).eq("id", id);
+      if (routeError) console.error("route stops not saved", routeError.code);
+    }
     return { ok: true, data: { id } };
   });
   if (result.ok && result.data?.id) {
@@ -66,6 +71,7 @@ export async function updateShipment(_prev: ActionResult, fd: FormData): Promise
         weight_kg: p.weight_kg ?? null,
         estimated_delivery: p.estimated_delivery ?? null,
         internal_notes: p.internal_notes ?? null,
+        route_stops: p.route_stops,
         is_published: p.is_published,
       })
       .eq("id", id.data);

@@ -2,7 +2,9 @@ import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import {
   Ban,
+  Check,
   CircleCheck,
+  Flag,
   ClipboardCheck,
   Clock,
   Earth,
@@ -18,6 +20,7 @@ import type { PublicTracking } from "@/lib/tracking";
 import { categoryOf, isStatusCode, progressIndex, type StatusCategory } from "@/lib/statuses";
 import { cn, dayKey, formatDate, formatDateParts, formatDateTime, formatDayHeading, formatRelative, formatTime } from "@/lib/format";
 import { PHOTOS } from "@/lib/photos";
+import { buildJourney } from "@/lib/journey";
 import { localized } from "@/lib/public-data";
 import { CopyButton } from "./CopyButton";
 import { PrintButton } from "./PrintButton";
@@ -55,8 +58,24 @@ export async function TrackingResult({ data, locale, supportText }: { data: Publ
   const isProblem = category === "exception";
   const typeKey = (["parcel", "document", "freight", "pallet", "other"] as const).find((k) => k === data.shipment_type);
   const showProgress = step >= 0 && category !== "closed";
-  const pct = showProgress ? Math.round((step / 3) * 100) : 0;
-  const latestLocation = data.events.find((e) => e.location)?.location ?? null;
+  const journey = buildJourney({
+    origin: data.origin,
+    destination: data.destination,
+    routeStops: data.route_stops,
+    events: data.events,
+    delivered: category === "delivered",
+  });
+  const currentIndex = journey.findIndex((j) => j.state === "current");
+  const currentStop = currentIndex >= 0 ? journey[currentIndex] : null;
+  // Route marker: how far along the recorded journey the shipment is.
+  const pct =
+    category === "delivered"
+      ? 100
+      : currentIndex > 0
+        ? Math.round((currentIndex / (journey.length - 1)) * 100)
+        : showProgress
+          ? Math.round((step / 3) * 100)
+          : 0;
 
   // Delivered: show the recorded delivery date. Otherwise: the estimate, if one was entered.
   const deliveredEvent = category === "delivered" ? data.events.find((e) => e.status === "delivered") : undefined;
@@ -171,6 +190,81 @@ export async function TrackingResult({ data, locale, supportText }: { data: Publ
             )}
           </section>
 
+
+          {/* Journey: every place the shipment has passed through, and the stops ahead */}
+          <section className="rounded-2xl bg-white px-6 py-7 ring-1 ring-slate-200 sm:px-9" aria-labelledby="journey-heading">
+            <div className="flex flex-wrap items-baseline justify-between gap-2 border-b border-slate-100 pb-5">
+              <h2 id="journey-heading" className="font-display text-2xl font-black text-brand-900 [font-stretch:108%]">
+                {t("journey")}
+              </h2>
+              <p className="text-xs text-slate-500">{t("journeyText")}</p>
+            </div>
+            <ol className="mt-6 flex flex-col overflow-x-auto pb-1 md:flex-row">
+              {journey.map((stop, i) => {
+                const first = i === 0;
+                const last = i === journey.length - 1;
+                const reached = stop.state !== "upcoming";
+                const nextReached = !last && journey[i + 1].state !== "upcoming";
+                const isCurrent = stop.state === "current";
+                const sub =
+                  stop.kind === "origin" ? t("origin") : stop.kind === "destination" ? t("destination") : stop.state === "upcoming" ? t("upcoming") : null;
+                return (
+                  <li
+                    key={`${stop.name}-${i}`}
+                    aria-current={isCurrent ? "location" : undefined}
+                    className="relative flex gap-4 pb-7 last:pb-0 md:min-w-[132px] md:flex-1 md:flex-col md:items-center md:gap-0 md:pb-0 md:text-center"
+                  >
+                    {/* connectors: vertical on phones, horizontal on larger screens */}
+                    {!last && (
+                      <span
+                        className={cn(
+                          "absolute top-9 bottom-0 left-[17px] w-0.5 md:hidden",
+                          nextReached ? "bg-brand-800" : "border-l-2 border-dashed border-slate-300 bg-transparent",
+                        )}
+                        aria-hidden
+                      />
+                    )}
+                    {!first && (
+                      <span
+                        className={cn("absolute top-[17px] right-1/2 hidden h-0.5 w-full md:block", reached ? "bg-brand-800" : "border-t-2 border-dashed border-slate-300")}
+                        aria-hidden
+                      />
+                    )}
+                    <span
+                      className={cn(
+                        "relative z-10 flex h-9 w-9 shrink-0 items-center justify-center rounded-full",
+                        isCurrent
+                          ? cn("text-white ring-4", isProblem ? "bg-amber-600 ring-amber-600/20" : "bg-signal-600 ring-signal-600/20")
+                          : reached
+                            ? "bg-brand-800 text-white"
+                            : "bg-white text-slate-400 ring-2 ring-slate-200",
+                      )}
+                      aria-hidden
+                    >
+                      {isCurrent ? (
+                        <BannerIcon className="h-4.5 w-4.5" />
+                      ) : stop.kind === "destination" ? (
+                        <Flag className="h-4 w-4" />
+                      ) : reached ? (
+                        <Check className="h-4 w-4" />
+                      ) : (
+                        <span className="h-2 w-2 rounded-full bg-slate-300" />
+                      )}
+                    </span>
+                    <div className="min-w-0 pt-1 md:mt-3 md:px-2 md:pt-0">
+                      {isCurrent && <p className={cn("text-xs font-bold", isProblem ? "text-amber-700" : "text-signal-600")}>{t("currentLocation")}</p>}
+                      <p className={cn("font-bold break-words", reached ? "text-brand-900" : "text-slate-500")}>{stop.name}</p>
+                      {(stop.country || sub) && (
+                        <p className="text-xs text-slate-500">{[stop.country, sub].filter(Boolean).join(" · ")}</p>
+                      )}
+                      {stop.at && reached && <p className="mt-0.5 text-xs text-slate-400 tabular-nums">{formatDateTime(stop.at, locale)}</p>}
+                    </div>
+                  </li>
+                );
+              })}
+            </ol>
+          </section>
+
           {/* Timeline grouped by day */}
           <section className="rounded-2xl bg-white px-6 py-7 ring-1 ring-slate-200 sm:px-9" aria-labelledby="history-heading">
             <div className="flex flex-wrap items-baseline justify-between gap-2 border-b border-slate-100 pb-5">
@@ -261,12 +355,12 @@ export async function TrackingResult({ data, locale, supportText }: { data: Publ
                 </span>
               </div>
             </div>
-            {latestLocation && (
+            {currentStop && category !== "delivered" && (
               <div className="flex items-center gap-3 border-t border-white/10 bg-white/[0.04] px-6 py-4">
                 <MapPin className="h-5 w-5 shrink-0 text-signal-500" aria-hidden />
                 <div className="min-w-0">
-                  <p className="text-xs font-semibold text-white/60">{t("latestLocation")}</p>
-                  <p className="truncate font-semibold">{latestLocation}</p>
+                  <p className="text-xs font-semibold text-white/60">{t("currentLocation")}</p>
+                  <p className="truncate font-semibold">{currentStop.name}</p>
                 </div>
               </div>
             )}

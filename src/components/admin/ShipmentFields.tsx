@@ -21,6 +21,7 @@ export type ShipmentDefaults = Partial<{
   weight_kg: number | null;
   estimated_delivery: string | null;
   internal_notes: string | null;
+  route_stops: string[] | null;
   is_published: boolean;
 }>;
 
@@ -74,6 +75,19 @@ export function ShipmentFields({
         <TextField name="destination_country" label="Destination country" required list="countries" maxLength={100} defaultValue={d.destination_country} />
         <TextField name="destination_city" label="Destination city" required maxLength={100} defaultValue={d.destination_city} />
         <TextAreaField name="destination_address" label="Destination address" rows={2} maxLength={500} defaultValue={d.destination_address} className="sm:col-span-2" />
+      </Fieldset>
+
+      <Fieldset legend="Route" description="Optional. Places the shipment is planned to pass through, shown to customers.">
+        <TextAreaField
+          name="route_stops"
+          label="Planned stops"
+          rows={4}
+          maxLength={1600}
+          defaultValue={(d.route_stops ?? []).join("\n")}
+          placeholder={"Frankfurt hub, Germany\nCologne sorting centre, Germany"}
+          hint="One place per line, in order (up to 15). Customers see them as upcoming stops. When you add a tracking update whose location matches a stop, it is marked as passed."
+          className="sm:col-span-2"
+        />
       </Fieldset>
 
       <Fieldset legend="Package" description="Contents and handling.">

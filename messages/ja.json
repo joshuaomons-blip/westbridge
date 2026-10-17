@@ -218,7 +218,11 @@
     "statusCta": "ステータスガイドを開く",
     "safetyTitle": "配送を装った詐欺にご注意ください",
     "safetyText": "追跡は必ず当社の公式サイトでご確認ください。荷物の受け取りに料金の支払いを求めるメッセージにはご注意ください。",
-    "safetyCta": "安全のためのヒントを読む"
+    "safetyCta": "安全のためのヒントを読む",
+    "journey": "輸送経路",
+    "journeyText": "追跡情報に記録された地点と、今後の予定経由地です。",
+    "currentLocation": "現在地",
+    "upcoming": "今後の経由地"
   },
   "status": {
     "shipment_created": "貨物登録",

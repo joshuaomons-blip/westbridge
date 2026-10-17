@@ -21,6 +21,7 @@ export type PublicTracking = {
   estimated_delivery: string | null;
   package_quantity: number;
   service: { slug: string; title: Record<string, string> } | null;
+  route_stops?: string[] | null;
   is_demo: boolean;
   events: PublicTrackingEvent[];
 };
