@@ -2,12 +2,14 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { PHOTOS } from "@/lib/photos";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { CircleAlert, SearchX, WifiOff } from "lucide-react";
+import { ArrowRight, ChevronRight, CircleAlert, ListChecks, ReceiptText, SearchX, ShieldAlert, WifiOff } from "lucide-react";
 import { TrackingForm } from "@/components/site/TrackingForm";
-import { TrackingResult } from "@/components/site/TrackingResult";
+import { BANNER, TrackingResult } from "@/components/site/TrackingResult";
 import { lookupTracking, type TrackingResult as Result } from "@/lib/tracking";
 import { checkRateLimit } from "@/lib/rate-limit";
-import { normalizeTrackingNumber } from "@/lib/tracking-format";
+import { MAX_TRACKING_NUMBERS, parseTrackingList } from "@/lib/tracking-format";
+import { categoryOf, isStatusCode } from "@/lib/statuses";
+import { cn, formatDate, formatRelative } from "@/lib/format";
 import { getPageContent } from "@/lib/public-data";
 import { pageAlternates } from "@/lib/seo";
 import { Link } from "@/i18n/navigation";
@@ -30,55 +32,182 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
   };
 }
 
+type Lookup = Result | { kind: "rate_limited" };
+
+async function track(number: string): Promise<Lookup> {
+  return (await checkRateLimit("tracking")) ? await lookupTracking(number) : { kind: "rate_limited" };
+}
+
 export default async function TrackPage({ params, searchParams }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("tracking");
   const raw = (await searchParams).n;
-  const input = typeof raw === "string" ? raw.slice(0, 60) : "";
-  const number = normalizeTrackingNumber(input);
+  const input = typeof raw === "string" ? raw.slice(0, 400) : "";
+  const numbers = parseTrackingList(input).slice(0, MAX_TRACKING_NUMBERS);
 
-  let result: Result | { kind: "rate_limited" } | null = null;
-  if (number) {
-    result = (await checkRateLimit("tracking")) ? await lookupTracking(number) : { kind: "rate_limited" };
-  }
-  const content = result?.kind === "found" ? await getPageContent(locale) : null;
+  // One number: full detail view. Several: a summary list linking to each.
+  const single = numbers.length === 1 ? await track(numbers[0]) : null;
+  const many = numbers.length > 1 ? await Promise.all(numbers.map(async (n) => ({ number: n, result: await track(n) }))) : null;
+  const content = single?.kind === "found" ? await getPageContent(locale) : null;
+
+  const messages: MessageText = {
+    invalidTitle: t("invalidTitle"),
+    notFoundTitle: t("notFoundTitle"),
+    unavailableTitle: t("unavailableTitle"),
+    errorFormat: t("errorFormat"),
+    errorNotFound: t("errorNotFound"),
+    errorUnavailable: t("errorUnavailable"),
+    errorRateLimited: t("errorRateLimited"),
+    contactSupport: t("contactSupport"),
+  };
 
   return (
-    <div className="bg-slate-100 pb-20">
-      <section className="relative isolate overflow-hidden bg-brand-950 pt-16 pb-28 text-white print:hidden">
+    <div className="bg-slate-100 pb-24">
+      <section className="relative isolate overflow-hidden bg-brand-950 pt-16 pb-32 text-white print:hidden">
         <Image src={PHOTOS.hero} alt="" fill priority sizes="100vw" className="object-cover object-[50%_60%]" />
-        <div className="absolute inset-0 bg-gradient-to-r from-brand-950/95 via-brand-950/70 to-brand-950/20" aria-hidden />
-        <div className="container-page relative max-w-5xl">
-          <h1 className="font-display text-4xl font-black tracking-[-0.02em] [font-stretch:110%] sm:text-6xl">{t("title")}</h1>
+        <div className="absolute inset-0 bg-gradient-to-r from-brand-950/95 via-brand-950/75 to-brand-950/25" aria-hidden />
+        <div className="container-page relative">
+          <h1 className="font-display animate-fade-up text-4xl font-black tracking-[-0.02em] [font-stretch:110%] sm:text-6xl">{t("title")}</h1>
           <p className="mt-4 max-w-xl text-lg text-white/85">{t("subtitle")}</p>
         </div>
       </section>
-      <div className="container-page -mt-16 max-w-5xl space-y-6">
-        <div className="rounded-xl bg-white p-6 shadow-[0_18px_50px_-24px_rgba(7,21,47,0.5)] ring-1 ring-slate-200 sm:p-8 print:hidden">
-          <TrackingForm defaultValue={number} autoFocus={!number} />
+      <div className="container-page -mt-20 space-y-6">
+        <div className="relative rounded-2xl bg-white p-6 shadow-[0_24px_60px_-30px_rgba(7,21,47,0.55)] ring-1 ring-slate-200 sm:p-8 print:hidden">
+          <TrackingForm defaultValue={numbers.join(", ")} autoFocus={numbers.length === 0} />
         </div>
 
-        {result?.kind === "found" && (
-          <TrackingResult data={result.data} locale={locale} supportText={content?.get("support.text")} />
-        )}
-        {result && result.kind !== "found" && (
-          <ResultMessage
-            kind={result.kind}
-            text={{
-              invalidTitle: t("invalidTitle"),
-              notFoundTitle: t("notFoundTitle"),
-              unavailableTitle: t("unavailableTitle"),
-              errorFormat: t("errorFormat"),
-              errorNotFound: t("errorNotFound"),
-              errorUnavailable: t("errorUnavailable"),
-              errorRateLimited: t("errorRateLimited"),
-              contactSupport: t("contactSupport"),
-            }}
-          />
+        {numbers.length === 0 && <Landing locale={locale} />}
+
+        {single?.kind === "found" && <TrackingResult data={single.data} locale={locale} supportText={content?.get("support.text")} />}
+        {single && single.kind !== "found" && <ResultMessage kind={single.kind} text={messages} />}
+
+        {many && (
+          <section className="overflow-hidden rounded-2xl bg-white ring-1 ring-slate-200" aria-labelledby="multi-heading">
+            <div className="flex flex-wrap items-baseline justify-between gap-2 border-b border-slate-100 px-6 py-5 sm:px-8">
+              <h2 id="multi-heading" className="font-display text-2xl font-black text-brand-900 [font-stretch:108%]">
+                {t("multiTitle", { count: many.length })}
+              </h2>
+              <p className="text-sm text-slate-500">{t("multiText")}</p>
+            </div>
+            <ul className="divide-y divide-slate-100">
+              {many.map(({ number, result }) => (
+                <li key={number}>
+                  <SummaryRow number={number} result={result} locale={locale} messages={messages} />
+                </li>
+              ))}
+            </ul>
+          </section>
         )}
       </div>
     </div>
+  );
+}
+
+async function SummaryRow({ number, result, locale, messages }: { number: string; result: Lookup; locale: string; messages: MessageText }) {
+  const t = await getTranslations("tracking");
+  const ts = await getTranslations("status");
+
+  if (result.kind !== "found") {
+    const title = {
+      invalid: messages.invalidTitle,
+      not_found: messages.notFoundTitle,
+      unavailable: messages.unavailableTitle,
+      rate_limited: messages.unavailableTitle,
+    }[result.kind];
+    return (
+      <div className="flex flex-wrap items-center gap-x-6 gap-y-2 px-6 py-5 sm:px-8">
+        <span className="font-mono font-semibold tracking-wider break-all text-slate-500">{number}</span>
+        <span className="inline-flex items-center gap-2 text-sm font-semibold text-slate-600">
+          <CircleAlert className="h-4 w-4 text-slate-400" aria-hidden />
+          {title}
+        </span>
+      </div>
+    );
+  }
+
+  const d = result.data;
+  const category = categoryOf(d.status);
+  const { icon: Icon, bg } = BANNER[category];
+  const date = d.estimated_delivery ? formatDate(d.estimated_delivery, locale) : null;
+  return (
+    <Link
+      href={`/track?n=${encodeURIComponent(d.tracking_number)}`}
+      className="group grid items-center gap-x-6 gap-y-3 px-6 py-5 transition hover:bg-slate-50 sm:px-8 md:grid-cols-[auto_minmax(0,1.2fr)_minmax(0,1fr)_auto]"
+    >
+      <span className={cn("hidden h-11 w-11 items-center justify-center rounded-full text-white md:flex", bg)}>
+        <Icon className="h-5 w-5" aria-hidden />
+      </span>
+      <div className="min-w-0">
+        <p className="font-mono font-semibold tracking-wider text-brand-900">{d.tracking_number}</p>
+        <p className="mt-0.5 flex items-center gap-2 font-bold text-slate-900">
+          <span className={cn("h-2 w-2 rounded-full md:hidden", bg)} aria-hidden />
+          {isStatusCode(d.status) ? ts(d.status) : d.status}
+        </p>
+        <p className="text-xs text-slate-500">{t("updated", { time: formatRelative(d.last_update, locale) })}</p>
+      </div>
+      <div className="min-w-0 text-sm">
+        <p className="flex items-center gap-2 font-semibold text-slate-800">
+          <span className="truncate">{d.origin.city}</span>
+          <ArrowRight className="h-4 w-4 shrink-0 text-slate-400" aria-hidden />
+          <span className="truncate">{d.destination.city}</span>
+        </p>
+        {date && (
+          <p className="text-slate-500">
+            {t("estimatedDelivery")}: <span className="font-semibold text-slate-700">{date}</span>
+          </p>
+        )}
+      </div>
+      <span className="inline-flex items-center gap-1 text-sm font-bold text-signal-600 group-hover:text-signal-700">
+        {t("viewDetails")}
+        <ChevronRight className="h-4 w-4 transition group-hover:translate-x-0.5" aria-hidden />
+      </span>
+    </Link>
+  );
+}
+
+async function Landing({ locale }: { locale: string }) {
+  const t = await getTranslations("tracking");
+  const cards = [
+    { icon: ReceiptText, title: t("findTitle"), text: t("findText"), href: null, cta: null },
+    { icon: ListChecks, title: t("statusTitle"), text: t("statusText"), href: `/${locale}#status-guide`, cta: t("statusCta") },
+    { icon: ShieldAlert, title: t("safetyTitle"), text: t("safetyText"), href: `/${locale}#safety`, cta: t("safetyCta") },
+  ];
+  return (
+    <section aria-labelledby="landing-heading" className="pt-6">
+      <h2 id="landing-heading" className="font-display text-2xl font-black text-brand-900 [font-stretch:108%]">
+        {t("landingTitle")}
+      </h2>
+      <ul className="mt-5 grid gap-5 md:grid-cols-3">
+        {cards.map(({ icon: Icon, title, text, href, cta }) => (
+          <li key={title} className="flex flex-col rounded-2xl bg-white p-6 ring-1 ring-slate-200">
+            <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-900 text-white">
+              <Icon className="h-6 w-6" aria-hidden />
+            </span>
+            <h3 className="mt-5 text-lg font-bold text-brand-900">{title}</h3>
+            <p className="mt-2 flex-1 text-slate-600">{text}</p>
+            {href && cta && (
+              <a href={href} className="mt-5 inline-flex items-center gap-1.5 text-sm font-bold text-signal-600 hover:text-signal-700">
+                {cta}
+                <ArrowRight className="h-4 w-4" aria-hidden />
+              </a>
+            )}
+          </li>
+        ))}
+      </ul>
+      <div className="relative mt-6 grid overflow-hidden rounded-2xl bg-brand-900 text-white sm:grid-cols-[2fr_3fr]">
+        <div className="relative h-44 sm:h-auto sm:min-h-56">
+          <Image src={PHOTOS.support} alt="" fill sizes="(min-width: 640px) 40vw, 100vw" className="object-cover object-[50%_35%]" />
+        </div>
+        <div className="flex flex-col justify-center p-7 sm:p-10">
+          <h3 className="font-display text-2xl font-black [font-stretch:108%]">{t("supportTitle")}</h3>
+          <p className="mt-2 text-white/80">{t("supportText")}</p>
+          <Link href="/contact" className="btn-accent mt-6 h-12 self-start px-6">
+            {t("contactSupport")}
+          </Link>
+        </div>
+      </div>
+    </section>
   );
 }
 

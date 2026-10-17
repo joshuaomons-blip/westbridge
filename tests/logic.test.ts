@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { normalizeTrackingNumber, isValidTrackingFormat } from "../src/lib/tracking-format";
+import { normalizeTrackingNumber, isValidTrackingFormat, parseTrackingList } from "../src/lib/tracking-format";
+import { formatRelative } from "../src/lib/format";
 import { contactSchema, createShipmentSchema, eventSchema, passwordSchema } from "../src/lib/validation";
 import { progressIndex, categoryOf, STATUS_CODES } from "../src/lib/statuses";
 
@@ -14,6 +15,24 @@ describe("tracking numbers", () => {
     expect(isValidTrackingFormat("WB1234567890!")).toBe(false);
     expect(isValidTrackingFormat("A".repeat(25))).toBe(false);
     expect(isValidTrackingFormat(normalizeTrackingNumber("' or 1=1 --"))).toBe(false);
+  });
+});
+
+describe("multiple tracking numbers", () => {
+  it("splits on commas, semicolons and new lines, normalising and de-duplicating", () => {
+    expect(parseTrackingList("wb-1234 5678 901, WB98765432100;\nwb12345678901\n\n")).toEqual(["WB12345678901", "WB98765432100"]);
+  });
+  it("returns an empty list for blank input", () => {
+    expect(parseTrackingList(" , ;\n")).toEqual([]);
+  });
+});
+
+describe("relative time", () => {
+  const now = new Date("2026-10-17T12:00:00Z");
+  it("describes hours and days", () => {
+    expect(formatRelative("2026-10-17T09:00:00Z", "en", now)).toBe("3 hours ago");
+    expect(formatRelative("2026-10-15T12:00:00Z", "en", now)).toBe("2 days ago");
+    expect(formatRelative("2026-10-17T11:59:50Z", "en", now)).toBe("now");
   });
 });
 

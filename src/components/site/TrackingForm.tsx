@@ -4,7 +4,7 @@ import { useEffect, useId, useState, useTransition } from "react";
 import { useTranslations } from "next-intl";
 import { LoaderCircle, Search } from "lucide-react";
 import { useRouter } from "@/i18n/navigation";
-import { normalizeTrackingNumber, isValidTrackingFormat } from "@/lib/tracking-format";
+import { isValidTrackingFormat, MAX_TRACKING_NUMBERS, parseTrackingList } from "@/lib/tracking-format";
 import { cn } from "@/lib/format";
 
 export function TrackingForm({
@@ -27,12 +27,14 @@ export function TrackingForm({
 
   function onSubmit(e: React.FormEvent) {
     e.preventDefault();
-    const normalized = normalizeTrackingNumber(value);
-    if (!normalized) return setError(t("errorEmpty"));
-    if (!isValidTrackingFormat(normalized)) return setError(t("errorFormat"));
+    const numbers = parseTrackingList(value);
+    if (numbers.length === 0) return setError(t("errorEmpty"));
+    if (numbers.length > MAX_TRACKING_NUMBERS) return setError(t("errorTooMany"));
+    const bad = numbers.find((n) => !isValidTrackingFormat(n));
+    if (bad) return setError(numbers.length === 1 ? t("errorFormat") : t("errorFormatOne", { number: bad.slice(0, 30) }));
     setError(null);
     startTransition(() => {
-      router.push({ pathname: "/track", query: { n: normalized } });
+      router.push({ pathname: "/track", query: { n: numbers.join(",") } });
     });
   }
 
@@ -59,7 +61,7 @@ export function TrackingForm({
             autoCapitalize="characters"
             spellCheck={false}
             inputMode="text"
-            maxLength={40}
+            maxLength={300}
             placeholder={t("placeholder")}
             aria-invalid={!!error}
             aria-describedby={`${id}-help${error ? ` ${id}-err` : ""}`}
@@ -82,7 +84,7 @@ export function TrackingForm({
         )}
       </div>
       <p id={`${id}-help`} className={cn("mt-2 text-xs", hero ? "text-navy-200" : "text-slate-500")}>
-        {t("help")}
+        {t("help")} {!hero && t("multiHelp")}
       </p>
     </form>
   );

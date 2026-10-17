@@ -230,7 +230,7 @@ function TrackBox({ label, placeholder, submit, locale }: { label: string; place
       <div className="flex gap-2">
         <div className="relative flex-1">
           <Search className="pointer-events-none absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-slate-400" aria-hidden />
-          <input id={id} name="n" required maxLength={40} autoComplete="off" spellCheck={false} placeholder={placeholder} className="input h-11 pl-9 font-mono uppercase placeholder:font-sans placeholder:normal-case" />
+          <input id={id} name="n" required maxLength={300} autoComplete="off" spellCheck={false} placeholder={placeholder} className="input h-11 pl-9 font-mono uppercase placeholder:font-sans placeholder:normal-case" />
         </div>
         <button type="submit" className="btn-accent h-11 shrink-0 px-4">
           {submit}
