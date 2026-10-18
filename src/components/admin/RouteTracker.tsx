@@ -19,7 +19,10 @@ export function RouteTracker({ journey, steps, previews, emailDefault }: {
   emailDefault: boolean;
 }) {
   const [hover, setHover] = useState<string | null>(null);
-  const shown = hover ?? steps[0]?.key ?? null;
+  const holds = steps.filter((s) => s.kind === "hold");
+  const normal = steps.filter((s) => s.kind !== "hold");
+  const [holdKey, setHoldKey] = useState(holds[0]?.key ?? "");
+  const shown = hover ?? normal.find((s) => s.next)?.key ?? normal[0]?.key ?? null;
 
   return (
     <div className="space-y-4">
@@ -48,10 +51,37 @@ export function RouteTracker({ journey, steps, previews, emailDefault }: {
       ) : (
         <>
           <div className="grid gap-2 sm:grid-cols-2">
-            {steps.map((s) => (
+            {normal.map((s) => (
               <StepButton key={s.key} step={s} onHover={setHover} />
             ))}
           </div>
+          {holds.length > 0 && (
+            <div className="rounded-lg border border-red-200 bg-red-50 p-3" onMouseEnter={() => setHover(holdKey)} onMouseLeave={() => setHover(null)}>
+              <p className="mb-2 flex items-center gap-1.5 text-sm font-bold text-red-800">
+                <ShieldAlert className="h-4 w-4" aria-hidden /> Customs hold
+              </p>
+              <div className="flex flex-col gap-2 sm:flex-row">
+                <select
+                  name="hold_point"
+                  value={holdKey.replace(/^hold:/, "")}
+                  onChange={(e) => {
+                    setHoldKey(`hold:${e.target.value}`);
+                    setHover(`hold:${e.target.value}`);
+                  }}
+                  onFocus={() => setHover(holdKey)}
+                  className="min-w-0 flex-1 rounded-lg border border-red-200 bg-white px-3 py-2 text-sm text-slate-800"
+                  aria-label="Where customs holds the shipment"
+                >
+                  {holds.map((h) => (
+                    <option key={h.key} value={h.customs?.city}>
+                      {h.customs?.city} — {h.customs?.kind}
+                    </option>
+                  ))}
+                </select>
+                <HoldButton />
+              </div>
+            </div>
+          )}
           {shown && previews[shown] && (
             <p className="rounded-lg border border-slate-200 bg-slate-50 p-3 text-sm text-slate-700">
               <span className="font-semibold text-slate-900">Customers will see: </span>
@@ -99,6 +129,23 @@ function StepButton({ step, onHover }: { step: RouteStep; onHover: (k: string | 
       {mine ? <LoaderCircle className="h-4 w-4 animate-spin" aria-hidden /> : <Icon className="h-4 w-4 shrink-0" aria-hidden />}
       <span className="min-w-0 flex-1">{step.label}</span>
       {step.next && <span className="rounded bg-white/20 px-1.5 py-0.5 text-[10px] uppercase tracking-wide">Next</span>}
+    </button>
+  );
+}
+
+function HoldButton() {
+  const { pending, data } = useFormStatus();
+  const mine = pending && data?.get("step") === "hold";
+  return (
+    <button
+      type="submit"
+      name="step"
+      value="hold"
+      disabled={pending}
+      className="inline-flex items-center justify-center gap-2 rounded-lg bg-red-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-red-700 disabled:opacity-60"
+    >
+      {mine ? <LoaderCircle className="h-4 w-4 animate-spin" aria-hidden /> : <ShieldAlert className="h-4 w-4" aria-hidden />}
+      Put on customs hold
     </button>
   );
 }

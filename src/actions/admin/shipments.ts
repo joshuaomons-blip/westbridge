@@ -183,7 +183,8 @@ export async function setShipmentPublished(_prev: ActionResult, fd: FormData): P
 export async function advanceRoute(_prev: ActionResult, fd: FormData): Promise<ActionResult> {
   return adminAction("events.write", async ({ db }) => {
     const id = z.string().uuid().safeParse(str(fd, "shipment_id"));
-    const key = str(fd, "step");
+    // The customs hold button sends "hold" plus the chosen customs point.
+    const key = str(fd, "step") === "hold" ? `hold:${str(fd, "hold_point")}` : str(fd, "step");
     if (!id.success || !key) return { error: "Choose a step on the route." };
     const { data: s } = await db
       .from("shipments")

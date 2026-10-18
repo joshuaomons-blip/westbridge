@@ -4,6 +4,7 @@
  * description in the shipment's email language.
  */
 import { buildJourney, samePlace, type JourneyStop } from "./journey";
+import { CUSTOMS_KIND_LABEL, customsPointsFor } from "./customs-points";
 
 export type StepKind = "depart" | "arrive" | "arrive_final" | "arrive_dest" | "out" | "delivered" | "hold" | "cleared";
 
@@ -20,6 +21,8 @@ export type RouteStep = {
   next: boolean;
   /** Shown as a red "problem" button (customs hold). */
   danger?: boolean;
+  /** For customs holds: the place name and what kind of customs point it is. */
+  customs?: { city: string; kind: string };
   vars: { place: string; next: string; dest: string };
 };
 
@@ -96,13 +99,27 @@ export function routeProgress(s: RouteShipment, events: RouteEvent[]): { journey
   }
   steps.push({ key: "delivered", kind: "delivered", status: STATUS.delivered, location: dest, label: `Delivered in ${s.destination_city}`, vars: { place: dest, next: "", dest } });
 
-  // Customs: held in the destination city (import clearance); while held, releasing it comes first.
-  const here = dest;
-  const herePlace = s.destination_city;
+  // Customs: choose one of the destination country's customs points (airport, seaport,
+  // border crossing); while held, releasing it at that same place comes first.
   if (s.current_status === "customs_processing") {
-    steps.unshift({ key: "cleared", kind: "cleared", status: STATUS.cleared, location: here, label: `Released from customs in ${herePlace}`, vars: { place: here, next: "", dest } });
+    const heldAt = events.find((e) => e.status === "customs_processing" && e.location?.trim())?.location?.trim() ?? dest;
+    const heldCity = heldAt.split(",")[0].trim();
+    steps.unshift({ key: "cleared", kind: "cleared", status: STATUS.cleared, location: heldAt, label: `Released from customs in ${heldCity}`, vars: { place: heldAt, next: "", dest } });
   } else {
-    steps.push({ key: "hold", kind: "hold", status: STATUS.hold, location: here, label: `Customs hold in ${herePlace}`, vars: { place: here, next: "", dest }, danger: true });
+    const { country, points } = customsPointsFor(s.destination_city, s.destination_country);
+    for (const p of points) {
+      const place = `${p.city}, ${country}`;
+      steps.push({
+        key: `hold:${p.city}`,
+        kind: "hold",
+        status: STATUS.hold,
+        location: place,
+        label: `Customs hold in ${p.city}`,
+        vars: { place, next: "", dest },
+        danger: true,
+        customs: { city: p.city, kind: CUSTOMS_KIND_LABEL[p.kind as keyof typeof CUSTOMS_KIND_LABEL] },
+      });
+    }
   }
 
   const firstNormal = steps.findIndex((st) => !st.danger);
