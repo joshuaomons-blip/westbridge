@@ -417,7 +417,7 @@
     "cta": "Track your shipment",
     "help": "Questions about this shipment? Reply to this email or write to {email}. Please include your tracking number.",
     "helpNoEmail": "Questions about this shipment? Reply to this email and include your tracking number.",
-    "safety": "Security tip: Norvane Express never asks for payment by email or text to release a parcel.",
+    "safety": "Security tip: Norvane Express never asks for payment by email or text to release a parcel. If you get such a message, contact us at {email}.",
     "footer": "You are receiving this email because you are the sender or recipient of a shipment handled by Norvane Express. This is a service message about your shipment.",
     "timesUtc": "Times are shown in UTC."
   },

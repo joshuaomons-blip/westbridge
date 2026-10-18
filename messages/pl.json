@@ -417,7 +417,7 @@
     "cta": "Śledź przesyłkę",
     "help": "Masz pytania dotyczące przesyłki? Odpowiedz na tę wiadomość lub napisz na adres {email}. Podaj numer przesyłki.",
     "helpNoEmail": "Masz pytania dotyczące przesyłki? Odpowiedz na tę wiadomość i podaj numer przesyłki.",
-    "safety": "Wskazówka bezpieczeństwa: Norvane Express nigdy nie prosi o płatność e-mailem ani SMS-em za wydanie przesyłki.",
+    "safety": "Wskazówka bezpieczeństwa: Norvane Express nigdy nie prosi o płatność e-mailem ani SMS-em za wydanie przesyłki. Jeśli otrzymasz taką wiadomość, skontaktuj się z nami: {email}.",
     "footer": "Otrzymujesz tę wiadomość, ponieważ jesteś nadawcą lub odbiorcą przesyłki obsługiwanej przez Norvane Express. To wiadomość serwisowa dotycząca Twojej przesyłki.",
     "timesUtc": "Godziny podano w strefie UTC."
   },

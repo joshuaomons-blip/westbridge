@@ -173,7 +173,7 @@ ${rows
 
 <tr><td style="padding:18px 28px 24px;${font}font-size:14px;line-height:1.55;color:#334155;">
 <p style="margin:0 0 14px;">${e(help)}</p>
-<p style="margin:0;padding:10px 12px;border-left:3px solid #CBD5E1;background:#F8FAFC;color:#64748B;font-size:12px;line-height:1.5;">${e(t("safety"))}</p>
+<p style="margin:0;padding:10px 12px;border-left:3px solid #CBD5E1;background:#F8FAFC;color:#64748B;font-size:12px;line-height:1.5;">${e(t("safety", { email: i.supportEmail || "support@norvaneexpress.com" }))}</p>
 </td></tr>
 
 <tr><td style="background:#0B1F44;padding:20px 28px;${font}font-size:12px;line-height:1.5;color:#CBD5E1;">
@@ -203,7 +203,7 @@ ${e(t("footer"))}<br><br><span style="color:#FFFFFF;font-weight:700;">© ${new D
     "",
     help,
     "",
-    t("safety"),
+    t("safety", { email: i.supportEmail || "support@norvaneexpress.com" }),
     "",
     "—",
     t("footer"),

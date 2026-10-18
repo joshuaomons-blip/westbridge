@@ -417,7 +417,7 @@
     "cta": "Seguir mi envío",
     "help": "¿Tienes preguntas sobre este envío? Responde a este correo o escríbenos a {email}. Incluye tu número de seguimiento.",
     "helpNoEmail": "¿Tienes preguntas sobre este envío? Responde a este correo e incluye tu número de seguimiento.",
-    "safety": "Consejo de seguridad: Norvane Express nunca pide pagos por correo electrónico ni SMS para liberar un paquete.",
+    "safety": "Consejo de seguridad: Norvane Express nunca pide pagos por correo electrónico ni SMS para liberar un paquete. Si recibe un mensaje así, contáctenos en {email}.",
     "footer": "Recibes este correo porque eres el remitente o el destinatario de un envío gestionado por Norvane Express. Es un mensaje de servicio sobre tu envío.",
     "timesUtc": "Las horas se muestran en UTC."
   },
