@@ -417,7 +417,7 @@
     "cta": "Sendung verfolgen",
     "help": "Fragen zu dieser Sendung? Antworten Sie auf diese E-Mail oder schreiben Sie an {email}. Bitte geben Sie Ihre Sendungsnummer an.",
     "helpNoEmail": "Fragen zu dieser Sendung? Antworten Sie auf diese E-Mail und geben Sie Ihre Sendungsnummer an.",
-    "safety": "Zu Ihrer Sicherheit: Wir fordern Sie niemals per E-Mail oder SMS auf, für die Freigabe eines Pakets eine Gebühr zu zahlen oder Kartendaten anzugeben.",
+    "safety": "Sicherheitshinweis: Norvane Express fordert niemals per E-Mail oder SMS eine Zahlung für die Freigabe einer Sendung.",
     "footer": "Sie erhalten diese E-Mail, weil Sie Absender oder Empfänger einer von Norvane Express beförderten Sendung sind. Dies ist eine Servicenachricht zu Ihrer Sendung.",
     "timesUtc": "Zeiten in UTC."
   },
