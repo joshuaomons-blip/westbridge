@@ -63,8 +63,9 @@ export function routeProgress(s: RouteShipment, events: RouteEvent[]): { journey
   const latest = events.find((e) => e.location?.trim());
 
   const current = journey.find((j) => j.state === "current");
-  const upcoming = journey.filter((j) => j.state === "upcoming" && j.kind === "stop");
   const destStop = journey.find((j) => j.kind === "destination")!;
+  // Once the shipment is in the destination city, earlier stops are no longer offered.
+  const upcoming = destStop.state === "current" ? [] : journey.filter((j) => j.state === "upcoming" && j.kind === "stop");
 
   // Leaving the current place (skipped if that was already recorded).
   if (current && current.kind !== "destination") {
@@ -95,9 +96,9 @@ export function routeProgress(s: RouteShipment, events: RouteEvent[]): { journey
   }
   steps.push({ key: "delivered", kind: "delivered", status: STATUS.delivered, location: dest, label: `Delivered in ${s.destination_city}`, vars: { place: dest, next: "", dest } });
 
-  // Customs: hold where the shipment is now; while held, releasing it comes first.
-  const here = current ? full(current) : `${s.origin_city}, ${s.origin_country}`;
-  const herePlace = current ? current.name : s.origin_city;
+  // Customs: held in the destination city (import clearance); while held, releasing it comes first.
+  const here = dest;
+  const herePlace = s.destination_city;
   if (s.current_status === "customs_processing") {
     steps.unshift({ key: "cleared", kind: "cleared", status: STATUS.cleared, location: here, label: `Released from customs in ${herePlace}`, vars: { place: here, next: "", dest } });
   } else {
