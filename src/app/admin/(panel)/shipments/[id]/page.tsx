@@ -16,9 +16,11 @@ import { TextField, SelectField, CheckboxField, TextAreaField } from "@/componen
 import { AuditList } from "@/components/admin/AuditList";
 import { RouteTracker } from "@/components/admin/RouteTracker";
 import { routeProgress, stepMessage } from "@/lib/route-progress";
+import { suggestRoute } from "@/lib/route-suggest";
 import {
   addShipmentEvent,
   advanceRoute,
+  applyAutoRoute,
   correctShipmentEvent,
   setShipmentArchived,
   setShipmentPublished,
@@ -69,6 +71,9 @@ export default async function ShipmentDetailPage({ params }: { params: Promise<{
     .filter((e) => e.visibility === "public" && !e.is_voided)
     .map((e) => ({ status: e.status_code as string, occurred_at: e.occurred_at as string, location: e.location as string | null }));
   const route = routeProgress(s, publicEvents);
+  const auto = suggestRoute({ originCity: s.origin_city, originCountry: s.origin_country, destinationCity: s.destination_city, destinationCountry: s.destination_country });
+  const currentStops: string[] = s.route_stops ?? [];
+  const autoDiffers = !auto.unknown.length && auto.stops.join("|") !== currentStops.join("|");
   const previews = Object.fromEntries(route.steps.map((st) => [st.key, stepMessage(st, s.notify_locale)]));
 
   return (
@@ -137,9 +142,27 @@ export default async function ShipmentDetailPage({ params }: { params: Promise<{
               description={
                 s.route_stops?.length
                   ? "Click where the shipment is now. The tracking page updates straight away and the sender and recipient get an email."
-                  : "No planned stops yet. Add them under Shipment details → Route stops (use Suggest route), then they appear here as buttons."
+                  : "No planned stops yet. Use the automatic route below, or add stops by hand under Shipment details → Route stops."
               }
             >
+              {canWrite && autoDiffers && (
+                <ActionForm action={applyAutoRoute} className="mb-5 rounded-lg border border-navy-100 bg-navy-50/60 p-4">
+                  <input type="hidden" name="shipment_id" value={s.id} />
+                  <p className="text-sm font-bold text-navy-900">Automatic route (real hubs on the way)</p>
+                  <p className="mt-2 flex flex-wrap items-center gap-x-1.5 gap-y-1 text-sm text-slate-700">
+                    {[`${s.origin_city}, ${s.origin_country}`, ...(auto.stops.length ? auto.stops : ["direct"]), `${s.destination_city}, ${s.destination_country}`].map((p, i, arr) => (
+                      <span key={`${p}-${i}`} className="inline-flex items-center gap-1.5">
+                        <span className={i === 0 || i === arr.length - 1 ? "font-semibold text-navy-900" : p === "direct" ? "italic text-slate-500" : "rounded bg-white px-1.5 py-0.5 ring-1 ring-navy-100"}>{p}</span>
+                        {i < arr.length - 1 && <span className="text-slate-400">→</span>}
+                      </span>
+                    ))}
+                  </p>
+                  <div className="mt-3 flex items-center gap-3">
+                    <SubmitButton pendingText="Saving…">{currentStops.length ? "Replace with automatic route" : "Use automatic route"}</SubmitButton>
+                    {currentStops.length > 0 && <span className="text-xs text-slate-500">Your current stops will be replaced.</span>}
+                  </div>
+                </ActionForm>
+              )}
               <ActionForm action={advanceRoute}>
                 <input type="hidden" name="shipment_id" value={s.id} />
                 <RouteTracker journey={route.journey} steps={route.steps} previews={previews} emailDefault={s.notify_emails !== false} />

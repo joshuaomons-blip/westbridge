@@ -7,6 +7,7 @@ import { adminAction, dbErrorMessage, str, utcFromLocalInput, type ActionResult 
 import { createShipmentSchema, shipmentSchema, eventSchema, correctEventSchema, fieldErrors } from "@/lib/validation";
 import { describeOutcome, notifyShipmentParties, outcomeCode } from "@/lib/email/notify";
 import { routeProgress, stepMessage } from "@/lib/route-progress";
+import { suggestRoute } from "@/lib/route-suggest";
 
 function formObject(fd: FormData) {
   const o: Record<string, string> = {};
@@ -226,5 +227,25 @@ export async function advanceRoute(_prev: ActionResult, fd: FormData): Promise<A
       emailNote = ` ${describeOutcome(outcome)}`;
     }
     return { ok: true, message: `Recorded: ${step.label}.${emailNote}` };
+  });
+}
+
+/** Fills the shipment's route stops with the realistic route from the hub network. */
+export async function applyAutoRoute(_prev: ActionResult, fd: FormData): Promise<ActionResult> {
+  return adminAction("shipments.write", async ({ db }) => {
+    const id = z.string().uuid().safeParse(str(fd, "shipment_id"));
+    if (!id.success) return { error: "Invalid shipment." };
+    const { data: s } = await db
+      .from("shipments")
+      .select("origin_city, origin_country, destination_city, destination_country, archived_at")
+      .eq("id", id.data)
+      .maybeSingle();
+    if (!s || s.archived_at) return { error: "Shipment not found." };
+    const r = suggestRoute({ originCity: s.origin_city, originCountry: s.origin_country, destinationCity: s.destination_city, destinationCountry: s.destination_country });
+    if (r.unknown.length) return { error: `No automatic route for ${r.unknown.join(" / ")} yet. Add stops by hand under Shipment details.` };
+    const { error } = await db.from("shipments").update({ route_stops: r.stops }).eq("id", id.data);
+    if (error) return { error: dbErrorMessage(error) };
+    revalidatePath(`/admin/shipments/${id.data}`);
+    return { ok: true, message: r.stops.length ? `Route set: ${r.stops.join(" → ")}.` : "Direct route: no stops needed between these cities." };
   });
 }
