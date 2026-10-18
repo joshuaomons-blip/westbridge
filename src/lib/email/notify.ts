@@ -2,7 +2,7 @@ import "server-only";
 import { getTranslations } from "next-intl/server";
 import { env } from "@/lib/env";
 import { getSiteContent } from "@/lib/content";
-import { categoryOf, isStatusCode } from "@/lib/statuses";
+import { categoryOf, isOnHold, isStatusCode, progressIndex } from "@/lib/statuses";
 import { formatDate, formatDateTime } from "@/lib/format";
 import { locales } from "@/i18n/routing";
 import { stagePhoto } from "@/lib/photos";
@@ -55,12 +55,19 @@ export async function notifyShipmentParties(db: Db, shipmentId: string, event: N
   if (!isEmailConfigured()) return { sent: 0, failed: 0, reason: "not_configured" };
 
   const locale = (locales as readonly string[]).includes(s.notify_locale) ? s.notify_locale : "en";
-  const [t, ts, td, content] = await Promise.all([
+  const [t, ts, td, content, tt] = await Promise.all([
     getTranslations({ locale, namespace: "email" }),
     getTranslations({ locale, namespace: "status" }),
     getTranslations({ locale, namespace: "statusDescription" }),
     getSiteContent(locale, false),
+    getTranslations({ locale, namespace: "tracking" }),
   ]);
+  const progressStatus = created ? "shipment_registered" : event.status;
+  const progress = {
+    step: progressIndex(progressStatus),
+    onHold: isOnHold(progressStatus),
+    labels: [tt("stepRegistered"), tt("stepTransit"), tt("stepOut"), tt("stepDelivered")] as [string, string, string, string],
+  };
   const translate = (key: string, vars?: Record<string, string>) => t(key, vars);
   const known = isStatusCode(event.status);
   const kind: EmailKind = created ? "created" : event.status === "delivered" ? "delivered" : "update";
@@ -91,6 +98,7 @@ export async function notifyShipmentParties(db: Db, shipmentId: string, event: N
       lang: locale,
       logoUrl: `${env.siteUrl}/email-logo.png`,
       photoUrl,
+      progress,
     });
     const r = await sendEmail({
       to: p.email,
