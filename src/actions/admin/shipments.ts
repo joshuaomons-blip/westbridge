@@ -31,9 +31,13 @@ export async function createShipment(_prev: ActionResult, fd: FormData): Promise
     const { data, error } = await db.rpc("create_shipment", { p: payload });
     if (error) return { error: dbErrorMessage(error) };
     const id = (data as { id: string }).id;
+    // No stops entered: plan the realistic route through the hub network automatically.
+    const routeStops = p.route_stops?.length
+      ? p.route_stops
+      : suggestRoute({ originCity: p.origin_city, originCountry: p.origin_country, destinationCity: p.destination_city, destinationCountry: p.destination_country }).stops;
     const { error: extraError } = await db
       .from("shipments")
-      .update({ route_stops: p.route_stops, notify_emails: p.notify_emails, notify_locale: p.notify_locale })
+      .update({ route_stops: routeStops, notify_emails: p.notify_emails, notify_locale: p.notify_locale })
       .eq("id", id);
     if (extraError) console.error("shipment extras not saved", extraError.code);
     // Welcome email to sender and recipient (only public details are included).

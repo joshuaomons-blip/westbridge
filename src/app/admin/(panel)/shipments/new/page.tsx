@@ -5,6 +5,7 @@ import { getServiceOptions } from "@/lib/admin-data";
 import { PageHeader } from "@/components/admin/ui";
 import { ActionForm, SubmitButton } from "@/components/admin/ActionForm";
 import { ShipmentFields } from "@/components/admin/ShipmentFields";
+import { ShipmentTemplates } from "@/components/admin/ShipmentTemplates";
 import { TextField, SelectField, CheckboxField, Fieldset } from "@/components/admin/fields";
 import { createShipment } from "@/actions/admin/shipments";
 import { STATUS_ADMIN_LABEL } from "@/lib/statuses";
@@ -33,6 +34,7 @@ export default async function NewShipmentPage({ searchParams }: { searchParams: 
       />
       <ActionForm action={createShipment} className="max-w-4xl space-y-6">
         {prefill && <input type="hidden" name="customer_id" value={prefill.id} />}
+        <ShipmentTemplates />
         <ShipmentFields
           services={services}
           d={
