@@ -84,6 +84,11 @@ export function renderShipmentEmail(t: Translate, i: ShipmentEmailInput): { subj
   ];
 
   const e = escapeHtml;
+  // The support address is a tap-to-write link (subject pre-filled with the tracking number).
+  const supportAddress = i.supportEmail || "support@norvaneexpress.com";
+  const mailto = `mailto:${supportAddress}?subject=${encodeURIComponent(`${i.trackingNumber}`)}`;
+  const linkEmail = (escaped: string) =>
+    escaped.split(e(supportAddress)).join(`<a href="${e(mailto)}" style="color:#163B7A;font-weight:700;text-decoration:underline;">${e(supportAddress)}</a>`);
   const font = "font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;";
   const accent = i.progress?.onHold ? "#B45309" : color;
 
@@ -172,8 +177,8 @@ ${rows
 </td></tr>
 
 <tr><td style="padding:18px 28px 24px;${font}font-size:14px;line-height:1.55;color:#334155;">
-<p style="margin:0 0 14px;">${e(help)}</p>
-<p style="margin:0;padding:10px 12px;border-left:3px solid #CBD5E1;background:#F8FAFC;color:#64748B;font-size:12px;line-height:1.5;">${e(t("safety", { email: i.supportEmail || "support@norvaneexpress.com" }))}</p>
+<p style="margin:0 0 14px;">${linkEmail(e(help))}</p>
+<p style="margin:0;padding:10px 12px;border-left:3px solid #CBD5E1;background:#F8FAFC;color:#64748B;font-size:12px;line-height:1.5;">${linkEmail(e(t("safety", { email: supportAddress })))}</p>
 </td></tr>
 
 <tr><td style="background:#0B1F44;padding:20px 28px;${font}font-size:12px;line-height:1.5;color:#CBD5E1;">
