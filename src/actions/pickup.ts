@@ -4,6 +4,7 @@ import { pickupSchema, type PickupInput } from "@/lib/validation";
 import { checkRateLimit } from "@/lib/rate-limit";
 import { createPublicClient } from "@/lib/supabase/server";
 import { isSupabaseConfigured } from "@/lib/env";
+import { isLocale } from "@/i18n/routing";
 import { getSiteContent } from "@/lib/content";
 import { sendEmail } from "@/lib/email/send";
 import { escapeHtml } from "@/lib/email/shipment-template";
@@ -57,9 +58,10 @@ export async function submitPickup(_prev: PickupState, formData: FormData): Prom
   if (!(await checkRateLimit("pickup"))) return { status: "error", error: "rate_limited" };
 
   const p = parsed.data;
-  const locale = String(formData.get("locale") ?? "en");
+  const rawLocale = String(formData.get("locale") ?? "en");
+  const locale = isLocale(rawLocale) ? rawLocale : "en";
   const rows = pickupSummary(p);
-  const subject = `Pickup request: ${p.pickup_city} → ${p.dest_city}, ${p.dest_country}`.slice(0, 200);
+  const subject = `Pickup request: ${p.pickup_city} → ${p.dest_city}, ${p.dest_country}`.replace(/[\r\n]+/g, " ").slice(0, 200);
   const message = rows.map(([k, v]) => `${k}: ${v}`).join("\n");
 
   const { data, error } = await createPublicClient().rpc("submit_pickup_request", {

@@ -4,6 +4,7 @@ import { contactSchema } from "@/lib/validation";
 import { checkRateLimit } from "@/lib/rate-limit";
 import { createPublicClient } from "@/lib/supabase/server";
 import { isSupabaseConfigured } from "@/lib/env";
+import { isLocale } from "@/i18n/routing";
 
 export type ContactState =
   | { status: "idle" }
@@ -40,7 +41,8 @@ export async function submitContact(_prev: ContactState, formData: FormData): Pr
   // Spam protection 3: rate limit per visitor.
   if (!(await checkRateLimit("contact"))) return { status: "error", error: "rate_limited" };
 
-  const locale = String(formData.get("locale") ?? "en");
+  const rawLocale = String(formData.get("locale") ?? "en");
+  const locale = isLocale(rawLocale) ? rawLocale : "en";
   const { data, error } = await createPublicClient().rpc("submit_contact_inquiry", {
     p_name: parsed.data.name,
     p_email: parsed.data.email,

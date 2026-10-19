@@ -14,14 +14,27 @@ export const LIMITS = {
 
 export async function clientIp(): Promise<string> {
   const h = await headers();
-  const forwarded = h.get("x-forwarded-for");
-  return (forwarded?.split(",")[0] ?? h.get("x-real-ip") ?? "unknown").trim();
+  // On Vercel these headers are set by the platform (client values are overwritten).
+  const forwarded = h.get("x-vercel-forwarded-for") ?? h.get("x-real-ip") ?? h.get("x-forwarded-for");
+  return (forwarded?.split(",")[0] ?? "unknown").trim();
+}
+
+/**
+ * Secret salt for hashing visitor identifiers. Uses RATE_LIMIT_SALT, or, when that
+ * is not set, a value derived from another server-only secret, so the salt is
+ * never public (a public salt would let anyone pre-compute or lock buckets).
+ */
+function salt(): string {
+  const own = process.env.RATE_LIMIT_SALT;
+  if (own) return own;
+  const fallback = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.RESEND_API_KEY || "";
+  return createHash("sha256").update(`norvane-rate-limit:${fallback}`).digest("hex");
 }
 
 /** Salted hash so raw IP addresses are never stored. */
 function bucketKey(action: string, identifier: string): string {
-  const salt = process.env.RATE_LIMIT_SALT || "wb-7f3c1e9a52d84b06a1c3e5f7092b4d6e";
-  return `${action}:${createHash("sha256").update(`${salt}:${identifier}`).digest("hex").slice(0, 40)}`;
+  const salt_ = salt();
+  return `${action}:${createHash("sha256").update(`${salt_}:${identifier}`).digest("hex").slice(0, 40)}`;
 }
 
 /**
