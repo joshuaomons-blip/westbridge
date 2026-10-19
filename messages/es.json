@@ -370,7 +370,12 @@
     "ctaText": "Introduce un número de seguimiento o escríbenos con cualquier pregunta sobre envíos o recepciones.",
     "emailUs": "Escríbenos",
     "followUs": "Síguenos",
-    "companyReg": "N.º de registro de la empresa: {number}"
+    "companyReg": "N.º de registro de la empresa: {number}",
+    "appTitle": "Obtén la app de Norvane",
+    "appText": "Rastrea tus envíos desde la pantalla de inicio con un toque.",
+    "appButton": "Instalar app",
+    "appIos": "Toca {share} Compartir y luego «Añadir a pantalla de inicio».",
+    "appClose": "Cerrar"
   },
   "cookie": {
     "text": "Este sitio web solo utiliza cookies esenciales, por ejemplo para recordar su idioma. No utilizamos cookies publicitarias ni de rastreo.",

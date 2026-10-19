@@ -370,7 +370,12 @@
     "ctaText": "Wpisz numer przesyłki albo napisz do nas z pytaniem o nadanie lub odbiór.",
     "emailUs": "Napisz do nas",
     "followUs": "Obserwuj nas",
-    "companyReg": "Nr rejestracyjny firmy: {number}"
+    "companyReg": "Nr rejestracyjny firmy: {number}",
+    "appTitle": "Pobierz aplikację Norvane",
+    "appText": "Śledź przesyłki jednym dotknięciem z ekranu głównego.",
+    "appButton": "Zainstaluj aplikację",
+    "appIos": "Stuknij {share} Udostępnij, a następnie „Do ekranu początkowego”.",
+    "appClose": "Zamknij"
   },
   "cookie": {
     "text": "Ta strona używa wyłącznie niezbędnych plików cookie, np. do zapamiętania wybranego języka. Nie używamy plików cookie reklamowych ani śledzących.",

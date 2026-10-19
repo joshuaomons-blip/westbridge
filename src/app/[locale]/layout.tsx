@@ -29,7 +29,7 @@ export function generateStaticParams() {
 }
 
 export const viewport: Viewport = {
-  themeColor: "#172850",
+  themeColor: "#0B1F44",
   width: "device-width",
   initialScale: 1,
 };
@@ -43,7 +43,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     description: t("homeDescription"),
     applicationName: t("siteName"),
     openGraph: { siteName: t("siteName"), type: "website", locale },
-    icons: { icon: "/icon.svg" },
+    icons: { icon: "/icon.svg", apple: "/apple-touch-icon.png" },
+    appleWebApp: { capable: true, title: "Norvane", statusBarStyle: "default" },
   };
 }
 

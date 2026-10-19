@@ -370,7 +370,12 @@
     "ctaText": "Enter a tracking number, or email us with any question about sending or receiving.",
     "emailUs": "Email us",
     "followUs": "Follow us",
-    "companyReg": "Company registration no. {number}"
+    "companyReg": "Company registration no. {number}",
+    "appTitle": "Get the Norvane app",
+    "appText": "Track shipments from your home screen in one tap.",
+    "appButton": "Install app",
+    "appIos": "Tap {share} Share, then “Add to Home Screen”.",
+    "appClose": "Close"
   },
   "cookie": {
     "text": "This website uses only essential cookies, for example to remember your language. We do not use advertising or tracking cookies.",

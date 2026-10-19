@@ -370,7 +370,12 @@
     "ctaText": "Geben Sie eine Sendungsnummer ein oder schreiben Sie uns bei Fragen zum Versand oder Empfang.",
     "emailUs": "Schreiben Sie uns",
     "followUs": "Folgen Sie uns",
-    "companyReg": "Handelsregisternummer: {number}"
+    "companyReg": "Handelsregisternummer: {number}",
+    "appTitle": "Hol dir die Norvane-App",
+    "appText": "Sendungen mit einem Tipp vom Startbildschirm verfolgen.",
+    "appButton": "App installieren",
+    "appIos": "Tippe auf {share} Teilen und dann auf „Zum Home-Bildschirm“.",
+    "appClose": "Schließen"
   },
   "cookie": {
     "text": "Diese Website verwendet nur notwendige Cookies, zum Beispiel um Ihre Sprache zu speichern. Wir verwenden keine Werbe- oder Tracking-Cookies.",

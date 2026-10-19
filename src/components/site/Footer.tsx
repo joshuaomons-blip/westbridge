@@ -6,6 +6,7 @@ import { safeSocialUrl, whatsappHref } from "@/lib/support";
 import { Link } from "@/i18n/navigation";
 import { Logo } from "./Logo";
 import { LanguageSwitcher } from "./LanguageSwitcher";
+import { InstallApp } from "./InstallApp";
 import type { SiteContent } from "@/lib/content";
 
 export async function Footer({ content }: { content: SiteContent }) {
@@ -117,6 +118,7 @@ export async function Footer({ content }: { content: SiteContent }) {
               </ul>
             </div>
           )}
+          <InstallApp title={t("appTitle")} text={t("appText")} button={t("appButton")} iosHint={t("appIos")} close={t("appClose")} />
         </div>
 
         <div className="grid grid-cols-2 gap-8 sm:grid-cols-4 lg:col-span-7">
