@@ -73,8 +73,10 @@ export async function notifyShipmentParties(db: Db, shipmentId: string, event: N
   const kind: EmailKind = created ? "created" : event.status === "delivered" ? "delivered" : "update";
   const supportEmail = content.get("contact.email") ?? null;
   const trackUrl = `${env.siteUrl}/${locale}/track?n=${encodeURIComponent(s.tracking_number)}`;
-  // Stage photo (plane, hub, port, handover…), cropped to a wide banner by the image CDN.
-  const photoUrl = `${stagePhoto(created ? "shipment_registered" : event.status)}?w=1200&h=440&fit=crop&crop=entropy&auto=format&q=70`;
+  // Stage photo (plane, hub, port, handover…) cropped to a banner and served from our own
+  // domain, so every image in the email comes from norvaneexpress.com (better for spam filters).
+  const photoSrc = `${stagePhoto(created ? "shipment_registered" : event.status)}?w=1200&h=440&fit=crop&crop=entropy&q=70`;
+  const photoUrl = `${env.siteUrl}/_next/image?url=${encodeURIComponent(photoSrc)}&w=1200&q=75`;
 
   let sent = 0;
   let failed = 0;

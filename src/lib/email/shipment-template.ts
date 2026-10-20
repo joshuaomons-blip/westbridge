@@ -3,7 +3,7 @@
  * comes from the `t` translator so every language uses the same layout.
  *
  * Deliverability choices: table layout with inline styles (what email clients
- * render reliably), a small logo from our own domain, one stock photo, no tracking pixels, a plain-text alternative,
+ * render reliably), all images served from our own domain, no tracking pixels, a plain-text alternative,
  * one clear link to our own site, and only public shipment details.
  */
 
