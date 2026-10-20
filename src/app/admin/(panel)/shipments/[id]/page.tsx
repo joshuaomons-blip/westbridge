@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Archive, ArchiveRestore, Eye, EyeOff, ExternalLink, History, Lock, Earth, Printer } from "lucide-react";
+import { Archive, ArchiveRestore, Eye, EyeOff, ExternalLink, History, Lock, Earth, Printer, ReceiptText } from "lucide-react";
 import { requirePermission, can } from "@/lib/auth";
 import { createSessionClient } from "@/lib/supabase/server";
 import { getServiceOptions } from "@/lib/admin-data";
@@ -98,6 +98,9 @@ export default async function ShipmentDetailPage({ params }: { params: Promise<{
             </a>
             <a href={`/admin/label/${s.id}`} target="_blank" rel="noopener" className="btn-outline px-3 py-2">
               <Printer className="h-4 w-4" aria-hidden /> Print label
+            </a>
+            <a href={`/admin/receipt/${s.id}`} target="_blank" rel="noopener" className="btn-outline px-3 py-2">
+              <ReceiptText className="h-4 w-4" aria-hidden /> Print receipt
             </a>
             {can(admin, "shipments.write") && !archived && (
               <ConfirmForm
