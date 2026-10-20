@@ -106,6 +106,7 @@ export async function notifyShipmentParties(db: Db, shipmentId: string, event: N
       to: p.email,
       ...mail,
       replyTo: supportEmail,
+      unsubscribeEmail: supportEmail,
       idempotencyKey: `${shipmentId}:${event.status}:${event.occurred_at}:${p.role}`,
     });
     if (r.ok) sent++;

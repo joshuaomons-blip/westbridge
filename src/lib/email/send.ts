@@ -31,6 +31,8 @@ export async function sendEmail(msg: {
   text: string;
   replyTo?: string | null;
   idempotencyKey?: string;
+  /** Address people can write to to stop these emails (sent as a List-Unsubscribe header). */
+  unsubscribeEmail?: string | null;
 }): Promise<SendResult> {
   const key = process.env.RESEND_API_KEY;
   const from = fromAddress();
@@ -51,7 +53,12 @@ export async function sendEmail(msg: {
         html: msg.html,
         text: msg.text,
         ...(msg.replyTo ? { reply_to: msg.replyTo } : {}),
-        headers: { "X-Entity-Ref-ID": msg.idempotencyKey ?? crypto.randomUUID() },
+        headers: {
+          "X-Entity-Ref-ID": msg.idempotencyKey ?? crypto.randomUUID(),
+          ...(msg.unsubscribeEmail
+            ? { "List-Unsubscribe": `<mailto:${msg.unsubscribeEmail}?subject=${encodeURIComponent("Unsubscribe from shipment emails")}>` }
+            : {}),
+        },
       }),
       signal: AbortSignal.timeout(10_000),
     });
