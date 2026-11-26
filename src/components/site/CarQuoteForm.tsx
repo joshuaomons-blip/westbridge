@@ -109,6 +109,7 @@ export function CarQuoteForm() {
             <option value="unsure">{t("methodUnsure")}</option>
             <option value="door_to_port">{t("methodDoor")}</option>
             <option value="port_to_port">{t("methodPort")}</option>
+            <option value="door_to_door">{t("methodDomestic")}</option>
           </select>
         </Field>
         <Field label={t("readyDate")} optional={tp("optional")} name="ready_date" error={err("ready_date")}>

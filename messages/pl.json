@@ -528,7 +528,8 @@
     "success": "Dziękujemy. Nasz zespół wkrótce skontaktuje się z ceną i kolejnymi krokami transportu Twojego pojazdu.",
     "side1": "Podaj pojazd i trasę.",
     "side2": "Odpowiemy z jasną ceną i planem odbioru.",
-    "side3": "Pojazd otrzyma własny numer śledzenia."
+    "side3": "Pojazd otrzyma własny numer śledzenia.",
+    "methodDomestic": "Krajowo, od drzwi do drzwi (w tym samym kraju)"
   },
   "receipt": {
     "pageTitle": "Twoje potwierdzenie nadania",

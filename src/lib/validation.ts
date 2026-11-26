@@ -90,7 +90,7 @@ export const carQuoteSchema = z.object({
   pickup_city: req(100),
   dest_country: req(100),
   dest_city: req(100),
-  method: z.enum(["door_to_port", "port_to_port", "unsure"]).catch("unsure"),
+  method: z.enum(["door_to_port", "port_to_port", "door_to_door", "unsure"]).catch("unsure"),
   ready_date: z
     .string()
     .optional()

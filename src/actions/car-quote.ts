@@ -23,6 +23,7 @@ const FIELDS = [
 const METHOD: Record<CarQuoteInput["method"], string> = {
   door_to_port: "Door-to-port",
   port_to_port: "Port-to-port",
+  door_to_door: "Domestic door-to-door",
   unsure: "Not sure",
 };
 

@@ -528,7 +528,8 @@
     "success": "Thank you. Our team will contact you shortly with a price and the next steps for shipping your vehicle.",
     "side1": "Tell us about the vehicle and route.",
     "side2": "We reply with a clear price and collection plan.",
-    "side3": "Your vehicle ships with its own tracking number."
+    "side3": "Your vehicle ships with its own tracking number.",
+    "methodDomestic": "Domestic door-to-door (within the same country)"
   },
   "receipt": {
     "pageTitle": "Your shipment receipt",

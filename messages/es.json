@@ -528,7 +528,8 @@
     "success": "Gracias. Nuestro equipo se pondrá en contacto con usted en breve con un precio y los siguientes pasos para enviar su vehículo.",
     "side1": "Indíquenos el vehículo y la ruta.",
     "side2": "Le respondemos con un precio claro y un plan de recogida.",
-    "side3": "Su vehículo viaja con su propio número de seguimiento."
+    "side3": "Su vehículo viaja con su propio número de seguimiento.",
+    "methodDomestic": "Nacional, de puerta a puerta (dentro del mismo país)"
   },
   "receipt": {
     "pageTitle": "Su recibo de envío",

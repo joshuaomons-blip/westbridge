@@ -528,7 +528,8 @@
     "success": "Vielen Dank. Unser Team meldet sich in Kürze mit einem Preis und den nächsten Schritten für den Versand Ihres Fahrzeugs.",
     "side1": "Nennen Sie uns Fahrzeug und Route.",
     "side2": "Wir antworten mit einem klaren Preis und Abholplan.",
-    "side3": "Ihr Fahrzeug reist mit eigener Sendungsnummer."
+    "side3": "Ihr Fahrzeug reist mit eigener Sendungsnummer.",
+    "methodDomestic": "Inland, von Tür zu Tür (im selben Land)"
   },
   "receipt": {
     "pageTitle": "Ihre Versandquittung",
