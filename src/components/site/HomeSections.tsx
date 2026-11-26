@@ -14,6 +14,7 @@ import {
   PackageCheck,
   Plus,
   TriangleAlert,
+  Ship,
   Truck,
   Warehouse,
   type LucideIcon,
@@ -30,10 +31,10 @@ export async function CarShippingSection() {
   const t = await getTranslations("home");
   const points = [t("carPoint1"), t("carPoint2"), t("carPoint3"), t("carPoint4")];
   const steps = [
-    { photo: PHOTOS.carYard, title: t("carStep1Title"), text: t("carStep1Text") },
-    { photo: PHOTOS.carLoading, title: t("carStep2Title"), text: t("carStep2Text") },
-    { photo: PHOTOS.carShip, title: t("carStep3Title"), text: t("carStep3Text") },
-    { photo: PHOTOS.carAerial, title: t("carStep4Title"), text: t("carStep4Text") },
+    { icon: FileText, title: t("carStep1Title"), text: t("carStep1Text") },
+    { icon: Truck, title: t("carStep2Title"), text: t("carStep2Text") },
+    { icon: Ship, title: t("carStep3Title"), text: t("carStep3Text") },
+    { icon: MapPin, title: t("carStep4Title"), text: t("carStep4Text") },
   ];
   return (
     <section id="car-shipping" className="relative isolate scroll-mt-28 overflow-hidden bg-brand-950 text-white" aria-labelledby="car-heading">
@@ -77,16 +78,8 @@ export async function CarShippingSection() {
 
           {/* Photo collage */}
           <div className="reveal relative">
-            <div className="grid grid-cols-5 grid-rows-6 gap-3 sm:gap-4" style={{ aspectRatio: "5 / 6" }}>
-              <div className="relative col-span-3 row-span-6 overflow-hidden rounded-3xl ring-1 ring-white/10">
-                <Image src={PHOTOS.carShip} alt="" fill sizes="(min-width: 1024px) 30vw, 60vw" className="object-cover" />
-              </div>
-              <div className="relative col-span-2 row-span-3 overflow-hidden rounded-3xl ring-1 ring-white/10">
-                <Image src={PHOTOS.carYard} alt="" fill sizes="(min-width: 1024px) 20vw, 40vw" className="object-cover" />
-              </div>
-              <div className="relative col-span-2 row-span-3 overflow-hidden rounded-3xl ring-1 ring-white/10">
-                <Image src={PHOTOS.carAerial} alt="" fill sizes="(min-width: 1024px) 20vw, 40vw" className="object-cover" />
-              </div>
+            <div className="relative aspect-[4/5] overflow-hidden rounded-3xl ring-1 ring-white/10 sm:aspect-[4/3] lg:aspect-[4/5]">
+              <Image src={PHOTOS.carShip} alt="" fill sizes="(min-width: 1024px) 45vw, 100vw" className="object-cover" />
             </div>
             {/* floating tracking card */}
             <div className="absolute -bottom-6 left-4 flex items-center gap-3 rounded-2xl bg-white p-4 pr-6 text-brand-900 shadow-2xl shadow-black/40 sm:-left-6">
@@ -112,16 +105,15 @@ export async function CarShippingSection() {
           <h3 className="font-display text-2xl font-black [font-stretch:108%] sm:text-3xl">{t("carStepsTitle")}</h3>
           <ol className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {steps.map((step, i) => (
-              <li key={step.title} className="reveal group overflow-hidden rounded-2xl bg-white/[0.04] ring-1 ring-white/10 transition hover:ring-white/25">
-                <div className="relative aspect-[4/3] overflow-hidden">
-                  <Image src={step.photo} alt="" fill sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw" className="object-cover transition duration-700 group-hover:scale-105" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-brand-950/80 to-transparent" aria-hidden />
-                  <span className="absolute top-4 left-4 flex h-9 w-9 items-center justify-center rounded-full bg-signal-600 font-display text-sm font-black">{i + 1}</span>
+              <li key={step.title} className="reveal rounded-2xl bg-white/[0.04] p-6 ring-1 ring-white/10 transition hover:ring-white/25">
+                <div className="flex items-center gap-3">
+                  <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-signal-600">
+                    <step.icon className="h-5 w-5" aria-hidden />
+                  </span>
+                  <span className="font-display text-sm font-black text-white/40">0{i + 1}</span>
                 </div>
-                <div className="p-5">
-                  <p className="font-bold">{step.title}</p>
-                  <p className="mt-1.5 text-sm leading-relaxed text-white/70">{step.text}</p>
-                </div>
+                <p className="mt-5 font-bold">{step.title}</p>
+                <p className="mt-1.5 text-sm leading-relaxed text-white/70">{step.text}</p>
               </li>
             ))}
           </ol>
