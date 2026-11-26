@@ -13,4 +13,5 @@ export const SERVICE_ICON_NAMES = [
   "box",
   "anchor",
   "file-text",
+  "car",
 ];

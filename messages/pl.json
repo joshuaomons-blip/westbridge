@@ -151,7 +151,10 @@
     "safetyTip2": "Uważaj na nieoczekiwane SMS-y lub e-maile z prośbą o dopłatę za wydanie paczki.",
     "safetyTip3": "Nigdy nie podawaj danych karty, haseł ani kodów przez link w wiadomości.",
     "safetyTip4": "W razie wątpliwości skontaktuj się z nami bezpośrednio, korzystając z danych na stronie kontaktowej.",
-    "safetyCta": "Zgłoś podejrzaną wiadomość"
+    "safetyCta": "Zgłoś podejrzaną wiadomość",
+    "announceBadge": "Nowość",
+    "announceText": "Wysyłamy teraz samochody za granicę – od drzwi do portu i z portu do portu, ze śledzeniem na każdym etapie.",
+    "announceCta": "Dowiedz się więcej"
   },
   "tracking": {
     "label": "Numer przesyłki",

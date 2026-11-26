@@ -151,7 +151,10 @@
     "safetyTip2": "Desconfíe de SMS o correos inesperados que piden pagar una tasa para liberar un paquete.",
     "safetyTip3": "Nunca comparta datos de tarjeta, contraseñas o códigos a través de un enlace en un mensaje.",
     "safetyTip4": "Si tiene dudas, contáctenos directamente con los datos de nuestra página de contacto.",
-    "safetyCta": "Informar de un mensaje sospechoso"
+    "safetyCta": "Informar de un mensaje sospechoso",
+    "announceBadge": "Nuevo",
+    "announceText": "Ahora enviamos coches a nivel internacional: de puerta a puerto y de puerto a puerto, con seguimiento en todo momento.",
+    "announceCta": "Más información"
   },
   "tracking": {
     "label": "Número de seguimiento",

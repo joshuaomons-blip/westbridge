@@ -2,6 +2,7 @@ import {
   Anchor,
   Box,
   Briefcase,
+  Car,
   Container,
   FileText,
   Globe,
@@ -29,6 +30,7 @@ export const SERVICE_ICONS: Record<string, LucideIcon> = {
   box: Box,
   anchor: Anchor,
   "file-text": FileText,
+  car: Car,
 };
 
 export function ServiceIcon({ name, className }: { name: string; className?: string }) {

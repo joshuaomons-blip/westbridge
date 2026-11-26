@@ -4,6 +4,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import {
   ArrowRight,
   Briefcase,
+  Car,
   Earth,
   Hash,
   Headset,
@@ -60,6 +61,24 @@ export default async function HomePage({ params }: Props) {
 
   return (
     <>
+      {/* Announcement: international car shipping */}
+      <section aria-label={t("announceBadge")} className="bg-signal-600 text-white">
+        <Link
+          href="/services#international-car-shipping"
+          className="container-page group flex flex-wrap items-center justify-center gap-x-3 gap-y-1 py-3 text-center text-sm font-semibold sm:text-base"
+        >
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-white/20 px-2.5 py-0.5 text-xs font-bold tracking-wide uppercase">
+            <Car className="h-4 w-4" aria-hidden />
+            {t("announceBadge")}
+          </span>
+          <span>{t("announceText")}</span>
+          <span className="inline-flex items-center gap-1 underline underline-offset-4">
+            {t("announceCta")}
+            <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" aria-hidden />
+          </span>
+        </Link>
+      </section>
+
       {/* Hero: full-bleed photo, centred welcome and a wide Track / Ship / Help panel */}
       <section className="relative isolate overflow-hidden bg-brand-950">
         <Image src={heroImage} alt={t("imageAlt")} fill priority sizes="100vw" className="hero-zoom object-cover object-[50%_55%]" />

@@ -151,7 +151,10 @@
     "safetyTip2": "Seien Sie vorsichtig bei unerwarteten SMS oder E-Mails, die eine Gebühr für die Freigabe eines Pakets verlangen.",
     "safetyTip3": "Geben Sie niemals Kartendaten, Passwörter oder Codes über einen Link in einer Nachricht ein.",
     "safetyTip4": "Im Zweifel kontaktieren Sie uns direkt über die Angaben auf unserer Kontaktseite.",
-    "safetyCta": "Verdächtige Nachricht melden"
+    "safetyCta": "Verdächtige Nachricht melden",
+    "announceBadge": "Neu",
+    "announceText": "Wir versenden jetzt Autos international – von Tür zu Hafen und von Hafen zu Hafen, mit durchgehender Sendungsverfolgung.",
+    "announceCta": "Mehr erfahren"
   },
   "tracking": {
     "label": "Sendungsnummer",

@@ -151,7 +151,10 @@
     "safetyTip2": "Be careful with unexpected texts or emails asking you to pay a fee to release a parcel.",
     "safetyTip3": "Never share card details, passwords or codes through a link in a message.",
     "safetyTip4": "If you are unsure, contact us directly using the details on our contact page.",
-    "safetyCta": "Report a suspicious message"
+    "safetyCta": "Report a suspicious message",
+    "announceBadge": "New",
+    "announceText": "We now ship cars internationally — door-to-port and port-to-port, with tracking all the way.",
+    "announceCta": "Learn more"
   },
   "tracking": {
     "label": "Tracking number",

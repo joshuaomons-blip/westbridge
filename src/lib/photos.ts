@@ -30,6 +30,7 @@ const SERVICE_PHOTOS: Record<string, string> = {
   "business-shipping": PHOTOS.warehouse,
   "shipment-tracking": PHOTOS.parcels,
   "logistics-support": PHOTOS.support,
+  "international-car-shipping": PHOTOS.sea,
 };
 const POOL = [PHOTOS.sea, PHOTOS.forklift, PHOTOS.team, PHOTOS.port, ...Object.values(SERVICE_PHOTOS)];
 
