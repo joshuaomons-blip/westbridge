@@ -54,7 +54,9 @@
     "menuAboutText": "Learn more about Norvane Express.",
     "carShipping": "Car shipping",
     "menuCars": "International car shipping",
-    "menuCarsText": "Ship your car or vehicle overseas."
+    "menuCarsText": "Ship your car or vehicle overseas.",
+    "menuCarQuote": "Car shipping quote",
+    "menuCarQuoteText": "Get a price to ship your vehicle."
   },
   "home": {
     "eyebrow": "International shipping & logistics",
@@ -499,5 +501,33 @@
     "side2": "We reply with a clear price and pickup time.",
     "side3": "We collect, ship and give you a tracking number.",
     "whatsapp": "Chat with us on WhatsApp"
+  },
+  "carQuote": {
+    "metaTitle": "Car shipping quote",
+    "title": "Get a car shipping quote",
+    "subtitle": "Tell us about your vehicle and where it needs to go. Our team will reply with a price and the next steps.",
+    "formTitle": "Vehicle and route",
+    "sectionVehicle": "Your vehicle",
+    "make": "Make",
+    "model": "Model",
+    "year": "Year",
+    "condition": "Condition",
+    "conditionRuns": "Runs and drives",
+    "conditionNotRunning": "Does not run",
+    "sectionRoute": "From and to",
+    "pickupCountry": "Pickup country",
+    "pickupCity": "Pickup city",
+    "method": "Shipping method",
+    "methodUnsure": "Not sure — please advise",
+    "methodDoor": "Door-to-port (we collect it)",
+    "methodPort": "Port-to-port (I deliver it to the port)",
+    "readyDate": "Vehicle ready from",
+    "notesHint": "VIN, modifications, value or anything we should know.",
+    "submit": "Request quote",
+    "successTitle": "Quote request received",
+    "success": "Thank you. Our team will contact you shortly with a price and the next steps for shipping your vehicle.",
+    "side1": "Tell us about the vehicle and route.",
+    "side2": "We reply with a clear price and collection plan.",
+    "side3": "Your vehicle ships with its own tracking number."
   }
 }

@@ -66,7 +66,7 @@ export async function CarShippingSection() {
               ))}
             </ul>
             <div className="mt-10 flex flex-wrap gap-3">
-              <Link href="/contact" className="btn-accent h-13 px-8 text-base shadow-xl shadow-signal-600/30">
+              <Link href="/car-quote" className="btn-accent h-13 px-8 text-base shadow-xl shadow-signal-600/30">
                 {t("carCta")}
                 <ArrowRight className="h-4 w-4" aria-hidden />
               </Link>

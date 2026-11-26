@@ -74,6 +74,32 @@ export const pickupSchema = z.object({
 });
 export type PickupInput = z.infer<typeof pickupSchema>;
 
+export const carQuoteSchema = z.object({
+  name: req(120),
+  email: z.string().trim().max(254, "emailInvalid").regex(/^[^@\s]+@[^@\s]+\.[^@\s]+$/, "emailInvalid"),
+  phone: z.string().trim().regex(/^\+?[0-9()\s.-]{5,40}$/, "phoneInvalid"),
+  make: req(60),
+  model: req(60),
+  year: z
+    .string()
+    .optional()
+    .transform((v) => (v ? Number(v) : undefined))
+    .refine((v) => v === undefined || (Number.isInteger(v) && v >= 1900 && v <= 2100), "numberInvalid"),
+  condition: z.enum(["runs", "not_running"]).catch("runs"),
+  pickup_country: req(100),
+  pickup_city: req(100),
+  dest_country: req(100),
+  dest_city: req(100),
+  method: z.enum(["door_to_port", "port_to_port", "unsure"]).catch("unsure"),
+  ready_date: z
+    .string()
+    .optional()
+    .transform((v) => (v ? v : undefined))
+    .refine((v) => !v || (/^\d{4}-\d{2}-\d{2}$/.test(v) && v >= new Date(Date.now() - 86_400_000).toISOString().slice(0, 10)), "dateInvalid"),
+  notes: opt(2000),
+});
+export type CarQuoteInput = z.infer<typeof carQuoteSchema>;
+
 // ---------------- Admin forms ----------------
 export const shipmentSchema = z.object({
   shipment_type: z.enum(["parcel", "document", "freight", "pallet", "vehicle", "other"]),

@@ -29,6 +29,7 @@ export function Header({ email }: { email?: string }) {
       label: t("shipping"),
       links: [
         { label: t("menuCars"), href: home("car-shipping"), text: t("menuCarsText") },
+        { label: t("menuCarQuote"), href: `/${locale}/car-quote`, text: t("menuCarQuoteText") },
         { label: t("menuSend"), href: `/${locale}/ship`, text: t("menuSendText") },
         { label: t("menuPacking"), href: home("packing"), text: t("menuPackingText") },
         { label: t("menuBusiness"), href: home("business"), text: t("menuBusinessText") },

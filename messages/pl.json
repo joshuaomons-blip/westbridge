@@ -54,7 +54,9 @@
     "menuAboutText": "Dowiedz się więcej o Norvane Express.",
     "carShipping": "Transport aut",
     "menuCars": "Międzynarodowy transport samochodów",
-    "menuCarsText": "Wyślij samochód lub pojazd za granicę."
+    "menuCarsText": "Wyślij samochód lub pojazd za granicę.",
+    "menuCarQuote": "Wycena transportu auta",
+    "menuCarQuoteText": "Sprawdź cenę wysyłki pojazdu."
   },
   "home": {
     "eyebrow": "Międzynarodowa wysyłka i logistyka",
@@ -499,5 +501,33 @@
     "side2": "Odpowiemy z jasną ceną i terminem odbioru.",
     "side3": "Odbierzemy, wyślemy i podamy numer przesyłki.",
     "whatsapp": "Napisz do nas na WhatsAppie"
+  },
+  "carQuote": {
+    "metaTitle": "Wycena transportu samochodu",
+    "title": "Wycena transportu samochodu",
+    "subtitle": "Opowiedz nam o pojeździe i miejscu docelowym. Nasz zespół odpowie z ceną i kolejnymi krokami.",
+    "formTitle": "Pojazd i trasa",
+    "sectionVehicle": "Twój pojazd",
+    "make": "Marka",
+    "model": "Model",
+    "year": "Rok produkcji",
+    "condition": "Stan",
+    "conditionRuns": "Sprawny, jeżdżący",
+    "conditionNotRunning": "Niesprawny",
+    "sectionRoute": "Skąd i dokąd",
+    "pickupCountry": "Kraj odbioru",
+    "pickupCity": "Miasto odbioru",
+    "method": "Sposób wysyłki",
+    "methodUnsure": "Nie wiem — proszę o poradę",
+    "methodDoor": "Od drzwi do portu (odbieracie pojazd)",
+    "methodPort": "Z portu do portu (dostarczę go do portu)",
+    "readyDate": "Pojazd gotowy od",
+    "notesHint": "Numer VIN, modyfikacje, wartość lub inne ważne informacje.",
+    "submit": "Poproś o wycenę",
+    "successTitle": "Zapytanie otrzymane",
+    "success": "Dziękujemy. Nasz zespół wkrótce skontaktuje się z ceną i kolejnymi krokami transportu Twojego pojazdu.",
+    "side1": "Podaj pojazd i trasę.",
+    "side2": "Odpowiemy z jasną ceną i planem odbioru.",
+    "side3": "Pojazd otrzyma własny numer śledzenia."
   }
 }

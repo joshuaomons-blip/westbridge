@@ -54,7 +54,9 @@
     "menuAboutText": "Conozca Norvane Express.",
     "carShipping": "Envío de coches",
     "menuCars": "Envío internacional de coches",
-    "menuCarsText": "Envíe su coche o vehículo al extranjero."
+    "menuCarsText": "Envíe su coche o vehículo al extranjero.",
+    "menuCarQuote": "Presupuesto de envío de coche",
+    "menuCarQuoteText": "Precio para enviar su vehículo."
   },
   "home": {
     "eyebrow": "Envíos internacionales y logística",
@@ -499,5 +501,33 @@
     "side2": "Te respondemos con un precio claro y la hora de recogida.",
     "side3": "Recogemos, enviamos y te damos un número de seguimiento.",
     "whatsapp": "Escríbenos por WhatsApp"
+  },
+  "carQuote": {
+    "metaTitle": "Presupuesto de envío de coche",
+    "title": "Pida un presupuesto para enviar su coche",
+    "subtitle": "Cuéntenos sobre su vehículo y adónde debe ir. Nuestro equipo le responderá con un precio y los siguientes pasos.",
+    "formTitle": "Vehículo y ruta",
+    "sectionVehicle": "Su vehículo",
+    "make": "Marca",
+    "model": "Modelo",
+    "year": "Año",
+    "condition": "Estado",
+    "conditionRuns": "Arranca y circula",
+    "conditionNotRunning": "No arranca",
+    "sectionRoute": "Origen y destino",
+    "pickupCountry": "País de recogida",
+    "pickupCity": "Ciudad de recogida",
+    "method": "Método de envío",
+    "methodUnsure": "No estoy seguro — aconséjenme",
+    "methodDoor": "De puerta a puerto (lo recogen ustedes)",
+    "methodPort": "De puerto a puerto (lo llevo yo al puerto)",
+    "readyDate": "Vehículo disponible desde",
+    "notesHint": "Número de bastidor, modificaciones, valor o cualquier dato importante.",
+    "submit": "Solicitar presupuesto",
+    "successTitle": "Solicitud recibida",
+    "success": "Gracias. Nuestro equipo se pondrá en contacto con usted en breve con un precio y los siguientes pasos para enviar su vehículo.",
+    "side1": "Indíquenos el vehículo y la ruta.",
+    "side2": "Le respondemos con un precio claro y un plan de recogida.",
+    "side3": "Su vehículo viaja con su propio número de seguimiento."
   }
 }

@@ -54,7 +54,9 @@
     "menuAboutText": "Mehr über Norvane Express.",
     "carShipping": "Autoversand",
     "menuCars": "Internationaler Autoversand",
-    "menuCarsText": "Versenden Sie Ihr Auto oder Fahrzeug ins Ausland."
+    "menuCarsText": "Versenden Sie Ihr Auto oder Fahrzeug ins Ausland.",
+    "menuCarQuote": "Angebot Autoversand",
+    "menuCarQuoteText": "Preis für den Versand Ihres Fahrzeugs."
   },
   "home": {
     "eyebrow": "Internationaler Versand & Logistik",
@@ -499,5 +501,33 @@
     "side2": "Wir antworten mit klarem Preis und Abholtermin.",
     "side3": "Wir holen ab, versenden und geben Ihnen eine Sendungsnummer.",
     "whatsapp": "Schreiben Sie uns auf WhatsApp"
+  },
+  "carQuote": {
+    "metaTitle": "Angebot für Autoversand",
+    "title": "Angebot für den Autoversand",
+    "subtitle": "Erzählen Sie uns von Ihrem Fahrzeug und wohin es soll. Unser Team antwortet mit einem Preis und den nächsten Schritten.",
+    "formTitle": "Fahrzeug und Route",
+    "sectionVehicle": "Ihr Fahrzeug",
+    "make": "Marke",
+    "model": "Modell",
+    "year": "Baujahr",
+    "condition": "Zustand",
+    "conditionRuns": "Fahrbereit",
+    "conditionNotRunning": "Nicht fahrbereit",
+    "sectionRoute": "Von und nach",
+    "pickupCountry": "Abholland",
+    "pickupCity": "Abholort",
+    "method": "Versandart",
+    "methodUnsure": "Nicht sicher – bitte beraten",
+    "methodDoor": "Tür zu Hafen (wir holen es ab)",
+    "methodPort": "Hafen zu Hafen (ich bringe es zum Hafen)",
+    "readyDate": "Fahrzeug bereit ab",
+    "notesHint": "FIN, Umbauten, Wert oder andere wichtige Hinweise.",
+    "submit": "Angebot anfordern",
+    "successTitle": "Anfrage erhalten",
+    "success": "Vielen Dank. Unser Team meldet sich in Kürze mit einem Preis und den nächsten Schritten für den Versand Ihres Fahrzeugs.",
+    "side1": "Nennen Sie uns Fahrzeug und Route.",
+    "side2": "Wir antworten mit einem klaren Preis und Abholplan.",
+    "side3": "Ihr Fahrzeug reist mit eigener Sendungsnummer."
   }
 }

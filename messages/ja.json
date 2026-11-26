@@ -54,7 +54,9 @@
     "menuAboutText": "Norvane Express について。",
     "carShipping": "自動車輸送",
     "menuCars": "自動車の国際輸送",
-    "menuCarsText": "お車や車両を海外へ輸送します。"
+    "menuCarsText": "お車や車両を海外へ輸送します。",
+    "menuCarQuote": "自動車輸送の見積もり",
+    "menuCarQuoteText": "お車の輸送料金をご案内します。"
   },
   "home": {
     "eyebrow": "国際配送・物流",
@@ -499,5 +501,33 @@
     "side2": "料金と集荷日時をご連絡します。",
     "side3": "集荷・発送し、追跡番号をお知らせします。",
     "whatsapp": "WhatsAppで問い合わせる"
+  },
+  "carQuote": {
+    "metaTitle": "自動車輸送の見積もり",
+    "title": "自動車輸送の見積もりを依頼",
+    "subtitle": "お車の情報と輸送先をお知らせください。担当者が料金と今後の流れをご案内します。",
+    "formTitle": "車両とルート",
+    "sectionVehicle": "お車について",
+    "make": "メーカー",
+    "model": "車種",
+    "year": "年式",
+    "condition": "状態",
+    "conditionRuns": "自走可能",
+    "conditionNotRunning": "自走不可",
+    "sectionRoute": "出発地と目的地",
+    "pickupCountry": "引き取り国",
+    "pickupCity": "引き取り都市",
+    "method": "輸送方法",
+    "methodUnsure": "わからない（相談したい）",
+    "methodDoor": "ドア・ツー・ポート（引き取りを依頼）",
+    "methodPort": "ポート・ツー・ポート（自分で港へ持ち込む）",
+    "readyDate": "引き渡し可能日",
+    "notesHint": "車台番号、改造、車両価格など、お伝えいただきたい情報。",
+    "submit": "見積もりを依頼",
+    "successTitle": "お見積もり依頼を受け付けました",
+    "success": "ありがとうございます。担当者より、料金と輸送の流れについて追ってご連絡いたします。",
+    "side1": "車両とルートをお知らせください。",
+    "side2": "明確な料金と引き取り計画をご案内します。",
+    "side3": "お車には専用の追跡番号が付きます。"
   }
 }
