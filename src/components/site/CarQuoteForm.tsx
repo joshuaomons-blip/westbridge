@@ -9,19 +9,21 @@ const initial: CarQuoteState = { status: "idle" };
 const ERROR_KEYS = ["required", "emailInvalid", "phoneInvalid", "dateInvalid", "numberInvalid"] as const;
 const start = { condition: "runs", method: "unsure" } as Record<string, string>;
 
-export function CarQuoteForm() {
+export function CarQuoteForm({ location }: { location?: { country?: string; city?: string } }) {
   const t = useTranslations("carQuote");
   const tp = useTranslations("pickup");
   const locale = useLocale();
   const [state, action, pending] = useActionState(submitCarQuote, initial);
-  const [values, setValues] = useState<Record<string, string>>(start);
+  const prefill = { ...start, ...(location?.country ? { pickup_country: location.country } : {}), ...(location?.city ? { pickup_city: location.city } : {}) };
+  const [values, setValues] = useState<Record<string, string>>(prefill);
   const [startedAt, setStartedAt] = useState("0");
   const [dismissed, setDismissed] = useState<CarQuoteState | null>(null);
   const today = new Date().toISOString().slice(0, 10);
 
   useEffect(() => setStartedAt(String(Date.now())), [dismissed]);
   useEffect(() => {
-    if (state.status === "success") setValues(start);
+    if (state.status === "success") setValues(prefill);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state]);
 
   if (state.status === "success" && state !== dismissed) {

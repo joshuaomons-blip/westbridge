@@ -10,19 +10,21 @@ const ERROR_KEYS = ["required", "emailInvalid", "phoneInvalid", "dateInvalid", "
 const TYPES = ["parcel", "document", "freight", "pallet", "vehicle", "other"] as const;
 const start = { shipment_type: "parcel", packages: "1" } as Record<string, string>;
 
-export function PickupForm({ services }: { services: string[] }) {
+export function PickupForm({ services, city }: { services: string[]; city?: string }) {
   const t = useTranslations("pickup");
   const tt = useTranslations("shipmentType");
   const locale = useLocale();
   const [state, action, pending] = useActionState(submitPickup, initial);
-  const [values, setValues] = useState<Record<string, string>>(start);
+  const prefill = city ? { ...start, pickup_city: city } : start;
+  const [values, setValues] = useState<Record<string, string>>(prefill);
   const [startedAt, setStartedAt] = useState("0");
   const [dismissed, setDismissed] = useState<PickupState | null>(null);
   const today = new Date().toISOString().slice(0, 10);
 
   useEffect(() => setStartedAt(String(Date.now())), [dismissed]);
   useEffect(() => {
-    if (state.status === "success") setValues(start);
+    if (state.status === "success") setValues(prefill);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state]);
 
   if (state.status === "success" && state !== dismissed) {

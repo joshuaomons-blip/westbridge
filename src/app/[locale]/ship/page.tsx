@@ -7,6 +7,7 @@ import { PickupForm } from "@/components/site/PickupForm";
 import { getPageContent, getPublishedServices, localized } from "@/lib/public-data";
 import { pageAlternates } from "@/lib/seo";
 import { whatsappHref } from "@/lib/support";
+import { visitorLocation } from "@/lib/visitor-location";
 
 type Props = { params: Promise<{ locale: string }> };
 
@@ -20,7 +21,7 @@ export default async function ShipPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("pickup");
-  const [content, services] = await Promise.all([getPageContent(locale), getPublishedServices()]);
+  const [content, services, location] = await Promise.all([getPageContent(locale), getPublishedServices(), visitorLocation(locale)]);
   const email = content.get("contact.email");
   const wa = whatsappHref(content.get("contact.whatsapp"));
   const steps = [
@@ -36,7 +37,7 @@ export default async function ShipPage({ params }: Props) {
         <div className="container-page grid gap-6 pt-10 lg:grid-cols-12 lg:gap-8">
           <div className="rounded-2xl bg-white p-6 shadow-[0_24px_60px_-30px_rgba(7,21,47,0.45)] ring-1 ring-slate-200 sm:p-10 lg:col-span-8">
             <h2 className="font-display mb-8 text-2xl font-black text-brand-900 [font-stretch:108%]">{t("formTitle")}</h2>
-            <PickupForm services={services.map((s) => localized(s.title, locale)).filter(Boolean)} />
+            <PickupForm services={services.map((s) => localized(s.title, locale)).filter(Boolean)} city={location.city} />
           </div>
           <aside className="space-y-6 lg:col-span-4">
             <div className="rounded-2xl bg-brand-950 p-7 text-white">
