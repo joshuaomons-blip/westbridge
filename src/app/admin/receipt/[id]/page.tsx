@@ -27,7 +27,7 @@ export default async function ReceiptPage({ params }: { params: Promise<{ id: st
   const { data: s } = await db
     .from("shipments")
     .select(
-      "tracking_number, internal_ref, shipment_type, sender_name, sender_email, sender_phone, origin_city, origin_country, origin_address, recipient_name, recipient_phone, destination_city, destination_country, destination_address, package_description, package_quantity, weight_kg, shipment_date, estimated_delivery, route_stops, services(title)",
+      "tracking_number, internal_ref, shipment_type, sender_name, sender_email, sender_phone, origin_city, origin_country, origin_address, recipient_name, recipient_phone, destination_city, destination_country, destination_address, package_description, package_quantity, weight_kg, amount_paid_usdt, shipment_date, estimated_delivery, route_stops, services(title)",
     )
     .eq("id", id)
     .maybeSingle();
@@ -129,6 +129,18 @@ export default async function ReceiptPage({ params }: { params: Promise<{ id: st
           </tr>
         </tbody>
       </table>
+
+      {/* Payment */}
+      {s.amount_paid_usdt != null && (
+        <div className="mt-[2.5mm] flex justify-end">
+          <div className="flex items-center gap-[4mm] rounded-[1.5mm] border-[0.5mm] border-[#0B1F44] px-[3mm] py-[1.5mm]">
+            <p className="text-[7pt] font-bold tracking-[0.12em] text-slate-600 uppercase">Amount paid</p>
+            <p className="font-mono text-[12pt] font-extrabold text-[#0B1F44]">
+              {Number(s.amount_paid_usdt).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} USDT
+            </p>
+          </div>
+        </div>
+      )}
 
       {/* Declaration + signatures */}
       <p className="mt-[2.5mm] text-[7pt] leading-snug text-slate-600">

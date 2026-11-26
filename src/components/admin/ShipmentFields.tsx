@@ -20,6 +20,7 @@ export type ShipmentDefaults = Partial<{
   package_description: string | null;
   package_quantity: number;
   weight_kg: number | null;
+  amount_paid_usdt: number | null;
   estimated_delivery: string | null;
   internal_notes: string | null;
   route_stops: string[] | null;
@@ -120,6 +121,15 @@ export function ShipmentFields({
         <TextAreaField name="package_description" label="Package description" rows={2} maxLength={1000} defaultValue={d.package_description} className="sm:col-span-2" />
         <TextField name="package_quantity" label="Number of packages" type="number" min="1" step="1" required defaultValue={d.package_quantity ?? 1} />
         <TextField name="weight_kg" label="Total weight (kg)" type="number" min="0" step="0.001" defaultValue={d.weight_kg ?? ""} />
+        <TextField
+          name="amount_paid_usdt"
+          label="Amount paid (USDT)"
+          type="number"
+          min="0"
+          step="0.01"
+          defaultValue={d.amount_paid_usdt ?? ""}
+          hint="Staff only. Printed on the receipt; never shown on the public tracking page."
+        />
         <TextAreaField
           name="internal_notes"
           label="Internal notes"

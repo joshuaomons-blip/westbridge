@@ -328,6 +328,7 @@ function ReadOnlyDetails({ s }: { s: Record<string, unknown> }) {
     ["Recipient", `${s.recipient_name ?? ""}${s.recipient_email ? ` · ${s.recipient_email}` : ""}${s.recipient_phone ? ` · ${s.recipient_phone}` : ""}`],
     ["Destination address", String(s.destination_address ?? "—")],
     ["Package", `${s.package_description ?? "—"} · ${s.package_quantity} pcs${s.weight_kg ? ` · ${s.weight_kg} kg` : ""}`],
+    ["Amount paid", s.amount_paid_usdt != null ? `${Number(s.amount_paid_usdt).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} USDT` : "—"],
   ];
   return (
     <dl className="grid gap-4 text-sm sm:grid-cols-2">

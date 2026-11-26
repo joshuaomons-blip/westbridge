@@ -106,6 +106,11 @@ export const shipmentSchema = z.object({
     .optional()
     .transform((v) => (v ? Number(v) : undefined))
     .refine((v) => v === undefined || (Number.isFinite(v) && v > 0 && v < 1_000_000), "Enter a valid weight"),
+  amount_paid_usdt: z
+    .string()
+    .optional()
+    .transform((v) => (v ? Number(v.replace(/,/g, "")) : undefined))
+    .refine((v) => v === undefined || (Number.isFinite(v) && v >= 0 && v < 1_000_000_000), "Enter a valid amount"),
   estimated_delivery: z
     .string()
     .optional()
