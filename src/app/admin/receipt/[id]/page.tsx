@@ -130,17 +130,22 @@ export default async function ReceiptPage({ params }: { params: Promise<{ id: st
         </tbody>
       </table>
 
-      {/* Payment */}
-      {s.amount_paid_usdt != null && (
-        <div className="mt-[2.5mm] flex justify-end">
-          <div className="flex items-center gap-[4mm] rounded-[1.5mm] border-[0.5mm] border-[#0B1F44] px-[3mm] py-[1.5mm]">
-            <p className="text-[7pt] font-bold tracking-[0.12em] text-slate-600 uppercase">Amount paid</p>
+      {/* Payment — always shown; blank line to fill in by hand when no amount is recorded */}
+      <div className="mt-[2.5mm] flex justify-end">
+        <div className="flex items-center gap-[4mm] rounded-[1.5mm] border-[0.5mm] border-[#0B1F44] px-[3mm] py-[1.5mm]">
+          <p className="text-[7pt] font-bold tracking-[0.12em] text-slate-600 uppercase">Amount paid</p>
+          {s.amount_paid_usdt != null ? (
             <p className="font-mono text-[12pt] font-extrabold text-[#0B1F44]">
               {Number(s.amount_paid_usdt).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} USDT
             </p>
-          </div>
+          ) : (
+            <p className="flex items-end gap-[1.5mm] font-mono text-[12pt] font-extrabold text-[#0B1F44]">
+              <span className="inline-block w-[32mm] border-b-[0.35mm] border-slate-400" />
+              USDT
+            </p>
+          )}
         </div>
-      )}
+      </div>
 
       {/* Declaration + signatures */}
       <p className="mt-[2.5mm] text-[7pt] leading-snug text-slate-600">

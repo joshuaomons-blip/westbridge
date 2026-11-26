@@ -63,6 +63,18 @@ export function ShipmentFields({
         <TextField name="estimated_delivery" label="Estimated delivery date" type="date" defaultValue={d.estimated_delivery} hint="Optional. Shown to customers as an estimate." />
       </Fieldset>
 
+      <Fieldset legend="Payment" description="Printed on the shipment receipt. Staff only — never shown on the public tracking page.">
+        <TextField
+          name="amount_paid_usdt"
+          label="Amount paid (USDT)"
+          type="number"
+          min="0"
+          step="0.01"
+          placeholder="e.g. 1250"
+          defaultValue={d.amount_paid_usdt ?? ""}
+        />
+      </Fieldset>
+
       <Fieldset legend="Sender" description="Private — never shown on the public tracking page.">
         <TextField name="sender_name" label="Sender name" required maxLength={200} defaultValue={d.sender_name} className="sm:col-span-2" />
         <TextField name="sender_email" label="Sender email" type="email" maxLength={254} defaultValue={d.sender_email} />
@@ -121,15 +133,6 @@ export function ShipmentFields({
         <TextAreaField name="package_description" label="Package description" rows={2} maxLength={1000} defaultValue={d.package_description} className="sm:col-span-2" />
         <TextField name="package_quantity" label="Number of packages" type="number" min="1" step="1" required defaultValue={d.package_quantity ?? 1} />
         <TextField name="weight_kg" label="Total weight (kg)" type="number" min="0" step="0.001" defaultValue={d.weight_kg ?? ""} />
-        <TextField
-          name="amount_paid_usdt"
-          label="Amount paid (USDT)"
-          type="number"
-          min="0"
-          step="0.01"
-          defaultValue={d.amount_paid_usdt ?? ""}
-          hint="Staff only. Printed on the receipt; never shown on the public tracking page."
-        />
         <TextAreaField
           name="internal_notes"
           label="Internal notes"
