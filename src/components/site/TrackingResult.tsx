@@ -12,6 +12,7 @@ import {
   Mail,
   MapPin,
   PackageCheck,
+  ReceiptText,
   Truck,
   TriangleAlert,
   UserCheck,
@@ -56,6 +57,7 @@ export async function TrackingResult({
   supportEmail?: string;
 }) {
   const t = await getTranslations("tracking");
+  const tr = await getTranslations("receipt");
   const ts = await getTranslations("status");
   const td = await getTranslations("statusDescription");
   const tt = await getTranslations("shipmentType");
@@ -437,6 +439,13 @@ export async function TrackingResult({
             <div className="grid grid-cols-2 gap-2 border-t border-slate-100 p-4 print:hidden">
               <ShareButton label={t("share")} copiedLabel={t("linkCopied")} title={t("title")} className={actionBtn} />
               <PrintButton label={t("print")} className={actionBtn} />
+              <Link
+                href={`/track/receipt?n=${encodeURIComponent(data.tracking_number)}`}
+                className="col-span-2 inline-flex items-center justify-center gap-1.5 rounded-md bg-brand-900 px-2.5 py-2 text-sm font-semibold text-white transition hover:bg-brand-800"
+              >
+                <ReceiptText className="h-4 w-4" aria-hidden />
+                {tr("getReceipt")}
+              </Link>
             </div>
           </section>
 

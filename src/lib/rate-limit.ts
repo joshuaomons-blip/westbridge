@@ -9,6 +9,7 @@ export const LIMITS = {
   contact: { max: 5, windowSeconds: 3600 },
   pickup: { max: 5, windowSeconds: 3600 },
   carQuote: { max: 5, windowSeconds: 3600 },
+  receipt: { max: 10, windowSeconds: 900 },
   login: { max: 8, windowSeconds: 900 },
   passwordReset: { max: 3, windowSeconds: 3600 },
 } as const;
