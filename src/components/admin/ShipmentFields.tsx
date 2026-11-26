@@ -21,6 +21,11 @@ export type ShipmentDefaults = Partial<{
   package_quantity: number;
   weight_kg: number | null;
   amount_paid_usdt: number | null;
+  vehicle_make: string | null;
+  vehicle_model: string | null;
+  vehicle_year: number | null;
+  vehicle_color: string | null;
+  vehicle_vin: string | null;
   estimated_delivery: string | null;
   internal_notes: string | null;
   route_stops: string[] | null;
@@ -50,6 +55,7 @@ export function ShipmentFields({
             { value: "document", label: "Documents" },
             { value: "freight", label: "Freight" },
             { value: "pallet", label: "Pallet" },
+            { value: "vehicle", label: "Vehicle (car, SUV, van…)" },
             { value: "other", label: "Other" },
           ]}
         />
@@ -72,6 +78,21 @@ export function ShipmentFields({
           step="0.01"
           placeholder="e.g. 1250"
           defaultValue={d.amount_paid_usdt ?? ""}
+        />
+      </Fieldset>
+
+      <Fieldset legend="Vehicle" description="Only for vehicle shipments. Printed on the receipt and label; not shown on public tracking.">
+        <TextField name="vehicle_make" label="Make" maxLength={60} placeholder="e.g. Toyota" defaultValue={d.vehicle_make} />
+        <TextField name="vehicle_model" label="Model" maxLength={60} placeholder="e.g. Camry" defaultValue={d.vehicle_model} />
+        <TextField name="vehicle_year" label="Year" type="number" min="1900" step="1" defaultValue={d.vehicle_year ?? ""} />
+        <TextField name="vehicle_color" label="Colour" maxLength={40} defaultValue={d.vehicle_color} />
+        <TextField
+          name="vehicle_vin"
+          label="VIN (chassis number)"
+          maxLength={20}
+          defaultValue={d.vehicle_vin}
+          hint="17 characters for most cars made after 1981."
+          className="sm:col-span-2"
         />
       </Fieldset>
 

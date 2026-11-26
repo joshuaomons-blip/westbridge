@@ -9,7 +9,7 @@ import { PrintButton } from "@/components/site/PrintButton";
 
 export const metadata: Metadata = { title: "Shipment receipt" };
 
-const TYPE: Record<string, string> = { parcel: "Parcel", document: "Documents", freight: "Freight", pallet: "Pallet", other: "Other" };
+const TYPE: Record<string, string> = { parcel: "Parcel", document: "Documents", freight: "Freight", pallet: "Pallet", vehicle: "Vehicle", other: "Other" };
 
 function fmtDate(d?: string | null) {
   return d ? new Date(`${d.slice(0, 10)}T12:00:00Z`).toLocaleDateString("en-GB", { day: "2-digit", month: "long", year: "numeric" }) : "—";
@@ -27,7 +27,7 @@ export default async function ReceiptPage({ params }: { params: Promise<{ id: st
   const { data: s } = await db
     .from("shipments")
     .select(
-      "tracking_number, internal_ref, shipment_type, sender_name, sender_email, sender_phone, origin_city, origin_country, origin_address, recipient_name, recipient_phone, destination_city, destination_country, destination_address, package_description, package_quantity, weight_kg, amount_paid_usdt, shipment_date, estimated_delivery, route_stops, services(title)",
+      "tracking_number, internal_ref, shipment_type, sender_name, sender_email, sender_phone, origin_city, origin_country, origin_address, recipient_name, recipient_phone, destination_city, destination_country, destination_address, package_description, package_quantity, weight_kg, amount_paid_usdt, vehicle_make, vehicle_model, vehicle_year, vehicle_color, vehicle_vin,  shipment_date, estimated_delivery, route_stops, services(title)",
     )
     .eq("id", id)
     .maybeSingle();
@@ -129,6 +129,24 @@ export default async function ReceiptPage({ params }: { params: Promise<{ id: st
           </tr>
         </tbody>
       </table>
+
+      {/* Vehicle */}
+      {(s.vehicle_make || s.vehicle_model || s.vehicle_vin) && (
+        <div className="mt-[2.5mm] grid grid-cols-5 gap-[3mm] rounded-[1.5mm] border-[0.35mm] border-slate-300 p-[2.5mm] text-[8.5pt]">
+          {[
+            ["Make", s.vehicle_make],
+            ["Model", s.vehicle_model],
+            ["Year", s.vehicle_year],
+            ["Colour", s.vehicle_color],
+            ["VIN", s.vehicle_vin],
+          ].map(([k, v]) => (
+            <div key={k as string}>
+              <p className="text-[6.5pt] font-bold tracking-[0.12em] text-slate-500 uppercase">{k as string}</p>
+              <p className={k === "VIN" ? "font-mono font-bold" : "font-semibold"}>{(v as string | number | null) ?? "—"}</p>
+            </div>
+          ))}
+        </div>
+      )}
 
       {/* Payment — always shown; blank line to fill in by hand when no amount is recorded */}
       <div className="mt-[2.5mm] flex justify-end">

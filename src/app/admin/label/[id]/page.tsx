@@ -8,7 +8,7 @@ import { PrintButton } from "@/components/site/PrintButton";
 
 export const metadata: Metadata = { title: "Shipping label" };
 
-const TYPE: Record<string, string> = { parcel: "Parcel", document: "Documents", freight: "Freight", pallet: "Pallet", other: "Other" };
+const TYPE: Record<string, string> = { parcel: "Parcel", document: "Documents", freight: "Freight", pallet: "Pallet", vehicle: "Vehicle", other: "Other" };
 
 function Party({ label, name, phone, address, city, country, big }: { label: string; name: string; phone?: string | null; address?: string | null; city: string; country: string; big?: boolean }) {
   return (
@@ -36,7 +36,7 @@ export default async function LabelPage({ params }: { params: Promise<{ id: stri
   const { data: s } = await db
     .from("shipments")
     .select(
-      "tracking_number, internal_ref, shipment_type, sender_name, sender_phone, origin_city, origin_country, origin_address, recipient_name, recipient_phone, destination_city, destination_country, destination_address, package_description, package_quantity, weight_kg, shipment_date, route_stops, services(title)",
+      "tracking_number, internal_ref, shipment_type, sender_name, sender_phone, origin_city, origin_country, origin_address, recipient_name, recipient_phone, destination_city, destination_country, destination_address, package_description, package_quantity, weight_kg, vehicle_make, vehicle_model, vehicle_year, vehicle_color, vehicle_vin, shipment_date, route_stops, services(title)",
     )
     .eq("id", id)
     .maybeSingle();
@@ -116,6 +116,12 @@ export default async function LabelPage({ params }: { params: Promise<{ id: stri
               </div>
             ))}
           </div>
+          {(s.vehicle_make || s.vehicle_model || s.vehicle_vin) && (
+            <p className="mt-[1mm] truncate text-[7.5pt] font-bold">
+              Vehicle: {[s.vehicle_year, s.vehicle_make, s.vehicle_model, s.vehicle_color].filter(Boolean).join(" ")}
+              {s.vehicle_vin ? ` · VIN ${s.vehicle_vin}` : ""}
+            </p>
+          )}
           {s.package_description && <p className="mt-[1mm] truncate text-[7pt]">Contents: {s.package_description}</p>}
 
           {/* Barcode */}

@@ -9,7 +9,7 @@ type Template = {
   label: string;
   hint: string;
   icon: typeof Package;
-  type: "parcel" | "document" | "freight" | "pallet" | "other";
+  type: "parcel" | "document" | "freight" | "pallet" | "vehicle" | "other";
   description: string;
   quantity: number;
   weight: number;

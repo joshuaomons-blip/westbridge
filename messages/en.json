@@ -318,6 +318,7 @@
     "document": "Documents",
     "freight": "Freight",
     "pallet": "Pallet",
+    "vehicle": "Vehicle",
     "other": "Other"
   },
   "services": {

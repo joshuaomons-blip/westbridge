@@ -7,7 +7,7 @@ import { submitPickup, type PickupState } from "@/actions/pickup";
 
 const initial: PickupState = { status: "idle" };
 const ERROR_KEYS = ["required", "emailInvalid", "phoneInvalid", "dateInvalid", "numberInvalid"] as const;
-const TYPES = ["parcel", "document", "freight", "pallet", "other"] as const;
+const TYPES = ["parcel", "document", "freight", "pallet", "vehicle", "other"] as const;
 const start = { shipment_type: "parcel", packages: "1" } as Record<string, string>;
 
 export function PickupForm({ services }: { services: string[] }) {

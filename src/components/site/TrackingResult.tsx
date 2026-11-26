@@ -76,7 +76,7 @@ export async function TrackingResult({
     { label: t("stepDelivered"), icon: PackageCheck },
   ];
   const isProblem = category === "exception" || hold;
-  const typeKey = (["parcel", "document", "freight", "pallet", "other"] as const).find((k) => k === data.shipment_type);
+  const typeKey = (["parcel", "document", "freight", "pallet", "vehicle", "other"] as const).find((k) => k === data.shipment_type);
   const showProgress = step >= 0 && category !== "closed";
   const journey = buildJourney({
     origin: data.origin,

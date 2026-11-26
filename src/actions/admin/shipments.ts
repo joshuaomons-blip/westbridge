@@ -20,7 +20,7 @@ export async function createShipment(_prev: ActionResult, fd: FormData): Promise
     const parsed = createShipmentSchema.safeParse(formObject(fd));
     if (!parsed.success) return { fields: fieldErrors(parsed.error) };
     const p = parsed.data;
-    const { route_stops: _routeStops, notify_emails: _notify, notify_locale: _locale, amount_paid_usdt: _paid, ...rest } = p;
+    const { route_stops: _routeStops, notify_emails: _notify, notify_locale: _locale, amount_paid_usdt: _paid, vehicle_make: _vm, vehicle_model: _vmo, vehicle_year: _vy, vehicle_color: _vc, vehicle_vin: _vv, ...rest } = p;
     const payload = {
       ...rest,
       package_quantity: String(p.package_quantity),
@@ -37,7 +37,7 @@ export async function createShipment(_prev: ActionResult, fd: FormData): Promise
       : suggestRoute({ originCity: p.origin_city, originCountry: p.origin_country, destinationCity: p.destination_city, destinationCountry: p.destination_country }).stops;
     const { error: extraError } = await db
       .from("shipments")
-      .update({ route_stops: routeStops, notify_emails: p.notify_emails, notify_locale: p.notify_locale, amount_paid_usdt: p.amount_paid_usdt ?? null })
+      .update({ route_stops: routeStops, notify_emails: p.notify_emails, notify_locale: p.notify_locale, amount_paid_usdt: p.amount_paid_usdt ?? null, vehicle_make: p.vehicle_make ?? null, vehicle_model: p.vehicle_model ?? null, vehicle_year: p.vehicle_year ?? null, vehicle_color: p.vehicle_color ?? null, vehicle_vin: p.vehicle_vin ?? null })
       .eq("id", id);
     if (extraError) console.error("shipment extras not saved", extraError.code);
     // Welcome email to sender and recipient (only public details are included).
@@ -85,6 +85,11 @@ export async function updateShipment(_prev: ActionResult, fd: FormData): Promise
         package_quantity: p.package_quantity,
         weight_kg: p.weight_kg ?? null,
         amount_paid_usdt: p.amount_paid_usdt ?? null,
+        vehicle_make: p.vehicle_make ?? null,
+        vehicle_model: p.vehicle_model ?? null,
+        vehicle_year: p.vehicle_year ?? null,
+        vehicle_color: p.vehicle_color ?? null,
+        vehicle_vin: p.vehicle_vin ?? null,
         estimated_delivery: p.estimated_delivery ?? null,
         internal_notes: p.internal_notes ?? null,
         route_stops: p.route_stops,

@@ -328,6 +328,7 @@ function ReadOnlyDetails({ s }: { s: Record<string, unknown> }) {
     ["Recipient", `${s.recipient_name ?? ""}${s.recipient_email ? ` · ${s.recipient_email}` : ""}${s.recipient_phone ? ` · ${s.recipient_phone}` : ""}`],
     ["Destination address", String(s.destination_address ?? "—")],
     ["Package", `${s.package_description ?? "—"} · ${s.package_quantity} pcs${s.weight_kg ? ` · ${s.weight_kg} kg` : ""}`],
+    ["Vehicle", [s.vehicle_year, s.vehicle_make, s.vehicle_model, s.vehicle_color].filter(Boolean).join(" ") + (s.vehicle_vin ? ` · VIN ${s.vehicle_vin}` : "") || "—"],
     ["Amount paid", s.amount_paid_usdt != null ? `${Number(s.amount_paid_usdt).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} USDT` : "—"],
   ];
   return (

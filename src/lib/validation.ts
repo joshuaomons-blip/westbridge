@@ -62,7 +62,7 @@ export const pickupSchema = z.object({
     .refine((v) => !v || (/^\d{4}-\d{2}-\d{2}$/.test(v) && v >= new Date(Date.now() - 86_400_000).toISOString().slice(0, 10)), "dateInvalid"),
   dest_country: req(100),
   dest_city: req(100),
-  shipment_type: z.enum(["parcel", "document", "freight", "pallet", "other"]).catch("parcel"),
+  shipment_type: z.enum(["parcel", "document", "freight", "pallet", "vehicle", "other"]).catch("parcel"),
   packages: z.coerce.number({ message: "numberInvalid" }).int("numberInvalid").min(1, "numberInvalid").max(10000, "numberInvalid"),
   weight: z
     .string()
@@ -76,7 +76,7 @@ export type PickupInput = z.infer<typeof pickupSchema>;
 
 // ---------------- Admin forms ----------------
 export const shipmentSchema = z.object({
-  shipment_type: z.enum(["parcel", "document", "freight", "pallet", "other"]),
+  shipment_type: z.enum(["parcel", "document", "freight", "pallet", "vehicle", "other"]),
   service_id: z
     .string()
     .optional()
@@ -106,6 +106,19 @@ export const shipmentSchema = z.object({
     .optional()
     .transform((v) => (v ? Number(v) : undefined))
     .refine((v) => v === undefined || (Number.isFinite(v) && v > 0 && v < 1_000_000), "Enter a valid weight"),
+  vehicle_make: optionalText(60),
+  vehicle_model: optionalText(60),
+  vehicle_year: z
+    .string()
+    .optional()
+    .transform((v) => (v ? Number(v) : undefined))
+    .refine((v) => v === undefined || (Number.isInteger(v) && v >= 1900 && v <= 2100), "Enter a valid year"),
+  vehicle_color: optionalText(40),
+  vehicle_vin: z
+    .string()
+    .optional()
+    .transform((v) => (v ? v.replace(/\s+/g, "").toUpperCase() : undefined))
+    .refine((v) => !v || /^[A-HJ-NPR-Z0-9]{11,17}$/.test(v), "VIN must be 11–17 letters/numbers (no I, O or Q)"),
   amount_paid_usdt: z
     .string()
     .optional()
