@@ -30,6 +30,7 @@
   html {
     -webkit-text-size-adjust: 100%;
     text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
   }
   html:lang(ja) body {
     font-family: var(--font-noto-jp), var(--font-inter), ui-sans-serif, sans-serif;

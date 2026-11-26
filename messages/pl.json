@@ -168,7 +168,20 @@
     "carPoint3": "Pomoc w dokumentacji eksportowej i celnej",
     "carPoint4": "Samochody osobowe, SUV-y, vany i inne pojazdy",
     "carCta": "Zapytaj o wycenę transportu",
-    "carCta2": "Śledź swój pojazd"
+    "carCta2": "Śledź swój pojazd",
+    "heroPill": "Nowość: międzynarodowy transport aut",
+    "carEyebrow": "Transport pojazdów",
+    "carStepsTitle": "Jak działa transport samochodów",
+    "carStep1Title": "Poproś o wycenę",
+    "carStep1Text": "Podaj pojazd, jego lokalizację i miejsce docelowe.",
+    "carStep2Title": "Odbiór",
+    "carStep2Text": "Odbieramy pojazd lub przyjmujemy go w porcie.",
+    "carStep3Title": "Transport morski",
+    "carStep3Text": "Pojazd płynie bezpiecznie, z własnym numerem śledzenia.",
+    "carStep4Title": "Dostawa",
+    "carStep4Text": "Odbierz pojazd w porcie docelowym.",
+    "carFloatLabel": "Pojazd w drodze",
+    "carFloatValue": "Śledzony na każdym etapie"
   },
   "tracking": {
     "label": "Numer przesyłki",

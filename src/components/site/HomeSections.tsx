@@ -29,39 +29,102 @@ import { cn } from "@/lib/format";
 export async function CarShippingSection() {
   const t = await getTranslations("home");
   const points = [t("carPoint1"), t("carPoint2"), t("carPoint3"), t("carPoint4")];
+  const steps = [
+    { photo: PHOTOS.carYard, title: t("carStep1Title"), text: t("carStep1Text") },
+    { photo: PHOTOS.carLoading, title: t("carStep2Title"), text: t("carStep2Text") },
+    { photo: PHOTOS.carShip, title: t("carStep3Title"), text: t("carStep3Text") },
+    { photo: PHOTOS.carAerial, title: t("carStep4Title"), text: t("carStep4Text") },
+  ];
   return (
     <section id="car-shipping" className="relative isolate scroll-mt-28 overflow-hidden bg-brand-950 text-white" aria-labelledby="car-heading">
-      <Image src={PHOTOS.port} alt="" fill sizes="100vw" className="-z-10 object-cover opacity-35" />
-      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-brand-950 via-brand-950/90 to-brand-950/40" aria-hidden />
+      {/* soft glow accents */}
+      <div className="pointer-events-none absolute -top-40 -left-40 -z-10 h-[520px] w-[520px] rounded-full bg-signal-600/20 blur-3xl" aria-hidden />
+      <div className="pointer-events-none absolute -right-40 bottom-0 -z-10 h-[480px] w-[480px] rounded-full bg-brand-700/40 blur-3xl" aria-hidden />
+
       <div className="container-page py-20 lg:py-28">
-        <div className="max-w-2xl">
-          <span className="inline-flex items-center gap-2 rounded-full bg-signal-600 px-3.5 py-1.5 text-sm font-bold tracking-wide uppercase">
-            <Car className="h-4 w-4" aria-hidden />
-            {t("carBadge")}
-          </span>
-          <h2 id="car-heading" className="font-display mt-6 text-4xl leading-[1.05] font-black tracking-[-0.02em] text-balance [font-stretch:110%] sm:text-5xl lg:text-6xl">
-            {t("carTitle")}
-          </h2>
-          <p className="mt-5 text-lg leading-relaxed text-white/85">{t("carText")}</p>
-          <ul className="mt-8 grid gap-3.5 sm:grid-cols-2">
-            {points.map((p) => (
-              <li key={p} className="flex gap-3">
-                <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-signal-600">
-                  <Check className="h-4 w-4" aria-hidden />
+        <div className="grid items-center gap-14 lg:grid-cols-[1.05fr_1fr] lg:gap-16">
+          {/* Copy */}
+          <div>
+            <span className="inline-flex items-center gap-2 rounded-full bg-signal-600 px-3.5 py-1.5 text-xs font-bold tracking-[0.14em] uppercase shadow-lg shadow-signal-600/30">
+              <Car className="h-4 w-4" aria-hidden />
+              {t("carBadge")}
+            </span>
+            <p className="mt-6 text-xs font-semibold tracking-[0.22em] text-white/60 uppercase">{t("carEyebrow")}</p>
+            <h2 id="car-heading" className="font-display mt-3 text-4xl leading-[1.02] font-black tracking-[-0.02em] text-balance [font-stretch:110%] sm:text-5xl lg:text-[64px]">
+              {t("carTitle")}
+            </h2>
+            <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/80">{t("carText")}</p>
+            <ul className="mt-8 grid gap-3 sm:grid-cols-2">
+              {points.map((p) => (
+                <li key={p} className="flex gap-3 rounded-xl bg-white/[0.06] p-3.5 ring-1 ring-white/10 backdrop-blur">
+                  <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-signal-600">
+                    <Check className="h-3.5 w-3.5" aria-hidden />
+                  </span>
+                  <span className="text-[15px] leading-snug text-white/90">{p}</span>
+                </li>
+              ))}
+            </ul>
+            <div className="mt-10 flex flex-wrap gap-3">
+              <Link href="/contact" className="btn-accent h-13 px-8 text-base shadow-xl shadow-signal-600/30">
+                {t("carCta")}
+                <ArrowRight className="h-4 w-4" aria-hidden />
+              </Link>
+              <Link href="/track" className="inline-flex h-13 items-center gap-2 rounded-md px-8 text-base font-semibold ring-1 ring-white/30 transition hover:bg-white/10">
+                {t("carCta2")}
+              </Link>
+            </div>
+          </div>
+
+          {/* Photo collage */}
+          <div className="reveal relative">
+            <div className="grid grid-cols-5 grid-rows-6 gap-3 sm:gap-4" style={{ aspectRatio: "5 / 6" }}>
+              <div className="relative col-span-3 row-span-6 overflow-hidden rounded-3xl ring-1 ring-white/10">
+                <Image src={PHOTOS.carShip} alt="" fill sizes="(min-width: 1024px) 30vw, 60vw" className="object-cover" />
+              </div>
+              <div className="relative col-span-2 row-span-3 overflow-hidden rounded-3xl ring-1 ring-white/10">
+                <Image src={PHOTOS.carYard} alt="" fill sizes="(min-width: 1024px) 20vw, 40vw" className="object-cover" />
+              </div>
+              <div className="relative col-span-2 row-span-3 overflow-hidden rounded-3xl ring-1 ring-white/10">
+                <Image src={PHOTOS.carAerial} alt="" fill sizes="(min-width: 1024px) 20vw, 40vw" className="object-cover" />
+              </div>
+            </div>
+            {/* floating tracking card */}
+            <div className="absolute -bottom-6 left-4 flex items-center gap-3 rounded-2xl bg-white p-4 pr-6 text-brand-900 shadow-2xl shadow-black/40 sm:-left-6">
+              <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-signal-600 text-white">
+                <Car className="h-5 w-5" aria-hidden />
+              </span>
+              <span>
+                <span className="flex items-center gap-2 text-xs font-semibold tracking-wide text-slate-500 uppercase">
+                  <span className="relative flex h-2 w-2">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+                    <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+                  </span>
+                  {t("carFloatLabel")}
                 </span>
-                <span className="text-white/90">{p}</span>
+                <span className="mt-0.5 block font-bold">{t("carFloatValue")}</span>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {/* How car shipping works */}
+        <div className="mt-24 lg:mt-28">
+          <h3 className="font-display text-2xl font-black [font-stretch:108%] sm:text-3xl">{t("carStepsTitle")}</h3>
+          <ol className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {steps.map((step, i) => (
+              <li key={step.title} className="reveal group overflow-hidden rounded-2xl bg-white/[0.04] ring-1 ring-white/10 transition hover:ring-white/25">
+                <div className="relative aspect-[4/3] overflow-hidden">
+                  <Image src={step.photo} alt="" fill sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw" className="object-cover transition duration-700 group-hover:scale-105" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-brand-950/80 to-transparent" aria-hidden />
+                  <span className="absolute top-4 left-4 flex h-9 w-9 items-center justify-center rounded-full bg-signal-600 font-display text-sm font-black">{i + 1}</span>
+                </div>
+                <div className="p-5">
+                  <p className="font-bold">{step.title}</p>
+                  <p className="mt-1.5 text-sm leading-relaxed text-white/70">{step.text}</p>
+                </div>
               </li>
             ))}
-          </ul>
-          <div className="mt-10 flex flex-wrap gap-3">
-            <Link href="/contact" className="btn-accent h-13 px-8 text-base">
-              {t("carCta")}
-              <ArrowRight className="h-4 w-4" aria-hidden />
-            </Link>
-            <Link href="/track" className="inline-flex h-13 items-center gap-2 rounded-md px-8 text-base font-semibold ring-1 ring-white/40 transition hover:bg-white/10">
-              {t("carCta2")}
-            </Link>
-          </div>
+          </ol>
         </div>
       </div>
     </section>

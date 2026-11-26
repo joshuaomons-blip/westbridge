@@ -168,7 +168,20 @@
     "carPoint3": "Unterstützung bei Export- und Zollpapieren",
     "carPoint4": "Autos, SUVs, Transporter und andere Fahrzeuge",
     "carCta": "Angebot für Autoversand anfordern",
-    "carCta2": "Fahrzeug verfolgen"
+    "carCta2": "Fahrzeug verfolgen",
+    "heroPill": "Neu: internationaler Autoversand",
+    "carEyebrow": "Fahrzeugversand",
+    "carStepsTitle": "So funktioniert der Autoversand",
+    "carStep1Title": "Angebot anfordern",
+    "carStep1Text": "Nennen Sie uns das Fahrzeug, den Standort und das Ziel.",
+    "carStep2Title": "Abholung",
+    "carStep2Text": "Wir holen Ihr Fahrzeug ab oder nehmen es im Hafen entgegen.",
+    "carStep3Title": "Seetransport",
+    "carStep3Text": "Ihr Fahrzeug reist sicher – verfolgbar mit eigener Nummer.",
+    "carStep4Title": "Ankunft",
+    "carStep4Text": "Holen Sie Ihr Fahrzeug im Zielhafen ab.",
+    "carFloatLabel": "Fahrzeug unterwegs",
+    "carFloatValue": "Bei jedem Schritt verfolgt"
   },
   "tracking": {
     "label": "Sendungsnummer",

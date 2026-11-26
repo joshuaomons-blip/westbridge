@@ -168,7 +168,20 @@
     "carPoint3": "輸出・通関書類のサポート",
     "carPoint4": "乗用車、SUV、バンなど各種車両に対応",
     "carCta": "自動車輸送の見積もりを依頼",
-    "carCta2": "車両を追跡する"
+    "carCta2": "車両を追跡する",
+    "heroPill": "新サービス：自動車の国際輸送",
+    "carEyebrow": "車両輸送",
+    "carStepsTitle": "自動車輸送の流れ",
+    "carStep1Title": "見積もり依頼",
+    "carStep1Text": "車両、現在地、目的地をお知らせください。",
+    "carStep2Title": "集荷",
+    "carStep2Text": "お車を引き取るか、港でお預かりします。",
+    "carStep3Title": "海上輸送",
+    "carStep3Text": "専用の追跡番号で、安全に海を渡ります。",
+    "carStep4Title": "到着",
+    "carStep4Text": "目的地の港でお車をお受け取りください。",
+    "carFloatLabel": "輸送中の車両",
+    "carFloatValue": "すべての段階で追跡"
   },
   "tracking": {
     "label": "追跡番号",

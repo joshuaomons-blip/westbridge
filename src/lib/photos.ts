@@ -20,6 +20,11 @@ export const PHOTOS = {
   forklift: u("1620388640785-892616248ec8"), // forklift and pallets — Pickawood
   support: u("1626863905121-3b0c0ed7b94c"), // support agents with headsets — Charanjeet Dhiman
   parcels: u("1766040923580-16ad32fae8b4"), // pile of taped parcels — Rohit Choudhari
+  // International car shipping
+  carShip: u("1522674149721-b0191358dc5c"), // vehicles on a cargo ship's deck at sea
+  carYard: u("1770319942638-a5989632f2ad"), // rows of new cars in a large lot — Rob Dean
+  carAerial: u("1761491713025-a7e66bf9427e"), // rows of white cars from above — Alexander Psiuk
+  carLoading: u("1686966933735-305bd8fe0a77"), // car being loaded onto a flatbed truck
 };
 
 /** Photo for each service listing; unknown services rotate through the pool. */
@@ -30,7 +35,7 @@ const SERVICE_PHOTOS: Record<string, string> = {
   "business-shipping": PHOTOS.warehouse,
   "shipment-tracking": PHOTOS.parcels,
   "logistics-support": PHOTOS.support,
-  "international-car-shipping": PHOTOS.sea,
+  "international-car-shipping": PHOTOS.carShip,
 };
 const POOL = [PHOTOS.sea, PHOTOS.forklift, PHOTOS.team, PHOTOS.port, ...Object.values(SERVICE_PHOTOS)];
 

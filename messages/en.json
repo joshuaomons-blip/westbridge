@@ -168,7 +168,20 @@
     "carPoint3": "Help with export and customs paperwork",
     "carPoint4": "Cars, SUVs, vans and other vehicles",
     "carCta": "Get a car shipping quote",
-    "carCta2": "Track your vehicle"
+    "carCta2": "Track your vehicle",
+    "heroPill": "New: international car shipping",
+    "carEyebrow": "Vehicle shipping",
+    "carStepsTitle": "How car shipping works",
+    "carStep1Title": "Request a quote",
+    "carStep1Text": "Tell us the vehicle, where it is and where it's going.",
+    "carStep2Title": "Collection",
+    "carStep2Text": "We collect your vehicle or receive it at the port.",
+    "carStep3Title": "Ocean transit",
+    "carStep3Text": "Your vehicle sails securely, tracked under its own number.",
+    "carStep4Title": "Arrival",
+    "carStep4Text": "Collect your vehicle at the destination port.",
+    "carFloatLabel": "Vehicle in transit",
+    "carFloatValue": "Tracked at every step"
   },
   "tracking": {
     "label": "Tracking number",

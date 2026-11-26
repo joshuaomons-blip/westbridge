@@ -168,7 +168,20 @@
     "carPoint3": "Ayuda con la documentación de exportación y aduanas",
     "carPoint4": "Coches, SUV, furgonetas y otros vehículos",
     "carCta": "Solicitar presupuesto de envío",
-    "carCta2": "Seguir mi vehículo"
+    "carCta2": "Seguir mi vehículo",
+    "heroPill": "Nuevo: envío internacional de coches",
+    "carEyebrow": "Envío de vehículos",
+    "carStepsTitle": "Cómo funciona el envío de coches",
+    "carStep1Title": "Pida un presupuesto",
+    "carStep1Text": "Indíquenos el vehículo, dónde está y adónde va.",
+    "carStep2Title": "Recogida",
+    "carStep2Text": "Recogemos su vehículo o lo recibimos en el puerto.",
+    "carStep3Title": "Transporte marítimo",
+    "carStep3Text": "Su vehículo viaja seguro, con su propio número de seguimiento.",
+    "carStep4Title": "Llegada",
+    "carStep4Text": "Recoja su vehículo en el puerto de destino.",
+    "carFloatLabel": "Vehículo en tránsito",
+    "carFloatValue": "Seguimiento en cada paso"
   },
   "tracking": {
     "label": "Número de seguimiento",

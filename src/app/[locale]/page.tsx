@@ -61,7 +61,7 @@ export default async function HomePage({ params }: Props) {
   return (
     <>
       {/* Announcement: international car shipping */}
-      <section aria-label={t("announceBadge")} className="bg-signal-600 text-white">
+      <section aria-label={t("announceBadge")} className="bg-gradient-to-r from-signal-700 via-signal-600 to-signal-700 text-white">
         <Link
           href="/#car-shipping"
           className="container-page group flex flex-wrap items-center justify-center gap-x-3 gap-y-1 py-3 text-center text-sm font-semibold sm:text-base"
@@ -83,6 +83,16 @@ export default async function HomePage({ params }: Props) {
         <Image src={heroImage} alt={t("imageAlt")} fill priority sizes="100vw" className="hero-zoom object-cover object-[50%_55%]" />
         <div className="absolute inset-0 bg-gradient-to-b from-brand-950/80 via-brand-950/55 to-brand-950/85" aria-hidden />
         <div className="container-page relative flex flex-col items-center pt-16 pb-28 text-center sm:pt-20 lg:pt-24 lg:pb-36">
+          <Link
+            href="/#car-shipping"
+            className="hero-in group mb-7 inline-flex items-center gap-2 rounded-full bg-white/10 py-1.5 pr-4 pl-1.5 text-sm font-semibold text-white ring-1 ring-white/25 backdrop-blur transition hover:bg-white/15"
+          >
+            <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-signal-600">
+              <Car className="h-4 w-4" aria-hidden />
+            </span>
+            {t("heroPill")}
+            <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" aria-hidden />
+          </Link>
           <h1 className="hero-in font-display max-w-4xl text-[40px] leading-[1.02] font-black tracking-[-0.02em] text-balance text-white [font-stretch:110%] sm:text-6xl lg:text-7xl">
             {content.get("home.hero_title") ?? t("heroTitle")}
           </h1>
