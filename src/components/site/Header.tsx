@@ -2,7 +2,7 @@
 
 import { Suspense, useEffect, useId, useRef, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
-import { ChevronDown, Headset, Mail, Menu, PackageSearch, Search, X } from "lucide-react";
+import { Car, ChevronDown, Headset, Mail, Menu, PackageSearch, Search, X } from "lucide-react";
 import { Link, usePathname } from "@/i18n/navigation";
 import { Logo } from "./Logo";
 import { LanguageSwitcher } from "./LanguageSwitcher";
@@ -28,6 +28,7 @@ export function Header({ email }: { email?: string }) {
       id: "shipping",
       label: t("shipping"),
       links: [
+        { label: t("menuCars"), href: home("car-shipping"), text: t("menuCarsText") },
         { label: t("menuSend"), href: `/${locale}/ship`, text: t("menuSendText") },
         { label: t("menuPacking"), href: home("packing"), text: t("menuPackingText") },
         { label: t("menuBusiness"), href: home("business"), text: t("menuBusinessText") },
@@ -137,6 +138,10 @@ export function Header({ email }: { email?: string }) {
                 </button>
               );
             })}
+            <a href={home("car-shipping")} className="flex items-center gap-1.5 px-4 text-[15px] font-bold text-signal-600 hover:text-signal-700">
+              <Car className="h-4 w-4" aria-hidden />
+              {t("carShipping")}
+            </a>
             <Link href="/about" className="flex items-center px-4 text-[15px] font-semibold text-slate-600 hover:text-brand-900">
               {t("about")}
             </Link>
@@ -202,6 +207,14 @@ export function Header({ email }: { email?: string }) {
         <div id="mobile-nav" className="fixed inset-x-0 top-[76px] bottom-0 z-40 overflow-y-auto bg-white lg:hidden">
           <div className="container-page py-5">
             <TrackBox label={tt("label")} placeholder={tt("placeholder")} submit={tt("submit")} locale={locale} />
+            <a
+              href={home("car-shipping")}
+              onClick={() => setMobileOpen(false)}
+              className="mt-6 flex items-center gap-3 rounded-xl bg-signal-600 px-4 py-3.5 text-lg font-bold text-white"
+            >
+              <Car className="h-5 w-5" aria-hidden />
+              {t("menuCars")}
+            </a>
             <nav aria-label={t("main")} className="mt-6">
               {groups.map((g) => (
                 <div key={g.id} className="border-t border-slate-100 py-4">

@@ -51,7 +51,10 @@
     "menuContact": "Contact us",
     "menuContactText": "Send our team a message.",
     "menuAbout": "About us",
-    "menuAboutText": "Learn more about Norvane Express."
+    "menuAboutText": "Learn more about Norvane Express.",
+    "carShipping": "Car shipping",
+    "menuCars": "International car shipping",
+    "menuCarsText": "Ship your car or vehicle overseas."
   },
   "home": {
     "eyebrow": "International shipping & logistics",
@@ -154,7 +157,18 @@
     "safetyCta": "Report a suspicious message",
     "announceBadge": "New",
     "announceText": "We now ship cars internationally — door-to-port and port-to-port, with tracking all the way.",
-    "announceCta": "Learn more"
+    "announceCta": "Learn more",
+    "quickCar": "Ship a car",
+    "quickCarText": "Send your car or vehicle overseas with tracking.",
+    "carBadge": "Now available",
+    "carTitle": "Ship your car anywhere in the world",
+    "carText": "Norvane Express now ships cars and other vehicles internationally. Tell us where your vehicle is and where it needs to go — we handle the rest and keep you updated at every step.",
+    "carPoint1": "Door-to-port and port-to-port vehicle shipping",
+    "carPoint2": "A tracking number for every vehicle, from pickup to arrival",
+    "carPoint3": "Help with export and customs paperwork",
+    "carPoint4": "Cars, SUVs, vans and other vehicles",
+    "carCta": "Get a car shipping quote",
+    "carCta2": "Track your vehicle"
   },
   "tracking": {
     "label": "Tracking number",

@@ -51,7 +51,10 @@
     "menuContact": "Kontakt",
     "menuContactText": "Wyślij wiadomość do naszego zespołu.",
     "menuAbout": "O nas",
-    "menuAboutText": "Dowiedz się więcej o Norvane Express."
+    "menuAboutText": "Dowiedz się więcej o Norvane Express.",
+    "carShipping": "Transport aut",
+    "menuCars": "Międzynarodowy transport samochodów",
+    "menuCarsText": "Wyślij samochód lub pojazd za granicę."
   },
   "home": {
     "eyebrow": "Międzynarodowa wysyłka i logistyka",
@@ -154,7 +157,18 @@
     "safetyCta": "Zgłoś podejrzaną wiadomość",
     "announceBadge": "Nowość",
     "announceText": "Wysyłamy teraz samochody za granicę – od drzwi do portu i z portu do portu, ze śledzeniem na każdym etapie.",
-    "announceCta": "Dowiedz się więcej"
+    "announceCta": "Dowiedz się więcej",
+    "quickCar": "Wyślij samochód",
+    "quickCarText": "Wyślij samochód lub pojazd za granicę ze śledzeniem.",
+    "carBadge": "Już dostępne",
+    "carTitle": "Wyślij swój samochód w dowolne miejsce na świecie",
+    "carText": "Norvane Express wysyła teraz samochody i inne pojazdy za granicę. Powiedz nam, gdzie jest Twój pojazd i dokąd ma trafić – resztą zajmiemy się my i będziemy informować Cię na każdym etapie.",
+    "carPoint1": "Transport pojazdów od drzwi do portu i z portu do portu",
+    "carPoint2": "Numer śledzenia dla każdego pojazdu, od odbioru do dostawy",
+    "carPoint3": "Pomoc w dokumentacji eksportowej i celnej",
+    "carPoint4": "Samochody osobowe, SUV-y, vany i inne pojazdy",
+    "carCta": "Zapytaj o wycenę transportu",
+    "carCta2": "Śledź swój pojazd"
   },
   "tracking": {
     "label": "Numer przesyłki",

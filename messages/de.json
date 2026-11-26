@@ -51,7 +51,10 @@
     "menuContact": "Kontakt",
     "menuContactText": "Schreiben Sie unserem Team.",
     "menuAbout": "Über uns",
-    "menuAboutText": "Mehr über Norvane Express."
+    "menuAboutText": "Mehr über Norvane Express.",
+    "carShipping": "Autoversand",
+    "menuCars": "Internationaler Autoversand",
+    "menuCarsText": "Versenden Sie Ihr Auto oder Fahrzeug ins Ausland."
   },
   "home": {
     "eyebrow": "Internationaler Versand & Logistik",
@@ -154,7 +157,18 @@
     "safetyCta": "Verdächtige Nachricht melden",
     "announceBadge": "Neu",
     "announceText": "Wir versenden jetzt Autos international – von Tür zu Hafen und von Hafen zu Hafen, mit durchgehender Sendungsverfolgung.",
-    "announceCta": "Mehr erfahren"
+    "announceCta": "Mehr erfahren",
+    "quickCar": "Auto versenden",
+    "quickCarText": "Versenden Sie Ihr Fahrzeug ins Ausland – mit Sendungsverfolgung.",
+    "carBadge": "Jetzt verfügbar",
+    "carTitle": "Versenden Sie Ihr Auto in die ganze Welt",
+    "carText": "Norvane Express versendet jetzt Autos und andere Fahrzeuge international. Sagen Sie uns, wo Ihr Fahrzeug steht und wohin es soll – wir kümmern uns um den Rest und halten Sie bei jedem Schritt auf dem Laufenden.",
+    "carPoint1": "Fahrzeugversand von Tür zu Hafen und von Hafen zu Hafen",
+    "carPoint2": "Eine Sendungsnummer für jedes Fahrzeug, von der Abholung bis zur Ankunft",
+    "carPoint3": "Unterstützung bei Export- und Zollpapieren",
+    "carPoint4": "Autos, SUVs, Transporter und andere Fahrzeuge",
+    "carCta": "Angebot für Autoversand anfordern",
+    "carCta2": "Fahrzeug verfolgen"
   },
   "tracking": {
     "label": "Sendungsnummer",

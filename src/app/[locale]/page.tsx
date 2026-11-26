@@ -3,7 +3,6 @@ import Image from "next/image";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import {
   ArrowRight,
-  Briefcase,
   Car,
   Earth,
   Hash,
@@ -15,7 +14,7 @@ import {
 } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { HeroPanel } from "@/components/site/HeroPanel";
-import { Faq, FeatureRows, PromoBand, SafetySection, StatusGuide } from "@/components/site/HomeSections";
+import { CarShippingSection, Faq, FeatureRows, PromoBand, SafetySection, StatusGuide } from "@/components/site/HomeSections";
 import { getPageContent, getPublishedServices, localized } from "@/lib/public-data";
 import { PHOTOS, servicePhoto } from "@/lib/photos";
 import { pageAlternates } from "@/lib/seo";
@@ -44,7 +43,7 @@ export default async function HomePage({ params }: Props) {
   const quick = [
     { href: "/track", icon: PackageSearch, title: t("quickTrack"), text: t("quickTrackText") },
     { href: "/ship", icon: PackagePlus, title: t("quickShip"), text: t("quickShipText") },
-    { href: "/services", icon: Briefcase, title: t("quickBusiness"), text: t("quickBusinessText") },
+    { href: "/#car-shipping", icon: Car, title: t("quickCar"), text: t("quickCarText") },
     { href: "/contact", icon: Headset, title: t("quickSupport"), text: t("quickSupportText") },
   ];
   const steps = [
@@ -64,7 +63,7 @@ export default async function HomePage({ params }: Props) {
       {/* Announcement: international car shipping */}
       <section aria-label={t("announceBadge")} className="bg-signal-600 text-white">
         <Link
-          href="/services#international-car-shipping"
+          href="/#car-shipping"
           className="container-page group flex flex-wrap items-center justify-center gap-x-3 gap-y-1 py-3 text-center text-sm font-semibold sm:text-base"
         >
           <span className="inline-flex items-center gap-1.5 rounded-full bg-white/20 px-2.5 py-0.5 text-xs font-bold tracking-wide uppercase">
@@ -120,6 +119,9 @@ export default async function HomePage({ params }: Props) {
           </ul>
         </div>
       </section>
+
+      {/* Featured: international car shipping */}
+      <CarShippingSection />
 
       {/* Full-width promo band */}
       <PromoBand />

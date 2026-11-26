@@ -51,7 +51,10 @@
     "menuContact": "Contacto",
     "menuContactText": "Envíe un mensaje a nuestro equipo.",
     "menuAbout": "Quiénes somos",
-    "menuAboutText": "Conozca Norvane Express."
+    "menuAboutText": "Conozca Norvane Express.",
+    "carShipping": "Envío de coches",
+    "menuCars": "Envío internacional de coches",
+    "menuCarsText": "Envíe su coche o vehículo al extranjero."
   },
   "home": {
     "eyebrow": "Envíos internacionales y logística",
@@ -154,7 +157,18 @@
     "safetyCta": "Informar de un mensaje sospechoso",
     "announceBadge": "Nuevo",
     "announceText": "Ahora enviamos coches a nivel internacional: de puerta a puerto y de puerto a puerto, con seguimiento en todo momento.",
-    "announceCta": "Más información"
+    "announceCta": "Más información",
+    "quickCar": "Enviar un coche",
+    "quickCarText": "Envíe su coche o vehículo al extranjero con seguimiento.",
+    "carBadge": "Ya disponible",
+    "carTitle": "Envíe su coche a cualquier parte del mundo",
+    "carText": "Norvane Express ahora envía coches y otros vehículos a nivel internacional. Díganos dónde está su vehículo y adónde debe ir: nosotros nos encargamos del resto y le informamos en cada paso.",
+    "carPoint1": "Envío de vehículos de puerta a puerto y de puerto a puerto",
+    "carPoint2": "Un número de seguimiento para cada vehículo, desde la recogida hasta la llegada",
+    "carPoint3": "Ayuda con la documentación de exportación y aduanas",
+    "carPoint4": "Coches, SUV, furgonetas y otros vehículos",
+    "carCta": "Solicitar presupuesto de envío",
+    "carCta2": "Seguir mi vehículo"
   },
   "tracking": {
     "label": "Número de seguimiento",

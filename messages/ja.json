@@ -51,7 +51,10 @@
     "menuContact": "お問い合わせ",
     "menuContactText": "当社チームにメッセージを送る。",
     "menuAbout": "会社概要",
-    "menuAboutText": "Norvane Express について。"
+    "menuAboutText": "Norvane Express について。",
+    "carShipping": "自動車輸送",
+    "menuCars": "自動車の国際輸送",
+    "menuCarsText": "お車や車両を海外へ輸送します。"
   },
   "home": {
     "eyebrow": "国際配送・物流",
@@ -154,7 +157,18 @@
     "safetyCta": "不審なメッセージを報告する",
     "announceBadge": "新サービス",
     "announceText": "自動車の国際輸送を開始しました。ドア・ツー・ポート、ポート・ツー・ポートに対応し、到着まで追跡できます。",
-    "announceCta": "詳しく見る"
+    "announceCta": "詳しく見る",
+    "quickCar": "車を送る",
+    "quickCarText": "お車や車両を追跡付きで海外へ輸送します。",
+    "carBadge": "受付開始",
+    "carTitle": "お車を世界中へお届けします",
+    "carText": "Norvane Expressは、自動車やその他の車両の国際輸送を開始しました。車両の現在地と目的地をお知らせいただければ、あとは私たちにお任せください。各段階で状況をお知らせします。",
+    "carPoint1": "ドア・ツー・ポート、ポート・ツー・ポートの車両輸送",
+    "carPoint2": "集荷から到着まで、車両ごとに追跡番号を発行",
+    "carPoint3": "輸出・通関書類のサポート",
+    "carPoint4": "乗用車、SUV、バンなど各種車両に対応",
+    "carCta": "自動車輸送の見積もりを依頼",
+    "carCta2": "車両を追跡する"
   },
   "tracking": {
     "label": "追跡番号",

@@ -2,6 +2,7 @@ import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import {
   ArrowRight,
+  Car,
   Check,
   Headset,
   ShieldAlert,
@@ -20,6 +21,52 @@ import {
 import { Link } from "@/i18n/navigation";
 import { PHOTOS } from "@/lib/photos";
 import { cn } from "@/lib/format";
+
+/* -------------------------------------------------------------------------- */
+/* International car shipping (featured)                                      */
+/* -------------------------------------------------------------------------- */
+
+export async function CarShippingSection() {
+  const t = await getTranslations("home");
+  const points = [t("carPoint1"), t("carPoint2"), t("carPoint3"), t("carPoint4")];
+  return (
+    <section id="car-shipping" className="relative isolate scroll-mt-28 overflow-hidden bg-brand-950 text-white" aria-labelledby="car-heading">
+      <Image src={PHOTOS.port} alt="" fill sizes="100vw" className="-z-10 object-cover opacity-35" />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-brand-950 via-brand-950/90 to-brand-950/40" aria-hidden />
+      <div className="container-page py-20 lg:py-28">
+        <div className="max-w-2xl">
+          <span className="inline-flex items-center gap-2 rounded-full bg-signal-600 px-3.5 py-1.5 text-sm font-bold tracking-wide uppercase">
+            <Car className="h-4 w-4" aria-hidden />
+            {t("carBadge")}
+          </span>
+          <h2 id="car-heading" className="font-display mt-6 text-4xl leading-[1.05] font-black tracking-[-0.02em] text-balance [font-stretch:110%] sm:text-5xl lg:text-6xl">
+            {t("carTitle")}
+          </h2>
+          <p className="mt-5 text-lg leading-relaxed text-white/85">{t("carText")}</p>
+          <ul className="mt-8 grid gap-3.5 sm:grid-cols-2">
+            {points.map((p) => (
+              <li key={p} className="flex gap-3">
+                <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-signal-600">
+                  <Check className="h-4 w-4" aria-hidden />
+                </span>
+                <span className="text-white/90">{p}</span>
+              </li>
+            ))}
+          </ul>
+          <div className="mt-10 flex flex-wrap gap-3">
+            <Link href="/contact" className="btn-accent h-13 px-8 text-base">
+              {t("carCta")}
+              <ArrowRight className="h-4 w-4" aria-hidden />
+            </Link>
+            <Link href="/track" className="inline-flex h-13 items-center gap-2 rounded-md px-8 text-base font-semibold ring-1 ring-white/40 transition hover:bg-white/10">
+              {t("carCta2")}
+            </Link>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
 
 /* -------------------------------------------------------------------------- */
 /* Alternating photo + text rows                                              */
